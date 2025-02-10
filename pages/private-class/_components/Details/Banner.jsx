@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
+import { BreadcrumbItem, Breadcrumbs, Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
 
 import Right from '@icons/chevron-right.svg'
 import Clock from "@icons/clock.svg";
@@ -11,8 +11,10 @@ import Eye from '@icons/eye-right.svg'
 import Flag from '@icons/Flags/Country=United States of America, Style=Flag, Radius=On.svg'
 import Star from '@icons/magic-star.svg'
 import Info from '@icons/info-circle.svg'
+import RuleOfCancle from "@/components/RuleOfCancle";
 
 function Banner({ data = {} }) {
+  const { about={} } = data
   return (
     <>
       <div className="lg:hidden flex flex-col">
@@ -24,8 +26,8 @@ function Banner({ data = {} }) {
               separator: "px-2 text-natural_gray-600"
             }}>
             <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs' href="/">صفحه اصلی</BreadcrumbItem>
-            <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs' href='/professor'>کلاس های خصوصی</BreadcrumbItem>
-            <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'>{data.name}</BreadcrumbItem>
+            <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs' href='/private-class'>کلاس های خصوصی</BreadcrumbItem>
+            <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'>{about.name}</BreadcrumbItem>
           </Breadcrumbs>
         </div>
         <div className="py-3 flex items-center gap-2 cursor-pointer">
@@ -33,7 +35,7 @@ function Banner({ data = {} }) {
           <span className='sm:text-base text-sm font-semibold'>بازگشت</span>
         </div>
       </div>
-      {!data.offer && <div className="bg-red-200 flex items-center px-4 py-3.5 w-full mb-4 justify-between rounded">
+      {data.offer && <div className="bg-red-200 flex items-center px-4 py-3.5 w-full mb-4 justify-between rounded">
         <p>تا پایان تخفیف</p>
         <p className="flex items-center ">
           <span dir="ltr">09 : 03 : 41</span>
@@ -45,7 +47,7 @@ function Banner({ data = {} }) {
           <div className="lg:hidden flex items-center lg:justify-end justify-between">
             <Link href='' className="flex items-center gap-1 self-end">
               <div className="centerOfParent"><Eye className='w-4 h-4 fill-primary-700' /></div>
-              <span className='sm:text-base text-sm text-primary-950'>5K</span>
+              <span className='sm:text-base text-sm text-primary-950'>{about.views_count}</span>
             </Link>
             <div className="flex items-center gap-6">
               <Heart />
@@ -60,20 +62,20 @@ function Banner({ data = {} }) {
                   height="0"
                   sizes="100vw"
                   className="w-full h-full object-cover"
-                  src={'/images/image 144.png' || data.image}
-                  alt={data.name}
+                  src={about.profile || '/images/image 144.png'}
+                  alt={about.name}
                 />
               </div>
-              <h1 className="lg:font-normal font-semibold">{data.name}</h1>
-              <div className="centerOfParent flex-col gap-1 w-full">
-                <h1 className='sm:text-xl text-base font-semibold'>{data.name}</h1>
-                <p className='lg:hidden text-natural_gray-600 text-xs'>(کد کتاب: {data.id})</p>
-                <div className="lg:hidden centerOfParent"><Flag /></div>
-                <div className="lg:hidden flex items-center gap-1">
+              <h1 className="font-semibold lg:block hidden my-2">{about.name}</h1>
+              <div className="centerOfParent flex-col gap-1 lg:hidden w-full">
+                <h1 className='sm:text-xl text-base font-semibold '>{about.name}</h1>
+                <p className='text-natural_gray-600 text-xs'>(کد کتاب: {data.id})</p>
+                <div className="centerOfParent"><Flag /></div>
+                <div className="flex items-center gap-1">
                   <div className="centerOfParent"><Star className='w-5 h-5 fill-warning' /></div>
                   <div className="flex items-center gap-2">
-                    <span className='text-natural_gray-950 text-xs'>4.8</span>
-                    <span className='text-neutral-700 text-[10px]'>از 80 نفر</span>
+                    <span className='text-natural_gray-950 text-xs'>{about.rate}</span>
+                    <span className='text-neutral-700 text-[10px]'>از {about.rate_count} نفر</span>
                   </div>
                 </div>
               </div>
@@ -84,7 +86,7 @@ function Banner({ data = {} }) {
                 </div>
                 <div className="bg-natural_gray-50 px-3 py-2  flex items-center justify-between">
                   <p className="text-natural_gray-950 text-xs">تعیین سطح</p>
-                  <p className="text-red-500 text-md">{'50% تخفیف' || data.teaching_level}</p>
+                  <p className="text-red-500 text-md">{'50% تخفیف' ||data.teaching_level}</p>
                 </div>
                 <div className="bg-natural_gray-50 px-3 py-2  flex items-center justify-between">
                   <p className="text-natural_gray-950 text-xs">کلاس آزمایشی</p>
@@ -97,8 +99,8 @@ function Banner({ data = {} }) {
                 <div className="w-full flex flex-col items-center gap-2">
                   <span className="lg:hidden font-semibold text-primary-700 sm:text-base text-sm">رایگان</span>
                   <div className="overflow-hidden w-full">
-                    <Link href={`/professor/${data.id}/reserve-class`}
-                      className="effect-1 w-full lg:h-12 sm:h-10 h-8 lg:py-4 py-2 text-center whitespace-nowrap lg:px-6 px-4 lg:text-base sm:text-sm text-xs border text-secondary-500 border-secondary-500 rounded flex flex-col justify-center">
+                    <Link href={`/private-class/${data.id}/reserve-class`}
+                      className="effect-1 w-full lg:h-12 sm:h-10 h-8 lg:py-4 py-2 text-center whitespace-nowrap lg:text-base sm:text-sm text-xs border text-secondary-500 border-secondary-500 rounded flex flex-col justify-center">
                       تعیین سطح
                     </Link>
                   </div>
@@ -106,8 +108,8 @@ function Banner({ data = {} }) {
                 <div className="w-full flex flex-col items-center gap-2">
                   <span className="lg:hidden font-semibold text-rose-500  sm:text-base text-sm">50% تخفیف</span>
                   <div className="overflow-hidden w-full">
-                    <Link href={`/professor/${data.id}/reserve-class`}
-                      className="effect-1 w-full lg:h-12 sm:h-10 h-8 lg:py-4 py-2 text-center whitespace-nowrap lg:px-6 px-4 lg:text-base sm:text-sm text-xs border text-secondary-500 border-secondary-500 rounded flex flex-col justify-center">
+                    <Link href={`/private-class/${data.id}/reserve-class`}
+                      className="effect-1 w-full lg:h-12 sm:h-10 h-8 lg:py-4 py-2 text-center whitespace-nowrap lg:text-base sm:text-sm text-xs border text-secondary-500 border-secondary-500 rounded flex flex-col justify-center">
                       رزرو آزمایشی
                     </Link>
                   </div>
@@ -115,7 +117,7 @@ function Banner({ data = {} }) {
               </div>
               <div className="w-full lg:flex hidden">
                 <Link
-                  href={`/professor/${data.id}/reserve-class`}
+                  href={`/private-class/${data.id}/reserve-class`}
                   className="bg-primary-600 effect-2 w-full h-12 text-white py-4 px-6 text-center rounded flex flex-col justify-center"
                 >
                   رزرو کلاس
@@ -127,10 +129,15 @@ function Banner({ data = {} }) {
       </div>
       <div className="lg:hidden flex items-center justify-between bg-white border border-natural_gray-100 rounded-lg w-full py-4 px-3">
         <p className="text-xs font-semibold">قوانین لغو کلاس</p>
-        <div className="flex items-center gap-1">
-          <div className="centerOfParent"><Info className='w-4 h-4' /></div>
-          <span className="text-xs text-rose-600"> قوانین لغو کلاس استاد</span>
-        </div>
+        <Popover backdrop='blur' className='absolute top-0 left-0 transladte-x-1/2 -translate-y-1/2 w-[90vw]'>
+          <PopoverTrigger>
+            <div className="flex items-center gap-1 cursor-pointer">
+              <div className="centerOfParent"><Info /></div>
+              <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس استاد</span>
+            </div>
+          </PopoverTrigger>
+          <PopoverContent><RuleOfCancle /></PopoverContent>
+        </Popover>
       </div>
     </>
   );

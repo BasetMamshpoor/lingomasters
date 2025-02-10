@@ -23,12 +23,12 @@
         {
             "id": 5,
             "title": "پربازدیدترین",
-            "key": "cheap"
+            "key": "most_viewed"
         },
         {
             "id": 6,
             "title": "تخفیف دار",
-            "key": "cheap"
+            "key": "discounted"
         }
     ]
 }

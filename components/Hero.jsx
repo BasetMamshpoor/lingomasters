@@ -6,8 +6,8 @@ import Star from '@icons/magic-star.svg'
 import FillHeart from '@icons/fill-heart.svg'
 import Flag from '@icons/Flags/Country=United States of America, Style=Flag, Radius=On.svg'
 
-const Hero = ({ product = {} }) => {
-    const { title, rate = 0, id, language, is_like, category,category_slug, selected_seller, subject, age_group, page_number, product_type, book_category } = product
+const Hero = ({ data = {} }) => {
+    const { title, rate = 0, id, language, is_like, category,category_slug, selected_seller, subject, age_group, page_number, product_type, book_category } = data
 
     return (
         <>

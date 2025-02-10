@@ -20,7 +20,7 @@ const formatDate = (date) => {
     return `${year}-${month}-${day}`;
 };
 
-const Calendar = ({ select }) => {
+const Calendar = () => {
     const [selectedKeys, setSelectedKeys] = useState(new Set(["بامداد"]))
     const [saturday, setSaturday] = useState(getStartOfWeek(new Date()));
 
@@ -49,9 +49,9 @@ const Calendar = ({ select }) => {
 
     return (
         <>
-            <div className="sm:p-6 px-3 py-4 flex flex-col gap-6 bg-white rounded-lg border-natural_gray-100 border scroll-m-52" id='about'>
+            <div className="sm:p-6 px-3 py-4 flex flex-col gap-6 bg-white rounded-lg border-natural_gray-100 border scroll-m-24" id='calendar'>
                 <div className="centerOfParent gap-2 w-fit">
-                    <div className="centerOfParent"><Icon className='w-5 h-5' /></div>
+                    <div className="centerOfParent"><Icon className='w-5 h-5 fill-primary-700' /></div>
                     <span className='sm:text-base text-sm text-primary-950'>تقویم آموزشی</span>
                 </div>
                 <div className="flex flex-col gap-10">
@@ -109,10 +109,21 @@ const Calendar = ({ select }) => {
                                     return (
                                         <table className="w-[88px] table-auto lg:text-base sm:text-xs text-[10px]" key={i}>
                                             <tbody>
-                                                {d.schedule.map(t => {
+                                                {d.schedule.map((t, index, array) => {
+                                                    const leftColumn = weeklySchedule[i + 1];
+                                                    const leftCell =
+                                                        leftColumn?.schedule[index];
+
+                                                    const shouldKeepLeftBorder =
+                                                        leftCell && ["open", "reserved"].includes(leftCell.status);
+
+                                                    const nextItem = array[index + 1];
+                                                    const shouldAddBorder = !nextItem || nextItem.status === 'inactive'
                                                     return <tr key={t.time}><td
-                                                        className={`sm:border-l centerOfParent border border-natural_gray-300 py-2 text-sm ${t.status == 'inactive' ? '!bg-natural_gray-50 text-white border-none' : t.status == 'reserved' ? (!select ? '!bg-neutral-50 text-natural_gray-700' : '!bg-natural_gray-50 text-white border-none') : ''}`}>{(select && t.status == 'open') ? <Checkbox /> : null}
-                                                        {t.status == 'reserved' ? (!select ? 'رزرو شده' : '-') : t.status == 'inactive' ? '-' : t.time}
+                                                        className={`py-2 border-t border-r centerOfParent sm:gap-1 border-natural_gray-300 sm:text-sm text-[8px] border-l ${shouldAddBorder ? 'border-b' : ''} ${shouldKeepLeftBorder ? "sm:border-l border-l-0" : ""}
+                                                        ${t.status == 'inactive' ? '!bg-natural_gray-50 text-natural_gray-50 border-natural_gray-50'
+                                                                : t.status == 'reserved' ? '!bg-neutral-50 text-natural_gray-700' : ''}`}>
+                                                        {t.status == 'reserved' ? ('رزرو شده') : t.status == 'inactive' ? '-' : <span className='text-center'>{t.time}</span>}
                                                     </td></tr>
                                                 })}
                                             </tbody>

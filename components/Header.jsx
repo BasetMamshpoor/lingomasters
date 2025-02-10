@@ -22,7 +22,7 @@ const Item = ({ i, isSubmenuOpen }) => <div className="flex items-center justify
 const links = [
     { link: '/', icon: <Home />, text: 'صفحه‌اصلی', underMenu: false },
     { link: '', icon: <Users />, text: 'کلاس‌های‌خصوصی', underMenu: true },
-    { link: '/', icon: <Book />, text: 'کلاس‌های‌گروهی', underMenu: false },
+    { link: '/group-class', icon: <Book />, text: 'کلاس‌های‌گروهی', underMenu: false },
     { link: '/', icon: <Seller />, text: 'وبینارها', underMenu: true },
     { link: '/', icon: <SearchOrder />, text: 'آزمون ها', underMenu: false },
     { link: '/', icon: <About />, text: 'درباره‌ما', underMenu: false },

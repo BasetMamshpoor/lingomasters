@@ -12,9 +12,13 @@ import CalendarIcon from "@icons/calendar.svg";
 import EditIcon from "@icons/edit-icon.svg";
 import TrashIcon from "@icons/bin.svg";
 
-import BookItem from "./BookItem";
+import BookItem from "components/BookItem";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-function ReserveCheckout() {
+function ReserveCheckout({ setSteps }) {
+  const router = useRouter()
+  const { id } = router.query
   return (
     <div className="col-span-3 rounded-lg border border-natural_gray-100 bg-white py-4 px-3 flex flex-col gap-5 ">
       <div className="grid sm:grid-cols-3 items-center">
@@ -34,11 +38,11 @@ function ReserveCheckout() {
         <div className="flex sm:order-1 -order-1 items-center justify-end gap-3">
           <button className="flex gap-2 items-center py-1 px-3 text-sm rounded-md border-2 border-red-600 text-red-600">
             <TrashIcon className="w-5 h-5 fill-red-600" />
-            <p className="md:block hidden">حذف</p>
+            <Link href={`/private-class/${id}`} className="md:block hidden">حذف</Link>
           </button>
           <button className="flex gap-2 items-center py-1 px-3 text-sm rounded-md border-2 border-primary-600 text-primary-600">
             <EditIcon className="w-5 h-5" />
-            <p className="md:block hidden">ویرایش</p>
+            <p onClick={() => setSteps(prev => prev - 1)} className="md:block hidden">ویرایش</p>
           </button>
         </div>
       </div>
@@ -95,7 +99,7 @@ function ReserveCheckout() {
       <div className="grid grid-cols-3 items-center">
         <div className="flex items-center">
           <div className="centerOfParent ml-2">
-            <FileIcon />
+            <FileIcon className='fill-primary-700' />
           </div>
           <p className="text-natural_gray-950 sm:text-base text-[10px]">
             هدف از یادگیری
@@ -108,7 +112,7 @@ function ReserveCheckout() {
       <div className="grid grid-cols-3 items-center">
         <div className="flex items-center">
           <div className="centerOfParent ml-2">
-            <BookIcon />
+            <BookIcon className='fill-primary-600' />
           </div>
           <p className="text-natural_gray-950 sm:text-base text-[10px]">
             انتخاب کتاب
@@ -149,7 +153,7 @@ function ReserveCheckout() {
       <div className="flex w-96 justify-between items-center">
         <div className="flex items-center">
           <div className="centerOfParent ml-2">
-            <CalendarIcon />
+            <CalendarIcon className='fill-primary-600' />
           </div>
           <p className="text-natural_gray-950 sm:text-base text-[10px]">تقویم</p>
         </div>

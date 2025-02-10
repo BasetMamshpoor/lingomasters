@@ -5,8 +5,8 @@ import db from 'db/reserve.json'
 
 const TabsComponent = ({ title, tabs = [], children }) => {
     const [selected, setSelected] = useState("");
-    const [value, setValue] = useState([])
-    const [accent, setAccent] = useState([])
+    const [value, setValue] = useState()
+    const [accent, setAccent] = useState()
     return (
         <>
             <div className="flex flex-col gap-4 lg:border-none border-b pb-4">
@@ -48,12 +48,18 @@ const TabsComponent = ({ title, tabs = [], children }) => {
                                                     style={{
                                                         "--nextui-success": "196 94% 25%",
                                                     }}
-                                                    value={value}
                                                     color='success'
-                                                    onValueChange={setValue}
+                                                    value={[value]}
+                                                    onValueChange={(e) => {
+                                                        if (e.length === 0) {
+                                                            setValue(''); // Handle unselecting all checkboxes
+                                                        } else {
+                                                            setValue(e[e.length - 1]); // Use the last selected value
+                                                        }
+                                                    }}
                                                     classNames={{ wrapper: 'flex flex-wrap [&>label]:min-w-44', base: 'grow' }}
                                                 >
-                                                    {l.data.map(c => <Checkbox classNames={{ icon: 'text-white', label: 'text-xs', base: '' }} key={c.id} value={c.id}>{c.title}</Checkbox>)}
+                                                    {l.data.map(c => <Checkbox classNames={{ icon: 'text-white', label: 'text-xs' }} key={c.id} value={c.id}>{c.title}</Checkbox>)}
                                                 </CheckboxGroup> : children}
                                             </div>
                                         )) : children}
@@ -64,7 +70,7 @@ const TabsComponent = ({ title, tabs = [], children }) => {
                     </Tabs>
                 </div>
             </div>
-            {value.includes('accent') && <div className="flex flex-col gap-4">
+            {value == 'accent' && <div className="flex flex-col gap-4">
                 <label className='text-lg'>لهجه</label>
                 <div className='flex flex-col gap-6'>
                     <CheckboxGroup
@@ -73,16 +79,22 @@ const TabsComponent = ({ title, tabs = [], children }) => {
                         style={{
                             "--nextui-success": "196 94% 25%",
                         }}
-                        value={accent}
                         color='success'
-                        onValueChange={setAccent}
+                        value={[accent]}
+                        onValueChange={(e) => {
+                            if (e.length === 0) {
+                                setAccent(''); // Handle unselecting all checkboxes
+                            } else {
+                                setAccent(e[e.length - 1]); // Use the last selected value
+                            }
+                        }}
                         classNames={{ wrapper: 'grid grid-cols-4', base: 'grow' }}
                     >
                         {db.accent.map(c => <Checkbox classNames={{ icon: 'text-white', label: 'text-xs' }} key={c.id} value={c.id}>{c.title}</Checkbox>)}
                     </CheckboxGroup>
                 </div>
             </div>}
-            {(value.includes('offline') || value.includes('offline2')) && <div className="flex flex-col gap-6">
+            {(value == 'offline' || value == 'offline2') && <div className="flex flex-col gap-6">
                 <Input label="آدرس دقیق خود را وارد کنید" placeholder='منطقه/خیابان اصلی/فرعی/کوی/پلاک/طبقه/واحد' type="number" radius='sm' labelPlacement='outside' variant='bordered' className='' />
                 <div className="flex flex-col gap-3">
                     <label className='text-sm'>انتخاب موقعیت از روی نقشه</label>

@@ -1,0 +1,125 @@
+import {Breadcrumbs, BreadcrumbItem, Popover, PopoverTrigger, PopoverContent} from '@nextui-org/react';
+//icons
+import Share from '@icons/share.svg'
+import Heart from '@icons/heart.svg'
+import Eye from '@icons/eye-right.svg'
+import Alert from '@icons/info-circle.svg'
+import Star from '@icons/magic-star.svg'
+import FillHeart from '@icons/fill-heart.svg'
+import Flag from '@icons/Flags/Country=United States of America, Style=Flag, Radius=On.svg'
+import RuleOfCancle from '@/components/RuleOfCancle';
+
+const Hero = ({data = {}, id}) => {
+    const {
+        name,
+        rate,
+        teaching_types,
+        is_like,
+        views_count,
+        city,
+        gender,
+        language_levels,
+        age_groups,
+        rate_count
+    } = data
+
+    return (
+        <>
+            <div className="hidden lg:block mb-20">
+                <div className="container">
+                    <div className="relative bg-gradient-to-t from-[#2D59C826] to-[#89C9FF14] h-[294px] py-8 px-10">
+                        <div className="">
+                            <div className="flex items-center justify-between mb-10">
+                                <Breadcrumbs
+                                    separator='/'
+                                    classNames={{list: 'last:[&>li>span]:text-primary-950 [&>li]:text-natural_gray-600'}}
+                                    itemClasses={{
+                                        separator: "px-2 text-natural_gray-600"
+                                    }}>
+                                    <BreadcrumbItem href="/">صفحه اصلی</BreadcrumbItem>
+                                    <BreadcrumbItem href={`/private-class`}>کلاس های خصوصی</BreadcrumbItem>
+                                    <BreadcrumbItem>{data.name}</BreadcrumbItem>
+                                </Breadcrumbs>
+                                <div className="centerOfParent cursor-pointer" onClick={() => {
+                                    navigator.clipboard.writeText(location.href)
+                                }}><Share/></div>
+                            </div>
+                            <div className="flex items-center justify-between mb-3">
+                                <div className="flex items-center gap-3">
+                                    <h1 className='text-2xl font-semibold'>{name}</h1>
+                                    <span className='text-natural_gray-600 text-xs'>(کد استاد: {id})</span>
+                                </div>
+                                <div className="flex flex-col items-end gap-3">
+                                    <div className="centerOfParent cursor-pointer">{is_like ? <FillHeart/> :
+                                        <Heart/>}</div>
+                                    <div className="centerOfParent gap-1">
+                                        <div className="centerOfParent"><Eye className='w-4 h-4 fill-primary-700'/>
+                                        </div>
+                                        <span className="text-sm">{views_count}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex items-center justify-between mb-3">
+                                <div className="">
+                                    <div className="centerOfParent w-fit"><Flag/></div>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <div className="flex items-center [&>svg]:w-4 [&>svg]:h-4">
+                                        <Star className={rate < 5 ? '' : 'fill-[#F3B944]'}/>
+                                        <Star className={rate < 4 ? '' : 'fill-[#F3B944]'}/>
+                                        <Star className={rate < 3 ? '' : 'fill-[#F3B944]'}/>
+                                        <Star className={rate < 2 ? '' : 'fill-[#F3B944]'}/>
+                                        <Star className={rate < 1 ? '' : 'fill-[#F3B944]'}/>
+                                    </div>
+                                    <div className="flex items-center gap-1 text-xs">
+                                        <strong>{rate}</strong>
+                                        از {rate_count} نفر
+                                    </div>
+                                </div>
+                            </div>
+                            <Popover backdrop='blur'
+                                     className='absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-[90vw]'>
+                                <PopoverTrigger>
+                                    <div className="flex items-center gap-1 cursor-pointer">
+                                        <div className="centerOfParent"><Alert/></div>
+                                        <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس استاد</span>
+                                    </div>
+                                </PopoverTrigger>
+                                <PopoverContent><RuleOfCancle/></PopoverContent>
+                            </Popover>
+                        </div>
+                        <div className="w-full absolute -bottom-5 left-0 flex gap-4 items-center px-10">
+                            <div
+                                className="centerOfParent h-12 flex-[1_0_0] gap-1 rounded-lg bg-primary-50 [box-shadow:0px_4px_6px_0px_rgba(54,_108,_218,_0.08)]">
+                                <p className='text-natural_gray-700 text-xs'>نوع تدریس</p>
+                                <h4 className='text-sm font-semibold'>{!!teaching_types?.length && teaching_types.join(' | ')}</h4>
+                            </div>
+                            <div
+                                className="centerOfParent h-12 flex-[1_0_0] gap-1 rounded-lg bg-primary-50 [box-shadow:0px_4px_6px_0px_rgba(54,_108,_218,_0.08)]">
+                                <p className='text-natural_gray-700 text-xs'>شهر</p>
+                                <h4 className='text-sm font-semibold'>{city}</h4>
+                            </div>
+                            <div
+                                className="centerOfParent h-12 flex-[1_0_0] gap-1 rounded-lg bg-primary-50 [box-shadow:0px_4px_6px_0px_rgba(54,_108,_218,_0.08)]">
+                                <p className='text-natural_gray-700 text-xs'>تدریس برای</p>
+                                <h4 className='text-sm font-semibold'>{!!gender?.length && gender.join(' | ')}</h4>
+                            </div>
+                            <div
+                                className="centerOfParent h-12 flex-[1_0_0] gap-1 rounded-lg bg-primary-50 [box-shadow:0px_4px_6px_0px_rgba(54,_108,_218,_0.08)]">
+                                <p className='text-natural_gray-700 text-xs'>سطح زبان</p>
+                                <h4 className='text-sm font-semibold'>{!!language_levels?.length && language_levels.join(' | ')}</h4>
+                            </div>
+                            <div
+                                className="centerOfParent h-12 flex-[1_0_0] gap-1 rounded-lg bg-primary-50 [box-shadow:0px_4px_6px_0px_rgba(54,_108,_218,_0.08)]">
+                                <p className='text-natural_gray-700 text-xs'>رده سنی</p>
+                                <h4 className='text-sm font-semibold'>{!!age_groups?.length && age_groups.join(' | ')}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default Hero;

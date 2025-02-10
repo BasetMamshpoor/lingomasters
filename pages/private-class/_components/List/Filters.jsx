@@ -1,4 +1,3 @@
-"use client"
 import Dropdown from 'components/Dropdown/DropDown';
 import useGetRequest from 'hooks/useGetRequest';
 import React, { useRef, useState } from 'react';
@@ -49,22 +48,23 @@ const Filters = ({ setCurrentPage }) => {
     const changeUrl = (name, value) => {
         let str = null;
         !!Array.isArray(value) ? value.forEach((f, i) => {
+            const is_Array_String = typeof f === 'string'
             if (i > 0) {
-                str = str + '-' + f.value
+                str = str + '-' + (is_Array_String ? f : f.value)
             } else if (i === 0) {
-                str = f.value
+                str = is_Array_String ? f : f.value
             } else {
                 str = null
             }
         }) : str = value
         if (str === null) {
-            const { [name]: O, slug, ...query } = router.query
+            const { [name]: O, ...query } = router.query
             router.replace({ pathname: router.asPath.split('?')[0], query: { ...query }, },
                 undefined,
                 { shallow: true }
             );
         } else {
-            const { slug, ...query } = router.query
+            const { ...query } = router.query
             router.replace({ pathname: router.asPath.split('?')[0], query: { ...query, [name]: str }, },
                 undefined,
                 { shallow: true }
@@ -101,16 +101,21 @@ const Filters = ({ setCurrentPage }) => {
                         <CheckboxGroup
                             aria-label=" "
                             orientation="horizontal"
+                            color='success'
                             style={{
                                 "--nextui-success": "196 94% 25%",
                             }}
-                            value={['sort']}
-                            color='success'
-                            onValueChange={() => { }}
+                            value={filters.sort ? [filters.sort] : 'newest'}
+                            onValueChange={(e) => {
+                                if (e.length === 0) {
+                                    handleFilter('sort', null); // Handle unselecting all checkboxes
+                                } else {
+                                    handleFilter('sort', e[e.length - 1]); // Use the last selected value
+                                }
+                            }}
                             classNames={{ wrapper: 'grid grid-cols-2' }}
                         >
-                            {SortList.sort.map(c => <Checkbox onChange={() => { }}
-                                classNames={{ icon: 'text-white' }} key={c.id} value={c.key}>{c.title}</Checkbox>)}
+                            {SortList.sort.map(c => <Checkbox classNames={{ icon: 'text-white' }} key={c.key} value={c.key}>{c.title}</Checkbox>)}
                         </CheckboxGroup>
                     </div>
                     <div className="flex flex-col gap-4">
@@ -144,14 +149,12 @@ const Filters = ({ setCurrentPage }) => {
                             style={{
                                 "--nextui-success": "196 94% 25%",
                             }}
-                            value={['periods']}
+                            value={filters.time_of_day ? filters.time_of_day : undefined}
                             color='success'
-                            onValueChange={() => { }}
+                            onValueChange={(e) => handleFilter('time_of_day', e)}
                             classNames={{ wrapper: 'grid grid-cols-2' }}
-
                         >
-                            {Object.keys(weekDays.periods).map(c => <Checkbox onChange={() => { }}
-                                classNames={{ icon: 'text-white' }} key={c} value={c}>{c}</Checkbox>)}
+                            {Object.keys(weekDays.periods).map(c => <Checkbox classNames={{ icon: 'text-white' }} key={c} value={c}>{c}</Checkbox>)}
                         </CheckboxGroup>
                     </div>
                     <div className="flex flex-col gap-4">
@@ -190,12 +193,12 @@ const Filters = ({ setCurrentPage }) => {
                         <RadioGroup
                             aria-label=" "
                             orientation="horizontal"
-                            defaultValue={filters.age_group ? filters.age_group[0].value : undefined}
+                            defaultValue={filters.genders ? filters.genders[0].value : undefined}
                             style={{
                                 "--nextui-default-500": "196 94% 25%",
                             }}
                             color='default'
-                            onValueChange={(e) => handleFilter('age_group', e)}
+                            onValueChange={(e) => handleFilter('genders', e)}
                         >
                             <Radio key={1} value={'مرد'}>مرد</Radio>
                             <Radio key={2} value={'زن'}>زن</Radio>
@@ -217,14 +220,13 @@ const Filters = ({ setCurrentPage }) => {
                             style={{
                                 "--nextui-success": "196 94% 25%",
                             }}
-                            value={['periods']}
+                            value={filters.examLanguages ? filters.examLanguages : undefined}
                             color='success'
-                            onValueChange={() => { }}
+                            onValueChange={(e) => handleFilter('examLanguages', e)}
                             classNames={{ wrapper: 'grid grid-cols-2' }}
 
                         >
-                            {[{ name: 'رایگان', value: '100' }, { name: '50% تخفیف', value: '50' }, { name: 'بدون تخفیف', value: '0' }].map(c => <Checkbox onChange={() => { }}
-                                classNames={{ icon: 'text-white' }} key={c.value} value={c.value}>{c.name}</Checkbox>)}
+                            {[{ name: 'رایگان', value: '100' }, { name: '50% تخفیف', value: '50' }, { name: 'بدون تخفیف', value: '0' }].map(c => <Checkbox classNames={{ icon: 'text-white' }} key={c.value} value={c.value}>{c.name}</Checkbox>)}
                         </CheckboxGroup>
                     </div>
                     <div className="flex flex-col gap-4">
@@ -235,20 +237,19 @@ const Filters = ({ setCurrentPage }) => {
                             style={{
                                 "--nextui-success": "196 94% 25%",
                             }}
-                            value={['periods']}
+                            value={filters.testLanguages ? filters.testLanguages : undefined}
                             color='success'
-                            onValueChange={() => { }}
+                            onValueChange={(e) => handleFilter('testLanguages', e)}
                             classNames={{ wrapper: 'grid grid-cols-2' }}
 
                         >
-                            {[{ name: 'رایگان', value: '100' }, { name: '50% تخفیف', value: '50' }, { name: 'بدون تخفیف', value: '0' }].map(c => <Checkbox onChange={() => { }}
-                                classNames={{ icon: 'text-white' }} key={c.value} value={c.value}>{c.name}</Checkbox>)}
+                            {[{ name: 'رایگان', value: '100' }, { name: '50% تخفیف', value: '50' }, { name: 'بدون تخفیف', value: '0' }].map(c => <Checkbox classNames={{ icon: 'text-white' }} key={c.value} value={c.value}>{c.name}</Checkbox>)}
                         </CheckboxGroup>
                         <div className='px-3 py-5 flex flex-col gap-4'>
                             <div className='flex items-center justify-between'>
                                 <label className="inline-flex items-center justify-between w-full cursor-pointer">
-                                    <input type="checkbox" name="is_used" id="is_usedField" checked={filters['is_used'] ? true : false} className="sr-only peer"
-                                        onChange={({ target }) => target.checked ? handleFilter('is_used', true) : handleFilter('is_used', null)} />
+                                    <input type="checkbox" name="closest_time" id="is_usedField" checked={filters['closest_time'] ? true : false} className="sr-only peer"
+                                        onChange={({ target }) => target.checked ? handleFilter('closest_time', true) : handleFilter('closest_time', null)} />
                                     <span className="text-sm text-natural_gray-950">نزدیک‌ترین زمان قبول کلاس</span>
                                     <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
                                 </label>

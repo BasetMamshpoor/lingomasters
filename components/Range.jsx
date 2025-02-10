@@ -69,7 +69,7 @@ export default function RangeSlider({ filters, handleFilter, data }) {
                         onChange={setValues}
                         // className="rotate-180"
                         classNames={{
-                            base: "max-w-md",
+                            base: "",
                             track: "h-1",
                             filler: "bg-[#035477]"
                         }}

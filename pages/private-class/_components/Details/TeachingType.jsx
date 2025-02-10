@@ -12,7 +12,7 @@ import Button from '@icons/button-icon.svg';
 const TeachingType = () => {
     return (
         <>
-            <div className="p-4 flex flex-col gap-4 bg-white border border-natural_gray-50 rounded-lg withYellowCircel" id="target">
+            <div className="p-4 flex flex-col gap-4 bg-white border border-natural_gray-50 rounded-lg withYellowCircel  scroll-m-24" id="type">
                 <div className="centerOfParent gap-2 w-fit">
                     <div className="centerOfParent"><User className='w-5 h-5' /></div>
                     <span className='sm:text-base text-sm text-primary-950'>نوع تدریس</span>

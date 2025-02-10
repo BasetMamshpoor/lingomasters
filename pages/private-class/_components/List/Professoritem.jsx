@@ -96,11 +96,11 @@ const ProfessorItem = ({ r = { languages: [], teaching_types: [], genders: [], t
                                     <h6 className="sm:text-lg">{r.name}</h6>
                                     <div className="gap-1 flex items-center">
                                         <div className="centerOfParent"><Star className="w-4 h-4" /></div>
-                                        <p className="text-xs text-natural_gray-900">۴.۸</p>
-                                        <span className="text-[10px] text-natural_gray-500">از ۸۰ نظر</span>
+                                        <p className="text-xs text-natural_gray-900">{r.rate}</p>
+                                        <span className="text-[10px] text-natural_gray-500">از {r.rate_count} نظر</span>
                                     </div>
                                     <div className="gap-2 flex items-center">
-                                        {r.languages.length && r.languages.map(l => <div key={l} className="centerOfParent w-5 h-5"><Image src={l} width={0} height={0} sizes="100vw" className="w-full h-full object-contain" /></div>)}
+                                        {r.languages.length ? r.languages.map(l => <div key={l} className="centerOfParent w-5 h-5"><Image src={l} width={0} height={0} sizes="100vw" className="w-full h-full object-contain" /></div>) : null}
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@ const ProfessorItem = ({ r = { languages: [], teaching_types: [], genders: [], t
                                     <div className="centerOfParent">
                                         <EyeIcon className="fill-primary-800 w-4 h-4" />
                                     </div>
-                                    <div className="text-sm">5K</div>
+                                    <div className="text-sm">{r.views_count || 10}</div>
                                 </div>
                                 <div className="centerOfParent">
                                     <HeartIcon />
@@ -128,13 +128,13 @@ const ProfessorItem = ({ r = { languages: [], teaching_types: [], genders: [], t
                                         <DownIcon className={`w-5 h-5 fill-secondary-500 `} />
                                     </div>
                                 </div>
-                                <Link href={`/professor/${r.id}`} className="px-4 py-2.5 text-sm border-1 text-white rounded bg-primary-600 text-center w-full">
+                                <Link href={`/private-class/${r.id}`} className="px-4 py-2.5 text-sm border-1 text-white rounded bg-primary-600 text-center w-full">
                                     انتخاب استاد
                                 </Link>
                             </div>
                         </div>
                     </div>
-                    <Link href={`/professor/${r.id}`} className="w-full h-8 effect-2 bg-primary-700 text-white items-center md:flex hidden justify-center rounded py-4">
+                    <Link href={`/private-class/${r.id}`} className="w-full h-8 effect-2 bg-primary-600 text-white items-center md:flex hidden justify-center rounded py-2">
                         انتخاب استاد
                     </Link>
                 </div>

@@ -8,7 +8,7 @@ const useGetRequest = (url, page = 1, obj) => {
 
     useEffect(() => {
         const get = async () => {
-            if (!url) 
+            if (!url)
                 return
             await axios.get(url, { params: { ...obj, page } })
                 .then(res => {
@@ -19,7 +19,7 @@ const useGetRequest = (url, page = 1, obj) => {
                 .catch(err => alert(err.response?.data.message || `ایراد در لود اطلاعات ${url}`))
         }
         get()
-    }, [url, reload, page])
+    }, [url, reload, page, obj])
 
     return [data, setData, setReload, paginations, setPaginations]
 };

@@ -6,16 +6,21 @@ import db from 'db/reserve.json'
 import ChooseBook from '../../_components/reserve/ChooseBook';
 import { Input, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
-import Calendar from '../../_components/Details/Calendar';
+import Calendar from '../../_components/reserve/Calendar';
 import ReserveCheckout from '../../_components/reserve/ProfessorReserve';
-
+const stepsList = [
+    'وارد کردن اطلاعات',
+    'تقویم آموزشی',
+    'تاییدیه',
+    'پرداخت'
+];
 const Reserve = () => {
     const [steps, setSteps] = useState(1)
     return (
         <>
             <main className='my-6' dir='rtl'>
                 <div className="container">
-                    <Progress active={steps} page='احسان علیزاده' />
+                    <Progress active={steps} steps={stepsList} page='احسان علیزاده' />
                     <div className="grid lg:grid-cols-4 grid-cols-1 lg:gap-6 gap-y-6 my-10">
                         <div className="col-span-1 h-fit lg:order-1 sm:p-4 py-4 px-3 rounded-lg border border-natural_gray-100 bg-white flex flex-col gap-10 items-center">
                             <div className="flex flex-col gap-6">
@@ -32,10 +37,10 @@ const Reserve = () => {
                                 <p className='sm:text-sm text-xs text-green-700'> ۲۰۰ هزار تومان</p>
                             </div>
                         </div>
-                        {steps == 3 ? <ReserveCheckout />
+                        {steps == 3 ? <ReserveCheckout setSteps={setSteps} />
                             : steps == 2 ?
                                 <div className="col-span-3 flex flex-col gap-6">
-                                    <Calendar select />
+                                    <Calendar />
                                     <div className="flex items-end self-end gap-6">
                                         <button
                                             onClick={() => setSteps(steps - 1)} type='button'
@@ -59,14 +64,14 @@ const Reserve = () => {
                                         <TabsComponent title='نوع کلاس' tabs={db.class_type} />
                                         <TabsComponent title='هدف از یادگیری' tabs={db.point} ><TabsComponent tabs={db.exams} /></TabsComponent>
                                         <ChooseBook />
-                                        <Input label="در صورتی که کد تخفیف دارید آن را وارد کنید." type="number" radius='sm' labelPlacement='outside' variant='bordered' className='w-[448px]' />
+                                        <Input label="در صورتی که کد تخفیف دارید آن را وارد کنید." type="number" radius='sm' labelPlacement='outside' variant='bordered' className='sm:w-[448px]' />
                                         <Textarea label="در صورتی که پیامی برای استاد دارید بنویسید." type="number" radius='sm' labelPlacement='outside' variant='bordered' />
                                     </div>
-                                    <div className="flex items-end self-end gap-6">
-                                        <Link href='/professor' className='w-44 effect-1 sm:text-base text-xs flex-[1_0_0] sm:px-6 px-4 sm:py-4 py-2 rounded border-secondary-500 sm:border-[1.5px] border text-secondary-500 centerOfParent'>انصراف</Link>
+                                    <div className="flex items-end sm:self-end gap-6">
+                                        <Link href='/private-class' className='sm:w-[140px] w-full effect-1 sm:text-base text-xs sm:flex-[1_0_0] sm:px-6 px-4 sm:py-4 py-2 rounded border-secondary-500 sm:border-[1.5px] border text-secondary-500 centerOfParent'>انصراف</Link>
                                         <button
                                             onClick={() => setSteps(steps + 1)}
-                                            className="w-44 effect-2 sm:py-4 py-2 sm:px-6 px-4 sm:text-base text-xs rounded text-white bg-primary-600 sm:w-[140px] self-end">ارسال</button>
+                                            className="w-full effect-2 sm:py-4 py-2 sm:px-6 px-4 sm:text-base text-xs rounded text-white bg-primary-600 sm:w-[140px] self-end">ارسال</button>
                                     </div>
                                 </div>
                         }
