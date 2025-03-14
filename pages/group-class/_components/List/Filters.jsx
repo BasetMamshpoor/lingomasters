@@ -3,7 +3,7 @@ import Dropdown from 'components/Dropdown/DropDown';
 import useGetRequest from 'hooks/useGetRequest';
 import React, { useRef, useState } from 'react';
 import RangeSlider from 'components/Range';
-import { Checkbox, CheckboxGroup, Input, Radio, RadioGroup, Skeleton } from '@nextui-org/react';
+import { Checkbox, CheckboxGroup, Input, Radio, RadioGroup, Skeleton } from "@heroui/react";
 import { useRouter } from "next/router";
 
 import FilterIcon from '@icons/filter.svg';
@@ -118,7 +118,7 @@ const Filters = ({ setCurrentPage }) => {
                             aria-label=" "
                             orientation="horizontal"
                             style={{
-                                "--nextui-success": "196 94% 25%",
+                                "--heroui-success": "196 94% 25%",
                             }}
                             value={['sort']}
                             color='success'
@@ -136,7 +136,7 @@ const Filters = ({ setCurrentPage }) => {
                             orientation="horizontal"
                             defaultValue={filters.teachingTypes ? filters.teachingTypes[0].value : undefined}
                             style={{
-                                "--nextui-default-500": "196 94% 25%",
+                                "--heroui-default-500": "196 94% 25%",
                             }}
                             color='default'
                             onValueChange={(e) => handleFilter('teachingTypes', e)}
@@ -154,7 +154,7 @@ const Filters = ({ setCurrentPage }) => {
                             aria-label=" "
                             orientation="horizontal"
                             style={{
-                                "--nextui-success": "196 94% 25%",
+                                "--heroui-success": "196 94% 25%",
                             }}
                             value={['periods']}
                             color='success'
@@ -173,7 +173,7 @@ const Filters = ({ setCurrentPage }) => {
                             orientation="horizontal"
                             defaultValue={filters.languageLevels ? filters.languageLevels[0].value : undefined}
                             style={{
-                                "--nextui-default-500": "196 94% 25%",
+                                "--heroui-default-500": "196 94% 25%",
                             }}
                             color='default'
                             onValueChange={(e) => handleFilter('languageLevels', e)}
@@ -188,7 +188,7 @@ const Filters = ({ setCurrentPage }) => {
                             orientation="horizontal"
                             defaultValue={filters.age_group ? filters.age_group[0].value : undefined}
                             style={{
-                                "--nextui-default-500": "196 94% 25%",
+                                "--heroui-default-500": "196 94% 25%",
                             }}
                             color='default'
                             onValueChange={(e) => handleFilter('age_group', e)}
@@ -204,7 +204,7 @@ const Filters = ({ setCurrentPage }) => {
                             orientation="horizontal"
                             defaultValue={filters.age_group ? filters.age_group[0].value : undefined}
                             style={{
-                                "--nextui-default-500": "196 94% 25%",
+                                "--heroui-default-500": "196 94% 25%",
                             }}
                             color='default'
                             onValueChange={(e) => handleFilter('age_group', e)}

@@ -1,23 +1,76 @@
-'use client';
 import "@/styles/globals.css";
 import "@/styles/fonts.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { NextUIProvider } from "@nextui-org/react";
+import {HeroUIProvider, ToastProvider} from "@heroui/react";
 import axios from "axios";
-import { useRouter } from "next/router";
+import {useRouter} from "next/router";
+import Sidebar from "@/components/profile/Sidebar/Sidebar";
+import InformationProvider from "@/providers/InformationProvider";
+import LanguageProvider from "@/providers/languageProvider";
+import Right from "@icons/chevron-right.svg";
+import Link from "next/link";
+import {useState} from "react";
+import HeaderProfile from "@/components/profile/HeaderProfile";
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 
-export default function App({ Component, pageProps }) {
-  const { push } = useRouter()
-  return (
-    <NextUIProvider navigate={push}>
-      <div style={{ maxWidth: '1440px', margin: '0 auto' }}>
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
-      </div>
-    </NextUIProvider>
-  );
+export default function App({Component, pageProps}) {
+    const {push, pathname} = useRouter();
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const [title, setTitle] = useState('')
+    const open = pathname.includes('/profile')
+
+    const isAuthPage = (pathname === "/auth/login") || (pathname === "/auth/register");
+    const isProfileRoute = pathname.startsWith('/profile');
+
+    return (
+        <HeroUIProvider navigate={push}>
+            <ToastProvider
+                placement='top-right'
+                toastProps={{
+                    dir: 'rtl',
+                    timeout: 3000,
+                    shouldShowTimeoutProgress: true,
+                    classNames: {
+                        closeButton: "opacity-100 absolute left-4 right-auto top-1/2 -translate-y-1/2",
+                    },
+                }}/>
+            {isAuthPage ? (
+                    <div className='max-w-[1440px] mx-auto'>
+                        <Component {...pageProps} />
+                    </div>)
+                :
+                // <InformationProvider>
+                //     <LanguageProvider>
+                        isProfileRoute ?
+                            <div
+                                className='max-w-[1440px] mx-auto py-6 sm:px-6 px-2 gap-6 overflow-x-hidden flex min-h-screen relative'
+                                dir='rtl'>
+                                <Sidebar mobileOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen}
+                                         setTitle={setTitle}/>
+                                <div className="flex-grow flex flex-col gap-12 w-full">
+                                    <HeaderProfile setSidebarOpen={setSidebarOpen} isSidebarOpen={isSidebarOpen}
+                                            title={title} setTitle={setTitle}/>
+                                    <div className='flex flex-col gap-6'>
+                                        {open && <Link href='/'
+                                                       onClick={() => setTitle("داشبورد")}
+                                                       className='flex items-center text-primary-700 gap-2 mr-5'>
+                                            <Right className='fill-primary-700 w-5 h-5'/>
+                                            بازگشت
+                                        </Link>}
+                                        <Component {...pageProps}/>
+                                    </div>
+                                </div>
+                            </div> :
+                            <div className='max-w-[1440px] mx-auto'>
+                                <Header/>
+                                <Component {...pageProps} />
+                                <Footer/>
+                            </div>
+                    // </LanguageProvider>
+                // </InformationProvider>
+            }
+        < /HeroUIProvider>
+    );
 }

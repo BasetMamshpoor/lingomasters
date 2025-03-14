@@ -5,7 +5,7 @@ import {
     CardBody,
     RadioGroup,
     Radio,
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 import React, { useState } from "react";
 import Image from "next/image";
@@ -43,7 +43,7 @@ export default function Books() {
                                 <RadioGroup
                                     value={selected}
                                     color="default"
-                                    style={{ "--nextui-default-500": "196 94% 25%" }}
+                                    style={{ "--heroui-default-500": "196 94% 25%" }}
                                     aria-label=" "
                                 >
                                     <Radio value="english" name="language" classNames={{ hiddenInput: 'w-0' }}>
@@ -71,7 +71,7 @@ export default function Books() {
                                     aria-label=" "
                                     color="default"
                                     value={selected}
-                                    style={{ "--nextui-default-500": "196 94% 25%" }}
+                                    style={{ "--heroui-default-500": "196 94% 25%" }}
                                 >
                                     <Radio value="germany" name="language" classNames={{ hiddenInput: 'w-0' }}>
                                         <GermanyFlag />
@@ -95,7 +95,7 @@ export default function Books() {
                                     aria-label=" "
                                     color="default"
                                     value={selected}
-                                    style={{ "--nextui-default-500": "196 94% 25%" }}
+                                    style={{ "--heroui-default-500": "196 94% 25%" }}
                                 >
                                     <Radio value="spanish" name="language" classNames={{ hiddenInput: 'w-0' }}>
                                         <SpainFlag />

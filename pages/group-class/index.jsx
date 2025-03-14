@@ -3,7 +3,7 @@ import Filters from './_components/List/Filters';
 import Filter from './_components/List/Filter';
 import ClassItems from './_components/List/Items';
 import Pepole from '@icons/book-close.svg'
-import { Tab, Tabs } from '@nextui-org/react';
+import { Tab, Tabs } from "@heroui/react";
 
 const GroupClass = () => {
     const [currentPage, setCurrentPage] = useState(1)

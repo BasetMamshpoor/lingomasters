@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import TabsComponent from '../../_components/reserve/Tabs';
 import db from 'db/reserve.json'
 import ChooseBook from '../../_components/reserve/ChooseBook';
-import { Input, Textarea } from '@nextui-org/react';
+import { Input, Textarea } from "@heroui/react";
 import Link from 'next/link';
 import Calendar from '../../_components/reserve/Calendar';
 import ReserveCheckout from '../../_components/reserve/ProfessorReserve';

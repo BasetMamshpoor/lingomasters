@@ -3,7 +3,7 @@ import Star from '@icons/magic-star.svg'
 import EyeIcon from "@icons/eye-right.svg";
 import HeartIcon from "@icons/heart.svg";
 import Image from "next/image";
-import { Card, CardBody, ScrollShadow, Tab, Tabs } from "@nextui-org/react";
+import { Card, CardBody, ScrollShadow, Tab, Tabs } from "@heroui/react";
 import Link from "next/link";
 import Video from "@icons/video.svg";
 import UserIcon from "@icons/user-tick.svg";

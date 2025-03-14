@@ -1,7 +1,7 @@
 import Progress from '@/components/Progress';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { Input, Textarea } from '@nextui-org/react';
+import { Input, Textarea } from "@heroui/react";
 import Link from 'next/link';
 import ReserveCheckout from '../../_components/reserve/GroupClassReserve';
 const stepsList = [

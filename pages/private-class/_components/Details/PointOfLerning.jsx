@@ -5,7 +5,7 @@ import {
   CardBody,
   RadioGroup,
   Radio,
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 import React, { useState } from "react";
 
@@ -48,7 +48,7 @@ export default function PointOfLerning({ point }) {
                 <RadioGroup
                   value={selected}
                   color="default"
-                  style={{ "--nextui-default-500": "196 94% 25%" }}
+                  style={{ "--heroui-default-500": "196 94% 25%" }}
                   aria-label=" "
                 >
                   <Radio classNames={{ hiddenInput: 'w-0' }} value="english" name="language">
@@ -289,7 +289,7 @@ export default function PointOfLerning({ point }) {
                   aria-label=" "
                   color="default"
                   value={selected}
-                  style={{ "--nextui-default-500": "196 94% 25%" }}
+                  style={{ "--heroui-default-500": "196 94% 25%" }}
                 >
                   <Radio classNames={{ hiddenInput: 'w-0' }} value="germany" name="language">
                     <GermanyFlag />
@@ -543,7 +543,7 @@ export default function PointOfLerning({ point }) {
                   aria-label=" "
                   color="default"
                   value={selected}
-                  style={{ "--nextui-default-500": "196 94% 25%" }}
+                  style={{ "--heroui-default-500": "196 94% 25%" }}
                 >
                   <Radio classNames={{ hiddenInput: 'w-0' }} value="spanish" name="language">
                     <SpainFlag />

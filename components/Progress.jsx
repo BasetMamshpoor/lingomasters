@@ -1,4 +1,4 @@
-import { BreadcrumbItem, Breadcrumbs } from '@nextui-org/react';
+import { BreadcrumbItem, Breadcrumbs } from "@heroui/react";
 import { useRouter } from 'next/router';
 import React from 'react';
 

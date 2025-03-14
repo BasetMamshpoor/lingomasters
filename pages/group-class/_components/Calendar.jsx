@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import generateWeeklyScheduleForPeriod from '@/func/generateWeeklyScheduleForPeriod';
 import Icon from '@icons/calendar.svg';
 import Arrow from '@icons/arrow-left.svg';
-import { Accordion, AccordionItem, Checkbox } from '@nextui-org/react';
+import { Accordion, AccordionItem, Checkbox } from "@heroui/react";
 import useGetRequest from '@/hooks/useGetRequest';
 import weekDays from 'func/Calendar.json'
 

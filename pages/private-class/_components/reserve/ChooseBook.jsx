@@ -1,4 +1,4 @@
-import {Accordion, AccordionItem, Checkbox} from '@nextui-org/react';
+import {Accordion, AccordionItem, Checkbox} from "@heroui/react";
 import React, {useState} from 'react';
 import BookItem from 'components/BookItem';
 import {Swiper, SwiperSlide} from 'swiper/react';
@@ -25,7 +25,7 @@ const ChooseBook = () => {
                             startContent={<Checkbox
                                 color='success'
                                 style={{
-                                    "--nextui-success": "196 94% 25%",
+                                    "--heroui-success": "196 94% 25%",
                                 }} classNames={{icon: 'text-white', label: 'lg:text-base text-xs'}}
                                 isSelected={state == "1"} onValueChange={(e) => setState(e ? '1' : '1')}>خودم
                                 فایل تدریس را آپلود می کنم.</Checkbox>}
@@ -56,7 +56,7 @@ const ChooseBook = () => {
                             startContent={<Checkbox
                                 color='success'
                                 style={{
-                                    "--nextui-success": "196 94% 25%",
+                                    "--heroui-success": "196 94% 25%",
                                 }} classNames={{icon: 'text-white', label: 'lg:text-base text-xs'}}
                                 isSelected={state == "2"} onValueChange={(e) => setState(e ? '2' : '2')}>انتخاب
                                 کتاب را به استاد محول می کنم.</Checkbox>}>
@@ -67,7 +67,7 @@ const ChooseBook = () => {
                             startContent={<Checkbox
                                 color='success'
                                 style={{
-                                    "--nextui-success": "196 94% 25%",
+                                    "--heroui-success": "196 94% 25%",
                                 }} classNames={{icon: 'text-white', label: 'lg:text-base text-xs'}}
                                 isSelected={state == "3"} onValueChange={(e) => setState(e ? '3' : '3')}>خودم
                                 کتاب را از بین کتاب های استاد انتخاب می کنم.</Checkbox>}>

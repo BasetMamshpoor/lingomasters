@@ -1,4 +1,4 @@
-import { Checkbox, CheckboxGroup, Input, Radio, RadioGroup, Tab, Tabs } from '@nextui-org/react';
+import { Checkbox, CheckboxGroup, Input, Radio, RadioGroup, Tab, Tabs } from "@heroui/react";
 import Image from 'next/image';
 import React, { useState } from 'react';
 import db from 'db/reserve.json'
@@ -27,7 +27,7 @@ const TabsComponent = ({ title, tabs = [], children }) => {
                                         value={selected}
                                         onValueChange={setSelected}
                                         color="default"
-                                        style={{ "--nextui-default-500": "196 94% 25%" }}
+                                        style={{ "--heroui-default-500": "196 94% 25%" }}
                                         aria-label={t.title}
                                     >
                                         <Radio value={t.id} name={t.title} classNames={{ label: 'flex items-center gap-2' }}>
@@ -46,7 +46,7 @@ const TabsComponent = ({ title, tabs = [], children }) => {
                                                     aria-label=" "
                                                     orientation="horizontal"
                                                     style={{
-                                                        "--nextui-success": "196 94% 25%",
+                                                        "--heroui-success": "196 94% 25%",
                                                     }}
                                                     color='success'
                                                     value={[value]}
@@ -77,7 +77,7 @@ const TabsComponent = ({ title, tabs = [], children }) => {
                         aria-label=" "
                         orientation="horizontal"
                         style={{
-                            "--nextui-success": "196 94% 25%",
+                            "--heroui-success": "196 94% 25%",
                         }}
                         color='success'
                         value={[accent]}

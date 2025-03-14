@@ -1,0 +1,75 @@
+import React from 'react';
+import {SidebarItem} from './SidebarItem';
+import {ClassSubMenu} from './ClassSubMenu';
+import {sidebarItems} from './SidebarData';
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import {useRouter} from "next/router";
+import Link from "next/link";
+
+export default function Sidebar({ mobileOpen, setSidebarOpen, setTitle}) {
+    const {pathname} = useRouter()
+
+    return (
+        <>
+            <div
+                className={`lg:block hidden transition-all duration-300 w-full max-w-[249px]`}>
+                <div
+                    className="flex flex-col items-center gap-6 bg-white border border-natural_gray-200 rounded-2xl px-4 py-10">
+                    <Link href='/' className={`text-3xl duration-300 font-Metal`}>{process.env.NEXT_PUBLIC_LOGO}</Link>
+                    <div className="flex flex-col w-full gap-4">
+                        {sidebarItems.map((item) => {
+                            const isActive = pathname.includes(item.key)
+                            return (
+                                <div className='group' key={item.id}>
+                                    <SidebarItem
+                                        title={item.title}
+                                        icon={item.icon}
+                                        link={item.href}
+                                        isActive={isActive}
+                                        setSidebarOpen={setSidebarOpen}
+                                        setTitle={setTitle}
+                                    />
+                                    {item.subMenu &&
+                                        <ClassSubMenu
+                                            items={item.subMenu}
+                                            pathname={pathname}
+                                            setTitle={setTitle}
+                                            isActive={isActive}
+                                            setSidebarOpen={setSidebarOpen}/>}
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            </div>
+            <div
+                className={`lg:hidden absolute top-[4.5rem] bottom-0 right-0 max-w-screen w-full bg-white py-6 px-3 z-[1050] transform duration-300 ${
+                    mobileOpen ? 'translate-x-0' : 'translate-x-full'
+                }`}
+            >
+                <div className="flex flex-col w-full gap-4 pb-4">
+                    {sidebarItems.map((item) => {
+                        const isActive = pathname.includes(item.key)
+                        return <div className='group' key={item.id}>
+                            <SidebarItem
+                                title={item.title}
+                                icon={item.icon}
+                                link={item.href}
+                                isActive={isActive}
+                                setSidebarOpen={setSidebarOpen}
+                                setTitle={setTitle}
+                            />
+                            {item.subMenu &&
+                                <ClassSubMenu
+                                    setSidebarOpen={setSidebarOpen}
+                                    items={item.subMenu}
+                                    pathname={pathname}
+                                    setTitle={setTitle}
+                                    isActive={isActive}/>}
+                        </div>
+                    })}
+                </div>
+            </div>
+        </>
+    );
+}

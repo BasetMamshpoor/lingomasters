@@ -1,4 +1,4 @@
-import {Breadcrumbs, BreadcrumbItem, Popover, PopoverTrigger, PopoverContent} from '@nextui-org/react';
+import {Breadcrumbs, BreadcrumbItem, Popover, PopoverTrigger, PopoverContent} from "@heroui/react";
 //icons
 import Share from '@icons/share.svg'
 import Heart from '@icons/heart.svg'

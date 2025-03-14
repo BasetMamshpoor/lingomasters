@@ -215,3 +215,40 @@ input:focus-within {
     background-color: #d42620;
   }
 }
+.login {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(18, 70, 204, 0.16) 0%, rgba(18, 70, 204, 0.16) 100%), url(./../public/images/back.png) lightgray 50% / cover no-repeat;
+}
+
+@media only screen and (min-width: 1023.98px) {
+  .register-bg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(18, 70, 204, 0.16) 0%, rgba(18, 70, 204, 0.16) 100%), url(./../public/images/back.png) lightgray -472.467px 0.338px / 410.795% 100% no-repeat;
+    filter: blur(8px);
+    background-size: cover;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .register-bg {
+    filter: blur();
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(18, 70, 204, 0.16) 0%, rgba(18, 70, 204, 0.16) 100%), url(./../public/images/back.png) no-repeat fixed center;
+    background-size: cover;
+  }
+
+  .login,
+  .login2,
+  .register2 {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.leaflet-bottom.leaflet-right
+.leaflet-control-attribution.leaflet-control {
+  display: none;
+}

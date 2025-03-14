@@ -1,6 +1,6 @@
 //icons
 import Icon from '@icons/sellers.svg';
-import {Card, CardBody, ScrollShadow, Tab, Tabs} from '@nextui-org/react';
+import {Card, CardBody, ScrollShadow, Tab, Tabs} from "@heroui/react";
 import VideoIcon from '@icons/video.svg';
 import User from '@icons/user-tick.svg';
 import Video from 'components/Video/Card';

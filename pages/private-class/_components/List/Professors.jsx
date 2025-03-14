@@ -2,7 +2,7 @@ import React from "react";
 import useGetRequest from "@/hooks/useGetRequest";
 import PaginationApp from "@/components/Pagination";
 import ProfessorItem from "./Professoritem";
-import { Skeleton } from "@nextui-org/react";
+import { Skeleton } from "@heroui/react";
 import { useRouter } from "next/router";
 
 function Professor({ currentPage, setCurrentPage }) {

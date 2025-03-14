@@ -4,7 +4,7 @@ import {
     Tab,
     Card,
     CardBody,
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 import User from '@icons/laptop.svg';
 import Button from '@icons/button-icon.svg';

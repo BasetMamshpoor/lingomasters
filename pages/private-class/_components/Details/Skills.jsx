@@ -3,7 +3,7 @@ import {
   Tab,
   Card,
   CardBody,
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 
 import EyeIcon from "@icons/eye-right.svg";

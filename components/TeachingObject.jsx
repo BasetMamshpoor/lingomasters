@@ -5,7 +5,7 @@ import {
   CardBody,
   RadioGroup,
   Radio,
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 import React, { useState } from "react";
 
@@ -28,7 +28,7 @@ export default function TeachingObject() {
                 <RadioGroup
                   value={selected}
                   color="default"
-                  style={{ "--nextui-default-500": "196 94% 25%" }}
+                  style={{ "--heroui-default-500": "196 94% 25%" }}
                   aria-label=" "
                 >
                   <Radio value="english" name="language"></Radio>
@@ -126,7 +126,7 @@ export default function TeachingObject() {
             key="germany"
             title={
               <div className="flex items-center space-x-2">
-                <RadioGroup label=" " color="default" value={selected} style={{ "--nextui-default-500": "196 94% 25%" }}>
+                <RadioGroup label=" " color="default" value={selected} style={{ "--heroui-default-500": "196 94% 25%" }}>
                   <Radio value="germany" name="language"></Radio>
                 </RadioGroup>
                 <span>آلمانی</span>
@@ -220,7 +220,7 @@ export default function TeachingObject() {
             key="spanish"
             title={
               <div className="flex items-center space-x-2">
-                <RadioGroup label=" " color="default" value={selected} style={{ "--nextui-default-500": "196 94% 25%" }}>
+                <RadioGroup label=" " color="default" value={selected} style={{ "--heroui-default-500": "196 94% 25%" }}>
                   <Radio value="spanish" name="language"></Radio>
                 </RadioGroup>
                 <span>اسپانیا</span>

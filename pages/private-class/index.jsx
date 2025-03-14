@@ -3,7 +3,7 @@ import Filters from './_components/List/Filters';
 import Filter from './_components/List/Filter';
 import ProfessorItem from './_components/List/Professors';
 import Pepole from '@icons/users.svg'
-import { Tab, Tabs } from '@nextui-org/react';
+import { Tab, Tabs } from "@heroui/react";
 import { useRouter } from 'next/router';
 
 const PrivateClass = () => {
