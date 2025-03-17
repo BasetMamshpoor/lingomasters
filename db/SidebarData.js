@@ -10,7 +10,7 @@ import Laptop from '@icons/laptop.svg'
 import Vector from '@icons/vector.svg'
 import File from '@icons/file.svg'
 
-export const sidebarItems = [
+const sidebarItems = [
     {
         id: 1,
         title: 'داشبورد',
@@ -69,7 +69,7 @@ export const sidebarItems = [
         href: '/wallet'
     },
     {
-        id:7,
+        id: 7,
         title: 'گزارشات',
         icon: Receipt,
         href: '/reports'
@@ -99,3 +99,4 @@ export const sidebarItems = [
         href: '/classes/guide'
     }
 ];
+export {sidebarItems};

@@ -3,252 +3,260 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+    color: var(--foreground);
+    background: var(--background);
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
+
 @layer base {
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 }
+
 @media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: light !important;
-  }
+    :root {
+        color-scheme: light !important;
+    }
 }
+
 @media (min-width: 1280px) {
-  .container {
-    max-width: 1280px !important;
-  }
+    .container {
+        max-width: 1280px !important;
+    }
 }
+
 .disable {
-  opacity: 0.7;
-  pointer-events: none;
+    opacity: 0.7;
+    pointer-events: none;
 }
+
 .centerOfParent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 svg {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 }
+
 input:focus,
 input:focus-within {
-  outline: none;
+    outline: none;
 }
 
 .custom-bullet {
-  width: 16px;
-  height: 16px;
-  background-color: #f8d98f;
-  border-radius: 50%;
-  margin: 0 8px;
-  transition: all 0.3s ease;
+    width: 16px;
+    height: 16px;
+    background-color: #f8d98f;
+    border-radius: 50%;
+    margin: 0 8px;
+    transition: all 0.3s ease;
 }
 
 .custom-bullet-active {
-  background-color: #ea8616;
-  width: 52px;
-  border-radius: 10px;
+    background-color: #ea8616;
+    width: 52px;
+    border-radius: 10px;
 }
 
 .slider .swiper-button-next.swiper-button-disabled,
 .slider .swiper-button-prev.swiper-button-disabled {
-  display: none;
+    display: none;
 }
+
 .slider .swiper-button-next,
 .slider .swiper-button-prev {
-  position: absolute;
-  top: 50%;
-  width: 50px;
-  height: 50px;
-  z-index: 20;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #deebfb;
-  border: 1px solid #6da9ed;
-  border-radius: 50%;
-  transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    z-index: 20;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #deebfb;
+    border: 1px solid #6da9ed;
+    border-radius: 50%;
+    transform: translateY(-50%);
 }
+
 .slider .swiper-button-next:after,
 .slider .swiper-button-prev:after {
-  font-size: 15px;
-  color: #6da9ed;
+    font-size: 15px;
+    color: #6da9ed;
 }
+
 @media (max-width: 1023.98px) {
-  .slider .swiper .swiper-button-next,
-  .slider .swiper .swiper-button-prev {
-    display: none;
-  }
+    .slider .swiper .swiper-button-next,
+    .slider .swiper .swiper-button-prev {
+        display: none;
+    }
 }
 
 .hasToman {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
+
 .hasToman::after {
-  content: "تومان";
-  font-size: 10px;
-  font-weight: 700;
+    content: "تومان";
+    font-size: 10px;
+    font-weight: 700;
 }
+
 .effect-1 {
-  position: relative;
+    position: relative;
 }
+
 .effect-1::after {
-  transition: all 450ms ease;
-  position: absolute;
-  content: "";
-  width: 8px;
-  height: 60px;
-  background: #fff;
-  filter: blur(4px);
-  top: 50%;
-  transform: translateY(-50%);
-  left: 110%;
-  z-index: 2;
+    transition: all 450ms ease;
+    position: absolute;
+    content: "";
+    width: 8px;
+    height: 60px;
+    background: #fff;
+    filter: blur(4px);
+    top: 50%;
+    transform: translateY(-50%);
+    left: 110%;
+    z-index: 2;
 }
+
 .effect-1:hover::after {
-  left: -15px;
+    left: -15px;
 }
+
 .effect-2 {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
+
 .effect-2::after {
-  transition: all 450ms;
-  position: absolute;
-  content: "";
-  width: 120px;
-  height: 4px;
-  background: #fff;
-  filter: blur(4px);
-  transform: rotate(45deg);
-  top: -10px;
-  left: 88%;
-  z-index: 2;
+    transition: all 450ms;
+    position: absolute;
+    content: "";
+    width: 120px;
+    height: 4px;
+    background: #fff;
+    filter: blur(4px);
+    transform: rotate(45deg);
+    top: -10px;
+    left: 88%;
+    z-index: 2;
 }
+
 .effect-2:hover::after {
-  top: 55px;
-  left: -65px;
+    top: 55px;
+    left: -65px;
 }
+
 .effect-3 {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-  margin-right: -28px;
-  justify-content: start;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin-right: -28px;
+    justify-content: start;
 }
+
 .effect-3 span {
-  transition: all 250ms ease;
+    transition: all 250ms ease;
 }
+
 .effect-3 svg {
-  transition: all 250ms ease;
-  width: 20px;
-  height: 20px;
-  margin-right: -20px;
-  opacity: 0;
-  fill: rgb(1, 1, 71) !important;
+    transition: all 250ms ease;
+    width: 20px;
+    height: 20px;
+    margin-right: -20px;
+    opacity: 0;
+    fill: rgb(1, 1, 71) !important;
 }
+
 .effect-3:hover span {
-  margin-right: 4px;
-  color: rgb(1, 1, 71);
+    margin-right: 4px;
+    color: rgb(1, 1, 71);
 }
+
 .effect-3:hover svg {
-  margin-right: 0;
-  opacity: 1;
+    margin-right: 0;
+    opacity: 1;
 }
+
 @media (max-width: 640px) {
-  .effect-3 {
-    padding-right: 10px;
-  }
-  .effect-3 svg {
-    display: none;
-  }
+    .effect-3 {
+        padding-right: 10px;
+    }
+
+    .effect-3 svg {
+        display: none;
+    }
 }
 
 .withYellowCircel ul li {
-  position: relative;
-  padding-right: 24px;
-}
-.withYellowCircel ul li::before {
-  content: "";
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #f3b944;
-  position: absolute;
-  right: 0;
-}
-.warningDots {
-  background-color: #fda7a4;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  animation: OnOff;
-  animation-duration: 600ms;
-  animation-delay: 10s;
-  animation-iteration-count: infinite;
-}
-@keyframes OnOff {
-  0% {
-    background-color: #fda7a4;
-  }
-  50% {
-    background-color: #d42620;
-  }
-}
-.login {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(18, 70, 204, 0.16) 0%, rgba(18, 70, 204, 0.16) 100%), url(./../public/images/back.png) lightgray 50% / cover no-repeat;
+    position: relative;
+    padding-right: 24px;
 }
 
-@media only screen and (min-width: 1023.98px) {
-  .register-bg {
+.withYellowCircel ul li::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #f3b944;
+    position: absolute;
+    right: 0;
+}
+
+.warningDots {
+    background-color: #fda7a4;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    animation: OnOff;
+    animation-duration: 600ms;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes OnOff {
+    0% {
+        background-color: #fda7a4;
+    }
+    50% {
+        background-color: #d42620;
+    }
+}
+
+.login {
     width: 100%;
     height: 100%;
-    background: linear-gradient(0deg, rgba(18, 70, 204, 0.16) 0%, rgba(18, 70, 204, 0.16) 100%), url(./../public/images/back.png) lightgray -472.467px 0.338px / 410.795% 100% no-repeat;
-    filter: blur(8px);
-    background-size: cover;
-  }
+    background: linear-gradient(0deg, rgba(45, 89, 200, 0.12) 0%, rgba(45, 89, 200, 0.12) 100%), url(./../public/images/back.png) lightgray 80% / contain no-repeat
 }
 
 @media only screen and (max-width: 1024px) {
-  .register-bg {
-    filter: blur();
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(0deg, rgba(18, 70, 204, 0.16) 0%, rgba(18, 70, 204, 0.16) 100%), url(./../public/images/back.png) no-repeat fixed center;
-    background-size: cover;
-  }
-
-  .login,
-  .login2,
-  .register2 {
-    background-size: cover;
-    background-position: center;
-  }
+    .login {
+        background-size: cover;
+        background-position: center;
+    }
 }
 
-.leaflet-bottom.leaflet-right
+.leaflet-bottom.leaflet-right,
 .leaflet-control-attribution.leaflet-control {
-  display: none;
+    display: none;
 }

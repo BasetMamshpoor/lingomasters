@@ -5,13 +5,13 @@ import Header from "@/components/Header";
 import {HeroUIProvider, ToastProvider} from "@heroui/react";
 import axios from "axios";
 import {useRouter} from "next/router";
-import Sidebar from "@/components/profile/Sidebar/Sidebar";
+import Sidebar from "@/pages/profile/_components/Sidebar/Sidebar";
 import InformationProvider from "@/providers/InformationProvider";
 import LanguageProvider from "@/providers/languageProvider";
 import Right from "@icons/chevron-right.svg";
 import Link from "next/link";
 import {useState} from "react";
-import HeaderProfile from "@/components/profile/HeaderProfile";
+import HeaderProfile from "@/pages/profile/_components/HeaderProfile";
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 
@@ -37,7 +37,7 @@ export default function App({Component, pageProps}) {
                     },
                 }}/>
             {isAuthPage ? (
-                    <div className='max-w-[1440px] mx-auto'>
+                    <div className='max-w-[1440px] mx-auto' dir={'rtl'}>
                         <Component {...pageProps} />
                     </div>)
                 :

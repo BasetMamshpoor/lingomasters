@@ -9,7 +9,7 @@ const SuggestionClass = ({level = 'B2'}) => {
         <>
             <div className="flex flex-col sm:gap-10 gap-7">
                 <Hero level={level}>
-                    <Alert color='warning' title={`در حال حاضر سطح زبان شما در زبان انگلیسی ${level} می‌باشد. برای ارتقای سطح خود می‌توانید از اساتید و کلاس‌های گروهی هم سطح استفاده کنید.`} />
+                    <Alert color='warning' title={`در حال حاضر سطح زبان شما در زبان انگلیسی ${} می‌باشد. برای ارتقای سطح خود می‌توانید از اساتید و کلاس‌های گروهی هم سطح استفاده کنید.`} />
                 </Hero>
                 <Tabs
                     aria-label="Tabs variants"

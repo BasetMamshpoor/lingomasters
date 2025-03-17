@@ -1,7 +1,10 @@
 import React from 'react';
 import Link from "next/link";
 
-export function ClassSubMenu({items, pathname, isActive, setSidebarOpen,setTitle}) {
+export default function ClassSubMenu({items, pathname, isActive, setSidebarOpen, setTitle}) {
+    if (!items || !Array.isArray(items)) {
+        return null;
+    }
     return (
         <div
             className={`${isActive ? 'flex' : 'hidden'}  group-hover:!flex flex-col px-2 mt-1 w-full text-sm leading-none text-right text-gray-800`}>

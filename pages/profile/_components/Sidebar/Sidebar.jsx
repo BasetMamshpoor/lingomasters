@@ -1,12 +1,12 @@
 import React from 'react';
-import {SidebarItem} from './SidebarItem';
-import {ClassSubMenu} from './ClassSubMenu';
-import {sidebarItems} from './SidebarData';
+import SidebarItem from './SidebarItem';
+import ClassSubMenu from './ClassSubMenu';
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import {useRouter} from "next/router";
 import Link from "next/link";
+import {sidebarItems} from "@/db/SidebarData";
 
-export default function Sidebar({ mobileOpen, setSidebarOpen, setTitle}) {
+export default function Sidebar({mobileOpen, setSidebarOpen, setTitle}) {
     const {pathname} = useRouter()
 
     return (
@@ -15,7 +15,8 @@ export default function Sidebar({ mobileOpen, setSidebarOpen, setTitle}) {
                 className={`lg:block hidden transition-all duration-300 w-full max-w-[249px]`}>
                 <div
                     className="flex flex-col items-center gap-6 bg-white border border-natural_gray-200 rounded-2xl px-4 py-10">
-                    <Link href='/' className={`text-3xl duration-300 font-Metal`}>{process.env.NEXT_PUBLIC_LOGO}</Link>
+                    <Link href='/public'
+                          className={`text-3xl duration-300 font-Metal`}>{process.env.NEXT_PUBLIC_LOGO}</Link>
                     <div className="flex flex-col w-full gap-4">
                         {sidebarItems.map((item) => {
                             const isActive = pathname.includes(item.key)
@@ -31,7 +32,7 @@ export default function Sidebar({ mobileOpen, setSidebarOpen, setTitle}) {
                                     />
                                     {item.subMenu &&
                                         <ClassSubMenu
-                                            items={item.subMenu}
+                                            items={item.subMenu || []}
                                             pathname={pathname}
                                             setTitle={setTitle}
                                             isActive={isActive}
@@ -62,7 +63,7 @@ export default function Sidebar({ mobileOpen, setSidebarOpen, setTitle}) {
                             {item.subMenu &&
                                 <ClassSubMenu
                                     setSidebarOpen={setSidebarOpen}
-                                    items={item.subMenu}
+                                    items={item.subMenu || []}
                                     pathname={pathname}
                                     setTitle={setTitle}
                                     isActive={isActive}/>}

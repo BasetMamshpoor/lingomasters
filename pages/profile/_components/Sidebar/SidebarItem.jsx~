@@ -2,7 +2,9 @@ import React from 'react';
 import Link from "next/link";
 
 
-export function SidebarItem({title, icon: Icon, isActive, link,  setSidebarOpen, setTitle}) {
+export default function SidebarItem({title, icon: Icon, isActive, link, setSidebarOpen, setTitle}) {
+    console.log(Icon)
+    if (!Icon) return;
     const baseClasses = "flex items-center w-full cursor-pointer group";
     const textClasses = `flex-1 font-medium shrink gap-2.5 self-stretch duration-300 p-2.5 my-auto text-sm font-medium leading-none text-right whitespace-nowrap rounded-xl group-hover:bg-primary-700 group-hover:text-white ${
         isActive ? 'text-white bg-primary-700' : 'text-natural_gray-900'
