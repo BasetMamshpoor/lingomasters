@@ -25,7 +25,7 @@ const links = [
     {href: "/notifications", icon: Bell, activeIcon: 'BellFill', text: "اعلان‌ها"},
 ];
 const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
-    const {student, logout} = useContext(Information)
+    const {professor, logout} = useContext(Information)
     const {languages, selectedLanguage, handleSelectLanguage} = useContext(Language)
     const router = useRouter()
     const [open, setOpen] = useState({profile: false, lang: false})
@@ -106,7 +106,7 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                                         showFallback
                                         as="button"
                                         className="transition-transform w-10 h-10"
-                                        src={student?.profile}
+                                        src={professor?.profile}
                                     />
                                     <div className={`centerOfParent duration-300 ${open.profile ? 'rotate-180' : ''}`}>
                                         <Arrow className={'w-3 h-3'}/>

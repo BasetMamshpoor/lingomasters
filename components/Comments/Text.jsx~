@@ -40,7 +40,7 @@ const Text = ({ id }) => {
     const [data, setData] = useState({ name: '', email: '', text: '' })
     const [xComment, setXComment] = useState(true)
     const [showMore, setShowMore] = useState(false)
-    const [comments, setComments, setReload, pagination] = useGetRequest(false,`/text-comments/${id}`)
+    const [comments, setComments, setReload, pagination] = useGetRequest(`/text-comments/${id}`)
     const ref = useSwipeScroll()
     const handleChange = (event) => {
         const { name, value } = event.target

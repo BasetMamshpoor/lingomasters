@@ -37,7 +37,7 @@ const UserInformation = () => {
         label: 'text-xs text-natural_gray-950 font-semibold',
     }
     const [initData] = useGetRequest(true, '/student-panel')
-    const [location, setLocation, Q, W, E, loading] = useGetRequest(false,`/countries?country=${country || data.country_id}`)
+    const [location, setLocation, Q, W, E, loading] = useGetRequest(false,`/countries?country=${country || initData.country_id}`)
     const {sendPostRequest, isLoading} = usePostRequest()
 
     useEffect(() => {

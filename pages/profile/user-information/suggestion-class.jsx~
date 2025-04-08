@@ -3,13 +3,16 @@ import Hero from "@/pages/profile/_components/Hero";
 import {Alert, Tab, Tabs} from "@heroui/react";
 import ClassItem from "@/pages/group-class/_components/List/ClassItem";
 import TeacherCard from "@/components/TeacherCard";
+import useGetRequest from "@/hooks/useGetRequest";
 
-const SuggestionClass = ({level = 'B2'}) => {
+const SuggestionClass = ({level}) => {
+    const [data] = useGetRequest(true, '/student-panel/suggestion')
     return (
         <>
             <div className="flex flex-col sm:gap-10 gap-7">
-                <Hero level={level}>
-                    <Alert color='warning' title={`در حال حاضر سطح زبان شما در زبان انگلیسی ${} می‌باشد. برای ارتقای سطح خود می‌توانید از اساتید و کلاس‌های گروهی هم سطح استفاده کنید.`} />
+                <Hero level={level} isSuggestion>
+                    <Alert color='warning'
+                           title={`در حال حاضر سطح زبان شما در زبان انگلیسی ${level} می‌باشد. برای ارتقای سطح خود می‌توانید از اساتید و کلاس‌های گروهی هم سطح استفاده کنید.`}/>
                 </Hero>
                 <Tabs
                     aria-label="Tabs variants"
@@ -30,12 +33,12 @@ const SuggestionClass = ({level = 'B2'}) => {
                     color='success'>
                     <Tab title='کلاس های خصوصی' key='private'>
                         <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-                            {[...Array(3)].map((e, i) => <TeacherCard className='!max-w-full' key={i}/>)}
+                            {data.professors.map((e, i) => <TeacherCard className='!max-w-full' key={i}/>)}
                         </div>
                     </Tab>
                     <Tab title='کلاس های گروهی' key='public'>
                         <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-                            {[...Array(3)].map((e, i) => <ClassItem key={i}/>)}
+                            {data.group_classes.map((e, i) => <ClassItem key={i}/>)}
                         </div>
                     </Tab>
                 </Tabs>

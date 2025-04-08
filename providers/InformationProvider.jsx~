@@ -14,7 +14,7 @@ const InformationProvider = ({children}) => {
         setData(studentData)
     }, []);
 
-    const [student,setStudent,setReload] = useGetRequest(true,data ? `/student-panel/show` : null)
+    const [student,setStudent,setReload] = useGetRequest(true,data ? `/student-panel/ساخص` : null)
 
     const logout = () => {
         Cookies.remove('token')

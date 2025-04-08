@@ -56,7 +56,7 @@ const Professor = () => {
     const router = useRouter()
     const { id } = router.query
 
-    const [professor] = useGetRequest(id? `/professor/show/${id}` : null)
+    const [professor] = useGetRequest(false,id? `/professor/show/${id}` : null)
 
     return (
         <>

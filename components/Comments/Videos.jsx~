@@ -1,63 +1,61 @@
 import { useState } from "react";
-import Image from "next/image";
 import Pagination from "@/components/Pagination";
 import dynamic from "next/dynamic";
-const AudioRecorder = dynamic(() => import('./VoiceRecorder'), { ssr: false });
+const VideoRecorder = dynamic(() => import('./VideoRecorder'), { ssr: false });
 
 //icons
 import Like from '@icons/like.svg'
 import Dislike from '@icons/dislike.svg'
 import Down from '@icons/arrow-down.svg'
+import Card from "@/components/Video/Card";
 import useGetRequest from "@/hooks/useGetRequest";
 import axios from "axios";
 import DislikeFill from '@icons/dislike-fill.svg';
 import LikeFill from '@icons/like-fill.svg';
 
-const generateUniqueFileName = (blob) => {
-    const timestamp = Date.now();
-    const blobSize = blob.size;
-    const randomValue = Math.floor(Math.random() * 10000);
-    return `recording_${timestamp}_${blobSize}_${randomValue}.wav`;
+const generateUniqueFilename = (blob) => {
+    const fileExtension = blob.type.split('/')[1];
+    const uniqueName = `video_${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExtension}`;
+    return uniqueName;
 };
 
-const Audio = ({ id }) => {
+const Videos = ({ id }) => {
     const [showMore, setShowMore] = useState(false)
+    const [comments, setComments, setReload, pagination] = useGetRequest(`/video-comments/${id}`)
+    const [recordedBlob, setRecordedBlob] = useState(null);
 
-    const [comments, setComments, setReload, pagination] = useGetRequest(false,`/audio-comments/${id}`)
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-    const [audioBlob, setAudioBlob] = useState(null);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!audioBlob) {
-            alert("Please record audio before submitting.");
+        if (!recordedBlob) {
+            alert("No video recorded!");
             return;
         }
         const formData = new FormData();
-        const name = generateUniqueFileName(audioBlob)
-        formData.append('audio', audioBlob, name);
-        await axios.post('/audio-comments/store', formData, {
+        const uniqueFilename = generateUniqueFilename(recordedBlob);
+        formData.append('video', recordedBlob, uniqueFilename);
+        console.log(formData);
+
+        await axios.post('/video-comments/store', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }).then((res) => {
-            alert("Audio uploaded successfully:", res.data);
-        }).catch((error) => {
-            alert("Error uploading audio:", error);
+                'Content-Type': 'multipart/form-data',
+            },
+        }).then(() => {
+            alert("Video uploaded successfully!");
+        }).catch(() => {
+            alert("Error uploading video!");
         })
     };
 
     return (
-
-
         <>
             <div className="flex flex-col gap-10">
                 <div className="flex flex-col gap-6">
-                    <p className="text-primary-950 font-semibold sm:text-sm text-xs self-start">صدا خود را آپلود کنید.</p>
+                    <p className="text-primary-950 font-semibold sm:text-sm text-xs self-start">ویدیو خود را آپلود کنید.</p>
+                    <p className="text-warning sm:text-sm text-xs text-right">نکته: لطفا به هنگام ضبط ویدیو، گوشی خود را به صورتی افقی روی پایه ثابتبگذارید و همچنین نور کافی و پس زمینه مناسب باشد.</p>
                     <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
                         <div className="flex items-center gap-6">
-                            <AudioRecorder onRecordingComplete={setAudioBlob} />
+                            <VideoRecorder setRecordedBlob={setRecordedBlob} />
                         </div>
                         <button className="effect-2 sm:py-4 py-2 sm:px-6 px-4 sm:text-base text-xs rounded text-white bg-primary-600 sm:w-[140px] sm:h-fit h-9 w-full self-end">ارسال</button>
                     </form>
@@ -69,11 +67,8 @@ const Audio = ({ id }) => {
                             {!!comments.length ? comments.map((c, i) => {
                                 if (i < (showMore ? 10 : 5)) return <li className="flex items-center justify-between gap-3" key={i}>
                                     <div className="flex items-center gap-3">
-                                        <div className="centerOfParent rounded-full w-10 h-10"><Image src={c.user?.image || '/images/avatar.jpg'} width='0' height='0' sizes="100vw" className="w-full h-full object-cover" /></div>
-                                        <div className="flex flex-col items-start gap-3">
-                                            <p className="sm:text-xs text-[10px] text-primary-950">{c.user?.user_name}</p>
-                                            <audio controls src={c.audio_path}></audio>
-                                        </div>
+                                        <div className="centerOfParent rounded-full w-40 h-auto"><Card movie={c.video_path} bgSrc={'/images/video/bg.jfif'} /></div>
+                                        <p className="sm:text-xs text-[10px] text-primary-950">{c.user?.user_name}</p>
                                     </div>
                                     <div className="flex items-center gap-4">
                                         <div className="flex items-center gap-1">
@@ -88,16 +83,16 @@ const Audio = ({ id }) => {
                                 </li>
                             }) : <div className="centerOfParent w-full">کامنتی ثبت نشده است</div>}
                         </ul>
-                        <div className="self-center">
-                            {pagination.total > 5 && (showMore ?
+                        {pagination.total > 5 && <div className="self-center">
+                            {showMore ?
                                 <div className="w-full">
                                     <Pagination total={pagination.total} per_page={pagination.per_page} />
                                 </div>
                                 : <div className="flex items-center gap-2 cursor-pointer" onClick={() => setShowMore(true)}>
                                     <span className="text-xs text-primary-500">مشاهده بیشتر</span>
                                     <div className="centerofParent"><Down className='w-5 h-5 fill-primary-600' /></div>
-                                </div>)}
-                        </div>
+                                </div>}
+                        </div>}
                     </div> : <div className="centerOfParent w-full">درحال بارگزاری...</div>}
                 </div>
             </div>
@@ -105,4 +100,4 @@ const Audio = ({ id }) => {
     );
 };
 
-export default Audio;
+export default Videos;

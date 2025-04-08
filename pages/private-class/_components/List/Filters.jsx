@@ -32,7 +32,7 @@ const Filters = ({ setCurrentPage }) => {
     }
     const [filters, setFilters] = useState(readUrl() || {})
 
-    const [data] = useGetRequest(`/professor/get-filter`)
+    const [data] = useGetRequest(false,`/professor/get-filter`)
 
     const handleFilter = (name, value) => {
         setFilters(prev => {

@@ -48,7 +48,7 @@ const Otp = ({setStep, user, login, data: Data}) => {
                 data,
                 successMessage,
                 errorMessage
-            } = await sendPostRequest("POST", login ? '/login' : '/register/professor-store', {
+            } = await sendPostRequest("POST", login ? '/login' : '/register/student-store', {
                     ...Data,
                     ...user,
                     otp:
@@ -63,7 +63,7 @@ const Otp = ({setStep, user, login, data: Data}) => {
                 })
                 const {token, ...other} = data.response.data
                 Cookies.set('token', JSON.stringify(token), {expires: token.expires_at})
-                localStorage.setItem('professor', JSON.stringify(other))
+                localStorage.setItem('student', JSON.stringify(other))
                 await push('/profile')
             } else {
                 addToast({

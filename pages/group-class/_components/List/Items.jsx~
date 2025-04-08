@@ -4,7 +4,7 @@ import PaginationApp from "@/components/Pagination";
 import ClassItem from "./ClassItem";
 
 function Professor({ currentPage, setCurrentPage }) {
-    const [data, setData, setReload, pagination] = useGetRequest(false,`/professor`)
+    const [data, setData, setReload, pagination] = useGetRequest(`/professor`)
 
     return (
         <>

@@ -21,7 +21,7 @@ const generateUniqueFilename = (blob) => {
 
 const Videos = ({ id }) => {
     const [showMore, setShowMore] = useState(false)
-    const [comments, setComments, setReload, pagination] = useGetRequest(`/video-comments/${id}`)
+    const [comments, setComments, setReload, pagination] = useGetRequest(false,`/video-comments/${id}`)
     const [recordedBlob, setRecordedBlob] = useState(null);
 
     const handleSubmit = async (event) => {

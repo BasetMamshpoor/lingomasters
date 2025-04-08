@@ -1,11 +1,13 @@
-import {useState, useEffect} from 'react';
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from '@heroui/react';
+import {useState, useEffect, useContext} from 'react';
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, addToast} from '@heroui/react';
 import Image from 'next/image';
 import usePostRequest from "@/hooks/usePostRequest";
+import {Information} from "@/providers/InformationProvider";
 
-function ProfileImage() {
+function ProfileImage({justImage}) {
+    const {student,setReload} = useContext(Information)
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const [displayImageSrc, setDisplayImageSrc] = useState('/images/profile.png');
+    const [displayImageSrc, setDisplayImageSrc] = useState(student.profile ?? '/images/profile.png');
     const [selectedFile, setSelectedFile] = useState(null);
     const [isDragging, setIsDragging] = useState(false);
     const {sendPostRequest, isLoading, message} = usePostRequest();
@@ -48,12 +50,26 @@ function ProfileImage() {
     };
 
     // Submit the new image
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (selectedFile) {
-            // Simulate saving the new image (e.g., upload to a server)
-            console.log('Saving new image:', selectedFile);
-            // setCurrentImageSrc('/images/new-profile.png'); // Update with actual logic later
-            onOpenChange(false);
+            const {
+                success,
+                successMessage,
+                errorMessage
+            } = await sendPostRequest('POST', '/student-panel/uploadProfileImage', {profile: selectedFile}, true, true)
+            if (success) {
+                addToast({
+                    title: successMessage,
+                    color: 'success'
+                })
+                onOpenChange(false);
+                setReload(Math.random())
+            } else {
+                addToast({
+                    title: errorMessage,
+                    color: 'danger'
+                })
+            }
         }
     };
 
@@ -68,14 +84,14 @@ function ProfileImage() {
 
     return (
         <>
-            <div className="rounded-full overflow-hidden sm:w-28 w-16 sm:h-28 h-16">
+            <div className="centerOfParent rounded-full overflow-hidden sm:w-28 w-16 sm:h-28 h-16">
                 <Image
                     src={displayImageSrc}
                     alt="Profile Picture"
                     width={100}
                     height={100}
-                    className="w-full h-full cursor-pointer"
-                    onClick={onOpen}
+                    className="w-full h-full cursor-pointer object-cover"
+                    onClick={justImage ? null : onOpen}
                 />
             </div>
             <Modal dir={'rtl'} isOpen={isOpen} onOpenChange={onOpenChange}>

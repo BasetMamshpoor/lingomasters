@@ -34,7 +34,7 @@ const Register = () => {
     const setDateState = (e, b) => setData(prev => {
         return {...prev, [b.input.name]: e.toDate()}
     })
-
+    
     const handleSubmit = () => {
         if (data.password !== data.confirm_password) {
             addToast({

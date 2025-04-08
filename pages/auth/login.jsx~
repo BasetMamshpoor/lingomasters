@@ -105,7 +105,7 @@ const Login = () => {
             })
             const {token, ...other} = Data.response.data
             Cookies.set('token', JSON.stringify(token), {expires: token.expires_at})
-            localStorage.setItem('student', JSON.stringify(other))
+            localStorage.setItem('stud', JSON.stringify(other))
             await push('/profile/user-information')
         } else {
             addToast({

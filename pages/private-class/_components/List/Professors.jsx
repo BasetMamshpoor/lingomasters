@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 function Professor({ currentPage, setCurrentPage }) {
     const router = useRouter()
 
-    const [data, setData, setReload, pagination] = useGetRequest(`/professor`, currentPage, router.query)
+    const [data, setData, setReload, pagination] = useGetRequest(false,`/professor`, currentPage, router.query)
     
     return (
         <>
