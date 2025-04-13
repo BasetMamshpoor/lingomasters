@@ -79,7 +79,7 @@ const List = (r) => (
     </div>
 )
 
-const ProfessorItem = ({ r = { languages: [], teaching_types: [], genders: [], teaching_types: [], age_groups: [], language_levels: [] } }) => {
+const ProfessorItem = ({ r = { languages: [],  genders: [], teaching_types: [], age_groups: [], language_levels: [] } }) => {
     const [detail, setDetail] = useState(false);
     return (
         <>

@@ -2,19 +2,12 @@ import React, {createContext, useEffect, useState} from 'react';
 import useGetRequest from "@/hooks/useGetRequest";
 import Cookies from "js-cookie";
 import {useRouter} from "next/router";
+import Loading from "@/components/Loading";
 
 export const Information = createContext({})
 const InformationProvider = ({children}) => {
     const {push} = useRouter()
-    const [data, setData] = useState()
-
-
-    useEffect(() => {
-        const studentData = JSON.parse(localStorage.getItem('student'))
-        setData(studentData)
-    }, []);
-
-    const [student,setStudent,setReload] = useGetRequest(true,data ? `/student-panel/show` : null)
+    const [student, setStudent, setReload, paginations, setPaginations, isLoading] = useGetRequest(true, `/student-panel/show`)
 
     const logout = () => {
         Cookies.remove('token')
@@ -23,8 +16,8 @@ const InformationProvider = ({children}) => {
         push('/auth/login')
     }
     return (<>
-        <Information.Provider value={{student,setReload, logout}}>
-            {student ? children : 'loading'}
+        <Information.Provider value={{student, setReload, logout}}>
+            {!isLoading ? children : <Loading/>}
         </Information.Provider>
     </>);
 };

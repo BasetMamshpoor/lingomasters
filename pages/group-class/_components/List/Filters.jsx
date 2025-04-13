@@ -1,20 +1,28 @@
-"use client"
 import Dropdown from 'components/Dropdown/DropDown';
 import useGetRequest from 'hooks/useGetRequest';
-import React, { useRef, useState } from 'react';
+import React, {useRef, useState} from 'react';
 import RangeSlider from 'components/Range';
-import { Checkbox, CheckboxGroup, Input, Radio, RadioGroup, Skeleton } from "@heroui/react";
-import { useRouter } from "next/router";
+import {
+    Autocomplete, AutocompleteItem,
+    AutocompleteSection,
+    Checkbox,
+    CheckboxGroup,
+    Input,
+    Radio,
+    RadioGroup,
+    Skeleton
+} from "@heroui/react";
+import {useRouter} from "next/router";
 
 import FilterIcon from '@icons/filter.svg';
 import Search from '@icons/search.svg';
 import SortList from './sort.json'
 import weekDays from 'func/Calendar.json'
 
-const Filters = ({ setCurrentPage }) => {
+const Filters = ({setCurrentPage}) => {
     const searchRef = useRef(null)
     const router = useRouter()
-    const { ...queries } = router.query
+    const {...queries} = router.query
 
     const readUrl = () => {
         let object = {};
@@ -24,7 +32,7 @@ const Filters = ({ setCurrentPage }) => {
                 const value = queries[name];
                 const newValue = value.split('-')
                 newValue.forEach((f, i) => {
-                    filter.push({ value: f, name: i })
+                    filter.push({value: f, name: i})
                 })
                 object[name] = filter
             }
@@ -32,8 +40,10 @@ const Filters = ({ setCurrentPage }) => {
         return object
     }
     const [filters, setFilters] = useState(readUrl() || {})
+    const [country, setCountry] = useState(Array.isArray(filters.country) ? filters.country[0].value : filters.country)
 
-    const [data] = useGetRequest(false,`/professor/get-filter`)
+    const [data] = useGetRequest(false, `/group_reserve/get-filter`)
+    const [location, setLocation, Q, W, E, loading] = useGetRequest(false, `/countries?country=${country}`)
 
     const handleFilter = (name, value) => {
         setFilters(prev => {
@@ -50,24 +60,24 @@ const Filters = ({ setCurrentPage }) => {
         let str = null;
         !!Array.isArray(value) ? value.forEach((f, i) => {
             if (i > 0) {
-                str = str + '-' + f.value
+                str = str + '-' + (typeof f === "object" ? f.value : f)
             } else if (i === 0) {
-                str = f.value
+                str = typeof f === "object" ? f.value : f
             } else {
                 str = null
             }
         }) : str = value
         if (str === null) {
-            const { [name]: O, slug, ...query } = router.query
-            router.replace({ pathname: router.asPath.split('?')[0], query: { ...query }, },
+            const {[name]: O, slug, ...query} = router.query
+            router.replace({pathname: router.asPath.split('?')[0], query: {...query},},
                 undefined,
-                { shallow: true }
+                {shallow: true}
             );
         } else {
-            const { slug, ...query } = router.query
-            router.replace({ pathname: router.asPath.split('?')[0], query: { ...query, [name]: str }, },
+            const {slug, ...query} = router.query
+            router.replace({pathname: router.asPath.split('?')[0], query: {...query, [name]: str},},
                 undefined,
-                { shallow: true }
+                {shallow: true}
             );
         }
     }
@@ -75,59 +85,65 @@ const Filters = ({ setCurrentPage }) => {
     return (
         <>
             {data ?
-                <div className='flex flex-col gap-6 lg:border border-natural_gray-100 rounded-xl bg-white lg:py-6 pb-6 lg:px-4' dir='rtl'>
+                <div
+                    className='flex flex-col gap-6 lg:border border-natural_gray-100 rounded-xl bg-white lg:py-6 pb-6 lg:px-4'
+                    dir='rtl'>
                     <div className='lg:flex hidden items-center gap-4 py-3'>
-                        <div className="centerOfParent"><FilterIcon /></div>
+                        <div className="centerOfParent"><FilterIcon/></div>
                         <p className='text-lg font-semibold'>فیلتر ها</p>
                     </div>
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
-                            const { value } = searchRef.current
-                            const { search, ...query } = queries
+                            const {value} = searchRef.current
+                            const {search, ...query} = queries
                             router.replace({
                                 pathname: router.asPath.split('?')[0],
-                                query: value.trim().length ? { ...query, search: value } : { ...query },
-                            }, undefined, { shallow: true })
+                                query: value.trim().length ? {...query, search: value} : {...query},
+                            }, undefined, {shallow: true})
+                            handleFilter('search', value)
                         }}>
                         <Input defaultValue={filters.search ? filters.search[0].value : null} ref={searchRef}
-                            type="text" classNames={{ clearButton: '!p-px', }} isClearable placeholder='جستجو کلاس' variant='bordered' radius='sm'
-                            startContent={
-                                <button className="bg-white centerOfParent"><Search className='fill-natural_gray-600' /></button>
-                            } />
+                               type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو کلاس'
+                               variant='bordered' radius='sm'
+                               startContent={
+                                   <button type='submit' className="bg-white centerOfParent"><Search
+                                       className='fill-natural_gray-600'/></button>
+                               }/>
                     </form>
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
-                            const { value } = searchRef.current
-                            const { search, ...query } = queries
+                            const {value} = searchRef.current
+                            const {search, ...query} = queries
                             router.replace({
                                 pathname: router.asPath.split('?')[0],
-                                query: value.trim().length ? { ...query, search: value } : { ...query },
-                            }, undefined, { shallow: true })
+                                query: value.trim().length ? {...query, professor: value} : {...query},
+                            }, undefined, {shallow: true})
+                            handleFilter('professor', value)
                         }}>
-                        <Input defaultValue={filters.search ? filters.search[0].value : null} ref={searchRef}
-                            type="text" classNames={{ clearButton: '!p-px', }} isClearable placeholder='جستجو استاد' variant='bordered' radius='sm'
-                            startContent={
-                                <button className="bg-white centerOfParent"><Search className='fill-natural_gray-600' /></button>
-                            } />
+                        <Input defaultValue={filters.professor ? filters.professor[0].value : null} ref={searchRef}
+                               type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو استاد'
+                               variant='bordered' radius='sm'
+                               startContent={
+                                   <button type='submit' className="bg-white centerOfParent"><Search
+                                       className='fill-natural_gray-600'/></button>
+                               }/>
                     </form>
                     <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>مرتب سازی بر اساس</label>
-                        <CheckboxGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            style={{
-                                "--heroui-success": "196 94% 25%",
-                            }}
-                            value={['sort']}
-                            color='success'
-                            onValueChange={() => { }}
-                            classNames={{ wrapper: 'grid grid-cols-2' }}
-                        >
-                            {SortList.sort.map(c => <Checkbox onChange={() => { }}
-                                classNames={{ icon: 'text-white' }} key={c.id} value={c.key}>{c.title}</Checkbox>)}
-                        </CheckboxGroup>
+                        <label className='font-semibold'>ترتیب</label>
+                        <div className='grid grid-cols-2 gap-y-2'>
+                            {SortList.sort.map(c =>
+                                <Checkbox
+                                    style={{
+                                        "--heroui-success": "196 94% 25%",
+                                    }}
+                                    color='success'
+                                    isSelected={Array.isArray(filters.sort) ? filters.sort[0].value : filters.sort === c.key}
+                                    onValueChange={e => handleFilter('sort', c.key)}
+                                    classNames={{icon: 'text-white'}} key={c.key}
+                                    value={c.key}>{c.title}</Checkbox>)}
+                        </div>
                     </div>
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>نوع تدریس</label>
@@ -141,13 +157,16 @@ const Filters = ({ setCurrentPage }) => {
                             color='default'
                             onValueChange={(e) => handleFilter('teachingTypes', e)}
                         >
-                            {data.teachingTypes?.map(a => <Radio key={a.value} value={a.value.toString()}>{a.name}</Radio>)}
+                            {data.teachingTypes?.map(a => <Radio key={a.value}
+                                                                 value={a.value.toString()}>{a.name}</Radio>)}
                         </RadioGroup>
                     </div>
                     <Dropdown
-                        array={data.language} defaultValue={filters['language']}
-                        Multiple Searchable label="انتخاب زبان" setState={handleFilter} name="language" placeHolder='زبان هدف'
-                        className='!px-3 !py-2 border border-gray-400 rounded-lg bg-white' />
+                        array={data.language}
+                        defaultValue={Array.isArray(filters.language) ? filters.language[0].value : filters.language}
+                        Searchable label="انتخاب زبان" setState={handleFilter} name="language"
+                        placeHolder='زبان هدف'
+                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>ساعت تدریس</label>
                         <CheckboxGroup
@@ -156,16 +175,22 @@ const Filters = ({ setCurrentPage }) => {
                             style={{
                                 "--heroui-success": "196 94% 25%",
                             }}
-                            value={['periods']}
                             color='success'
-                            onValueChange={() => { }}
-                            classNames={{ wrapper: 'grid grid-cols-2' }}
-
+                            value={filters.periods && (typeof filters.periods[0] === "object") ? filters.periods.map(e => e.value) : filters.periods}
+                            onValueChange={(value) => handleFilter('periods', value)}
+                            classNames={{wrapper: 'grid grid-cols-2'}}
                         >
-                            {Object.keys(weekDays.periods).map(c => <Checkbox onChange={() => { }}
-                                classNames={{ icon: 'text-white' }} key={c} value={c}>{c}</Checkbox>)}
+                            {Object.keys(weekDays.periods).map(c =>
+                                <Checkbox
+                                    classNames={{icon: 'text-white'}} key={c}
+                                    value={c}>{c}</Checkbox>)}
                         </CheckboxGroup>
                     </div>
+                    <Dropdown
+                        array={data.accent}
+                        defaultValue={Array.isArray(filters.accent) ? filters.accent[0].value : filters.accent}
+                        Searchable label="انتخاب لهجه" setState={handleFilter} name="accent" placeHolder="لهجه"
+                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>سطح زبان</label>
                         <RadioGroup
@@ -178,9 +203,45 @@ const Filters = ({ setCurrentPage }) => {
                             color='default'
                             onValueChange={(e) => handleFilter('languageLevels', e)}
                         >
-                            {data.languageLevels?.map(a => <Radio key={a.value} value={a.value.toString()}>{a.name}</Radio>)}
+                            {data.languageLevels?.map(a => <Radio key={a.value}
+                                                                  value={a.value.toString()}>{a.name}</Radio>)}
                         </RadioGroup>
                     </div>
+                    <Autocomplete
+                        variant='bordered'
+                        radius='sm'
+                        selectedKey={filters.subject_id}
+                        onSelectionChange={e => handleFilter('subject_id', e)}
+                        label="هدف از آموزش"
+                        placeholder='هدف از آموزش'
+                        labelPlacement="outside"
+                        isClearable={false}
+                        classNames={{
+                            input: 'text-xs',
+                            trigger: 'bg-white',
+                            listbox: '[&>ul>li>span>svg]:w-3 [&>ul>li>span>svg]:h-3',
+                        }}
+                        inputProps={{
+                            classNames: {label: 'mb-4 font-semibold'}
+                        }}
+                    >
+                        {data.learning_goals.map(obj =>
+                            <AutocompleteSection
+                                classNames={{
+                                    base: 'text-right'
+                                }}
+                                showDivider key={obj.goal_id} title={obj.goal_title}>
+                                {obj.subgoals.map(subgoal => (
+                                    <AutocompleteItem
+                                        classNames={{
+                                            selectedIcon: '[&>svg]:w-3 [&>svg]:h-3'
+                                        }}
+                                        key={subgoal.value}
+                                        title={subgoal.name}/>
+                                ))}
+                            </AutocompleteSection>
+                        )}
+                    </Autocomplete>
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>گروه سنی</label>
                         <RadioGroup
@@ -196,7 +257,7 @@ const Filters = ({ setCurrentPage }) => {
                             {data.age_group?.map(a => <Radio key={a.value} value={a.value.toString()}>{a.name}</Radio>)}
                         </RadioGroup>
                     </div>
-                    <RangeSlider {...{ filters, handleFilter, data: data.price_range }} />
+                    <RangeSlider {...{filters, handleFilter, data: data.price_range, title: 'مبلغ حق التدریس'}} />
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>جنسیت مدرس</label>
                         <RadioGroup
@@ -209,26 +270,45 @@ const Filters = ({ setCurrentPage }) => {
                             color='default'
                             onValueChange={(e) => handleFilter('age_group', e)}
                         >
-                            <Radio key={1} value={'مرد'}>مرد</Radio>
-                            <Radio key={2} value={'زن'}>زن</Radio>
+                            {data.genders.map(e =>
+                                <Radio key={e.value} value={e.name}>{e.name}</Radio>
+                            )}
                         </RadioGroup>
                     </div>
                     <Dropdown
-                        array={[]} defaultValue={filters['country']}
-                        Multiple Searchable label="کشور" setState={handleFilter} name="country" placeHolder='کشور'
-                        className='!px-3 !py-2 border border-gray-400 rounded-lg bg-white' />
+                        array={location ? location.countries : []} isLoading={loading} name='country'
+                        defaultValue={Array.isArray(filters.country) ? filters.country[0].value : filters.country}
+                        Searchable label="کشور" setState={(e, v) => {
+                        handleFilter(e, v)
+                        setCountry(v)
+                        setLocation(prev => ({...prev, city: []}))
+                    }}
+                        placeHolder='کشور'
+                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
                     <Dropdown
-                        array={[]} defaultValue={filters['city']}
-                        Multiple Searchable label="شهر" setState={handleFilter} name="city" placeHolder='شهر'
-                        className='!px-3 !py-2 border border-gray-400 rounded-lg bg-white' />
-                    <div className='px-3 py-5 flex flex-col gap-4'>
-                        <div className='flex items-center justify-between'>
-                            <label className="inline-flex items-center justify-between w-full cursor-pointer">
-                                <input type="checkbox" name="is_used" id="is_usedField" checked={filters['is_used'] ? true : false} className="sr-only peer"
-                                    onChange={({ target }) => target.checked ? handleFilter('is_used', true) : handleFilter('is_used', null)} />
-                                <span className="text-sm text-natural_gray-950">نزدیک‌ترین زمان قبول کلاس</span>
-                                <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
-                            </label>
+                        array={location ? location.city : []} isLoading={loading}
+                        defaultValue={Array.isArray(filters.city) ? filters.city[0].value : filters.city}
+                        Searchable label="شهر" setState={handleFilter} name="city" placeHolder='شهر'
+                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
+                    <Dropdown
+                        array={data.direction ?? []}
+                        defaultValue={Array.isArray(filters.direction) ? filters.direction[0].value : filters.direction}
+                        Searchable label="جهت جغرافیایی" setState={handleFilter} name="direction" placeHolder="جهت"
+                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
+                    <div className="flex flex-col gap-4">
+                        <label className='font-semibold'>نزدیک‌ترین زمان تشکیل کلاس</label>
+                        <div className='grid grid-cols-2 gap-y-2'>
+                            {data.near?.map(c => {
+                                return <Checkbox
+                                    style={{
+                                        "--heroui-success": "196 94% 25%",
+                                    }}
+                                    color='success'
+                                    isSelected={Array.isArray(filters.near) ? filters.near[0].value : filters.near === c.key}
+                                    onValueChange={e => handleFilter('near', e ? c.key : null)}
+                                    classNames={{icon: 'text-white'}} key={c.key}
+                                    value={c.key}>{c.title}</Checkbox>
+                            })}
                         </div>
                     </div>
                 </div>

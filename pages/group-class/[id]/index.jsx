@@ -1,6 +1,6 @@
 'use client';
 import Comments from '@/components/Comments';
-import Hero from '@/components/Hero';
+import Hero from '../_components/Hero';
 import Tabs from '@/components/Tabs';
 import useGetRequest from '@/hooks/useGetRequest';
 import React from 'react';
@@ -8,8 +8,10 @@ import Resume from '../_components/Details/Resume';
 import Banner from '../_components/Details/Banner';
 import TeachingType from '../_components/Details/TeachingType';
 import Books from '../_components/Details/Books';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import About from '../_components/Details/About';
+import Calendar from "@/pages/group-class/_components/Details/Calendar";
+import Related from "@/pages/group-class/_components/Details/Related";
 
 const list = [
     {
@@ -38,28 +40,40 @@ const list = [
     },
 ]
 const Professor = () => {
-    const { query } = useRouter()
-    const { id } = query
+    const {query} = useRouter()
+    const {id} = query
 
-    const [professor] = useGetRequest(false,1 ? `/professor/show/${id}` : null)
+    const [data, set, setReload] = useGetRequest(true, id && `/group_reserve/show/${id}`)
 
     return (
         <>
-            {professor ? <main dir='rtl' className='my-4'>
-                <Hero product={professor} />
-                <div className="container sm:px-10 grid lg:grid-cols-6 grid-cols-1 gap-6">
+            {data ? <main dir='rtl' className='my-4 container sm:px-10 '>
+                <Hero product={data}/>
+                <div className="grid lg:grid-cols-6 grid-cols-1 gap-6">
                     <div className="lg:col-span-2">
-                        <Banner data={professor} />
+                        <Banner setReload={setReload} data={data}/>
                     </div>
                     <div className="flex flex-col gap-10 lg:col-span-4">
-                        <Tabs list={list} />
-                        <About data={professor.about} />
-                        <Resume />
-                        <TeachingType />
-                        <Books />
-                        <Comments id={1} />
+                        <Tabs list={list}/>
+                        <About data={data}/>
+                        <Resume {...{
+                            professor: data.professor,
+                            profile: data.professor_profile,
+                            professor_id: data.professor_id
+                        }}/>
+                        <TeachingType {...{
+                            longitude: data.longitude,
+                            latitude: data.latitude,
+                            video: data.address_video,
+                            city: data.address_city,
+                            direction: data.address_direction
+                        }}/>
+                        <Calendar id={id}/>
+                        <Books books={data.books}/>
+                        <Comments id={id} url='group_reserve'/>
                     </div>
                 </div>
+                {!!data.related.length && <Related data={data.related}/>}
             </main> : <div className="centerOfParent w-full min-h-64">درحال بارگزاری</div>}
         </>
     );

@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react"; import style from "./Dropdown.module.css";
+import React, {useEffect, useRef, useState} from "react";
+import style from "./Dropdown.module.css";
 import useSwipeScroll from "hooks/useHorizontalScroll";
 
 import Check from '@icons/check.svg';
@@ -6,19 +7,20 @@ import Close from '@icons/close.svg';
 import Down from '@icons/arrow-down.svg';
 
 const Dropdown = ({
-    name,
-    label,
-    styles,
-    className,
-    array,
-    Multiple,
-    setState,
-    Searchable,
-    defaultValue,
-    placeHolder = "انتخاب ...",
-    disabled = false,
-    required = false,
-}) => {
+                      name,
+                      label,
+                      styles,
+                      className,
+                      array,
+                      Multiple,
+                      setState,
+                      Searchable,
+                      defaultValue,
+                      isLoading,
+                      placeHolder = "انتخاب ...",
+                      disabled = false,
+                      required = false,
+                  }) => {
     const [showMenu, setShowMenu] = useState(false);
     const [selectedValue, setSelectedValue] = useState(Multiple ? [] : null);
     const [searchValue, setSearchValue] = useState("");
@@ -84,7 +86,7 @@ const Dropdown = ({
                                 onClick={(e) => onTagRemove(e, option)}
                                 className={style.dropdown_tag_close}
                             >
-                                <Close />
+                                <Close/>
                             </span>
                         </div>
                     ))}
@@ -150,35 +152,46 @@ const Dropdown = ({
         <div className={disabled ? style.disabledDropdown : style.dropdown_container} style={styles ? styles : null}>
             {label && <label className='mb-4 font-semibold'>{label}</label>}
             <div className='relative'>
-                <section ref={inputRef} onClick={handleInputClick} className={`${style.dropdown_input} ${className || ' '}`}>
+                <section ref={inputRef} onClick={handleInputClick}
+                         className={`${style.dropdown_input} ${className || ' '}`}>
                     <div className={style.dropdown_selected_value} ref={scrollRef}>{getDisplay()}</div>
-                    <div className={style.dropdown_tools} style={showMenu ? { transform: 'rotate(180deg)' } : null}>
-                        <Down />
+                    <div className={style.dropdown_tools} style={showMenu ? {transform: 'rotate(180deg)'} : null}>
+                        <Down className='w-4 h-4'/>
                     </div>
                 </section>
                 {showMenu && (
                     <div className={style.dropdown_menu}>
                         {Searchable && (
                             <div className={style.search_box}>
-                                <input onChange={onSearch} value={searchValue} ref={searchRef} onClick={e => e.stopPropagation()} />
+                                <input onChange={onSearch} value={searchValue} ref={searchRef}
+                                       onClick={e => e.stopPropagation()}/>
                             </div>
                         )}
                         <ul className={style.dropdown_item_group} dir="auto">
-                            {getOptions().map((option) => (
+                            {!isLoading ? getOptions().map((option) => (
                                 <li
                                     onClick={() => onItemClick(option, name)}
                                     key={option.value}
                                     className={style.dropdown_item}
                                 >
                                     <label className={style.gqIo}>
-                                        <input type="checkbox" hidden defaultChecked={isSelected(option) ? true : false} />
+                                        <input type="checkbox" hidden
+                                               defaultChecked={isSelected(option) ? true : false}/>
                                         <div className={style.Mdsp}>
                                             <span className='line-clamp-1'>{option.name}</span>
-                                            <span className={style.gbPol}><Check /></span>
+                                            <span className={style.gbPol}><Check className='fill-white'/></span>
                                         </div>
                                     </label>
                                 </li>
-                            ))}
+                            )) : <li
+                                className={style.dropdown_item}
+                            >
+                                <label className={style.gqIo}>
+                                    <div className={style.Mdsp}>
+                                        <span className='line-clamp-1'>مقداری پیدا نشد</span>
+                                    </div>
+                                </label>
+                            </li>}
                         </ul>
                     </div>
                 )}

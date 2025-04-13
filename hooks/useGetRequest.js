@@ -5,7 +5,7 @@ import {useRouter} from "next/router";
 import {addToast} from "@heroui/react";
 
 const useGetRequest = (useToken = false, url, page = 1, obj) => {
-    const {push} = useRouter();
+    const {push, pathname} = useRouter();
     const [data, setData] = useState();
     const [paginations, setPaginations] = useState();
     const [reload, setReload] = useState();
@@ -28,9 +28,9 @@ const useGetRequest = (useToken = false, url, page = 1, obj) => {
                     setPaginations(pagination);
                 })
                 .catch(err => {
-                    if (err.response?.status === 401) {
+                    if (err.response?.status === 401 && pathname.startsWith('/profile')) {
                         push('/auth/login');
-                    } else {
+                    } else if (err.response?.status !== 401) {
                         addToast({
                             title: err.response?.data.message || `ایراد در لود اطلاعات ${url}`,
                             color: 'danger'

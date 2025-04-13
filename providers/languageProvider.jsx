@@ -1,9 +1,10 @@
 import React, {createContext, useEffect, useState} from 'react';
 import useGetRequest from "@/hooks/useGetRequest";
+import Loading from "@/components/Loading";
 
 export const Language = createContext({})
 const LanguageProvider = ({children}) => {
-    const [languages, setLanguages, setReload] = useGetRequest(true, `/student-panel/language`)
+    const [languages, setLanguages, setReload, paginations, setPaginations, isLoading] = useGetRequest(true, `/student-panel/language`)
 
     const [selectedLanguage, setSelectedLanguage] = useState({})
 
@@ -25,7 +26,7 @@ const LanguageProvider = ({children}) => {
 
     return (<>
         <Language.Provider value={{selectedLanguage, handleSelectLanguage, languages, setReload}}>
-            {languages ? children : 'loading'}
+            {!isLoading ? children : <Loading/>}
         </Language.Provider>
     </>);
 };

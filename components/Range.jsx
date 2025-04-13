@@ -3,7 +3,7 @@ import { Slider } from "@heroui/react";
 import { useDebounce } from "@/hooks/useDebounce";
 import formatCurrency from "@/helpers/formatCurrency";
 
-export default function RangeSlider({ filters, handleFilter, data }) {
+export default function RangeSlider({ filters, handleFilter, data,title }) {
 
     const minSliderValue = data?.min_price || 0;
     const maxSliderValue = data?.max_price || 1;
@@ -57,7 +57,7 @@ export default function RangeSlider({ filters, handleFilter, data }) {
 
     return (
         <div className="flex flex-col gap-4 w-full">
-            <label className='font-semibold'>مبلغ کتاب</label>
+            <label className='font-semibold'>{title}</label>
             <div className="flex flex-col items-center justify-center gap-4">
                 <div className="flex flex-col gap-2 w-full">
                     <Slider
@@ -67,7 +67,7 @@ export default function RangeSlider({ filters, handleFilter, data }) {
                         maxValue={maxSliderValue}
                         value={values}
                         onChange={setValues}
-                        // className="rotate-180"
+                        className="rotate-180"
                         classNames={{
                             base: "",
                             track: "h-1",

@@ -1,10 +1,10 @@
-import { BreadcrumbItem, Breadcrumbs } from "@heroui/react";
-import { useRouter } from 'next/router';
+import {BreadcrumbItem, Breadcrumbs} from "@heroui/react";
+import {useRouter} from 'next/router';
 import React from 'react';
 
-const Progress = ({ active, page, steps = [] }) => {
+const Progress = ({title, link, active, page, steps = []}) => {
     const router = useRouter();
-    const { id } = router.query;
+    const {id} = router.query;
 
     return (
         <div>
@@ -12,14 +12,18 @@ const Progress = ({ active, page, steps = [] }) => {
             <div className="py-3 px-2">
                 <Breadcrumbs
                     separator='/'
-                    classNames={{ list: 'last:[&>li>span]:text-primary-950 [&>li]:text-natural_gray-600' }}
+                    classNames={{list: 'last:[&>li>span]:text-primary-950 [&>li]:text-natural_gray-600'}}
                     itemClasses={{
                         separator: "px-2 text-natural_gray-600"
                     }}>
-                    <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs' href="/">صفحه اصلی</BreadcrumbItem>
-                    <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs' href="/">کلاس های خصوصی</BreadcrumbItem>
-                    <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs' href={`//${id}`}>{page}</BreadcrumbItem>
-                    <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'>رزرو کلاس</BreadcrumbItem>
+                    <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'
+                                    href="/">صفحه اصلی</BreadcrumbItem>
+                    <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'
+                                    href={link}>{title}</BreadcrumbItem>
+                    <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'
+                                    href={`${link}/${id}`}>{page}</BreadcrumbItem>
+                    <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'>رزرو
+                        کلاس</BreadcrumbItem>
                 </Breadcrumbs>
             </div>
 

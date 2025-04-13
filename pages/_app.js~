@@ -33,7 +33,7 @@ export default function App({Component, pageProps}) {
                     timeout: 3000,
                     shouldShowTimeoutProgress: true,
                     classNames: {
-                        closeButton: "opacity-100 absolute left-4 right-auto top-1/2 -translate-y-1/2",
+                        closeButton: "opacity-100 absolute left-0 right-auto",
                     },
                 }}/>
             {isAuthPage ? (
@@ -43,7 +43,31 @@ export default function App({Component, pageProps}) {
                 :
                 <InformationProvider>
                     <LanguageProvider>
-                      }
+                        {isProfileRoute ?
+                            <div
+                                className='max-w-[1440px] mx-auto py-6 sm:px-6 px-2 gap-6 overflow-x-hidden flex min-h-screen relative'
+                                dir='rtl'>
+                                <Sidebar mobileOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen}
+                                         setTitle={setTitle}/>
+                                <div className="flex-grow flex flex-col gap-12 w-full">
+                                    <HeaderProfile setSidebarOpen={setSidebarOpen} isSidebarOpen={isSidebarOpen}
+                                                   title={title} setTitle={setTitle}/>
+                                    <div className='flex flex-col gap-6'>
+                                        {open && <Link href='/'
+                                                       onClick={() => setTitle("داشبورد")}
+                                                       className='flex items-center text-primary-700 gap-2 mr-5'>
+                                            <Right className='fill-primary-700 w-5 h-5'/>
+                                            بازگشت
+                                        </Link>}
+                                        <Component {...pageProps}/>
+                                    </div>
+                                </div>
+                            </div> :
+                            <div className='max-w-[1440px] mx-auto'>
+                                <Header/>
+                                <Component {...pageProps} />
+                                <Footer/>
+                            </div>}
                     </LanguageProvider>
                 </InformationProvider>
             }

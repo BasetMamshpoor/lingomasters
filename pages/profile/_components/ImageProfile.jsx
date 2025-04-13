@@ -5,7 +5,7 @@ import usePostRequest from "@/hooks/usePostRequest";
 import {Information} from "@/providers/InformationProvider";
 
 function ProfileImage({justImage}) {
-    const {student,setReload} = useContext(Information)
+    const {student, setReload} = useContext(Information)
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [displayImageSrc, setDisplayImageSrc] = useState(student.profile ?? '/images/profile.png');
     const [selectedFile, setSelectedFile] = useState(null);
@@ -48,7 +48,6 @@ function ProfileImage({justImage}) {
             setSelectedFile(file);
         }
     };
-
     // Submit the new image
     const handleSubmit = async () => {
         if (selectedFile) {

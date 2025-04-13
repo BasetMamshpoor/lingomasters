@@ -1,29 +1,89 @@
-import { Progress } from "@heroui/react";
-import React, { useEffect, useState } from 'react';
+import {Progress} from "@heroui/react";
+import React, {useEffect, useState} from "react";
 
-const Timer = ({ time, message, classNameTimer, classNameEtmam, withHour = true, withProgress = true }) => {
-    const [seconds, setSeconds] = useState(time)
-    const formatSeconds = (sec) => {
-        if (sec < 0) return message
-        const pad = (n) => n < 10 ? `0${n}` : n;
-        const h = Math.floor(sec / 3600);
-        const m = Math.floor(sec / 60) - (h * 60);
-        const s = Math.floor(sec - h * 3600 - m * 60);
-        return `${withHour ? `${(pad(h))} : ` : ''}${(pad(m))} : ${(pad(s))}`;
-    }
+const Timer = ({
+                   targetDate,
+                   message = "⏰ زمان تمام شد",
+                   withProgress = false,
+                   dangerColor = "text-red-500",
+                   normalColor = "text-gray-600",
+                   withSound = false,
+                   onExpire,
+               }) => {
+    const calculateSecondsLeft = () => {
+        const target = new Date(targetDate);
+        const now = new Date();
+        const diff = target - now;
+        return isNaN(diff) ? 0 : Math.floor(diff / 1000);
+    };
+
+    const [secondsLeft, setSecondsLeft] = useState(calculateSecondsLeft);
+
+    useEffect(() => {
+        if (secondsLeft <= 0) {
+            if (withSound) {
+                const audio = new Audio("/alarm.mp3");
+                audio.play().catch(() => {
+                });
+            }
+            if (typeof onExpire === "function") {
+                onExpire();
+            }
+        }
+    }, [secondsLeft]);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setSeconds(prev => prev - 1)
-        }, 1000)
-        return () => clearInterval(interval)
-    }, [])
+            setSecondsLeft((prev) => {
+                const next = prev - 1;
+                return next >= 0 ? next : 0;
+            });
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const renderContent = () => {
+        if (secondsLeft <= 0) return message;
+
+        const totalHours = Math.floor(secondsLeft / 3600);
+        const totalDays = Math.floor(totalHours / 24);
+
+        if (secondsLeft > 86400) {
+            return `${totalDays} روز باقی مانده`;
+        }
+
+        const h = totalHours % 24;
+        const m = Math.floor((secondsLeft % 3600) / 60);
+        const s = secondsLeft % 60;
+        const pad = (n) => (n < 10 ? `0${n}` : n);
+
+        return `${pad(h)}:${pad(m)}:${pad(s)} باقی مانده`;
+    };
+
+    const textColor =
+        secondsLeft <= 0
+            ? "text-red-500"
+            : secondsLeft <= 86400
+                ? dangerColor
+                : normalColor;
 
     return (
-        <div className='mt-1'>
-            {withProgress && seconds > 0 && <Progress minValue={0} maxValue={1} color="danger" size='sm' aria-label=" " value={1 - (seconds / 86400)} />}
-            <span dir='ltr' className={seconds < 0 ? 'sm:text-sm text-xs relative text-red-500 centerOfParent before:-translate-x-2/4 before:-translate-y-2/4 before:left-10 after:translate-x-2/4 after:-translate-y-2/4 after:right-10;' : 'sm:text-sm text-xs text-red-500'}>
-                {formatSeconds(seconds)}
+        <div className="mt-1">
+            {withProgress && secondsLeft > 0 && secondsLeft <= 86400 && (
+                <Progress
+                    minValue={0}
+                    maxValue={1}
+                    color="danger"
+                    size="sm"
+                    aria-label=" "
+                    value={1 - secondsLeft / 86400}
+                />
+            )}
+            <span
+                dir="auto"
+                className={`sm:text-sm text-xs ${textColor}`}
+            >
+                {renderContent()}
             </span>
         </div>
     );

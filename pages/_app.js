@@ -32,9 +32,6 @@ export default function App({Component, pageProps}) {
                     dir: 'rtl',
                     timeout: 3000,
                     shouldShowTimeoutProgress: true,
-                    classNames: {
-                        closeButton: "opacity-100 absolute left-4 right-auto top-1/2 -translate-y-1/2",
-                    },
                 }}/>
             {isAuthPage ? (
                     <div className='max-w-[1440px] mx-auto' dir={'rtl'}>
