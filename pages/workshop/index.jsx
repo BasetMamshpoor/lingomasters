@@ -1,35 +1,42 @@
 import React, {useState} from 'react';
 import Filters from './_components/List/Filters';
 import Filter from './_components/List/Filter';
-import ProfessorItem from './_components/List/Professors';
-import Pepole from '@icons/users.svg'
+import WebinarIcon from '@icons/webinar.svg'
+import Workshops from "./_components/List/Workshops";
 import {Tab, Tabs} from "@heroui/react";
-import {useRouter} from 'next/router';
+import {useRouter} from "next/router";
+import {useSearchParams} from "next/navigation";
 
-const PrivateClass = () => {
-    const router = useRouter()
-    const {query} = router
+const Workshop = () => {
+
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const {query} = useRouter()
     const [currentPage, setCurrentPage] = useState(1)
 
     const handleChange = (value) => {
-        router.replace({pathname: router.asPath.split('?')[0], query: {...query, is_inside: value},},
-            undefined,
-            {shallow: false}
-        );
-    }
+        const params = new URLSearchParams(searchParams.toString());
+        if (value === 'in') {
+            params.set('is_inside', 'in');
+        } else {
+            params.set('is_inside', 'out');
+        }
+
+        router.push(`?${params.toString()}`);
+    };
 
     return (
         <>
             <section className='py-12' dir="rtl">
-                <div className="container">
+                <div className="container flex flex-col gap-6">
                     <div className="lg:flex hidden items-center justify-center gap-2">
-                        <div className="centerOfParent"><Pepole className='w-8 h-8 fill-primary-700'/></div>
-                        <h1 className='text-2xl'>کلاس های خصوصی</h1>
+                        <div className="centerOfParent"><WebinarIcon className='w-8 h-8'/></div>
+                        <h1 className='text-2xl'>ورکشاپ‌ها (حضوری )</h1>
                     </div>
                     <div className='lg:hidden flex items-center justify-between'>
                         <div className="flex items-center gap-4">
-                            <Pepole className='fill-primary-700 w-6 h-6'/>
-                            <h1 className="font-semibold text-primary-700">اساتید</h1>
+                            <WebinarIcon className='w-6 h-6'/>
+                            <h1 className="font-semibold">ورکشاپ‌ها (حضوری )</h1>
                         </div>
                         <div className="centerOfParent">
                             <Filter setCurrentPage={setCurrentPage}/>
@@ -48,24 +55,15 @@ const PrivateClass = () => {
                         selectedKey={query.is_inside || 'in'}
                         onSelectionChange={handleChange}
                         aria-label="Options">
-                        <Tab key="in" title="اساتید داخل ایران"> </Tab>
-                        <Tab key="out" title="اساتید خارج ایران"> </Tab>
+                        <Tab key="in" title="اساتید داخل ایران"/>
+                        <Tab key="out" title="اساتید خارج ایران"/>
                     </Tabs>
-                    <div
-                        className="w-full flex sm:flex-row flex-col items-start sm:gap-4 gap-2 rounded-lg bg-[#FFFBEB] p-6 sm:text-base text-sm text-[#F3A218] mb-6">
-                        <div className="flex items-center gap-4">
-                            <div className="centerOfParent rounded-full h-6 w-6 warningDots"></div>
-                            <p className='whitespace-nowrap'>توجه داشته باشید:</p>
-                        </div>
-                        <p>برای رزرو کلاس آنلاین حداقل یک ساعت قبل از کلاس برای رزرو اقدام نمایید. و همچنین برای رزرو
-                            کلاس حضوری حداقل 2 ساعت قبل از کلاس باید رزرو کنید.</p>
-                    </div>
                     <div className='grid lg:grid-cols-12 grid-cols-1'>
                         <div className='hidden lg:block lg:col-span-3 bg-white'>
                             <Filters setCurrentPage={setCurrentPage}/>
                         </div>
                         <div className='flex flex-col lg:col-span-9 gap-4 sm:px-4'>
-                            <ProfessorItem currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                            <Workshops currentPage={currentPage} setCurrentPage={setCurrentPage}/>
                         </div>
                     </div>
                 </div>
@@ -74,4 +72,4 @@ const PrivateClass = () => {
     );
 };
 
-export default PrivateClass;
+export default Workshop;

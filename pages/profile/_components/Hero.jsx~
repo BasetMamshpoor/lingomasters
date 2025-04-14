@@ -8,7 +8,7 @@ import {addToast, Alert} from "@heroui/react";
 import Copy from "@icons/copy.svg";
 import ProfileImage from "@/pages/profile/_components/ImageProfile";
 
-const Hero = ({level, children, isSuggestion,  identification_code}) => {
+const Hero = ({level, children, isSuggestion, identification_code}) => {
     return (
         <>
             <div className="flex flex-col gap-6 self-center items-center w-full">

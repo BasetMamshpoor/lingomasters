@@ -1,14 +1,14 @@
 import React from "react";
 import useGetRequest from "@/hooks/useGetRequest";
 import PaginationApp from "@/components/Pagination";
-import ProfessorItem from "./Professoritem";
+import WorkshopItem from "./WorkshopItem";
 import {Skeleton} from "@heroui/react";
 import {useRouter} from "next/router";
 
-function Professor({currentPage, setCurrentPage}) {
+function Workshops({currentPage, setCurrentPage}) {
     const router = useRouter()
 
-    const [data, setData, setReload, pagination] = useGetRequest(false, `/private-reserve`, currentPage, router.query)
+    const [data, setData, setReload, pagination] = useGetRequest(false, `/workshop-reserve`, currentPage, router.query)
 
     return (
         <>
@@ -17,11 +17,11 @@ function Professor({currentPage, setCurrentPage}) {
                     ? <>
                         {!!data.length
                             ?
-                            data.map(r => <ProfessorItem r={r} key={r.id}/>)
-                            : <p className='w-full'>استادی پیدا نشد لطفا فیلتر ها را تغییر دهید</p>}
+                            data.map(r => <WorkshopItem r={r} key={r.id}/>)
+                            : <p className='w-full'>ورکشاپی پیدا نشد لطفا فیلتر ها را تغییر دهید</p>}
                         <div className="centerOfParent">
                             <PaginationApp total={pagination.total} per_page={pagination.per_page}
-                                           currentPage={currentPage} onChange={(e) => setCurrentPage(e)}/>
+                                           currentPage={currentPage} onChange={setCurrentPage}/>
                         </div>
                     </>
                     : <div className="flex flex-col gap-6">
@@ -38,4 +38,4 @@ function Professor({currentPage, setCurrentPage}) {
     );
 }
 
-export default Professor;
+export default Workshops;

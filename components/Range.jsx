@@ -67,7 +67,6 @@ export default function RangeSlider({ filters, handleFilter, data,title }) {
                         maxValue={maxSliderValue}
                         value={values}
                         onChange={setValues}
-                        className="rotate-180"
                         classNames={{
                             base: "",
                             track: "h-1",

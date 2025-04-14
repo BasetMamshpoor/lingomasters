@@ -95,9 +95,9 @@ function ClassItem({data}) {
                                 {data.discount}٪
                             </div>}
                         <div className="flex flex-col">
-                            <p className="text-sm hasToman">{data.price?.toLocaleString()}</p>
+                            <p className="text-sm hasToman">{data.price_discount?.toLocaleString()}</p>
                             {data.price !== data.price_discount && <del
-                                className="text-sm text-natural_gray-500 hasToman">{data.price_discount?.toLocaleString()}</del>}
+                                className="text-sm text-natural_gray-500 hasToman">{data.price?.toLocaleString()}</del>}
                         </div>
                     </div>
                 </div>

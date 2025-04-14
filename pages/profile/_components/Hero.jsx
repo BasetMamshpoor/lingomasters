@@ -57,7 +57,7 @@ const Hero = ({level, children, isSuggestion, identification_code}) => {
                                               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-1">
                                             <Right className='w-4 h-4 fill-white'/>
                                             <span className="font-semibold font-Inner text-white">{item}</span>
-                                            <Verified className='w-4 h-4'/>
+                                            <Verified className='w-4 h-4 fill-white'/>
                                         </Link>
                                     ) : (
                                         <span

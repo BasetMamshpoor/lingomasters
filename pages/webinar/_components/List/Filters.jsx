@@ -40,10 +40,8 @@ const Filters = ({setCurrentPage}) => {
         return object
     }
     const [filters, setFilters] = useState(readUrl() || {})
-    const [country, setCountry] = useState(Array.isArray(filters.country) ? filters.country[0].value : filters.country)
 
-    const [data] = useGetRequest(false, `/group_reserve/get-filter`)
-    const [location, setLocation, Q, W, E, loading] = useGetRequest(false, `/countries?country=${country}`)
+    const [data] = useGetRequest(false, `/webinar-reserve/get-filter`)
 
     const handleFilter = (name, value) => {
         setFilters(prev => {
@@ -145,22 +143,6 @@ const Filters = ({setCurrentPage}) => {
                                     value={c.key}>{c.title}</Checkbox>)}
                         </div>
                     </div>
-                    <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>نوع تدریس</label>
-                        <RadioGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            defaultValue={filters.teachingTypes ? filters.teachingTypes[0].value : undefined}
-                            style={{
-                                "--heroui-default-500": "196 94% 25%",
-                            }}
-                            color='default'
-                            onValueChange={(e) => handleFilter('teachingTypes', e)}
-                        >
-                            {data.teachingTypes?.map(a => <Radio key={a.value}
-                                                                 value={a.value.toString()}>{a.name}</Radio>)}
-                        </RadioGroup>
-                    </div>
                     <Dropdown
                         array={data.language}
                         defaultValue={Array.isArray(filters.language) ? filters.language[0].value : filters.language}
@@ -168,31 +150,7 @@ const Filters = ({setCurrentPage}) => {
                         placeHolder='زبان هدف'
                         className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
                     <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>ساعت تدریس</label>
-                        <CheckboxGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            style={{
-                                "--heroui-success": "196 94% 25%",
-                            }}
-                            color='success'
-                            value={filters.periods && (typeof filters.periods[0] === "object") ? filters.periods.map(e => e.value) : filters.periods}
-                            onValueChange={(value) => handleFilter('periods', value)}
-                            classNames={{wrapper: 'grid grid-cols-2'}}
-                        >
-                            {Object.keys(weekDays.periods).map(c =>
-                                <Checkbox
-                                    classNames={{icon: 'text-white'}} key={c}
-                                    value={c}>{c}</Checkbox>)}
-                        </CheckboxGroup>
-                    </div>
-                    <Dropdown
-                        array={data.accent}
-                        defaultValue={Array.isArray(filters.accent) ? filters.accent[0].value : filters.accent}
-                        Searchable label="انتخاب لهجه" setState={handleFilter} name="accent" placeHolder="لهجه"
-                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
-                    <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>سطح زبان</label>
+                        <label className='font-semibold'>سطح</label>
                         <RadioGroup
                             aria-label=" "
                             orientation="horizontal"
@@ -212,8 +170,8 @@ const Filters = ({setCurrentPage}) => {
                         radius='sm'
                         selectedKey={filters.subject_id}
                         onSelectionChange={e => handleFilter('subject_id', e)}
-                        label="هدف از آموزش"
-                        placeholder='هدف از آموزش'
+                        label="هدف از وبینار"
+                        placeholder='هدف از وبینار'
                         labelPlacement="outside"
                         isClearable={false}
                         classNames={{
@@ -257,46 +215,26 @@ const Filters = ({setCurrentPage}) => {
                             {data.age_group?.map(a => <Radio key={a.value} value={a.value.toString()}>{a.name}</Radio>)}
                         </RadioGroup>
                     </div>
-                    <RangeSlider {...{filters, handleFilter, data: data.price_range, title: 'مبلغ حق التدریس'}} />
+                    <RangeSlider {...{filters, handleFilter, data: data.price_range, title: 'مبلغ'}} />
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>جنسیت مدرس</label>
                         <RadioGroup
                             aria-label=" "
                             orientation="horizontal"
-                            defaultValue={filters.age_group ? filters.age_group[0].value : undefined}
+                            defaultValue={filters.gender ? filters.gender[0]?.value : undefined}
                             style={{
                                 "--heroui-default-500": "196 94% 25%",
                             }}
                             color='default'
-                            onValueChange={(e) => handleFilter('age_group', e)}
+                            onValueChange={(e) => handleFilter('gender', e)}
                         >
                             {data.genders.map(e =>
-                                <Radio key={e.value} value={e.name}>{e.name}</Radio>
+                                <Radio key={e.value} value={e.value.toString()}>{e.name}</Radio>
                             )}
                         </RadioGroup>
                     </div>
-                    <Dropdown
-                        array={location ? location.countries : []} isLoading={loading} name='country'
-                        defaultValue={Array.isArray(filters.country) ? filters.country[0].value : filters.country}
-                        Searchable label="کشور" setState={(e, v) => {
-                        handleFilter(e, v)
-                        setCountry(v)
-                        setLocation(prev => ({...prev, city: []}))
-                    }}
-                        placeHolder='کشور'
-                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
-                    <Dropdown
-                        array={location ? location.city : []} isLoading={loading}
-                        defaultValue={Array.isArray(filters.city) ? filters.city[0].value : filters.city}
-                        Searchable label="شهر" setState={handleFilter} name="city" placeHolder='شهر'
-                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
-                    <Dropdown
-                        array={data.direction ?? []}
-                        defaultValue={Array.isArray(filters.direction) ? filters.direction[0].value : filters.direction}
-                        Searchable label="جهت جغرافیایی" setState={handleFilter} name="direction" placeHolder="جهت"
-                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
                     <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>نزدیک‌ترین زمان تشکیل کلاس</label>
+                        <label className='font-semibold'>نزدیک‌ترین زمان تشکیل وبینار</label>
                         <div className='grid grid-cols-2 gap-y-2'>
                             {data.near?.map(c => {
                                 return <Checkbox
@@ -305,7 +243,7 @@ const Filters = ({setCurrentPage}) => {
                                     }}
                                     color='success'
                                     isSelected={Array.isArray(filters.near) ? filters.near[0].value : filters.near === c.key}
-                                    onValueChange={e => handleFilter('near', e?c.key:)}
+                                    onValueChange={e => handleFilter('near', e ? c.key : null)}
                                     classNames={{icon: 'text-white'}} key={c.key}
                                     value={c.key}>{c.title}</Checkbox>
                             })}

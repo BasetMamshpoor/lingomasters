@@ -19,7 +19,7 @@ const LanguageProvider = ({children}) => {
             if (lang) {
                 setSelectedLanguage(JSON.parse(lang))
             } else {
-                handleSelectLanguage(languages.student_languages.length ? languages.student_languages[0] : {})
+                handleSelectLanguage(languages.student_languages?.length ? languages.student_languages[0] : {})
             }
         }
     }, [languages]);

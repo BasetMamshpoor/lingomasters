@@ -42,7 +42,7 @@ const Filters = ({setCurrentPage}) => {
     const [filters, setFilters] = useState(readUrl() || {})
     const [country, setCountry] = useState(Array.isArray(filters.country) ? filters.country[0].value : filters.country)
 
-    const [data] = useGetRequest(false, `/private-reserve/get-filter`)
+    const [data] = useGetRequest(false, `/workshop-reserve/get-filter`)
     const [location, setLocation, Q, W, E, loading] = useGetRequest(false, `/countries?country=${country}`)
 
     const handleFilter = (name, value) => {
@@ -59,23 +59,22 @@ const Filters = ({setCurrentPage}) => {
     const changeUrl = (name, value) => {
         let str = null;
         !!Array.isArray(value) ? value.forEach((f, i) => {
-            const is_Array_String = typeof f === 'string'
             if (i > 0) {
-                str = str + '-' + (is_Array_String ? f : f.value)
+                str = str + '-' + (typeof f === "object" ? f.value : f)
             } else if (i === 0) {
-                str = is_Array_String ? f : f.value
+                str = typeof f === "object" ? f.value : f
             } else {
                 str = null
             }
         }) : str = value
         if (str === null) {
-            const {[name]: O, ...query} = router.query
+            const {[name]: O, slug, ...query} = router.query
             router.replace({pathname: router.asPath.split('?')[0], query: {...query},},
                 undefined,
                 {shallow: true}
             );
         } else {
-            const {...query} = router.query
+            const {slug, ...query} = router.query
             router.replace({pathname: router.asPath.split('?')[0], query: {...query, [name]: str},},
                 undefined,
                 {shallow: true}
@@ -102,82 +101,58 @@ const Filters = ({setCurrentPage}) => {
                                 pathname: router.asPath.split('?')[0],
                                 query: value.trim().length ? {...query, search: value} : {...query},
                             }, undefined, {shallow: true})
+                            handleFilter('search', value)
                         }}>
                         <Input defaultValue={filters.search ? filters.search[0].value : null} ref={searchRef}
-                               type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو'
+                               type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو کلاس'
                                variant='bordered' radius='sm'
                                startContent={
-                                   <button className="bg-white centerOfParent"><Search
+                                   <button type='submit' className="bg-white centerOfParent"><Search
+                                       className='fill-natural_gray-600'/></button>
+                               }/>
+                    </form>
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            const {value} = searchRef.current
+                            const {search, ...query} = queries
+                            router.replace({
+                                pathname: router.asPath.split('?')[0],
+                                query: value.trim().length ? {...query, professor: value} : {...query},
+                            }, undefined, {shallow: true})
+                            handleFilter('professor', value)
+                        }}>
+                        <Input defaultValue={filters.professor ? filters.professor[0].value : null} ref={searchRef}
+                               type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو استاد'
+                               variant='bordered' radius='sm'
+                               startContent={
+                                   <button type='submit' className="bg-white centerOfParent"><Search
                                        className='fill-natural_gray-600'/></button>
                                }/>
                     </form>
                     <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>مرتب سازی بر اساس</label>
-                        <CheckboxGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            color='success'
-                            style={{
-                                "--heroui-success": "196 94% 25%",
-                            }}
-                            value={filters.sort ? [filters.sort] : 'newest'}
-                            onValueChange={(e) => {
-                                if (e.length === 0) {
-                                    handleFilter('sort', null); // Handle unselecting all checkboxes
-                                } else {
-                                    handleFilter('sort', e[e.length - 1]); // Use the last selected value
-                                }
-                            }}
-                            classNames={{wrapper: 'grid grid-cols-2'}}
-                        >
-                            {SortList.sort.map(c => <Checkbox classNames={{icon: 'text-white'}} key={c.key}
-                                                              value={c.key}>{c.title}</Checkbox>)}
-                        </CheckboxGroup>
-                    </div>
-                    <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>نوع تدریس</label>
-                        <RadioGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            defaultValue={filters.teachingTypes ? filters.teachingTypes[0].value : undefined}
-                            style={{
-                                "--heroui-default-500": "196 94% 25%",
-                            }}
-                            color='default'
-                            onValueChange={(e) => handleFilter('teachingTypes', e)}
-                        >
-                            {data.teachingTypes?.map(a => <Radio key={a.value}
-                                                                 value={a.value.toString()}>{a.name}</Radio>)}
-                        </RadioGroup>
+                        <label className='font-semibold'>ترتیب</label>
+                        <div className='grid grid-cols-2 gap-y-2'>
+                            {SortList.sort.map(c =>
+                                <Checkbox
+                                    style={{
+                                        "--heroui-success": "196 94% 25%",
+                                    }}
+                                    color='success'
+                                    isSelected={Array.isArray(filters.sort) ? filters.sort[0].value : filters.sort === c.key}
+                                    onValueChange={e => handleFilter('sort', c.key)}
+                                    classNames={{icon: 'text-white'}} key={c.key}
+                                    value={c.key}>{c.title}</Checkbox>)}
+                        </div>
                     </div>
                     <Dropdown
-                        array={data.language} defaultValue={filters['language']}
-                        Multiple Searchable label="انتخاب زبان" setState={handleFilter} name="language"
+                        array={data.language}
+                        defaultValue={Array.isArray(filters.language) ? filters.language[0].value : filters.language}
+                        Searchable label="انتخاب زبان" setState={handleFilter} name="language"
                         placeHolder='زبان هدف'
-                        className='!px-3 !py-2 border border-gray-400 rounded-lg bg-white'/>
-                    <Dropdown
-                        array={data.accent} defaultValue={filters['accent']}
-                        Multiple Searchable label="لهجه" setState={handleFilter} name="accent" placeHolder='لهجه'
-                        className='!px-3 !py-2 border border-gray-400 rounded-lg bg-white'/>
+                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
                     <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>ساعت تدریس</label>
-                        <CheckboxGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            style={{
-                                "--heroui-success": "196 94% 25%",
-                            }}
-                            value={filters.time_of_day ? filters.time_of_day : undefined}
-                            color='success'
-                            onValueChange={(e) => handleFilter('time_of_day', e)}
-                            classNames={{wrapper: 'grid grid-cols-2'}}
-                        >
-                            {Object.keys(weekDays.periods).map(c => <Checkbox classNames={{icon: 'text-white'}} key={c}
-                                                                              value={c}>{c}</Checkbox>)}
-                        </CheckboxGroup>
-                    </div>
-                    <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>سطح زبان</label>
+                        <label className='font-semibold'>سطح</label>
                         <RadioGroup
                             aria-label=" "
                             orientation="horizontal"
@@ -192,41 +167,41 @@ const Filters = ({setCurrentPage}) => {
                                                                   value={a.value.toString()}>{a.name}</Radio>)}
                         </RadioGroup>
                     </div>
-                    {/*<Autocomplete*/}
-                    {/*    variant='bordered'*/}
-                    {/*    radius='sm'*/}
-                    {/*    selectedKey={filters.subject_id}*/}
-                    {/*    onSelectionChange={e => handleFilter('subject_id', e)}*/}
-                    {/*    label="هدف از آموزش"*/}
-                    {/*    placeholder='هدف از آموزش'*/}
-                    {/*    labelPlacement="outside"*/}
-                    {/*    isClearable={false}*/}
-                    {/*    classNames={{*/}
-                    {/*        input: 'text-xs',*/}
-                    {/*        trigger: 'bg-white',*/}
-                    {/*        listbox: '[&>ul>li>span>svg]:w-3 [&>ul>li>span>svg]:h-3',*/}
-                    {/*    }}*/}
-                    {/*    inputProps={{*/}
-                    {/*        classNames: {label: 'mb-4 font-semibold'}*/}
-                    {/*    }}*/}
-                    {/*>*/}
-                    {/*    {data.learning_goals.map(obj =>*/}
-                    {/*        <AutocompleteSection*/}
-                    {/*            classNames={{*/}
-                    {/*                base: 'text-right'*/}
-                    {/*            }}*/}
-                    {/*            showDivider key={obj.goal_id} title={obj.goal_title}>*/}
-                    {/*            {obj.subgoals.map(subgoal => (*/}
-                    {/*                <AutocompleteItem*/}
-                    {/*                    classNames={{*/}
-                    {/*                        selectedIcon: '[&>svg]:w-3 [&>svg]:h-3'*/}
-                    {/*                    }}*/}
-                    {/*                    key={subgoal.value}*/}
-                    {/*                    title={subgoal.name}/>*/}
-                    {/*            ))}*/}
-                    {/*        </AutocompleteSection>*/}
-                    {/*    )}*/}
-                    {/*</Autocomplete>*/}
+                    <Autocomplete
+                        variant='bordered'
+                        radius='sm'
+                        selectedKey={filters.subject_id}
+                        onSelectionChange={e => handleFilter('subject_id', e)}
+                        label="هدف از ورکشاپ"
+                        placeholder='هدف از ورکشاپ'
+                        labelPlacement="outside"
+                        isClearable={false}
+                        classNames={{
+                            input: 'text-xs',
+                            trigger: 'bg-white',
+                            listbox: '[&>ul>li>span>svg]:w-3 [&>ul>li>span>svg]:h-3',
+                        }}
+                        inputProps={{
+                            classNames: {label: 'mb-4 font-semibold'}
+                        }}
+                    >
+                        {data.learning_goals.map(obj =>
+                            <AutocompleteSection
+                                classNames={{
+                                    base: 'text-right'
+                                }}
+                                showDivider key={obj.goal_id} title={obj.goal_title}>
+                                {obj.subgoals.map(subgoal => (
+                                    <AutocompleteItem
+                                        classNames={{
+                                            selectedIcon: '[&>svg]:w-3 [&>svg]:h-3'
+                                        }}
+                                        key={subgoal.value}
+                                        title={subgoal.name}/>
+                                ))}
+                            </AutocompleteSection>
+                        )}
+                    </Autocomplete>
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>گروه سنی</label>
                         <RadioGroup
@@ -242,7 +217,7 @@ const Filters = ({setCurrentPage}) => {
                             {data.age_group?.map(a => <Radio key={a.value} value={a.value.toString()}>{a.name}</Radio>)}
                         </RadioGroup>
                     </div>
-                    <RangeSlider {...{filters, handleFilter, data: data.price_range}} />
+                    <RangeSlider {...{filters, handleFilter, data: data.price_range, title: 'مبلغ'}} />
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>جنسیت مدرس</label>
                         <RadioGroup
@@ -276,7 +251,7 @@ const Filters = ({setCurrentPage}) => {
                         Searchable label="شهر" setState={handleFilter} name="city" placeHolder='شهر'
                         className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
                     <div className="flex flex-col gap-4">
-                        <label className='font-semibold'></label>`
+                        <label className='font-semibold'>نزدیک‌ترین زمان تشکیل ورکشاپ</label>
                         <div className='grid grid-cols-2 gap-y-2'>
                             {data.near?.map(c => {
                                 return <Checkbox

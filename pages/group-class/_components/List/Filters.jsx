@@ -263,15 +263,15 @@ const Filters = ({setCurrentPage}) => {
                         <RadioGroup
                             aria-label=" "
                             orientation="horizontal"
-                            defaultValue={filters.age_group ? filters.age_group[0].value : undefined}
+                            defaultValue={filters.gender ? filters.gender[0]?.value : undefined}
                             style={{
                                 "--heroui-default-500": "196 94% 25%",
                             }}
                             color='default'
-                            onValueChange={(e) => handleFilter('age_group', e)}
+                            onValueChange={(e) => handleFilter('gender', e)}
                         >
                             {data.genders.map(e =>
-                                <Radio key={e.value} value={e.name}>{e.name}</Radio>
+                                <Radio key={e.value} value={e.value.toString()}>{e.name}</Radio>
                             )}
                         </RadioGroup>
                     </div>
@@ -290,11 +290,11 @@ const Filters = ({setCurrentPage}) => {
                         defaultValue={Array.isArray(filters.city) ? filters.city[0].value : filters.city}
                         Searchable label="شهر" setState={handleFilter} name="city" placeHolder='شهر'
                         className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
-                    <Dropdown
-                        array={data.direction ?? []}
-                        defaultValue={Array.isArray(filters.direction) ? filters.direction[0].value : filters.direction}
-                        Searchable label="جهت جغرافیایی" setState={handleFilter} name="direction" placeHolder="جهت"
-                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
+                    {/*<Dropdown*/}
+                    {/*    array={data.direction ?? []}*/}
+                    {/*    defaultValue={Array.isArray(filters.direction) ? filters.direction[0].value : filters.direction}*/}
+                    {/*    Searchable label="جهت جغرافیایی" setState={handleFilter} name="direction" placeHolder="جهت"*/}
+                    {/*    className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>*/}
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>نزدیک‌ترین زمان تشکیل کلاس</label>
                         <div className='grid grid-cols-2 gap-y-2'>
