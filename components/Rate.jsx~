@@ -15,7 +15,7 @@ import usePostRequest from "@/hooks/usePostRequest";
 export default function Rate({rate, url, id}) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const {isLoading, sendPostRequest} = usePostRequest()
-    const [value, setValue] = useState("")
+    const [value, setValue] = useState(rate)
 
     const handleSubmit = async () => {
         const {
@@ -47,7 +47,7 @@ export default function Rate({rate, url, id}) {
                 <Star className={rate < 2 ? '' : 'fill-[#F3B944]'}/>
                 <Star className={rate < 1 ? '' : 'fill-[#F3B944]'}/>
             </div>
-            <Modal dir='rtl' isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal dir='rtl' isOpen={isOpen} onOpenChange={onOpenChange} placement='cemnter' >
                 <ModalContent>
                     {(onClose) => (
                         <>

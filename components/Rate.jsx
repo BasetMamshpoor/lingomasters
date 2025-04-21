@@ -47,7 +47,7 @@ export default function Rate({rate, url, id}) {
                 <Star className={rate < 2 ? '' : 'fill-[#F3B944]'}/>
                 <Star className={rate < 1 ? '' : 'fill-[#F3B944]'}/>
             </div>
-            <Modal dir='rtl' isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal dir='rtl' isOpen={isOpen} onOpenChange={onOpenChange} placement='center' >
                 <ModalContent>
                     {(onClose) => (
                         <>

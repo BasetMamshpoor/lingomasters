@@ -7,7 +7,20 @@ import Image from "next/image";
 import Link from "next/link";
 import Star from "@icons/magic-star.svg";
 
-function TeacherCard({className, rate = 4}) {
+function TeacherCard({
+                         className,
+                         rate,
+                         image,
+                         is_like,
+                         view,
+                         title,
+                         language,
+                         teachingType,
+                         address,
+                         price,
+                         offPrice,
+                         discount
+                     }) {
     return (
         <div
             className={`flex flex-col gap-1 py-6 px-4 bg-white rounded-lg border border-natural_gray-100 overflow-hidden max-w-[500px] w-full ${className}`}>
@@ -67,7 +80,7 @@ function TeacherCard({className, rate = 4}) {
                                     </div>
                                     <div className="flex flex-col">
                                         <p className="sm:text-sm text-xs"> ۲۰۰ هزار تومان</p>
-                                        <del className="text-sm text-natural_gray-500 ">
+                                        <del className="sm:text-sm text-xs text-natural_gray-500 ">
                                             ۴۰۰ هزار تومان
                                         </del>
                                     </div>

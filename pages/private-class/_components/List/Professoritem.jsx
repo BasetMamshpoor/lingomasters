@@ -41,11 +41,11 @@ const List = (r) => (
         </div>
         <div className='col-span-1'>
             <span className="text-natural_gray-700">تعیین سطح</span>
-            <span>{r.teaching_types.join(' | ')}</span>
+            <span>{r.placement_test}</span>
         </div>
         <div className='col-span-1'>
             <span className="text-natural_gray-700">کلاس آزمایشی</span>
-            <span>{r.teaching_types.join(' | ')}</span>
+            <span>{r.trial_class}</span>
         </div>
         <div className='col-span-1'>
             <span className="text-natural_gray-700">میزان حضور استاد</span>
@@ -53,7 +53,7 @@ const List = (r) => (
         </div>
         <div className='col-span-1'>
             <span className="text-natural_gray-700">جلسه ۲۵ دقیقه‌ای</span>
-            <span className="text-black hasToman">{r.price}</span>
+            <span className="text-black hasToman">{r.price?.toLocaleString()}</span>
         </div>
         <div className='col-span-2 sm:col-span-1'>
             <span className="text-natural_gray-700">کلاس های خصوصی برگزار شده</span>
@@ -73,11 +73,11 @@ const List = (r) => (
         </div>
         <div className='col-span-2 sm:col-span-1'>
             <span className="text-natural_gray-700">وبینارهای برگزار شده</span>
-            <span>{r.private_classes_count}</span>
+            <span>{r.webinar_classes_count}</span>
         </div>
         <div className='col-span-2 sm:col-span-1'>
             <span className="text-natural_gray-700">ورکشاپ های برگزار شده</span>
-            <span>{r.private_classes_count}</span>
+            <span>{r.workshop_classes_count}</span>
         </div>
     </div>
 )
@@ -179,7 +179,7 @@ const ProfessorItem = ({r = {languages: [], genders: [], teaching_types: [], age
                             }
                         >
                             <Card>
-                                <CardBody><CardVideo bgSrc='/images/image 144.png' movie='j'
+                                <CardBody><CardVideo bgSrc={r.cover} movie={r.about_video}
                                                      className='!max-h-full h-full w-full'/></CardBody>
                             </Card>
                         </Tab>

@@ -1,24 +1,40 @@
 import {Accordion, AccordionItem, Checkbox} from "@heroui/react";
 import React, {useState} from 'react';
-import BookItem from 'components/BookItem';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import {Navigation, Autoplay, FreeMode} from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import BookList from "@/components/Books/BookList";
+import UploadIcon from "@icons/upload-cloud-02.svg";
 
 
-const ChooseBook = () => {
-    const [state, setState] = useState('3')
+const ChooseBook = ({data, state, setState}) => {
+    const handleFileChange = (e) => {
+        setState((prev) => ({...prev, evidence: e.target.files[0]}));
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        if (e.dataTransfer.files.length > 0) {
+            setState((prev) => ({...prev, evidence: e.dataTransfer.files[0]}));
+        }
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+    };
+
+    const handleChange = (e, value) => {
+        setState(prev => {
+            return {...prev, book_type: e ? value : value}
+        });
+    };
 
     return (
         <>
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-2">
                 <label className='text-lg'>انتخاب کتاب</label>
                 <div className="flex flex-col gap-6">
                     <Accordion
                         hideIndicator
                         showDivider={false}
-                        selectedKeys={state}
+                        selectedKeys={state.book_type}
                     >
                         <AccordionItem
                             key="1"
@@ -26,27 +42,38 @@ const ChooseBook = () => {
                                 color='success'
                                 style={{
                                     "--heroui-success": "196 94% 25%",
-                                }} classNames={{icon: 'text-white', label: 'lg:text-base text-xs'}}
-                                isSelected={state == "1"} onValueChange={(e) => setState(e ? '1' : '1')}>خودم
+                                }}
+                                classNames={{icon: 'text-white', label: 'lg:text-base text-xs'}}
+                                isSelected={state.book_type === "1"} onValueChange={(e) => handleChange(e, '1')}>خودم
                                 فایل تدریس را آپلود می کنم.</Checkbox>}
                             aria-label="Accordion 1">
                             <div
-                                className={`flex flex-col items-center text-center justify-center w-full h-64 p-4 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer`}
-                                // onDrop={handleDrop}
-                                // onDragOver={handleDragOver}
-                            >
-                                <input
-                                    type="file"
-                                    className="hidden"
-                                    // onChange={handleFileSelect}
-                                    id={'name'} accept='image/jpeg, image/jpg, image/png, image/webp'
+                                onDrop={handleDrop}
+                                onDragOver={handleDragOver}
+                                className="sm:py-6 sm:px-4 py-4 px-3 flex flex-col items-center gap-3 bg-white rounded-md border border-dashed border-natural_gray-300">
+                                <input type="file" id="file" name='video' className="hidden"
+                                       onChange={handleFileChange}
                                 />
-                                <label htmlFor={'name'} className="cursor-pointer mb-2">
-                                    <p className="text-gray-500 lg:text-base text-xs">
-                                        عکس را داخل بیاندازید؛ یا با کلیک عکس مورد نظر را انتخاب کنید
+                                <div
+                                    className="bg-natural_gray-50 rounded-full flex justify-center h-12 w-12 items-center">
+                                    <UploadIcon className="w-8 h-8"/>
+                                </div>
+                                <div className="flex flex-col gap-0.5 items-center">
+                                    <div className="flex sm:gap-1 gap-0.5">
+                                        <label
+                                            htmlFor="file"
+                                            className="sm:text-sm text-xs text-primary-500 font-semibold hover:text-primary-950 cursor-pointer"
+                                        >
+                                            کلیک کنید
+                                        </label>
+                                        <p className="sm:text-sm text-xs text-natural_gray-950">
+                                            یا فایل خود را در این محل قرار دهید.
+                                        </p>
+                                    </div>
+                                    <p className="text-xs text-natural_gray-400 text-center">
+                                        {(state.evidence && `فایل انتخابی: ${state.evidence.name}`) || 'SVG, PNG, JPG or GIF (max. 800x400px)'}
                                     </p>
-                                </label>
-
+                                </div>
                             </div>
                         </AccordionItem>
                         <AccordionItem
@@ -58,7 +85,7 @@ const ChooseBook = () => {
                                 style={{
                                     "--heroui-success": "196 94% 25%",
                                 }} classNames={{icon: 'text-white', label: 'lg:text-base text-xs'}}
-                                isSelected={state == "2"} onValueChange={(e) => setState(e ? '2' : '2')}>انتخاب
+                                isSelected={state.book_type === "2"} onValueChange={(e) => handleChange(e, '2')}>انتخاب
                                 کتاب را به استاد محول می کنم.</Checkbox>}>
                         </AccordionItem>
                         <AccordionItem
@@ -69,68 +96,9 @@ const ChooseBook = () => {
                                 style={{
                                     "--heroui-success": "196 94% 25%",
                                 }} classNames={{icon: 'text-white', label: 'lg:text-base text-xs'}}
-                                isSelected={state == "3"} onValueChange={(e) => setState(e ? '3' : '3')}>خودم
+                                isSelected={state.book_type === "3"} onValueChange={(e) => handleChange(e, '3')}>خودم
                                 کتاب را از بین کتاب های استاد انتخاب می کنم.</Checkbox>}>
-                            <Swiper
-                                slidesPerView='4'
-                                spaceBetween={10}
-                                freeMode
-                                modules={[Autoplay, Navigation,FreeMode]}
-                                className="slider"
-                                centeredSlides={false}
-                                // loop
-                                autoplay={{
-                                    delay: 2500,
-                                    disableOnInteraction: false,
-                                }}
-                                navigation
-                                breakpoints={{
-                                    319: {
-                                        slidesPerView: 1.25,
-                                    },
-                                    400: {
-                                        slidesPerView: 1.5,
-                                    },
-                                    460: {
-                                        slidesPerView: 1.8,
-                                    },
-                                    500: {
-                                        slidesPerView: 2,
-                                    },
-                                    570: {
-                                        slidesPerView: 2.3,
-                                    },
-                                    640: {
-                                        slidesPerView: 2.1,
-                                    },
-                                    700: {
-                                        slidesPerView: 2.3,
-                                    },
-                                    768: {
-                                        slidesPerView: 2.5,
-                                    },
-                                    825: {
-                                        slidesPerView: 2.7,
-                                    },
-                                    910: {
-                                        slidesPerView: 3,
-                                    },
-                                    975: {
-                                        slidesPerView: 3.2,
-                                    },
-                                    1080: {
-                                        slidesPerView: 3.5,
-                                    },
-                                    1160: {
-                                        slidesPerView: 3.8,
-                                    },
-                                    1230: {
-                                        slidesPerView: 4.05,
-                                    },
-                                }}
-                            >
-                                {[...Array(4)].map((_, i) => <SwiperSlide key={i} ><BookItem/></SwiperSlide>)}
-                            </Swiper>
+                            <BookList products={data} withSelect withSearch state={state} handleChangeState={setState}/>
                         </AccordionItem>
                     </Accordion>
                 </div>

@@ -1,6 +1,6 @@
 'use client';
 import Comments from '@/components/Comments';
-import Hero from '../_components/Hero';
+import Hero from '../_components/Details/Hero';
 import Tabs from '@/components/Tabs';
 import useGetRequest from '@/hooks/useGetRequest';
 import React from 'react';
@@ -43,7 +43,7 @@ const Professor = () => {
     const {query} = useRouter()
     const {id} = query
 
-    const [data, , setReload] = useGetRequest(true, id && `/group_reserve/show/${id}`)
+    const [data, set, setReload] = useGetRequest(true, id && `/group_reserve/show/${id}`)
 
     return (
         <>

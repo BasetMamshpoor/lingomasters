@@ -2,13 +2,11 @@ import React from 'react';
 import {
     Tabs,
     Tab,
-    Card,
-    CardBody,
 } from "@heroui/react";
 
 import User from '@icons/laptop.svg';
-import Button from '@icons/button-icon.svg';
 import MapModal from "@/components/MapModal";
+import Card from "@/components/Video/Card";
 
 const TeachingType = ({latitude, longitude, video, city, direction}) => {
     return (
@@ -32,26 +30,25 @@ const TeachingType = ({latitude, longitude, video, city, direction}) => {
                         variant="underlined"
                     >
                         <Tab key="offline" title="حضوری">
-                            <Card>
-                                <CardBody className="text-right text-sm">
-                                    <div className="flex items-center gap-4 mb-4">
+                            <div className="text-right text-sm mt-6">
+                                <div className="flex items-center gap-4 mb-4">
                                         <span
                                             className='py-1 px-3 text-center rounded-md bg-primary-50 text-xs text-natural_gray-800'>{city}</span>
-                                        <span
-                                            className='py-1 px-3 text-center rounded-md bg-primary-50 text-xs text-natural_gray-800'>مناطق ({direction})</span>
-                                    </div>
-                                    <ul className="space-y-4 text-xs sm:text-sm lg:text-base">
-                                        <li className='flex lg:flex-row flex-col lg:items-center justify-between gap-2 w-full'>
-                                            <div className="flex sm:flex-row flex-col lg:items-center gap-2">
-                                                <span>حضوری</span>
-                                                <a target='_blank' href={video} className='text-primary-900'>(دانلود
-                                                    ویدیو محیط برگزاری)</a>
-                                            </div>
-                                            <MapModal location={[latitude, longitude]}/>
-                                        </li>
-                                    </ul>
-                                </CardBody>
-                            </Card>
+                                    <span
+                                        className='py-1 px-3 text-center rounded-md bg-primary-50 text-xs text-natural_gray-800'>مناطق ({direction})</span>
+                                </div>
+                                <ul className="space-y-4 text-xs sm:text-sm lg:text-base">
+                                    <li className='flex lg:flex-row flex-col lg:items-center justify-between gap-2 w-full'>
+                                        <div className="flex sm:flex-row flex-col lg:items-center gap-2">
+                                            <span>حضوری</span>
+                                            <Card
+                                                trigger='مشاهده فیلم محل برگزاری'
+                                                movie={video}/>
+                                        </div>
+                                        <MapModal location={[latitude, longitude]}/>
+                                    </li>
+                                </ul>
+                            </div>
                         </Tab>
                     </Tabs>
                 </div>

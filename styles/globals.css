@@ -260,3 +260,7 @@ input:focus-within {
 .leaflet-control-attribution.leaflet-control {
     display: none;
 }
+
+.leaflet-pane, .leaflet-top, .leaflet-bottom {
+    z-index: 10 !important;
+}

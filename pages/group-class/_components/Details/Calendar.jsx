@@ -91,7 +91,7 @@ const Calendar = ({id}) => {
                                 {d.schedule.map(t => {
                                     return <tr key={t.time}>
                                         <td
-                                            className={`sm:border-l centerOfParent border border-natural_gray-300 py-2 lg:text-xs text-[10px] ${t.time !== "N/A" ? '!bg-natural_gray-50 text- white ' : '!bg-natural_gray-50 text-natural_gray-50 border-natural_gray-50'}`}>
+                                            className={`sm:border-l centerOfParent border border-natural_gray-300 py-2 lg:text-xs sm:text-[10px] text-[8px] whitespace-nowrap ${t.time !== "N/A" ? '!bg-natural_gray-50 text- white ' : '!bg-natural_gray-50 text-natural_gray-50 border-natural_gray-50'}`}>
                                             {t.time === "N/A" ? '-' : t.time}
                                         </td>
                                     </tr>

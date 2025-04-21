@@ -154,7 +154,7 @@ const Header = () => {
                                             </DropdownTrigger>
                                             <DropdownMenu
                                                 className="max-h-64 overflow-y-auto scrollbar-hide scrollbar scrollbar-w-8 scrollbar-thumb-natural_gray-800 scrollbar-track-white">
-                                                {i.items === null ? languages.languages.map(c =>
+                                                {i.items === null ? languages?.languages.map(c =>
                                                         <DropdownItem key={c.link}
                                                                       onPress={() => push(`/private-class?language=${c.id}`)}>
                                                             <div className='flex items-center gap-1'>

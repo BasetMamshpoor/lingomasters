@@ -1,7 +1,7 @@
 import React from 'react';
 import Alt from "@icons/file.svg";
 
-const Headlines = () => {
+const Headlines = ({data}) => {
     return (
         <>
             <div
@@ -12,9 +12,11 @@ const Headlines = () => {
                     <span className='sm:text-base text-sm text-primary-950'>سرفصل ها</span>
                 </div>
                 <ul className="space-y-4 list-inside text-sm w-full">
-                    <li>
-                        <p className="text-sm ">کل سابقه تدریس</p>
-                    </li>
+                    {data?.map(e => (
+                        <li>
+                            <p className="text-sm ">{e}</p>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </>

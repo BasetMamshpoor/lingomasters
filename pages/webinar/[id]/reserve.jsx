@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import withAuth from "@/components/withAuth";
 import Progress from "@/components/Progress";
 import Image from "next/image";
-import {addToast, Button, Input, Radio, RadioGroup, Spinner} from "@heroui/react";
+import {addToast, Button, Form, Input, Radio, RadioGroup, Spinner} from "@heroui/react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import useGetRequest from "@/hooks/useGetRequest";
@@ -82,66 +82,64 @@ const Reserve = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {steps === 2 && <>
-                                    <div
-                                        className="z-[100] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
-                                        <Button
-                                            isLoading={isLoading}
-                                            type='button'
-                                            onPress={handlePay}
-                                            color="success" style={{
-                                            "--heroui-success": "140 82% 33%",
-                                        }} className="text-white" radius='sm'>پرداخت آنلاین</Button>
-                                        <div className="flex  justify-end gap-2">
-                                            {data.price !== data.price_discount &&
-                                                <div
-                                                    className="text-red-700 h-fit bg-red-200 rounded-lg py-0.5 px-2 text-xs">
-                                                    {data.discount}٪
-                                                </div>}
-                                            <div className="flex flex-col">
-                                                {data.price !== data.price_discount && <del
-                                                    className="text-sm text-natural_gray-500 hasToman">{data.price?.toLocaleString()}</del>}
-                                                <p className="text-sm hasToman text-green-600 hasToman">{data.price_discount?.toLocaleString()}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <RadioGroup
-                                        className='w-full'
-                                        color='success'
-                                        style={{
-                                            "--heroui-success": "196 94% 25%",
-                                        }}
-                                        value={selected}
-                                        onValueChange={setSelected}>
-                                        <Radio value="1" classNames={{label: 'text-xs'}}>پرداخت آنلاین</Radio>
-                                        <Radio isDisabled value="2" classNames={{label: 'text-xs'}}>پرداخت با
-                                            کیف‌پول</Radio>
-                                    </RadioGroup>
+                                <div
+                                    className="z-[49] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
                                     <Button
                                         isLoading={isLoading}
                                         type='button'
                                         onPress={handlePay}
                                         color="success" style={{
                                         "--heroui-success": "140 82% 33%",
-                                    }} className="w-full text-white" radius='sm'>پرداخت آنلاین</Button>
-                                </>}
+                                    }} className="text-white" radius='sm'>پرداخت آنلاین</Button>
+                                    <div className="flex  justify-end gap-2">
+                                        {data.price !== data.offPrice &&
+                                            <div
+                                                className="text-red-700 h-fit bg-red-200 rounded-lg py-0.5 px-2 text-xs">
+                                                {data.discount}٪
+                                            </div>}
+                                        <div className="flex flex-col">
+                                            {data.price !== data.offPrice && <del
+                                                className="text-sm text-natural_gray-500 hasToman">{data.price?.toLocaleString()}</del>}
+                                            <p className="text-sm hasToman text-green-600 hasToman">{data.offPrice?.toLocaleString()}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <RadioGroup
+                                    className='w-full'
+                                    color='success'
+                                    style={{
+                                        "--heroui-success": "196 94% 25%",
+                                    }}
+                                    value={selected}
+                                    onValueChange={setSelected}>
+                                    <Radio value="1" classNames={{label: 'text-xs'}}>پرداخت آنلاین</Radio>
+                                    <Radio isDisabled value="2" classNames={{label: 'text-xs'}}>پرداخت با
+                                        کیف‌پول</Radio>
+                                </RadioGroup>
+                                <Button
+                                    isLoading={isLoading}
+                                    type='button'
+                                    onPress={handlePay}
+                                    color="success" style={{
+                                    "--heroui-success": "140 82% 33%",
+                                }} className="w-full text-white" radius='sm'>پرداخت آنلاین</Button>
                             </div>
                             <div
                                 className="col-span-3 py-6 sm:px-4 px-3 gap-20 border rounded-lg border-natural_gray-100 bg-white flex flex-col">
                                 <div className="flex flex-col gap-14">
-                                    <div className="grid sm:grid-cols-2 grid-cols-1 gap-6">
+                                    <Form className="w-full max-w-xs">
                                         <Input label="در صورتی که کد تخفیف دارید آن را وارد کنید." type="number"
                                                radius='sm' labelPlacement='outside' variant='bordered'
                                                className='max-w-1/2'/>
-                                    </div>
-                                </div>
-                                <div className="flex items-center self-end gap-6 sm:w-fit w-full">
-                                    <Link href='/webinar'
-                                          className='sm:w-44 w-1/2 effect-1 sm:text-base text-xs sm:px-6 px-4 sm:py-4 py-2 rounded border-secondary-500 sm:border-[1.5px] border text-secondary-500 centerOfParent'>انصراف</Link>
-                                    <button
-                                        onClick={() => setSteps(steps + 1)}
-                                        className="sm:w-44 w-1/2 effect-2 sm:py-4 py-2 sm:px-6 px-4 sm:text-base text-sm rounded text-white bg-primary-600 self-end">ثبت
-                                    </button>
+                                        <Button
+                                            type='button'
+                                            color="success"
+                                            style={{
+                                                "--heroui-success": "140 82% 33%",
+                                            }}
+                                            className="text-white"
+                                            radius='sm'>بررسی</Button>
+                                    </Form>
                                 </div>
                             </div>
                         </div>

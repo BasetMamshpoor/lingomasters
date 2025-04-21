@@ -17,7 +17,7 @@ const Hero = ({product = {}}) => {
         is_like,
         language,
         city,
-        reigon,
+        region,
         flag,
         rate_av,
         rate_count,
@@ -105,7 +105,7 @@ const Hero = ({product = {}}) => {
                             <div
                                 className="centerOfParent h-12 flex-[1_0_0] gap-1 rounded-lg bg-primary-50 [box-shadow:0px_4px_6px_0px_rgba(54,_108,_218,_0.08)]">
                                 <p className='text-natural_gray-700 text-xs'>منطقه</p>
-                                <h4 className='text-sm font-semibold'>{reigon}</h4>
+                                <h4 className='text-sm font-semibold'>{region}</h4>
                             </div>
                         </div>
                     </div>

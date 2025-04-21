@@ -16,7 +16,7 @@ const MapModal = ({location}) => {
                 <MapIcon className='sm:w-6 sm:h-6 w-4 h-4'/>
                 <p className='text-primary-600 sm:text-base text-xs'>دیدن موقعیت روی نقشه</p>
             </div>
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement='center'>
                 <ModalContent>
                     {(onClose) => (
                         <>

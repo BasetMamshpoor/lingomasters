@@ -2,9 +2,9 @@
 import Media from '@icons/users.svg';
 import Image from 'next/image';
 import Link from "next/link";
-import Skills from "./Skills";
+import Skills from "@/pages/private-class/_components/Details/Skills";
 
-const Resume = ({professor, profile,professor_id}) => {
+const Resume = ({professor, profile, professor_id, skills}) => {
         return (
             <>
                 <div
@@ -23,10 +23,10 @@ const Resume = ({professor, profile,professor_id}) => {
                             <p className='sm:text-base text-xs'>{professor}</p>
                         </div>
                         <Link href={`/private-class/${professor_id}`} target='_blank'
-                                className='rounded sm:text-base text-xs border-1.5 text-secondary-500 h-fit border-secondary-300 py-2 px-6 centerOfParent'>مشاهده
+                              className='rounded sm:text-base text-xs border-1.5 text-secondary-500 h-fit border-secondary-300 py-2 px-6 centerOfParent'>مشاهده
                         </Link>
                     </div>
-                    <Skills />
+                    <Skills data={skills}/>
                 </div>
             </>
         );

@@ -15,7 +15,7 @@ import CalendarIcon from "@icons/calendar.svg";
 import EditIcon from "@icons/edit-icon.svg";
 import TrashIcon from "@icons/bin.svg";
 
-import BookItem from "components/BookItem";
+import BookItem from "@/components/Books/BookItem";
 import getPersianDateRange from "@/helpers/getPersianDateRange";
 import Link from "next/link";
 

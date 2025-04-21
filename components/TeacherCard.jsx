@@ -7,7 +7,20 @@ import Image from "next/image";
 import Link from "next/link";
 import Star from "@icons/magic-star.svg";
 
-function TeacherCard({className, rate = 4}) {
+function TeacherCard({
+                         className,
+                         rate,
+                         image,
+                         is_like,
+                         view,
+                         title,
+                         language,
+                         teachingType,
+                         address,
+                         price,
+                         offPrice,
+                         discount, id
+                     }) {
     return (
         <div
             className={`flex flex-col gap-1 py-6 px-4 bg-white rounded-lg border border-natural_gray-100 overflow-hidden max-w-[500px] w-full ${className}`}>

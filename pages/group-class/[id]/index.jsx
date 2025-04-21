@@ -1,6 +1,6 @@
 'use client';
 import Comments from '@/components/Comments';
-import Hero from '../_components/Hero';
+import Hero from '../_components/Details/Hero';
 import Tabs from '@/components/Tabs';
 import useGetRequest from '@/hooks/useGetRequest';
 import React from 'react';
@@ -47,7 +47,7 @@ const Professor = () => {
 
     return (
         <>
-            {data ? <main dir='rtl' className='my-4 container sm:px-10 '>
+            {data ? <main dir='rtl' className='my-4 container sm:px-10'>
                 <Hero product={data}/>
                 <div className="grid lg:grid-cols-6 grid-cols-1 gap-6">
                     <div className="lg:col-span-2">

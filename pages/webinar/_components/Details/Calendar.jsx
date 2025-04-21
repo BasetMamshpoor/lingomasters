@@ -1,7 +1,7 @@
 import React from 'react';
 import CalendarIcon from "@icons/calendar.svg";
 
-const Calendar = () => {
+const Calendar = ({date, time}) => {
     return (
         <>
             <div
@@ -13,10 +13,14 @@ const Calendar = () => {
                 </div>
                 <ul className="space-y-4 list-inside text-sm w-full">
                     <li className="text-sm">
-                        کل سابقه تدریس
+                        {new Date(date)?.toLocaleString('fa-IR', {
+                            weekday: 'long',
+                            month: 'long',
+                            day: '2-digit'
+                        })}
                     </li>
                     <li className="text-sm">
-                        کل سابقه تدریس
+                        {time}
                     </li>
                 </ul>
             </div>

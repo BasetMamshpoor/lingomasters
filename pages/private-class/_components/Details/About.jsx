@@ -12,7 +12,7 @@ const AboutProfessor = ({data = {}}) => {
         about_text,
         about_video,
         cover,
-        gender,
+        genders,
         region,
         city,
         country,
@@ -68,7 +68,7 @@ const AboutProfessor = ({data = {}}) => {
                             <Card className='shadow-none'>
                                 <CardBody>
                                     <ScrollShadow hideScrollBar className="w-full h-[324px]">
-                                        <p className="text-justify">{about_text}</p>
+                                        <p className="text-justify whitespace-pre-line">{about_text}</p>
                                     </ScrollShadow>
                                 </CardBody>
                             </Card>
@@ -82,7 +82,7 @@ const AboutProfessor = ({data = {}}) => {
                             <div className="col-span-3 flex items-center gap-2">
                                 <span className='text-natural_gray-950'>تدریس برای</span>
                             </div>
-                            <span className="col-span-2 text-right">{!!gender?.length && gender.join(' | ')}</span>
+                            <span className="col-span-2 text-right">{!!genders?.length && genders.join(' | ')}</span>
                         </li>
                         <li className='grid grid-cols-5 sm:text-base text-xs'>
                             <div className="col-span-3 flex items-center gap-2">
@@ -109,7 +109,7 @@ const AboutProfessor = ({data = {}}) => {
                             <div className="col-span-3 flex items-center gap-2">
                                 <span className='text-natural_gray-950'>زبان</span>
                             </div>
-                            <span className="col-span-2 text-right">{!!languages?.length && languages.join(' | ')}</span>
+                            <span className="col-span-2 text-right">{!!languages?.length && languages.map(lang => lang.title).join(' | ')}</span>
                         </li>
                         <li className='grid grid-cols-5 sm:text-base text-xs'>
                             <div className="col-span-3 flex items-center gap-2">

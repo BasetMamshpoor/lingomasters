@@ -44,7 +44,7 @@ const Comments = ({id, url}) => {
                                      <span className='sm:text-base text-sm text-natural_gray-900'>صوتی</span>
                                  </div>
                              }>
-                            <Audio id={id} url={url} />
+                            <Audio id={id} url={url}/>
                         < /Tab>
                         <Tab key="video"
                              title={
@@ -59,7 +59,7 @@ const Comments = ({id, url}) => {
                 </div>
             </div>
         </>
-);
+    );
 };
 
 export default Comments;

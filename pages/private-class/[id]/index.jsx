@@ -12,7 +12,8 @@ import Skills from '../_components/Details/Skills';
 import Stories from '../_components/Details/Stories';
 import TeachingType from '../_components/Details/TeachingType';
 import Books from '../_components/Details/Books';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
+import Related from "../_components/Details/Related";
 
 const list = [
     {
@@ -54,31 +55,32 @@ const list = [
 ]
 const Professor = () => {
     const router = useRouter()
-    const { id } = router.query
+    const {id, language} = router.query
+    const [professor] = useGetRequest(true, id ? `/private-reserve/show/${id}${language ? `?language=${language}` : ''}` : null)
 
-    const [professor] = useGetRequest(false,id? `/professor/show/${id}` : null)
 
     return (
         <>
-            {professor ? <main dir='rtl' className='my-4'>
-                <Hero data={professor.about} id={professor.id} />
-                <div className="container sm:px-10 grid lg:grid-cols-6 grid-cols-1 gap-6">
+            {professor ? <main dir='rtl' className='my-4 container sm:px-10'>
+                <Hero data={professor.about} id={professor.id}/>
+                <div className="grid lg:grid-cols-6 grid-cols-1 gap-6">
                     <div className="lg:col-span-2">
-                        <Banner data={professor} />
+                        <Banner data={professor}/>
                     </div>
                     <div className="flex flex-col gap-10 lg:col-span-4">
-                        <Tabs list={list} />
-                        <AboutProfessor data={professor.about} />
-                        <Video movie={professor.teaching_example_video} image={professor.teaching_example_cover} />
-                        <PointOfLerning data={professor.point} />
-                        <Calendar />
-                        <TeachingType />
-                        <Books />
-                        <Skills />
-                        <Stories />
-                        <Comments id={1} />
+                        <Tabs list={list}/>
+                        <AboutProfessor data={professor.about}/>
+                        <Video movie={professor.teaching_example_video} image={professor.teaching_example_cover}/>
+                        <PointOfLerning data={professor.point}/>
+                        <Calendar id={id}/>
+                        <TeachingType data={professor}/>
+                        <Books data={professor.books || []}/>
+                        <Skills data={professor.skills}/>
+                        <Stories data={professor.story}/>
+                        <Comments id={id} url='private-reserve'/>
                     </div>
                 </div>
+                {!!professor.related?.length && <Related data={professor.related}/>}
             </main> : <div className="centerOfParent w-full min-h-64">درحال بارگزاری</div>}
         </>
     );

@@ -27,7 +27,7 @@ function Banner({data = {}, setReload}) {
                             href="/">صفحه اصلی</BreadcrumbItem>
                         <BreadcrumbItem
                             className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'
-                            href='/webinar'>وبینارها</BreadcrumbItem>
+                            href='/workshop'>وکشاپ ها</BreadcrumbItem>
                         <BreadcrumbItem
                             className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'>{data.title}</BreadcrumbItem>
                     </Breadcrumbs>
@@ -133,16 +133,16 @@ function Banner({data = {}, setReload}) {
                         </div>
                         <div className="gap-6 w-full lg:flex hidden flex-col">
                             <Link
-                                href={`/webinar/${data.id}/reserve`}
+                                href={`/workshop/${data.id}/reserve`}
                                 className="bg-primary-600 effect-2 w-full h-12 text-white py-4 px-6 text-center rounded flex flex-col justify-center"
                             >
                                 رزرو
                             </Link>
                         </div>
                         <div
-                            className="z-[100] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
+                            className="z-[49] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
                             <Link
-                                href={`/webinar/${data.id}/reserve`}
+                                href={`/workshop/${data.id}/reserve`}
                                 className="bg-primary-600 effect-2 xs:w-1/3 w-1/2 h-12 text-white py-2 px-4 text-center rounded text-sm centerOfParent"
                             >
                                 رزرو

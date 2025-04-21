@@ -151,7 +151,7 @@ function Banner({data = {}, setReload}) {
                             </Link>
                         </div>
                         <div
-                            className="z-[100] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
+                            className="z-[49] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
                             <Link
                                 href={`/group-class/${data.id}/reserve-class`}
                                 className="bg-primary-600 effect-2 xs:w-1/3 w-1/2 h-12 text-white py-2 px-4 text-center rounded text-sm centerOfParent"

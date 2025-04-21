@@ -43,11 +43,11 @@ const About = ({data = {}}) => {
                         </li>
                         <li className='grid grid-cols-5 sm:text-base text-xs'>
                             <span className='text-natural_gray-950'>ساعت</span>
-                            <span className="col-span-3 text-right">{data.schedules}</span>
+                            <span className="col-span-3 text-right">{data.time}</span>
                         </li>
                         <li className='grid grid-cols-5 sm:text-base text-xs'>
                             <span className='text-natural_gray-950'>تاریخ</span>
-                            <span className="col-span-3 text-right">{new Date(data.date)?.toLocaleString('fa-IR', {
+                            <span className="col-span-3 text-right">{new Date(data.start_date)?.toLocaleString('fa-IR', {
                                 weekday: 'long',
                                 month: 'long',
                                 day: '2-digit'
@@ -59,7 +59,7 @@ const About = ({data = {}}) => {
                         </li>
                         <li className='grid grid-cols-5 sm:text-base text-xs'>
                             <span className='text-natural_gray-950'>منطقه</span>
-                            <span className="col-span-3 text-right">{data.reigon}</span>
+                            <span className="col-span-3 text-right">{data.region}</span>
                         </li>
                     </ul>
                 </div>

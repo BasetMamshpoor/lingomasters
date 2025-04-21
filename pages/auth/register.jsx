@@ -62,28 +62,41 @@ const Register = () => {
                                 <div className="flex flex-col w-full gap-5">
                                     <div className="grid grid-cols-2 gap-4">
                                         <Input
-                                            label="نام و نام خانوادگی"
+                                            label="نام"
                                             type="text"
                                             isRequired
                                             errorMessage=' '
                                             labelPlacement="outside"
                                             variant="bordered"
                                             radius='sm'
-                                            name='name'
-                                            value={data.name}
+                                            name='first_name'
+                                            value={data.first_name}
                                             onChange={handleChange}
                                             classNames={{label: "sm:text-sm text-xs", input: "sm:text-sm text-xs"}}
                                         />
                                         <Input
-                                            label="نام کاربری"
+                                            label=" نام خانوادگی"
                                             type="text"
                                             isRequired
                                             errorMessage=' '
                                             labelPlacement="outside"
                                             variant="bordered"
                                             radius='sm'
-                                            name='user_name'
-                                            value={data.user_name}
+                                            name='last_name'
+                                            value={data.last_name}
+                                            onChange={handleChange}
+                                            classNames={{label: "sm:text-sm text-xs", input: "sm:text-sm text-xs"}}
+                                        />
+                                        <Input
+                                            label="ایمیل"
+                                            type="text"
+                                            isRequired
+                                            errorMessage=' '
+                                            labelPlacement="outside"
+                                            variant="bordered"
+                                            radius='sm'
+                                            name='email'
+                                            value={data.email}
                                             onChange={handleChange}
                                             classNames={{label: "sm:text-sm text-xs", input: "sm:text-sm text-xs"}}
                                         />
@@ -95,30 +108,11 @@ const Register = () => {
                                             labelPlacement="outside"
                                             variant="bordered"
                                             radius='sm'
-                                            name='phone'
-                                            value={data.phone}
+                                            name='mobile'
+                                            value={data.mobile}
                                             onChange={handleChange}
                                             classNames={{label: "sm:text-sm text-xs", input: "sm:text-sm text-xs"}}
                                         />
-                                        <div className="flex w-full flex-col justify-between gap-2 relative">
-                                            <label className='text-xs font-semibold text-natural_gray-950'>تاریخ
-                                                تولد</label>
-                                            <DatePicker
-                                                name='birthday'
-                                                value={data.date_of_birth}
-                                                onChange={setDateState}
-                                                inputClass={' w-full h-full py-1.5 px-2 text-primary-950 border-2 border-natural_gray-200 outline-none  rounded-md appearance-none text-sm'}
-                                                containerClassName={'w-full !height-full grow'}
-                                                editable={false}
-                                                monthYearSeparator="|"
-                                                format="DD/MMMM/YYYY"
-                                                minDate={new DateObject({calendar: persian}).subtract(0, "days")}
-                                                placeholder={new Date().toLocaleDateString('fa-IR')}
-                                                calendar={persian}
-                                                locale={persian_fa}
-                                                calendarPosition="auto"/>
-                                            <Calendar className='fill-natural_gray-600 absolute left-3 bottom-1.5'/>
-                                        </div>
                                         <Input
                                             isRequired
                                             errorMessage=' '
@@ -177,11 +171,28 @@ const Register = () => {
                                             onChange={handleChange}
                                             classNames={{label: "sm:text-sm text-xs", input: "sm:text-sm text-xs"}}
                                         />
+                                        <div className="flex w-full flex-col justify-between gap-2 relative">
+                                            <label className='text-xs font-semibold text-natural_gray-950'>تاریخ
+                                                تولد</label>
+                                            <DatePicker
+                                                name='birthday'
+                                                value={data.date_of_birth}
+                                                onChange={setDateState}
+                                                inputClass={' w-full h-full py-1.5 px-2 text-primary-950 border-2 border-natural_gray-200 outline-none  rounded-md appearance-none text-sm'}
+                                                containerClassName={'w-full !height-full grow'}
+                                                editable={false}
+                                                monthYearSeparator="|"
+                                                format="DD/MMMM/YYYY"
+                                                minDate={new DateObject({calendar: persian}).subtract(0, "days")}
+                                                placeholder={new Date().toLocaleDateString('fa-IR')}
+                                                calendar={persian}
+                                                locale={persian_fa}
+                                                calendarPosition="auto"/>
+                                            <Calendar className='fill-natural_gray-600 absolute left-3 bottom-1.5'/>
+                                        </div>
                                         <Input
                                             label="کد معرف"
                                             type="text"
-                                            isRequired
-                                            errorMessage=' '
                                             labelPlacement="outside"
                                             variant="bordered"
                                             radius='sm'

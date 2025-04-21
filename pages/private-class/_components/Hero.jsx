@@ -1,15 +1,26 @@
-import {Breadcrumbs, BreadcrumbItem, Popover, PopoverTrigger, PopoverContent} from "@heroui/react";
+import {
+    Breadcrumbs,
+    BreadcrumbItem,
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    addToast,
+    RadioGroup, Radio
+} from "@heroui/react";
 //icons
 import Share from '@icons/share.svg'
-import Heart from '@icons/heart.svg'
 import Eye from '@icons/eye-right.svg'
 import Alert from '@icons/info-circle.svg'
-import Star from '@icons/magic-star.svg'
-import FillHeart from '@icons/fill-heart.svg'
-import Flag from '@icons/Flags/Country=United States of America, Style=Flag, Radius=On.svg'
 import RuleOfCancle from '@/components/RuleOfCancle';
+import React, {useEffect} from "react";
+import Like from "@/components/Like";
+import formatNumber from "@/helpers/formatNumber";
+import Image from "next/image";
+import Rate from "@/components/Rate";
+import {useRouter} from "next/router";
 
 const Hero = ({data = {}, id}) => {
+    const {query, asPath, replace} = useRouter()
     const {
         name,
         rate,
@@ -17,11 +28,21 @@ const Hero = ({data = {}, id}) => {
         is_like,
         views_count,
         city,
-        gender,
+        genders,
         language_levels,
         age_groups,
         rate_count
     } = data
+
+    const handleChange = (value) => {
+        replace({pathname: asPath.split('?')[0], query: {...query, language: value}},
+            undefined,
+            {shallow: true}
+        );
+    }
+    useEffect(() => {
+        handleChange(data.languages[0].id)
+    }, []);
 
     return (
         <>
@@ -42,6 +63,11 @@ const Hero = ({data = {}, id}) => {
                                 </Breadcrumbs>
                                 <div className="centerOfParent cursor-pointer" onClick={() => {
                                     navigator.clipboard.writeText(location.href)
+                                    addToast({
+                                        title: 'کپی شد',
+                                        description: 'لینک با موفقیت کپی شد',
+                                        color: 'success',
+                                    })
                                 }}><Share/></div>
                             </div>
                             <div className="flex items-center justify-between mb-3">
@@ -50,27 +76,32 @@ const Hero = ({data = {}, id}) => {
                                     <span className='text-natural_gray-600 text-xs'>(کد استاد: {id})</span>
                                 </div>
                                 <div className="flex flex-col items-end gap-3">
-                                    <div className="centerOfParent cursor-pointer">{is_like ? <FillHeart/> :
-                                        <Heart/>}</div>
+                                    <Like id={id} isLike={is_like} url='/private-reserve'/>
                                     <div className="centerOfParent gap-1">
                                         <div className="centerOfParent"><Eye className='w-4 h-4 fill-primary-700'/>
                                         </div>
-                                        <span className="text-sm">{views_count}</span>
+                                        <span className="text-sm">{formatNumber(views_count)}</span>
                                     </div>
                                 </div>
                             </div>
                             <div className="flex items-center justify-between mb-3">
-                                <div className="">
-                                    <div className="centerOfParent w-fit"><Flag/></div>
-                                </div>
+                                <RadioGroup
+                                    value={query.language}
+                                    onValueChange={handleChange}
+                                    color='success'
+                                    style={{"--heroui-success": "196 94% 25%"}}
+                                    orientation="horizontal">
+                                    {data.languages.map(e => (
+                                        <Radio value={e.id.toString()} classNames={{label: 'flex items-center gap-2'}}>
+                                            <div className="centerOfParent w-fit">
+                                                <Image width={24} height={24} alt='flag'
+                                                       src={e.flag}/></div>
+                                            <span>{e.title}</span>
+                                        </Radio>
+                                    ))}
+                                </RadioGroup>
                                 <div className="flex items-center gap-1">
-                                    <div className="flex items-center [&>svg]:w-4 [&>svg]:h-4">
-                                        <Star className={rate < 5 ? '' : 'fill-[#F3B944]'}/>
-                                        <Star className={rate < 4 ? '' : 'fill-[#F3B944]'}/>
-                                        <Star className={rate < 3 ? '' : 'fill-[#F3B944]'}/>
-                                        <Star className={rate < 2 ? '' : 'fill-[#F3B944]'}/>
-                                        <Star className={rate < 1 ? '' : 'fill-[#F3B944]'}/>
-                                    </div>
+                                    <Rate rate={rate} id={id} url='/private-reserve'/>
                                     <div className="flex items-center gap-1 text-xs">
                                         <strong>{rate}</strong>
                                         از {rate_count} نفر
@@ -102,7 +133,7 @@ const Hero = ({data = {}, id}) => {
                             <div
                                 className="centerOfParent h-12 flex-[1_0_0] gap-1 rounded-lg bg-primary-50 [box-shadow:0px_4px_6px_0px_rgba(54,_108,_218,_0.08)]">
                                 <p className='text-natural_gray-700 text-xs'>تدریس برای</p>
-                                <h4 className='text-sm font-semibold'>{!!gender?.length && gender.join(' | ')}</h4>
+                                <h4 className='text-sm font-semibold'>{!!genders?.length && genders.join(' | ')}</h4>
                             </div>
                             <div
                                 className="centerOfParent h-12 flex-[1_0_0] gap-1 rounded-lg bg-primary-50 [box-shadow:0px_4px_6px_0px_rgba(54,_108,_218,_0.08)]">

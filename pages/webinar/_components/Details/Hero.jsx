@@ -15,7 +15,6 @@ const Hero = ({product = {}}) => {
         rate = 0,
         id,
         is_like,
-        view,
         language,
         flag,
         rate_av,

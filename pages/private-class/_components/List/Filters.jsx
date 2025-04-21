@@ -300,4 +300,4 @@ const Filters = ({setCurrentPage}) => {
     );
 };
 
-export default React.memo(Filters);
+export default (Filters);

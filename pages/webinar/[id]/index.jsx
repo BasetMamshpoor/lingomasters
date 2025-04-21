@@ -12,6 +12,7 @@ import About from '../_components/Details/About';
 import Calendar from "../_components/Details/Calendar";
 import Headlines from "@/pages/webinar/_components/Details/Headlines";
 import Related from "../_components/Details/Related";
+import professors from "@/pages/private-class/_components/List/Professors";
 
 const list = [
     {
@@ -59,16 +60,17 @@ const Webinar = () => {
                         <Resume {...{
                             professor: data.professor,
                             profile: data.professor_profile,
-                            professor_id: data.professor_id
+                            professor_id: data.professor_id,
+                            skills: data.skills
                         }}/>
-                        <Headlines/>
-                        <Calendar/>
+                        <Headlines data={data.headline}/>
+                        <Calendar date={data.start_date} time={data.time}/>
                         <Books books={data.books}/>
                         <Comments id={id} url='webinar-reserve'/>
                     </div>
                 </div>
                 {!!data.related.length && <Related data={data.related} title='وبینار های مشابه'/>}
-                {/*{!!data.related.length && <Related data={data.related} title='وبینار‌های برگزار شده استاد'/>}*/}
+                {!!data.last_webinar.length && <Related data={data.last_webinar} title='وبینار‌های برگزار شده استاد'/>}
             </main> : <div className="centerOfParent w-full min-h-64">درحال بارگزاری</div>}
         </>
     );

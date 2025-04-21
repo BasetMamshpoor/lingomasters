@@ -131,16 +131,16 @@ function Banner({data = {}, setReload}) {
                                 </div>
                             </div>
                         </div>
-                        <div className="gap-6 w-full lg:flex hidden flex-col">
+                        {!data.is_over && <div className="gap-6 w-full lg:flex hidden flex-col">
                             <Link
                                 href={`/webinar/${data.id}/reserve`}
                                 className="bg-primary-600 effect-2 w-full h-12 text-white py-4 px-6 text-center rounded flex flex-col justify-center"
                             >
                                 رزرو
                             </Link>
-                        </div>
-                        <div
-                            className="z-[100] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
+                        </div>}
+                        {!data.is_over && <div
+                            className="z-[49] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
                             <Link
                                 href={`/webinar/${data.id}/reserve`}
                                 className="bg-primary-600 effect-2 xs:w-1/3 w-1/2 h-12 text-white py-2 px-4 text-center rounded text-sm centerOfParent"
@@ -161,7 +161,7 @@ function Banner({data = {}, setReload}) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>

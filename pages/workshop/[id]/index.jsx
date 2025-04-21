@@ -6,13 +6,13 @@ import useGetRequest from '@/hooks/useGetRequest';
 import React from 'react';
 import Resume from '../_components/Details/Resume';
 import Banner from '../_components/Details/Banner';
-import Books from '../_components/Details/Books';
+import Books from '@/pages/webinar/_components/Details/Books';
 import {useRouter} from 'next/router';
 import About from '../_components/Details/About';
-import Calendar from "../_components/Details/Calendar";
 import Headlines from "@/pages/webinar/_components/Details/Headlines";
 import Related from "../_components/Details/Related";
 import TeachingType from "@/pages/workshop/_components/Details/TeachingType";
+import Calendar from "@/pages/webinar/_components/Details/Calendar";
 
 const list = [
     {
@@ -44,7 +44,7 @@ const Webinar = () => {
     const {query} = useRouter()
     const {id} = query
 
-    const [data, set, setReload] = useGetRequest(true, id && `/group_reserve/show/${id}`)
+    const [data, set, setReload] = useGetRequest(false, id && `/workshop-reserve/show/${id}`)
 
     return (
         <>
@@ -60,23 +60,25 @@ const Webinar = () => {
                         <Resume {...{
                             professor: data.professor,
                             profile: data.professor_profile,
-                            professor_id: data.professor_id
+                            professor_id: data.professor_id,
+                            skills: data.skills
                         }}/>
-                        <Headlines/>
-                        <Calendar/>
+                        <Headlines data={data.headline}/>
+                        <Calendar date={data.start_date} time={data.time}/>
                         <Books books={data.books}/>
                         <TeachingType {...{
                             longitude: data.longitude,
                             latitude: data.latitude,
-                            video: data.address_video,
-                            city: data.address_city,
-                            direction: data.address_direction
+                            video: data.video,
+                            city: data.city,
+                            direction: data.region
                         }}/>
                         <Comments id={id} url='workshop-reserve'/>
                     </div>
                 </div>
                 {!!data.related.length && <Related data={data.related} title='ورکشاپ های مشابه'/>}
-                {/*{!!data.related.length && <Related data={data.related} title='وبینار‌های برگزار شده استاد'/>}*/}
+                {!!data.last_workshop.length &&
+                    <Related data={data.last_workshop} title='ورکشاپ های برگزار شده استاد'/>}
             </main> : <div className="centerOfParent w-full min-h-64">درحال بارگزاری</div>}
         </>
     );

@@ -11,7 +11,7 @@ const Related = ({data, title}) => {
                     <p className="text-primary-950 font-semibold sm:text-base text-sm">{title}</p>
                 </div>
                 <div className="w-full grid  lg:grid-cols-2 grid-cols-1 gap-4">
-                    {data.map(item => <WebinarItem key={item.id} data={item}/>)}
+                    {data.map(item => <WebinarItem key={item.id} r={item}/>)}
                 </div>
             </div>
         </>

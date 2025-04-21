@@ -24,7 +24,7 @@ const Calendar = () => {
     const [selectedKeys, setSelectedKeys] = useState(new Set(["بامداد"]))
     const [saturday, setSaturday] = useState(getStartOfWeek(new Date()));
 
-    const [data] = useGetRequest(`/teachers/1/time-slots?start_date=${formatDate(saturday)}`)
+    const [data] = useGetRequest(false,`/teachers/1/time-slots?start_date=${formatDate(saturday)}`)
 
 
 

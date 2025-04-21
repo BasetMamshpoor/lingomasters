@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import User from '@icons/book-open.svg';
 import useSwipeScroll from "@/hooks/useHorizontalScroll";
-import BookItem from "components/BookItem";
+import BookItem from "@/components/Books/BookItem";
 
 
 export default function Books({books}) {
