@@ -107,7 +107,7 @@ export default function Skills({data}) {
                         >
                             <div className="text-sm text-right">
                                 <ul className="text-sm list-inside space-y-4">
-                                    {data.honor.map(e => <li><a href={e.file} target='_blank'>{e.name}</a></li>)}
+                                    {data.honor.map(e => <li key={e.name}><a href={e.file} target='_blank'>{e.name}</a></li>)}
                                 </ul>
                             </div>
                         </Tab>}
@@ -129,7 +129,7 @@ export default function Skills({data}) {
                                     </ul>}
                                     <ul className="list-inside mr-4 text-xs flex flex-wrap gap-4">
                                         {data.certificate['1']?.map(e => (
-                                            <div className='flex flex-col'>
+                                            <div className='flex flex-col' key={e.name}>
                                                 <li>
                                                     {e.name}
                                                 </li>
@@ -162,7 +162,7 @@ export default function Skills({data}) {
                                     </ul>}
                                     <ul className="list-inside mr-4 text-xs flex flex-wrap gap-4">
                                         {data.certificate['0']?.map(e => (
-                                            <div className='flex flex-col'>
+                                            <div className='flex flex-col' key={e.name}>
                                                 <li>
                                                     {e.name}
                                                 </li>
@@ -205,7 +205,7 @@ export default function Skills({data}) {
                                     </li>
                                 </ul>}
                                 {data.blogs['1']?.map(e => (
-                                    <ul className="list-inside mr-6 text-xs mt-3">
+                                    <ul className="list-inside mr-6 text-xs mt-3" key={e.name}>
                                         <li>
                                             <a href={e.file} target='_blank'>
                                                 {e.name}
@@ -219,7 +219,7 @@ export default function Skills({data}) {
                                     </li>
                                 </ul>}
                                 {data.blogs['0']?.map(e => (
-                                    <ul className="list-inside mr-6 text-xs mt-3">
+                                    <ul className="list-inside mr-6 text-xs mt-3" key={e.name}>
                                         <li>
                                             <a href={e.file} target='_blank'>
                                                 {e.name}
@@ -241,7 +241,7 @@ export default function Skills({data}) {
                             <div className="text-sm text-right">
                                 <ul className="space-y-4 list-inside grid grid-cols-2 gap-4">
                                     {data.author.map(e => (
-                                        <li className='!m-0'>
+                                        <li className='!m-0' key={e.name}>
                                             <a href={e.file} target='_blank'>
                                                 {e.name}
                                             </a>
@@ -250,7 +250,7 @@ export default function Skills({data}) {
                                 </ul>
                             </div>
                         </Tab>}
-                        <Tab
+                        {!!data.translation.length && <Tab
                             key="translations"
                             title={
                                 <div className="flex items-center gap-2">
@@ -270,7 +270,7 @@ export default function Skills({data}) {
                                     ))}
                                 </ul>
                             </div>
-                        </Tab>
+                        </Tab>}
                     </Tabs>
                 </div>
             </div>

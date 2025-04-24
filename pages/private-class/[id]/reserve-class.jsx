@@ -70,7 +70,7 @@ const Reserve = () => {
                     <Progress title="کلاس خصوصی" link='private-class' active={steps} steps={stepsList}
                               page={data.professor?.name}/>
                     <div className="grid lg:grid-cols-4 grid-cols-1 lg:gap-6 gap-y-6 my-10">
-                        <div
+                        {steps !== 3 && <div
                             className="col-span-1 h-fit lg:order-1 sm:p-4 py-4 px-3 rounded-lg border border-natural_gray-100 bg-white flex flex-col gap-10 items-center">
                             <div className="flex flex-col gap-6">
                                 <div className="centerOfParent rounded-full overflow-hidden w-28 h-28">
@@ -98,8 +98,8 @@ const Reserve = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {steps === 3 ? <ReserveCheckout setSteps={setSteps}/>
+                        </div>}
+                        {steps === 3 ? <ReserveCheckout setSteps={setSteps} id={state.id}/>
                             : steps === 2 ?
                                 <Calendar setState={setState} state={state} setSteps={setSteps} id={query.id}/>
                                 : <form onSubmit={handleNext}

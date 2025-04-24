@@ -51,9 +51,9 @@ const Reserve = () => {
         latitude: 35.699764715921205,
         longitude: 51.3380652666092,
         class_type: query.type,
-        times: [],
+        times: [],id:25
     }
-    const [steps, setSteps] = useState(1)
+    const [steps, setSteps] = useState(3)
     const [state, setState] = useState(defaultState)
     const filteredQuery = filterQuery(state);
     const [data, s, r, p, so, isLoading] = useGetRequest(true, query.id && `/private-reserve/details/${query.id}`, 1, filteredQuery)
@@ -70,7 +70,7 @@ const Reserve = () => {
                     <Progress title="کلاس خصوصی" link='private-class' active={steps} steps={stepsList}
                               page={data.professor?.name}/>
                     <div className="grid lg:grid-cols-4 grid-cols-1 lg:gap-6 gap-y-6 my-10">
-                        <div
+                        {steps !== 3 && <div
                             className="col-span-1 h-fit lg:order-1 sm:p-4 py-4 px-3 rounded-lg border border-natural_gray-100 bg-white flex flex-col gap-10 items-center">
                             <div className="flex flex-col gap-6">
                                 <div className="centerOfParent rounded-full overflow-hidden w-28 h-28">
@@ -98,8 +98,8 @@ const Reserve = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {steps === 3 ? <ReserveCheckout setSteps={setSteps}/>
+                        </div>}
+                        {steps === 3 ? <ReserveCheckout setSteps={setSteps} id={state.id}/>
                             : steps === 2 ?
                                 <Calendar setState={setState} state={state} setSteps={setSteps} id={query.id}/>
                                 : <form onSubmit={handleNext}
@@ -157,4 +157,4 @@ const Reserve = () => {
     );
 };
 
-export default withAuth(Reserve,false,true);
+export default withAuth(Reserve, false, true);

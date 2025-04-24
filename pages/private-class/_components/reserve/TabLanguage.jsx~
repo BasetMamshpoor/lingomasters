@@ -6,7 +6,7 @@ const TabLanguage = ({data, selected, setSelected, defaultState}) => {
 
     const handleChange = (e) => {
         setSelected(prev => {
-            return {language: e}
+            return {...defaultState, language: e}
         })
     }
     return (

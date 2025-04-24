@@ -13,7 +13,7 @@ const Headlines = ({data}) => {
                 </div>
                 <ul className="space-y-4 list-inside text-sm w-full">
                     {data?.map(e => (
-                        <li>
+                        <li key={e}>
                             <p className="text-sm ">{e}</p>
                         </li>
                     ))}

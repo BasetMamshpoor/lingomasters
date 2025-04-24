@@ -23,7 +23,7 @@ const TabLanguage = ({data, selected, setSelected, defaultState}) => {
                     classNames={{wrapper: 'gap-6'}}
                     orientation="horizontal">
                     {data.map(t => (
-                        <Radio value={t.id} name={t.title}
+                        <Radio value={t.id} name={t.title} key={t.id}
                                classNames={{label: 'flex items-center gap-2', base: 'min-w-32'}}>
                             {t.flag && <div className="centerOfParent w-5 h-5">
                                 <Image

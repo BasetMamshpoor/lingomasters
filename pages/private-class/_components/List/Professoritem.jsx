@@ -107,7 +107,7 @@ const ProfessorItem = ({r = {languages: [], genders: [], teaching_types: [], age
                                     <div className="gap-2 flex items-center">
                                         {r.languages.length ? r.languages.map(l => <div key={l}
                                                                                         className="centerOfParent w-5 h-5">
-                                            <Image src={l} width={0} height={0} sizes="100vw"
+                                            <Image src={l} width={0} height={0} sizes="100vw" alt=" "
                                                    className="w-full h-full object-contain"/></div>) : null}
                                     </div>
                                 </div>

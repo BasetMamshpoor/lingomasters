@@ -143,7 +143,7 @@ function Banner({data = {}}) {
                                     style={{"--heroui-success": "196 94% 25%"}}
                                     orientation="horizontal">
                                     {about.languages.map(e => (
-                                        <Radio value={e.id.toString()} classNames={{label: 'flex items-center gap-2'}}>
+                                        <Radio value={e.id.toString()} key={e.id} classNames={{label: 'flex items-center gap-2'}}>
                                             <div className="centerOfParent w-fit">
                                                 <Image width={24} height={24} alt='flag'
                                                        src={e.flag}/></div>

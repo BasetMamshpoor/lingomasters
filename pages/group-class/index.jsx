@@ -3,7 +3,7 @@ import Filters from './_components/List/Filters';
 import Filter from './_components/List/Filter';
 import ClassItems from './_components/List/Items';
 import Pepole from '@icons/book-close.svg'
-import {Tab, Tabs} from "@heroui/react";
+import {Alert, Tab, Tabs} from "@heroui/react";
 import {useRouter} from "next/router";
 import {useSearchParams} from "next/navigation";
 
@@ -27,6 +27,12 @@ const GroupClass = () => {
         <>
             <section className='py-12' dir="rtl">
                 <div className="container">
+                    <div className="flex flex-col gap-2 mb-6">
+                        <Alert color="warning" variant="faded"
+                               description={"📌 کلاس های گروهی تعریف شده توسط اساتید لینگومسترز، در صورت عدم تکمیل ظرفیت، تا ۲۴ ساعت قبل از تاریخ شروع کلاس، توسط لینگومسترز لغو خواهند شد."}/>
+                        <Alert color="warning" variant="faded"
+                               description={"📌 کلاس های گروهی تعریف شده توسط اساتید لینگومسترز، صرفا تا ۲۴ ساعت قبل از شروع کلاس، بدون هیچ هزینه ای، قابل انصراف هستند و کل مبلغ پرداختی شما از بابت کلاس گروهی به کیف پول شما برگشت داده می شود و پس از آن قابلیت انصراف ندارند. "}/>
+                    </div>
                     <div className="lg:flex hidden items-center justify-center gap-2">
                         <div className="centerOfParent"><Pepole className='w-8 h-8'/></div>
                         <h1 className='text-2xl text-primary-800'>کلاس های گروهی</h1>

@@ -8,7 +8,7 @@ import {Checkbox} from "@heroui/react";
 
 function BookItem(
     {
-        withSelect = true,
+        withSelect = false,
         id,
         title,
         age_group,

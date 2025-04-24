@@ -12,7 +12,7 @@ const Headlines = ({data}) => {
                     <span className='sm:text-base text-sm text-primary-950'>سرفصل ها</span>
                 </div>
                 <ul className="space-y-4 list-inside text-sm w-full">
-                    {data.map(e => (
+                    {data?.map(e => (
                         <li>
                             <p className="text-sm ">{e}</p>
                         </li>

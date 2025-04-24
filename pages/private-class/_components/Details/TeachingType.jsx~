@@ -34,7 +34,7 @@ const TeachingType = ({data}) => {
                         <Tab key="online" title="آنلاین">
                             <div className="text-right flex-row gap-20 text-sm p-4">
                                 <ul className="space-y-4 effect-2">
-                                    {data.platform.map(e => <li>{e}</li>)}
+                                    {data.platform.map(e => <li key={e}>{e}</li>)}
                                 </ul>
                             </div>
                         </Tab>
@@ -48,7 +48,7 @@ const TeachingType = ({data}) => {
                                 </div>
                                 <ul className="space-y-4 text-xs sm:text-sm lg:text-base">
                                     {data.address.map(e => (
-                                        <li className='flex lg:flex-row flex-col lg:items-center justify-between gap-2 w-full'>
+                                        <li key={} className='flex lg:flex-row flex-col lg:items-center justify-between gap-2 w-full'>
                                             <div className="flex sm:flex-row flex-col lg:items-center gap-2">
                                                 <span>حضوری در {e.type === 'inPersonAtSchool' ? 'آموزشگاه' : 'منزل استاد'}</span>
                                                 <Card
@@ -58,7 +58,6 @@ const TeachingType = ({data}) => {
                                             <MapModal location={[e.latitude, e.longitude]}/>
                                         </li>
                                     ))}
-                                    <li>حضوری در منزل زبان آموز</li>
                                 </ul>
                             </div>
                         </Tab>

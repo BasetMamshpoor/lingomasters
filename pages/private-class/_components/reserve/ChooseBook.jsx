@@ -1,5 +1,5 @@
 import {Accordion, AccordionItem, Checkbox} from "@heroui/react";
-import React, {useState} from 'react';
+import React from 'react';
 import BookList from "@/components/Books/BookList";
 import UploadIcon from "@icons/upload-cloud-02.svg";
 
@@ -85,8 +85,8 @@ const ChooseBook = ({data, state, setState}) => {
                                 style={{
                                     "--heroui-success": "196 94% 25%",
                                 }} classNames={{icon: 'text-white', label: 'lg:text-base text-xs'}}
-                                isSelected={state.book_type === "2"} onValueChange={(e) => handleChange(e, '2')}>انتخاب
-                                کتاب را به استاد محول می کنم.</Checkbox>}>
+                                isSelected={state.book_type === "2"} onValueChange={(e) => handleChange(e, '2')}>
+                                انتخاب کتاب را به استاد محول می کنم.</Checkbox>}>
                         </AccordionItem>
                         <AccordionItem
                             key="3"

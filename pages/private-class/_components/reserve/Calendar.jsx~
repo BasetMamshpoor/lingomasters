@@ -6,6 +6,7 @@ import {Accordion, AccordionItem, addToast, Checkbox, Spinner} from "@heroui/rea
 import useGetRequest from '@/hooks/useGetRequest';
 import weekDaysJson from 'func/Calendar.json'
 import usePostRequest from "@/hooks/usePostRequest";
+import Login from "@/pages/auth/login";
 
 const getStartOfWeek = (date) => {
     const currentDay = date.getDay();
@@ -22,13 +23,13 @@ const formatDate = (date) => {
     return `${year}-${month}-${day}`;
 };
 
-const Calendar = ({setState, state, setSteps,id}) => {
+const Calendar = ({setState, state, setSteps, id}) => {
     const [weekDays, setWeekDays] = useState([]);
     const [selectedKeys, setSelectedKeys] = useState(new Set(["بامداد"]))
     const [saturday, setSaturday] = useState(getStartOfWeek(new Date()));
 
     const [data, s, r, p, sp, isLoading] = useGetRequest(false, `/teachers/1/time-slots?start_date=${formatDate(saturday)}`)
-    const {sendPostRequest, isLoading2} = usePostRequest()
+    const {sendPostRequest, isLoading: isLoading2} = usePostRequest()
 
     useEffect(() => {
         generateWeekDays(saturday);
@@ -86,6 +87,7 @@ const Calendar = ({setState, state, setSteps,id}) => {
     }
 
     const weeklySchedule = generateWeeklyScheduleForPeriod(selectedKeys.values().next().value, data)
+    console.log(weeklySchedule)
 
     const handleSubmit = async () => {
         if (state.times < 1) {
@@ -98,14 +100,17 @@ const Calendar = ({setState, state, setSteps,id}) => {
         const {
             success,
             successMessage,
-            errorMessage
-        } = await sendPostRequest('POST', `/private-reserve/$`, state, !!state.evidence, true)
-        if (success)
+            errorMessage,
+            data
+        } = await sendPostRequest('POST', `/private-reserve/${id}`, state, !!state.evidence, true)
+        if (success) {
             addToast({
                 color: 'success',
                 description: successMessage,
             })
-        else
+            setState(prev => ({...prev, id: data.response.data}))
+            setSteps(p => p + 1)
+        } else
             addToast({
                 color: 'danger',
                 description: errorMessage,
@@ -115,7 +120,6 @@ const Calendar = ({setState, state, setSteps,id}) => {
     return (
         <>
             <div className="col-span-3 flex flex-col gap-6">
-
                 <div
                     className="sm:p-6 px-3 py-4 flex flex-col gap-6 bg-white rounded-lg border-natural_gray-100 border scroll-m-24"
                     id='calendar'>
@@ -219,9 +223,10 @@ const Calendar = ({setState, state, setSteps,id}) => {
                         onClick={() => setSteps(prev => prev - 1)} type='button'
                         className='w-44 effect-1 sm:text-base text-xs flex-[1_0_0] sm:px-6 px-4 sm:py-4 py-2 rounded border-secondary-500 sm:border-[1.5px] border text-secondary-500 centerOfParent'>بازگشت
                     </button>
-                    <button disabled={isLoading2}
-                            onClick={handleSubmit} type='button'
-                            className="w-44 effect-2 sm:py-4 py-2 sm:px-6 px-4 sm:text-base text-xs rounded disabled:bg-natural_gray-700 text-white bg-primary-600 sm:w-[140px] self-end">ثبت
+                    <button
+                        disabled={isLoading2}
+                        onClick={handleSubmit} type='button'
+                        className="w-44 effect-2 sm:py-4 py-2 sm:px-6 px-4 sm:text-base text-xs rounded disabled:bg-natural_gray-700 text-white bg-primary-600 sm:w-[140px] self-end">{isLoading2 ? 'در حال ثبت' : 'ثبت'}
                     </button>
                 </div>
             </div>

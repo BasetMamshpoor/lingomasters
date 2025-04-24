@@ -35,7 +35,7 @@ function ReserveCheckout({setSteps, id: class_id}) {
             data: Data,
             success,
             errorMessage
-        } = await sendPostRequest("POST", `/private-reserve/pay/${class_id}`, {}, false, true)
+        } = await sendPostRequest("POST", `/private-reserve/pay/${id}`, {}, false, true)
         if (success) {
             router.push(Data.url)
         } else

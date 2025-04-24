@@ -75,7 +75,7 @@ const Hero = ({product = {}}) => {
                                 </div>
                             </div>
                             <Popover backdrop='blur'
-                                     className='absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-[90vw]'>
+                                     className='absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-[40vw]'>
                                 <PopoverTrigger>
                                     <div className="flex items-center gap-1 cursor-pointer">
                                         <div className="centerOfParent"><Alert/></div>

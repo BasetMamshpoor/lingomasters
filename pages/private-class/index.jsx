@@ -3,7 +3,7 @@ import Filters from './_components/List/Filters';
 import Filter from './_components/List/Filter';
 import ProfessorItem from './_components/List/Professors';
 import Pepole from '@icons/users.svg'
-import {Tab, Tabs} from "@heroui/react";
+import {Alert, Tab, Tabs} from "@heroui/react";
 import {useRouter} from 'next/router';
 
 const PrivateClass = () => {
@@ -22,6 +22,12 @@ const PrivateClass = () => {
         <>
             <section className='py-12' dir="rtl">
                 <div className="container">
+                    <div className="flex flex-col gap-2 mb-6">
+                        <Alert color="warning" variant="faded"
+                               description={"📌 زبان آموز گرامی، شما می توانید محتوای کلاس های آنلاین خصوصی را، برای مرور و یا تمرین بیشتر با هماهنگی استاد ضبط نمایید."}/>
+                        <Alert color="warning" variant="faded"
+                               description={"📌 کلاس های خصوصی، تا ۲۴ ساعت قبل از شروع کلاس، بدون هیچ هزینه ای، قابلیت لغو دارند مبلغ پرداختی از بابت کلاس به کیف پول شما برگشت داده می شود و پس از آن با کسر مبلغی، لا عنوان جریمه، یا توجه به مدت زمان باقی مانده تا زمان شروع کلاس، قابلیت لغو دارند و مبلغ پرداختی شما از بابت کلاس، پس از کسر جریمه، به کیف پول شما برگشت داده می شود."}/>
+                    </div>
                     <div className="lg:flex hidden items-center justify-center gap-2">
                         <div className="centerOfParent"><Pepole className='w-8 h-8 fill-primary-700'/></div>
                         <h1 className='text-2xl'>کلاس های خصوصی</h1>

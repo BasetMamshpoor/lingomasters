@@ -26,7 +26,7 @@ const Stories = ({data}) => {
                 </div>
                 <div className="flex items-center gap-10 overflow-x-auto scrollbar-hide" ref={scroll}>
                     {data?.map((e, i) => (
-                        <div
+                        <div key={e.id}
                             className="grid lg:grid-cols-3 grid-cols-1 gap-2 lg:min-w-[600px] min-w-[300px] rounded-lg overflow-hidden">
                             <div className="col-span-1">
                                 <Story trigger story={{cover: e.cover, name: null, id: e.id}} Stories={data} index={i}/>
