@@ -28,7 +28,7 @@ const Calendar = ({setState, state, setSteps, id}) => {
     const [selectedKeys, setSelectedKeys] = useState(new Set(["بامداد"]))
     const [saturday, setSaturday] = useState(getStartOfWeek(new Date()));
 
-    const [data, s, r, p, sp, isLoading] = useGetRequest(false, `/teachers/1/time-slots?start_date=${formatDate(saturday)}`)
+    const [data, s, r, p, sp, isLoading] = useGetRequest(false, `/teachers/${id}/time-slots?start_date=${formatDate(saturday)}`)
     const {sendPostRequest, isLoading: isLoading2} = usePostRequest()
 
     useEffect(() => {

@@ -18,11 +18,11 @@ import {Language} from "@/providers/languageProvider";
 import Image from "next/image";
 
 const links = [
-    {href: "/calendar", icon: Calendar, activeIcon: 'CalendarFill', text: "تقویم آموزشی"},
-    {href: "/messages", icon: Message, activeIcon: 'MessageFill', text: "پیام‌ها"},
-    {href: "/offers", icon: Off, activeIcon: 'OffFill', text: "پیام‌ها"},
-    {href: "/favorites", icon: Heart, activeIcon: 'StarFill', text: "امتیازها"},
-    {href: "/notifications", icon: Bell, activeIcon: 'BellFill', text: "اعلان‌ها"},
+    {href: "/profile/calendar", icon: Calendar, activeIcon: 'CalendarFill', text: "تقویم آموزشی"},
+    {href: "/profile/messages", icon: Message, activeIcon: 'MessageFill', text: "پیام‌ها"},
+    {href: "/profile/offers", icon: Off, activeIcon: 'OffFill', text: "پیام‌ها"},
+    {href: "/profile/favorites", icon: Heart, activeIcon: 'StarFill', text: "امتیازها"},
+    {href: "/profile/notifications", icon: Bell, activeIcon: 'BellFill', text: "اعلان‌ها"},
 ];
 const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
     const {student, logout} = useContext(Information)
@@ -48,7 +48,7 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                             <Close className='border-[1.5px] rounded border-primary-600 fill-primary-700'/> :
                             <Menu className='border-[1.5px] rounded border-primary-600 fill-primary-700'/>}
                     </div>
-                    <p className='lg:block hidden text-primary-950 text-sm font-semibold'>{title||'اطلاعات کاربری'}</p>
+                    <p className='lg:block hidden text-primary-950 text-sm font-semibold'>{title || 'اطلاعات کاربری'}</p>
                 </div>
                 <h1 className='lg:hidden sm:text-3xl text-lg font-Metal'>{process.env.NEXT_PUBLIC_LOGO}</h1>
                 <div className='flex items-center gap-8'>
@@ -87,7 +87,7 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                             <DropdownMenu
                                 aria-label="langauge Actions"
                                 variant="bordered">
-                                {languages. student_languages.map((lang) => {
+                                {languages.student_languages.map((lang) => {
                                     return <DropdownItem key={lang.language} onPress={e => handleSelectLanguage(lang)}>
                                         <Image width={24} height={24} src={lang.flag} alt={lang.language}/>
                                     </DropdownItem>

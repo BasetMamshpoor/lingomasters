@@ -98,7 +98,8 @@ const AudioPlayer = ({audio_url}) => {
             {audio_url ? (
                 (!isReady ?
                     <p className="text-secondary-500">در حال بارگذاری</p>
-                    : <button type="button" onClick={onPlayPause} className="centerOfParent">
+                    :
+                    <button type="button" onClick={onPlayPause} className="centerOfParent">
                         {isPlaying ? <Pause className="w-8 h-8"/> : <Play className="w-8 h-8"/>}
                     </button>)
             ) : (

@@ -87,7 +87,6 @@ const Calendar = ({setState, state, setSteps, id}) => {
     }
 
     const weeklySchedule = generateWeeklyScheduleForPeriod(selectedKeys.values().next().value, data)
-    console.log(weeklySchedule)
 
     const handleSubmit = async () => {
         if (state.times < 1) {
