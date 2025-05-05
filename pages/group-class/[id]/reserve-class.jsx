@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React, {useState} from 'react';
 import {addToast, Button, Input, Radio, RadioGroup, Spinner, Textarea} from "@heroui/react";
 import Link from 'next/link';
-import ReserveCheckout from '../_components/reserve/GroupClassReserve';
+import ReserveCheckout from '@/features/group-class/reserve/GroupClassReserve';
 import useGetRequest from "@/hooks/useGetRequest";
 import {useRouter} from "next/router";
 import withAuth from "@/components/withAuth";

@@ -5,13 +5,13 @@ import Header from "@/components/Header";
 import {HeroUIProvider, ToastProvider} from "@heroui/react";
 import axios from "axios";
 import {useRouter} from "next/router";
-import Sidebar from "@/pages/profile/_components/Sidebar/Sidebar";
+import Sidebar from "@/features/profile/Sidebar/Sidebar";
 import InformationProvider from "@/providers/InformationProvider";
 import LanguageProvider from "@/providers/languageProvider";
 import Right from "@icons/chevron-right.svg";
 import Link from "next/link";
 import {useState} from "react";
-import HeaderProfile from "@/pages/profile/_components/HeaderProfile";
+import HeaderProfile from "@/features/profile/HeaderProfile";
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 
@@ -68,6 +68,6 @@ export default function App({Component, pageProps}) {
                     </LanguageProvider>
                 </InformationProvider>
             }
-        < /HeroUIProvider>
+        </HeroUIProvider>
     );
 }

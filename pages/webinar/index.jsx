@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import Filters from './_components/List/Filters';
-import Filter from './_components/List/Filter';
+import Filters from '@/features/webinar/List/Filters';
+import Filter from '@/features/webinar/List/Filter';
 import WebinarIcon from '@icons/webinar.svg'
-import Webinars from "./_components/List/Webinars";
+import Webinars from "@/features/webinar/List/Webinars";
 import {Alert} from "@heroui/react";
 
 const Webinar = () => {

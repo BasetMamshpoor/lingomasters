@@ -172,12 +172,13 @@ input:focus-within {
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
-    margin-right: -28px;
+    /*margin-right: -28px;*/
     justify-content: start;
 }
 
 .effect-3 span {
     transition: all 250ms ease;
+    color: #50545F;
 }
 
 .effect-3 svg {
@@ -202,6 +203,10 @@ input:focus-within {
 @media (max-width: 640px) {
     .effect-3 {
         padding-right: 10px;
+    }
+
+    .effect-3 span {
+        font-size: 12px;
     }
 
     .effect-3 svg {

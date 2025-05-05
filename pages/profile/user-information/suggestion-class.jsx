@@ -1,7 +1,7 @@
 import React from 'react';
-import Hero from "@/pages/profile/_components/Hero";
+import Hero from "@/features/profile/Hero";
 import {Alert, Tab, Tabs} from "@heroui/react";
-import ClassItem from "@/pages/group-class/_components/List/ClassItem";
+import ClassItem from "@/features/group-class/List/ClassItem";
 import TeacherCard from "@/components/TeacherCard";
 import useGetRequest from "@/hooks/useGetRequest";
 

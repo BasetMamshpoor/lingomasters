@@ -1,18 +1,18 @@
 'use client';
 import Comments from '@/components/Comments';
-import Hero from '../_components/Details/Hero';
+import Hero from '@/features/workshop/Details/Hero';
 import Tabs from '@/components/Tabs';
 import useGetRequest from '@/hooks/useGetRequest';
 import React from 'react';
-import Resume from '../_components/Details/Resume';
-import Banner from '../_components/Details/Banner';
-import Books from '@/pages/webinar/_components/Details/Books';
+import Resume from '@/features/workshop/Details/Resume';
+import Banner from '@/features/workshop/Details/Banner';
+import Books from '@/features/webinar/Details/Books';
 import {useRouter} from 'next/router';
-import About from '../_components/Details/About';
-import Headlines from "@/pages/webinar/_components/Details/Headlines";
-import Related from "../_components/Details/Related";
-import TeachingType from "@/pages/workshop/_components/Details/TeachingType";
-import Calendar from "@/pages/webinar/_components/Details/Calendar";
+import About from '@/features/workshop/Details/About';
+import Headlines from "@/features/webinar/Details/Headlines";
+import Related from "@/features/workshop/Details/Related";
+import TeachingType from "@/features/workshop/Details/TeachingType";
+import Calendar from "@/features/webinar/Details/Calendar";
 
 const list = [
     {

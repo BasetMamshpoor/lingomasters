@@ -1,18 +1,18 @@
 'use client';
 import Comments from '@/components/Comments';
-import Hero from '../_components/Details/Hero';
+import Hero from '@/features/webinar/Details/Hero';
 import Tabs from '@/components/Tabs';
 import useGetRequest from '@/hooks/useGetRequest';
 import React from 'react';
-import Resume from '../_components/Details/Resume';
-import Banner from '../_components/Details/Banner';
-import Books from '../_components/Details/Books';
+import Resume from '@/features/webinar/Details/Resume';
+import Banner from '@/features/webinar/Details/Banner';
+import Books from '@/features/webinar/Details/Books';
 import {useRouter} from 'next/router';
-import About from '../_components/Details/About';
-import Calendar from "../_components/Details/Calendar";
-import Headlines from "@/pages/webinar/_components/Details/Headlines";
-import Related from "../_components/Details/Related";
-import professors from "@/pages/private-class/_components/List/Professors";
+import About from '@/features/webinar/Details/About';
+import Calendar from "@/features/webinar/Details/Calendar";
+import Headlines from "@/features/webinar/Details/Headlines";
+import Related from "@/features/webinar/Details/Related";
+import professors from "@/features/private-class/List/Professors";
 
 const list = [
     {

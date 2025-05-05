@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import Filters from './_components/List/Filters';
-import Filter from './_components/List/Filter';
+import Filters from '@/features/workshop/List/Filters';
+import Filter from '@/features/workshop/List/Filter';
 import WebinarIcon from '@icons/webinar.svg'
-import Workshops from "./_components/List/Workshops";
+import Workshops from "@/features/workshop/List/Workshops";
 import {Alert, Tab, Tabs} from "@heroui/react";
 import {useRouter} from "next/router";
 import {useSearchParams} from "next/navigation";

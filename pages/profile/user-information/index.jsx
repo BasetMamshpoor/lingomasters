@@ -17,7 +17,7 @@ import DatePicker, {DateObject} from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import dynamic from "next/dynamic";
-import Hero from "@/pages/profile/_components/Hero";
+import Hero from "@/features/profile/Hero";
 import Plus from '@icons/plus.svg';
 import useGetRequest from "@/hooks/useGetRequest";
 import {Language} from "@/providers/languageProvider";

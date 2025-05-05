@@ -1,17 +1,17 @@
 'use client';
 import Comments from '@/components/Comments';
-import Hero from '../_components/Details/Hero';
+import Hero from '@/features/group-class/Details/Hero';
 import Tabs from '@/components/Tabs';
 import useGetRequest from '@/hooks/useGetRequest';
 import React from 'react';
-import Resume from '../_components/Details/Resume';
-import Banner from '../_components/Details/Banner';
-import TeachingType from '../_components/Details/TeachingType';
-import Books from '../_components/Details/Books';
+import Resume from '@/features/group-class/Details/Resume';
+import Banner from '@/features/group-class/Details/Banner';
+import TeachingType from '@/features/group-class/Details/TeachingType';
+import Books from '@/features/group-class/Details/Books';
 import {useRouter} from 'next/router';
-import About from '../_components/Details/About';
-import Calendar from "@/pages/group-class/_components/Details/Calendar";
-import Related from "@/pages/group-class/_components/Details/Related";
+import About from '@/features/group-class/Details/About';
+import Calendar from "@/features/group-class/Details/Calendar";
+import Related from "@/features/group-class/Details/Related";
 
 const list = [
     {

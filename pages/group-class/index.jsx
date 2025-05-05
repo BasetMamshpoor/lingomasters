@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import Filters from './_components/List/Filters';
-import Filter from './_components/List/Filter';
-import ClassItems from './_components/List/Items';
+import Filters from '@/features/group-class/List/Filters';
+import Filter from '@/features/group-class/List/Filter';
+import ClassItems from '@/features/group-class/List/Items';
 import Pepole from '@icons/book-close.svg'
 import {Alert, Tab, Tabs} from "@heroui/react";
 import {useRouter} from "next/router";

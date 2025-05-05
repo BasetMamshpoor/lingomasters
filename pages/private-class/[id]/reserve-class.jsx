@@ -1,20 +1,20 @@
 import Progress from '@/components/Progress';
 import Image from 'next/image';
 import React, {useState} from 'react';
-import ChooseBook from '../_components/reserve/ChooseBook';
+import ChooseBook from '@/features/private-class/reserve/ChooseBook';
 import {Input, Spinner, Textarea} from "@heroui/react";
 import Link from 'next/link';
-import Calendar from '../_components/reserve/Calendar';
-import ReserveCheckout from '../_components/reserve/ProfessorReserve';
+import Calendar from '@/features/private-class/reserve/Calendar';
+import ReserveCheckout from '@/features/private-class/reserve/ProfessorReserve';
 import useGetRequest from "@/hooks/useGetRequest";
 import {useRouter} from "next/router";
 import withAuth from "@/components/withAuth";
-import TabClass from "@/pages/private-class/_components/reserve/TabClass";
-import TabLanguage from "@/pages/private-class/_components/reserve/TabLanguage";
-import TabAgeGroup from "@/pages/private-class/_components/reserve/TabAgeGroup";
-import TabTeachingType from "@/pages/private-class/_components/reserve/TabTeachingType";
-import TabPoint from "@/pages/private-class/_components/reserve/TabPoint";
-import TabLevel from "@/pages/private-class/_components/reserve/TabLevel";
+import TabClass from "@/features/private-class/reserve/TabClass";
+import TabLanguage from "@/features/private-class/reserve/TabLanguage";
+import TabAgeGroup from "@/features/private-class/reserve/TabAgeGroup";
+import TabTeachingType from "@/features/private-class/reserve/TabTeachingType";
+import TabPoint from "@/features/private-class/reserve/TabPoint";
+import TabLevel from "@/features/private-class/reserve/TabLevel";
 
 const stepsList = [
     'وارد کردن اطلاعات',
