@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Exam = () => {
-
+const Writing = () => {
     return (
         <>
+
         </>
     );
 };
 
-export default Exam;
+export default Writing;

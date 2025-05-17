@@ -5,7 +5,7 @@ import Link from "next/link";
 import Heart from "@icons/fill-heart.svg";
 import HeartIcon from "@icons/heart.svg";
 
-const Like = ({isLike, id, url}) => {
+const Like = ({isLike, id, url, className}) => {
     const [is_like, setIs_like] = useState(isLike)
     const {isLoading, sendPostRequest} = usePostRequest()
     const handleLike = async () => {
@@ -31,7 +31,7 @@ const Like = ({isLike, id, url}) => {
     }
     return (
         <>
-            <div className="centerOfParent cursor-pointer" onClick={handleLike}>
+            <div className={`centerOfParent cursor-pointer ${className}`} onClick={handleLike}>
                 {!isLoading ? (is_like ? <Heart/> : <HeartIcon/>) : <Spinner color='success' size='sm'/>}
             </div>
         </>

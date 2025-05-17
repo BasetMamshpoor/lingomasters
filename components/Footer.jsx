@@ -110,9 +110,14 @@ const Footer = () => {
                                            className="lg:w-full sm:w-1/5 w-1/2 max-h-[180px] object-cover"
                                            width={100}
                                            height={100}/>
-                                    <Image src={'/images/image 9.png'} alt={'etehadie'}
-                                           className="lg:w-full sm:w-1/5 w-1/2 max-h-[180px] object-cover mix-blend-multiply"
-                                           width={100} height={100}/>
+                                    <a referrerPolicy='origin' target='_blank'
+                                       href='https://trustseal.enamad.ir/?id=511544&Code=b5B03h3L84P1noEJN4Gvb8Ma1dJOBQub'>
+                                        <img
+                                            className="lg:w-full sm:w-1/5 w-1/2 max-h-[180px] object-cover mix-blend-multiply cursor-pointer"
+                                            referrerPolicy='origin'
+                                            src="/images/enamad_1024.png"
+                                            alt='' code='b5B03h3L84P1noEJN4Gvb8Ma1dJOBQub'/>
+                                    </a>
                                 </div>
                             </div>
                         </div>
