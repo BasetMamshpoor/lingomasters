@@ -63,7 +63,7 @@ function formatTextToJSXInput(text, questionNumber, onInputChange) {
                     name={inputId}
                     type="text"
                     maxLength={1}
-                    className="inline w-10 border border-gray-300 rounded text-center mx-1 text-sm"
+                    className="inline w-20 border border-gray-300 rounded text-center mx-1 text-sm"
                     onChange={(e) => onInputChange(inputId, e.target.value)}
                 />
             );

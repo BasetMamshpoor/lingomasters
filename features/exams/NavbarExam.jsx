@@ -24,7 +24,7 @@ const NavbarExam = () => {
                         })}
                     </span>
                 </div>
-                <p>{data.total} Questions</p>
+                <p>{data.questions?.length} Questions</p>
             </div>
         </>
     );

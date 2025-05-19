@@ -6,7 +6,7 @@ export default function QuestionRenderer({question, index}) {
     switch (question.questionType) {
         case "multi_test":
             return <TestQuestions data={question} number={index + 1}/>;
-        case "short_answer":
+        case "Blank question":
             return <ShortAnswer data={question} number={index + 1}/>;
         default:
             return <div>Unknown question type.</div>;

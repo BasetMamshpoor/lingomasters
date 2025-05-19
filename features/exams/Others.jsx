@@ -1,5 +1,6 @@
 import React from 'react';
 import {useExamsContext} from "@/providers/ExamProvider";
+import QuestionRenderer from "@/features/exams/QuestionRenderer";
 
 const Others = () => {
     const { data, part, setPart, isLoading } = useExamsContext();
@@ -12,7 +13,7 @@ const Others = () => {
                     <p className="text-sm font-bold">Directions</p>
                     <p className="text-sm whitespace-break-spaces">{data.description}</p>
                 </div>
-
+                {data.questions.map((e,index)=><QuestionRenderer key={e.id} question={e} index={index}/>)}
             </div>
         </>
     );

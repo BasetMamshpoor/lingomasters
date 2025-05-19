@@ -4,11 +4,12 @@ import NavbarExam from "@/features/exams/NavbarExam";
 import ExamProgress from "@/features/exams/ExamProgress";
 import PartType from "@/features/exams/PartType";
 import {Spinner} from "@heroui/react";
+import ExamNavigation from "@/features/exams/ExamNavigation";
 
 const StartExamContent = () => {
     const {part, isLoading, data} = useExamsContext();
 
-    if (isLoading) return <div className="text-center py-10"><Spinner color="success" label={'در حال بارگزاری ...'}/></div>;
+    if (isLoading) return <div className="text-center py-10"><Spinner dit={'rtl'} color="success" label={'در حال بارگزاری ...'}/></div>;
 
     return (
         <div className="my-14 font-Inner">
@@ -19,6 +20,7 @@ const StartExamContent = () => {
                     <NavbarExam/>
                     <ExamProgress/>
                     <PartType type={data.questionType}/>
+                    <ExamNavigation  />
                 </>
             )}
         </div>

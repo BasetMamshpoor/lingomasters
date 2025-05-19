@@ -3,7 +3,7 @@ import Image from "next/image";
 import {formatTextToJSXInput} from "@/helpers/formatText";
 
 const ShortAnswer = ({data, number}) => {
-    const {title, description, question, medias} = data;
+    const {title, description, question_text, medias} = data;
     const [blanks, setBlanks] = useState({});
 
     function handleInputChange(inputId, value) {
@@ -14,7 +14,7 @@ const ShortAnswer = ({data, number}) => {
         <>
             <div className="flex flex-col gap-6">
                 {title && <p className="text-sm font-bold">{title}</p>}
-                {description && <p className="text-sm">{description}</p>}
+                {description && <p className="text-sm break-words whitespace-break-spaces">{description}</p>}
                 {!!medias.length && medias.map(e => (
                     <div className="flex flex-col gap-4">
                         <div className="centerOfParent w-full">
@@ -24,7 +24,7 @@ const ShortAnswer = ({data, number}) => {
                         {e.description && <p className="text-sm">{e.description}</p>}
                     </div>
                 ))}
-                <p className='text-sm'>{number}. {formatTextToJSXInput(question, number, handleInputChange)}</p>
+                <p className='text-sm'>{number}. {formatTextToJSXInput(question_text, number, handleInputChange)}</p>
             </div>
         </>
     );

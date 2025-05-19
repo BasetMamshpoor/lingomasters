@@ -2,6 +2,8 @@ import React from 'react';
 import Reading from "@/features/exams/Reading";
 import Writing from "@/features/exams/Writing";
 import Others from "@/features/exams/Others";
+import Cloze from "@/features/exams/Cloze";
+import Listening from "@/features/exams/Listening";
 
 const PartType = ({type}) => {
     switch (type) {
@@ -9,6 +11,10 @@ const PartType = ({type}) => {
             return <Reading/>;
         case "writing":
             return <Writing/>;
+        case "Cloze test":
+            return <Cloze/>;
+        case "listening":
+            return <Listening/>;
         default:
             return <Others/>;
     }
