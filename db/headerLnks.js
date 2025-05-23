@@ -32,9 +32,9 @@ const links = [
         text: 'آزمون ها',
         underMenu: true,
         items: [
-            {link: '/', text: 'آزمون تعیین سطح'},
-            {link: '/', text: 'آزمون پرداخت'},
-            {link: '/', text: 'آزمون پلاس'}
+            {link: '/exams/placement', text: 'آزمون تعیین سطح'},
+            {link: '/exams/pay', text: 'آزمون پرداخت'},
+            {link: '/exams/plus', text: 'آزمون پلاس'}
         ]
     },
     {link: '/', icon: <Library/>, text: 'کتابخانه', underMenu: false},

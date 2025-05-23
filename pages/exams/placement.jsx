@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Exams = () => {
+const Placement = () => {
     return (
         <>
 
@@ -8,4 +8,4 @@ const Exams = () => {
     );
 };
 
-export default Exams;
+export default Placement;

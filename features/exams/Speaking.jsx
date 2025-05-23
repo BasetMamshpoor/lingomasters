@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Image from "next/image";
-import {useExamsContext} from "@/providers/ExamProvider";
 import SoundPlayer from "@/features/exams/SoundPlayer";
-import QuestionRenderer from "@/features/exams/QuestionRenderer";
+import {useExamsContext} from "@/providers/ExamProvider";
 import {formatTextToJSX} from "@/helpers/formatText";
 
-const Listening = () => {
+import dynamic from "next/dynamic";
+const AudioRecorder = dynamic(() => import('../../components/Comments/VoiceRecorder'), {ssr: false});
+
+
+const Speaking = () => {
     const {data, part, setPart, isLoading} = useExamsContext();
+    const [voice, setVoice] = useState(null)
+
     return (
         <>
             <div className="flex flex-col gap-14">
@@ -14,18 +19,17 @@ const Listening = () => {
                     {!!data.medias.length && data.medias.map(e => (
                         e.media_type === 'image' ? <div className="flex flex-col gap-4">
                                 <div className="centerOfParent w-full">
-                                    <Image alt={e.description} src={e.media_path} width={100} height={100}
+                                    <Image alt={title} src={e.media_path} width={100} height={100}
                                            className="w-fit h-fit object-contain"/>
                                 </div>
                                 {e.description && <p className="text-sm">{e.description}</p>}
                             </div> :
-                            <SoundPlayer audio_url={e.media_path} />
+                            <SoundPlayer audio_url={e.media_path}/>
                     ))}
-                    <div className="flex flex-col gap-4">
-                        {data.part_title && <p className="whitespace-break-spaces font-bold text-xl">{data.part_title}</p>}
-                        {data.description && <p className="whitespace-break-spaces">{formatTextToJSX(data.description)}</p>}
-                        {data.center_message && <p className="text-center">{data.center_message}</p>}
-                        {data.questions.map((e, i) => <QuestionRenderer key={e.id} question={e} index={i}/>)}
+                    {data.part_title && <p className="whitespace-break-spaces font-bold text-xl">{data.part_title}</p>}
+                    {data.description && <p className="whitespace-break-spaces">{formatTextToJSX(data.description)}</p>}
+                    <div className="flex items-center gap-6">
+                        <AudioRecorder  onRecordingComplete={setVoice}/>
                     </div>
                 </div>
             </div>
@@ -33,4 +37,4 @@ const Listening = () => {
     );
 };
 
-export default Listening;
+export default Speaking;

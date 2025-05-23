@@ -123,6 +123,7 @@ input:focus-within {
 
 .effect-1 {
     position: relative;
+    overflow: hidden;
 }
 
 .effect-1::after {

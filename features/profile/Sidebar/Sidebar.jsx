@@ -15,7 +15,7 @@ export default function Sidebar({mobileOpen, setSidebarOpen, setTitle}) {
                 className={`lg:block hidden transition-all duration-300 w-full max-w-[249px]`}>
                 <div
                     className="flex flex-col items-center gap-6 bg-white border border-natural_gray-200 rounded-2xl px-4 py-10">
-                    <Link href='/public'
+                    <Link href='/'
                           className={`text-3xl duration-300 font-Metal`}>{process.env.NEXT_PUBLIC_LOGO}</Link>
                     <div className="flex flex-col w-full gap-4">
                         {sidebarItems.map((item) => {

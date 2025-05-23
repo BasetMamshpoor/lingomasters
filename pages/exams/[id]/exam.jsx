@@ -12,7 +12,7 @@ const StartExamContent = () => {
     if (isLoading) return <div className="text-center py-10"><Spinner dit={'rtl'} color="success" label={'در حال بارگزاری ...'}/></div>;
 
     return (
-        <div className="my-14 font-Inner">
+        <div className="my-14 font-Inner container">
             {part === 1 ? (
                 <HeroExam/>
             ) : (

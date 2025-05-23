@@ -21,19 +21,19 @@ const Cloze = () => {
                         {e.blanks.map(item => (
                             <CheckboxGroup
                                 key={item.id}
-                                label={e.id}
+                                label={e.id + "."}
                                 color="success"
                                 style={{
                                     "--heroui-success": "196 94% 25%",
                                 }}
-                                classNames={{base: "flex flex-col gap-2"}}
+                                classNames={{base: "flex flex-col gap-2", label: 'text-black'}}
                             >
                                 {item.options.map(item2 => (
                                     <Checkbox
                                         radius="sm"
                                         key={item2.id}
                                         value={item2.id}
-                                        classNames={{label: 'flex items-center gap-2', icon: "text-white"}}>
+                                        classNames={{label: 'flex items-center gap-2 text-black', icon: "text-white"}}>
                                         {item2.text}
                                     </Checkbox>
                                 ))}

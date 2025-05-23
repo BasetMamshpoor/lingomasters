@@ -4,6 +4,7 @@ import Writing from "@/features/exams/Writing";
 import Others from "@/features/exams/Others";
 import Cloze from "@/features/exams/Cloze";
 import Listening from "@/features/exams/Listening";
+import Speaking from "@/features/exams/Speaking";
 
 const PartType = ({type}) => {
     switch (type) {
@@ -15,8 +16,11 @@ const PartType = ({type}) => {
             return <Cloze/>;
         case "listening":
             return <Listening/>;
+        case "speaking":
+            return <Speaking/>;
         default:
-            return <Others/>;
+            // return <Others/>;
+            return <Speaking/>;
     }
 };
 
