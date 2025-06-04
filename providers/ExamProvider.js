@@ -28,6 +28,7 @@ const ExamsProvider = ({children}) => {
         id && `/exams/${id}?part=${part}`
     );
     const {sendPostRequest} = usePostRequest()
+    const {sendPostRequest: prevAnswers} = usePostRequest()
 
     const [state, setState] = useState({})
     const [voice, setVoice] = useState(null)
@@ -48,33 +49,49 @@ const ExamsProvider = ({children}) => {
         if (!e)
             return;
         const formData = new FormData(e);
-        const data = Object.fromEntries(formData.entries());
-        // const {successMessage, errorMessage, success} = await sendPostRequest("POST", '/exams/test-correction', {
-        //     ...data, ...state,
-        //     part_id: data.part_id,
-        //     exam_id: id
-        // })
-        // if (success) {
-        //     addToast({
-        //         description: successMessage,
-        //         color: 'success',
-        //     })
-        //     if (part < initialData?.total_part)
-        //         setPart(prevPart => prevPart + 1);
-        // } else {
-        //     addToast({
-        //         description: errorMessage,
-        //         color: 'danger',
-        //     })
-        // }
+        const Data = Object.fromEntries(formData.entries());
+        const {successMessage, errorMessage, success} = await sendPostRequest("POST", '/exams/test-correction', {
+            answer: {
+                ...Data, ...state,
+            },
+            part_id: data.part_id,
+            exam_id: id
+        })
+        if (success) {
+            addToast({
+                description: successMessage,
+                color: 'success',
+            })
+            setState({});
+            setVoice(null)
+            if (part < initialData?.total_part)
+                setPart(prevPart => prevPart + 1);
+        } else {
+            addToast({
+                description: errorMessage,
+                color: 'danger',
+            })
+        }
     }
 
     const NextPart = () => {
         handleSubmitPart()
     }
-    const PrevPart = () => {
+    const PrevPart = async () => {
         if (part > 1) {
             setPart(prevPart => prevPart - 1)
+        }
+        if (part > 2) {
+            const {
+                successMessage,
+                errorMessage,
+                success, data
+            } = await sendPostRequest("POST", `/exams/answers_part`, {
+                part_id: data.part_id,
+                exam_id: id
+            })
+            if (success)
+                setState(data.response.data.answer)
         }
     }
     return (

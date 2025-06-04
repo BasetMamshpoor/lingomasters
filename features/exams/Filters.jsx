@@ -32,10 +32,6 @@ const Filters = ({setCurrentPage}) => {
         return object
     }
     const [filters, setFilters] = useState(readUrl() || {})
-    const [country, setCountry] = useState(Array.isArray(filters.country) ? filters.country[0].value : filters.country)
-
-    const [data] = useGetRequest(false, `/private-reserve/get-filter`)
-    const [location, setLocation, Q, W, E, loading] = useGetRequest(false, `/countries?country=${country}`)
 
     const handleFilter = (name, value) => {
         setFilters(prev => {

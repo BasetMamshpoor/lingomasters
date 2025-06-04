@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {BreadcrumbItem, Breadcrumbs, Tab, Tabs} from "@heroui/react";
 import Book from '@icons/book2.svg';
 import Pepole from "@icons/users.svg";
@@ -7,11 +7,16 @@ import Filter from "@/features/exams/Filter";
 import Filters from "@/features/exams/Filters";
 import ExamItem from "@/features/exams/ExamItem";
 import PaginationApp from "@/components/Pagination";
+import useGetRequest from "@/hooks/useGetRequest";
 
 const Index = () => {
     const router = useRouter()
     const {query} = router
     const [currentPage, setCurrentPage] = useState(1)
+
+    const filters = useMemo(() => query, [JSON.stringify(query)]);
+
+    useGetRequest(true, `/user-exams`,currentPage,filters)
 
     const handleChange = (value) => {
         router.replace({pathname: router.asPath.split('?')[0], query: {...query, is_inside: value},},
@@ -62,7 +67,7 @@ const Index = () => {
                             <h1 className="font-semibold text-primary-700">اساتید</h1>
                         </div>
                         <div className="centerOfParent">
-                            <Filter setCurrentPage={setCurrentPage}/>
+                            {/*<Filter setCurrentPage={setCurrentPage}/>*/}
                         </div>
                     </div>
                     <Tabs
@@ -83,7 +88,7 @@ const Index = () => {
                     </Tabs>
                     <div className='grid lg:grid-cols-12 grid-cols-1 lg:gap-6'>
                         <div className='hidden lg:block lg:col-span-3 h-fit'>
-                            <Filters setCurrentPage={setCurrentPage}/>
+                            {/*<Filters setCurrentPage={setCurrentPage}/>*/}
                         </div>
                         <div
                             className='lg:col-span-9 col-span-1 grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-x-6 sm:gap-y-10 gap-6'>
