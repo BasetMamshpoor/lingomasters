@@ -36,7 +36,7 @@ const Blogs = () => {
                         </div>
                         <div className='flex flex-col gap-6 lg:col-span-9 sm:px-4'>
                             {!isLoading ? <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-                                {blogs.length ? blogs.map((b, i) => (
+                                {blogs?.length ? blogs.map((b, i) => (
                                     <Link href={`/blogs/${b.id}`}
                                           className="rounded-xl h-[302px] bg-[#0D0A2C] overflow-hidden relative"
                                           key={b.id}>

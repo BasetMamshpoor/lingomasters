@@ -59,8 +59,8 @@ const GroupClass = () => {
                         selectedKey={query.is_inside || 'in'}
                         onSelectionChange={handleChange}
                         aria-label="Options">
-                        <Tab key="in" title="اساتید داخل ایران"/>
-                        <Tab key="out" title="اساتید خارج ایران"/>
+                        <Tab key="in" title="کلاس های گروهی داخل ایران"/>
+                        <Tab key="out" title="کلاس های گروهی خارج ایران"/>
                     </Tabs>
                     <div
                         className="w-full flex sm:flex-row flex-col items-start gap-4 rounded-lg bg-[#FFFBEB] p-6 sm:text-base text-sm text-[#F3A218] mb-6">

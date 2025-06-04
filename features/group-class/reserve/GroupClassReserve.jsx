@@ -52,7 +52,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <HistoryIcon/>
+                        <HistoryIcon className="w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         مدت دوره
@@ -65,7 +65,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <Add/>
+                        <Add className="w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         ظرفیت
@@ -78,7 +78,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <KingdomFlag/>
+                        <KingdomFlag className="w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         زبان
@@ -91,7 +91,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <GrowthIcon/>
+                        <GrowthIcon className="w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         گروه سنی
@@ -104,7 +104,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <RakingIcon className="fill-primary-600"/>
+                        <RakingIcon className="fill-primary-600 w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         سطح زبان
@@ -117,7 +117,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <LaptopIcon className="fill-primary-600"/>
+                        <LaptopIcon className="fill-primary-600 w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         نوع کلاس
@@ -130,7 +130,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <Icon className="fill-primary-600"/>
+                        <Icon className="fill-primary-600 w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         موقعیت
@@ -143,7 +143,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <Map className="fill-primary-600"/>
+                        <Map className="fill-primary-600 w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         آدرس
@@ -156,7 +156,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <Clock className="fill-primary-600"/>
+                        <Clock className="fill-primary-600 w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         روز/ساعت
@@ -169,7 +169,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <CalendarIcon className="fill-primary-600"/>
+                        <CalendarIcon className="fill-primary-600 w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         تاریخ
@@ -182,7 +182,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="flex flex-col gap-4">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <BookIcon className="fill-primary-600"/>
+                        <BookIcon className="fill-primary-600 w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         کتاب‌های تدریسی
@@ -195,7 +195,7 @@ function ReserveCheckout({data, setSteps}) {
             <div className="grid grid-cols-3 items-center">
                 <div className="flex items-center">
                     <div className="centerOfParent ml-2">
-                        <PercentageIcon/>
+                        <PercentageIcon className="w-5 h-5"/>
                     </div>
                     <p className="text-natural_gray-950 sm:text-base text-[10px]">
                         کد تخفیف

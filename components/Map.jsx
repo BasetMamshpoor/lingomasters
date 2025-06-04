@@ -14,7 +14,7 @@ const customIcon = new L.Icon({
     shadowAnchor: null,
 });
 
-const Map = ({setLocation, location, justView = false}) => {
+const Map = ({setLocation, location, justView = false, height, zoom}) => {
     const MapClickHandler = () => {
         useMapEvents({
             click: (e) => {
@@ -28,7 +28,7 @@ const Map = ({setLocation, location, justView = false}) => {
     };
 
     return (
-        <MapContainer center={location} zoom={6} style={{height: '400px', width: '100%'}}>
+        <MapContainer center={location} zoom={zoom || 6} style={{height: height ?? '400px', width: '100%'}}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

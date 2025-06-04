@@ -4,8 +4,8 @@ import {Textarea} from "@heroui/react";
 import Image from "next/image";
 
 const Writing = () => {
-    const {data, part, setPart, isLoading} = useExamsContext();
-    const {description, medias, question_text, title} = data.questions[0]
+    const {data, formRef} = useExamsContext();
+    const {description, medias, question_text, title,id} = data.questions[0]
 
     const [wordCount, setWordCount] = React.useState(0);
     const typingTimeoutRef = React.useRef(null);
@@ -41,18 +41,21 @@ const Writing = () => {
                         {e.description && <p className="text-sm">{e.description}</p>}
                     </div>
                 ))}
-                <Textarea
-                    isRequired
-                    errorMessage={" "}
-                    description={`${wordCount} words`}
-                    minRows={6}
-                    dir={"auto"}
-                    maxRows={40}
-                    className="max-w-full w-full font-iransans"
-                    variant={"bordered"}
-                    placeholder="write here"
-                    onChange={handleTextChange}
-                />
+                <form ref={formRef}>
+                    <Textarea
+                        isRequired
+                        errorMessage={" "}
+                        description={`${wordCount} words`}
+                        minRows={6}
+                        dir={"auto"}
+                        name={id}
+                        maxRows={40}
+                        className="max-w-full w-full font-iransans"
+                        variant={"bordered"}
+                        placeholder="write here"
+                        onChange={handleTextChange}
+                    />
+                </form>
             </div>
         </>
     );

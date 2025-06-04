@@ -5,8 +5,9 @@ import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/post
 import {useRouter} from "next/router";
 import Link from "next/link";
 import {sidebarItems} from "@/db/SidebarData";
+import withAuth from "@/components/withAuth";
 
-export default function Sidebar({mobileOpen, setSidebarOpen, setTitle}) {
+const Sidebar = ({mobileOpen, setSidebarOpen, setTitle}) => {
     const {pathname} = useRouter()
 
     return (
@@ -74,3 +75,4 @@ export default function Sidebar({mobileOpen, setSidebarOpen, setTitle}) {
         </>
     );
 }
+export default withAuth(Sidebar, false, true);

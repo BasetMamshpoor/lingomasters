@@ -185,7 +185,7 @@ const Calendar = ({setState, state, setSteps, id}) => {
 
                                                     return <tr key={t.time}>
                                                         <td
-                                                            className={`py-2 sm:border-l border-t border-r centerOfParent sm:gap-1 border-natural_gray-300 sm:text-sm text-[10px] ${shouldAddBorder ? 'border-b' : ''}
+                                                            className={`سئ:py-2 border-l border-t border-r centerOfParent sm:gap-1 border-natural_gray-300 sm:text-sm text-[10px] ${shouldAddBorder ? 'border-b' : ''}
                                                         ${t.status == 'inactive' ? '!bg-natural_gray-50 text-natural_gray-50 border-none'
                                                                 : t.status == 'reserved' ? '!bg-neutral-50 text-natural_gray-700' : ''}`}>
                                                             {(t.status == 'open') ?
@@ -204,7 +204,7 @@ const Calendar = ({setState, state, setSteps, id}) => {
                                                                         "--heroui-success": "196 94% 25%",
                                                                     }}>
                                                                 <span
-                                                                    className='text-center sm:text-sm text-[10px]'>{t.time}</span></Checkbox> : t.status === 'reserved' ? "رزرو شده" : '-'}
+                                                                    className='text-center sm:text-sm text-[10px]'>{t.time}</span></Checkbox> : t.status === 'reserved' ? "رزرو شده" : '.'}
                                                         </td>
                                                     </tr>
                                                 })}

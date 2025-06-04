@@ -8,7 +8,7 @@ import {useRouter} from "next/router";
 
 const withAuth = (WrappedComponent, show404 = false, showToast = true) => {
     const AuthComponent = (props) => {
-        const {back} = useRouter()
+        const {back, asPath} = useRouter()
         const [isChecking, setIsChecking] = useState(true);
 
         const token = Cookies.get('token') ? JSON.parse(Cookies.get('token')) : {};
@@ -18,7 +18,7 @@ const withAuth = (WrappedComponent, show404 = false, showToast = true) => {
                     addToast({
                         title: 'لطفا وارد حساب کاربری خود شوید',
                         color: 'warning',
-                        endContent: <Link href='/auth/login' className='text-rose-700'>ورود</Link>,
+                        endContent: <Link href={`/auth/login?backUrl=${asPath}`} className='text-rose-700'>ورود</Link>,
                     });
                     back()
                 }

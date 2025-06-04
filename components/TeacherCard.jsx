@@ -6,21 +6,23 @@ import UnitedKingdomFlag from "@icons/Flags/Country=United Kingdom, Style=Flag, 
 import Image from "next/image";
 import Link from "next/link";
 import Star from "@icons/magic-star.svg";
+import formatNumber from "@/helpers/formatNumber";
+import Like from "@/components/Like";
 
-function TeacherCard({
-                         className,
-                         rate,
-                         image,
-                         is_like,
-                         view,
-                         title,
-                         language,
-                         teachingType,
-                         address,
-                         price,
-                         offPrice,
-                         discount, id
-                     }) {
+function TeacherCard
+({
+     className,
+     rate,
+     profile,
+     is_like,
+     languages,
+     price,
+     off_price,
+     percentage,
+     id,
+     name,
+     views_count,
+ }) {
     return (
         <div
             className={`flex flex-col gap-1 py-6 px-4 bg-white rounded-lg border border-natural_gray-100 overflow-hidden max-w-[500px] w-full ${className}`}>
@@ -29,11 +31,9 @@ function TeacherCard({
                     <div className="centerOfParent">
                         <EyeIcon className="w-6 h-3"/>
                     </div>
-                    <span className="text-xs text-primary-900 uppercase ">۵k</span>
+                    <span className="text-xs text-primary-900 uppercase ">{formatNumber(views_count)}</span>
                 </div>
-                <div className="centerOfParent">
-                    <HeartIcon className="w-6 h-6"/>
-                </div>
+                <Like id={id} isLike={is_like} url='/private-reserve'/>
             </div>
             <div className="flex flex-col justify-between">
                 <div className="flex flex-col gap-4">
@@ -42,11 +42,12 @@ function TeacherCard({
                             width={100}
                             height={100}
                             className="w-full h-full object-cover"
-                            src={"/images/image 144.png"}
+                            src={profile || "/images/image 144.png"}
+                            alt={name}
                         />
                     </div>
                     <div className="flex flex-col gap-3 items-center">
-                        <p className='sm:text-lg '>احسان علیزاده</p>
+                        <p className='sm:text-lg '>{name}</p>
                         <div className="flex items-center gap-4">
                             <p className="sm:text-sm text-xs text-natural_gray-900">میزان رضایت</p>
                             <div className="flex items-center [&>svg]:w-4 [&>svg]:h-4">
@@ -65,7 +66,7 @@ function TeacherCard({
                                     </div>
                                     <p className="text-sm text-natural_gray-900">زبان</p>
                                 </div>
-                                <p className="text-sm">انگلیسی</p>
+                                <p className="text-sm">{languages}</p>
                             </div>
                             <div className="flex items-start justify-between">
                                 <div className="flex items-center  gap-1">
@@ -74,27 +75,27 @@ function TeacherCard({
                                     </div>
                                     <p className="sm:text-sm text-xs text-natural_gray-900">جلسه ۲۵ دقیقه ای</p>
                                 </div>
-                                <div className="flex grow justify-end gap-2">
+                                {percentage ? <div className="flex grow justify-end gap-2">
                                     <div className="text-red-700 h-fit bg-red-200 rounded-lg py-0.5 px-2 text-sm">
-                                        ۵۰٪
+                                        {percentage}٪
                                     </div>
                                     <div className="flex flex-col">
-                                        <p className="sm:text-sm text-xs"> ۲۰۰ هزار تومان</p>
-                                        <del className="sm:text-sm text-xs text-natural_gray-500 ">
-                                            ۴۰۰ هزار تومان
-                                        </del>
+                                        <p className="sm:text-sm text-xs hasToman">{off_price?.toLocaleString()}</p>
+                                        <del
+                                            className="sm:text-sm text-xs text-natural_gray-500">{price?.toLocaleString()}</del>
                                     </div>
-                                </div>
+                                </div> : <div className="flex grow justify-end gap-2"><p
+                                    className="sm:text-sm text-xs hasToman">{price?.toLocaleString()}</p></div>}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="w-full flex gap-3 mt-10">
-                    <Link href='/private-class/1'
+                    <Link href={`/private-class/${id}`}
                           className="py-2 px-4 border-1.5 border-secondary-500 text-secondary-500 text-center w-full rounded-md effect-2 text-sm">
                         مشاهده رزومه
                     </Link>
-                    <Link href='/private-class/1'
+                    <Link href={`/private-class/${id}`}
                           className="py-2 px-4 bg-blue-600 text-white text-center w-full rounded-md effect-2 text-sm">
                         انتخاب استاد
                     </Link>

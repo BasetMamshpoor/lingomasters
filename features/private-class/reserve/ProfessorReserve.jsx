@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import KingdomFlag from "@icons/Flags/Country=United Kingdom, Style=Flag, Radius=On.svg";
 import HistoryIcon from "@icons/history.svg";
 import GrowthIcon from "@icons/growth.svg";
@@ -21,28 +21,46 @@ import {addToast, Button, Radio, RadioGroup} from "@heroui/react";
 import usePostRequest from "@/hooks/usePostRequest";
 import MapModal from "@/components/MapModal";
 import CalendarShow from "@/features/private-class/reserve/CalendarShow";
+import Payment from "@/components/Payment";
+import {Information} from "@/providers/InformationProvider";
+import CheckCoupon from "@/components/CheckCoupon";
 
 function ReserveCheckout({setSteps, id: class_id}) {
     const router = useRouter()
     const {id} = router.query
     const [data,] = useGetRequest(true, `/private-reserve/info/${class_id}`)
+    const [coupon, setCoupon] = useState()
+    const {student} = useContext(Information)
     const [selected, setSelected] = useState('1')
     const {sendPostRequest, isLoading} = usePostRequest()
 
     const handlePay = async () => {
-        const id = data?.id
         const {
             data: Data,
+            successMessage,
+            status,
             success,
             errorMessage
-        } = await sendPostRequest("POST", `/private-reserve/pay/${class_id}`, {}, false, true)
+        } = await sendPostRequest("POST", `/private-reserve/pay${selected === '2' ? "/wallet" : ""}/${class_id}`, {code: coupon?.code || null}, false, true)
         if (success) {
-            router.push(Data.url)
+            if (selected === '1')
+                router.push(Data.url)
+            else {
+                addToast({
+                    title: 'پرداخت با موفقیت انجام شد',
+                    description: successMessage,
+                    color: 'success',
+                })
+                router.push('/profile/wallet')
+            }
         } else
             addToast({
-                title: 'مشکلی به وجود آمد',
+                title: 'خطا',
                 description: errorMessage,
                 color: 'danger',
+                endContent: status === 400 ? <Link href={`/profile/wallet?backUrl=${router.asPath}`}
+                                                   className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">افزایش
+                    موجودی</Link> : undefined
             })
     }
     return (
@@ -73,48 +91,56 @@ function ReserveCheckout({setSteps, id: class_id}) {
                     <p className="text-sm text-natural_gray-950">  {data.session_count} جلسه</p>
                     <p className="hasToman text-lg font-bold text-success-600">{data.total?.toLocaleString()}</p>
                 </div>
+                {coupon && <div
+                    className=" bg-natural_gray-50 flex flex-col items-center gap-2 w-full py-4 px-3">
+                    <p className="text-natural_gray-950 text-xs">قیمت بعد از اعمال کد تخفیف</p>
+                    <div className="flex  justify-end gap-2">
 
+                        <div
+                            className="text-red-700 h-fit bg-red-200 rounded-lg py-0.5 px-2 text-xs">
+                            {coupon.percentage}٪
+                        </div>
+                        <div className="flex flex-col">
+                            <del
+                                className="text-sm text-natural_gray-500 hasToman">{data.total?.toLocaleString()}</del>
+                            <p className="text-sm hasToman text-green-600 hasToman">{coupon.price?.toLocaleString()}</p>
+                        </div>
+                    </div>
+                </div>}
+                <CheckCoupon id={class_id} setCoupon={setCoupon} model={'private'}/>
                 <div
                     className="z-[100] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
                     <Button
                         isLoading={isLoading}
+                        isDisabled={data.offPrice > student?.wallet && selected === "2"}
                         type='button'
                         onPress={handlePay}
                         color="success" style={{
                         "--heroui-success": "140 82% 33%",
-                    }} className="text-white" radius='sm'>پرداخت آنلاین</Button>
-                    <div className="flex  justify-end gap-2">
-                        {data.price !== data.price_discount &&
+                    }} className="text-white" radius='sm'>پرداخت {selected === "1" ? "آنلاین" : "با کیف پول"}</Button>
+                    {coupon ?
+                        <div className="flex  justify-end gap-2">
                             <div
                                 className="text-red-700 h-fit bg-red-200 rounded-lg py-0.5 px-2 text-xs">
-                                {data.discount}٪
-                            </div>}
-                        <div className="flex flex-col">
-                            {data.price !== data.price_discount && <del
-                                className="text-sm text-natural_gray-500 hasToman">{data.price?.toLocaleString()}</del>}
-                            <p className="text-sm hasToman text-green-600 hasToman">{data.price_discount?.toLocaleString()}</p>
+                                {coupon.percentage}٪
+                            </div>
+                            <div className="flex flex-col">
+                                <del
+                                    className="text-sm text-natural_gray-500 hasToman">{data.total?.toLocaleString()}</del>
+                                <p className="text-sm hasToman text-green-600 hasToman">{coupon.price?.toLocaleString()}</p>
+                            </div>
                         </div>
-                    </div>
+                        : <div className="flex  justify-end gap-2">
+                            {data.price !== data.price_discount &&
+                                <div
+                                    className="text-red-700 h-fit bg-red-200 rounded-lg py-0.5 px-2 text-xs">
+                                    {data.discount_price}٪
+                                </div>}
+                            <p className="text-sm hasToman text-green-600 hasToman">{data.total?.toLocaleString()}</p>
+                        </div>}
                 </div>
-                <RadioGroup
-                    className='w-full'
-                    color='success'
-                    style={{
-                        "--heroui-success": "196 94% 25%",
-                    }}
-                    value={selected}
-                    onValueChange={setSelected}>
-                    <Radio value="1" classNames={{label: 'text-xs'}}>پرداخت آنلاین</Radio>
-                    <Radio isDisabled value="2" classNames={{label: 'text-xs'}}>پرداخت با
-                        کیف‌پول</Radio>
-                </RadioGroup>
-                <Button
-                    isLoading={isLoading}
-                    type='button'
-                    onPress={handlePay}
-                    color="success" style={{
-                    "--heroui-success": "140 82% 33%",
-                }} className="w-full text-white" radius='sm'>پرداخت آنلاین</Button>
+                <Payment price={data.price_discount} isLoading={isLoading} handlePay={handlePay}
+                         selected={selected} setSelected={setSelected} final_price={coupon?.price}/>
             </div>
             <div
                 className="col-span-3 rounded-lg border border-natural_gray-100 bg-white py-4 px-3 flex flex-col gap-5 ">
@@ -240,19 +266,6 @@ function ReserveCheckout({setSteps, id: class_id}) {
                 <div className="grid grid-cols-3 items-center">
                     <div className="flex items-center">
                         <div className="centerOfParent ml-2">
-                            <PercentageIcon/>
-                        </div>
-                        <p className="text-natural_gray-950 sm:text-base text-[10px]">
-                            کد تخفیف
-                        </p>
-                    </div>
-                    <p className="text-natural_gray-950 sm:text-base text-xs">
-                        {data.discount}
-                    </p>
-                </div>
-                <div className="grid grid-cols-3 items-center">
-                    <div className="flex items-center">
-                        <div className="centerOfParent ml-2">
                             <MessageIcon className="fill-primary-700"/>
                         </div>
                         <p className="text-natural_gray-950 sm:text-base text-[10px]">پیام</p>
@@ -261,7 +274,7 @@ function ReserveCheckout({setSteps, id: class_id}) {
                         {data.text}
                     </p>
                 </div>
-                <div className="flex w-96 justify-between items-center">
+                <div className="grid grid-cols-3 justify-between items-center">
                     <div className="flex items-center">
                         <div className="centerOfParent ml-2">
                             <CalendarIcon className='fill-primary-600'/>

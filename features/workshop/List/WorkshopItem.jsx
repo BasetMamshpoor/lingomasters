@@ -46,10 +46,22 @@ const WorkshopItem = ({r}) => {
                                     <span>{r.time}</span>
                                 </div>
                                 <div className='col-span-1'>
+                                    <span className="text-natural_gray-700">کشور</span>
+                                    <span>{r.country}</span>
+                                </div>
+                                <div className='col-span-1'>
+                                    <span className="text-natural_gray-700">شهر</span>
+                                    <span>{r.city}</span>
+                                </div>
+                                <div className='col-span-1'>
+                                    <span className="text-natural_gray-700">منطقه</span>
+                                    <span>{r.region}</span>
+                                </div>
+                                <div className='col-span-1'>
                                     <span className="text-natural_gray-700">ظرفیت</span>
                                     <span>{r.max_capacity}</span>
                                 </div>
-                                <div className='col-span-1'>
+                                <div className='col-span-2'>
                                     <span className="text-natural_gray-700">قیمت</span>
                                     <span className='hasToman '>{r.price_discount?.toLocaleString()}</span>
                                 </div>

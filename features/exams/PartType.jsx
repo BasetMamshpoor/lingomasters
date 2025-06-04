@@ -19,8 +19,7 @@ const PartType = ({type}) => {
         case "speaking":
             return <Speaking/>;
         default:
-            // return <Others/>;
-            return <Speaking/>;
+            return <Others/>;
     }
 };
 

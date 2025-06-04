@@ -15,7 +15,6 @@ import Right from '@icons/chevron-right.svg'
 import Clock from "@icons/clock.svg";
 import Share from '@icons/share.svg'
 import Eye from '@icons/eye-right.svg'
-import Star from '@icons/magic-star.svg'
 import Info from '@icons/info-circle.svg'
 import RuleOfCancle from "@/components/RuleOfCancle";
 import Offer from "@icons/division.svg";
@@ -209,7 +208,7 @@ function Banner({data = {}}) {
                                 className="z-[49] w-full border-t border-natural_gray-200 lg:hidden fixed bottom-0 right-0 left-0 p-6 bg-white">
                                 <div className="container gap-6 flex items-center justify-between">
                                     <Link
-                                        href={`/group-class/${data.id}/reserve-class?type=4`}
+                                        href={`/private-class/${data.id}/reserve-class?type=4`}
                                         className="bg-primary-600 effect-2 xs:w-1/3 w-1/2 h-12 text-white py-2 px-4 text-center rounded text-sm centerOfParent"
                                     >
                                         رزرو کلاس
@@ -225,7 +224,7 @@ function Banner({data = {}}) {
                                             <div className="flex flex-col">
                                                 {data.price !== data.price_discount && <del
                                                     className="text-sm text-natural_gray-500 hasToman">{data.price?.toLocaleString()}</del>}
-                                                <p className="text-sm hasToman text-green-600 hasToman">{data.price_discount?.toLocaleString()}</p>
+                                                <p className="text-sm text-green-600 hasToman">{data.price_discount?.toLocaleString()}</p>
                                             </div>
                                         </div>
                                     </div>

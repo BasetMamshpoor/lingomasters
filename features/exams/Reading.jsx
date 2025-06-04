@@ -4,7 +4,7 @@ import QuestionRenderer from "@/features/exams/QuestionRenderer";
 import Image from "next/image";
 
 const Reading = () => {
-    const {data} = useExamsContext();
+    const {data,formRef} = useExamsContext();
     return (
         <>
             <div className="rounded-2xl bg-primary-50 py-10 px-6 flex flex-col gap-10">
@@ -27,10 +27,10 @@ const Reading = () => {
                         {data.passenger_title && <p className="font-bold">{data.passenger_title}</p>}
                         <p className="text-sm select-none text-justify whitespace-break-spaces">{data.passenger}</p>
                     </div>
-                    <div className="p-2 flex flex-col gap-6  w-1/2 mb-4">
+                    <form ref={formRef} className="p-2 flex flex-col gap-6  w-1/2 mb-4">
                         {data.questions_title && <p className="whitespace-break-spaces">{data.questions_title}</p>}
                         {data.questions.map((e, i) => <QuestionRenderer key={e.id} question={e} index={i}/>)}
-                    </div>
+                    </form>
                 </div>
             </div>
         </>

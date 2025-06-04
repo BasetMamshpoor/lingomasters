@@ -12,7 +12,6 @@ import About from '@/features/webinar/Details/About';
 import Calendar from "@/features/webinar/Details/Calendar";
 import Headlines from "@/features/webinar/Details/Headlines";
 import Related from "@/features/webinar/Details/Related";
-import professors from "@/features/private-class/List/Professors";
 
 const list = [
     {

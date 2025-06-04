@@ -33,7 +33,7 @@ const SuggestionClass = ({level}) => {
                     color='success'>
                     <Tab title='کلاس های خصوصی' key='private'>
                         <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-                            {data.professors.map((e, i) => <TeacherCard className='!max-w-full' key={i}/>)}
+                            {data.professors.map((e, i) => <TeacherCard className='!max-w-full' key={i} {...e}/>)}
                         </div>
                     </Tab>
                     <Tab title='کلاس های گروهی' key='public'>

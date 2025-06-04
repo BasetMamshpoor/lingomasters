@@ -14,30 +14,25 @@ import {Language} from "@/providers/languageProvider";
 import links from "@/db/headerLnks";
 import Image from "next/image";
 import {useRouter} from "next/router";
+import SubMenu from "@/components/SubMenu";
 
 const Item = ({i, isSubmenuOpen}) => <div className="flex items-center justify-between gap-1">
     {i.icon}{i.text}<Down className={`w-4 h-4 transform transition-transform ${isSubmenuOpen ? 'rotate-180' : ''}`}/>
 </div>
 
 
-const Header = () => {
+const Header = ({setTitle}) => {
     const {push} = useRouter()
     const {student, logout} = useContext(Information)
     const {languages} = useContext(Language)
     const [isSidebarOpen, setSidebarOpen] = useState(false);
-    const [isSubmenuOpen, setSubmenuOpen] = useState(false);
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
     };
 
-    // Function to toggle the submenu
-    const toggleSubmenu = () => {
-        setSubmenuOpen(!isSubmenuOpen);
-    };
-
     return (
         <>
-            <header className="sm:py-6 py-3 sticky top-0 bg-[#FBFCFE] z-[50] border-b" dir="rtl">
+            <header className="sm:py-6 py-3 sticky top-0 bg-[#FBFCFE] z-[60] border-b" dir="rtl">
                 <div className="container flex flex-col gap-6 sm :px-10">
                     <div className="flex items-center justify-between">
                         <div className="centerOfParent">
@@ -178,7 +173,7 @@ const Header = () => {
                 </div>
             </header>
             <div
-                className={`z-[9] fixed lg:hidden top-0 bottom-0 w-full duration-300 backdrop-blur-sm ${isSidebarOpen ? 'right-0' : '-right-full'}`}
+                className={`z-[59] fixed lg:hidden top-0 bottom-0 w-full duration-300 backdrop-blur-sm ${isSidebarOpen ? 'right-0' : '-right-full'}`}
                 onClick={(e) => e.target === e.currentTarget ? setSidebarOpen(false) : null}>
                 <aside dir="rtl"
                        className={`fixed z-10 top-0 right-0 w-64 h-screen pt-[90px] duration-300 ${isSidebarOpen ? '-right-1' : '!-right-full'} sm:translate-x-0 bg-white border-l border-gray-200`}>
@@ -186,26 +181,9 @@ const Header = () => {
                         <ul className="flex flex-col gap-2 font-medium">
                             {links.map((i, o) => {
                                 return (
-                                    <li key={o} className="[&>a]:flex [&>a]:items-center [&>a]:gap-3 cursor-pointer"
-                                        onClick={i.underMenu ? () => {
-                                        } : () => setSidebarOpen(false)}>
+                                    <li key={o} className="[&>a]:flex [&>a]:items-center [&>a]:gap-3 cursor-pointer">
                                         {i.underMenu ?
-                                            <>
-                                                <button
-                                                    type="button"
-                                                    onClick={toggleSubmenu}
-                                                    className="flex items-center w-full p-2 text-base text-gray-900 transition duration-300 rounded-lg group hover:bg-gray-50"
-                                                >
-                                                    <span className="flex-1 text-left whitespace-nowrap">
-                                                        <Item i={i} isSubmenuOpen={isSubmenuOpen}/>
-                                                    </span>
-                                                </button>
-                                                {isSubmenuOpen && (
-                                                    <ul className="pr-8 flex flex-col gap-1">
-
-                                                    </ul>
-                                                )}
-                                            </>
+                                            <SubMenu setSidebarOpen={setSidebarOpen} Item={Item} i={i}/>
                                             : <Link className="p-2 duration-300 hover:bg-gray-50" href={i.link}>
                                                 {i.icon}{i.text}
                                             </Link>

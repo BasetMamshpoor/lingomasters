@@ -5,7 +5,7 @@ import {addToast} from "@heroui/react";
 import {useExamsContext} from "@/providers/ExamProvider";
 
 const NavbarExam = () => {
-    const {data, setPart} = useExamsContext();
+    const {data, formRef} = useExamsContext();
 
     return (
         <>
@@ -19,7 +19,7 @@ const NavbarExam = () => {
                                     description: 'زمان آزمون به پایان رسید',
                                     color: 'warning',
                                 })
-                                setPart(2)
+                               formRef.current?.submit()
                             }
                         })}
                     </span>

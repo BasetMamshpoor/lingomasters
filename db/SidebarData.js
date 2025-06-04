@@ -15,7 +15,7 @@ const sidebarItems = [
         id: 1,
         title: 'داشبورد',
         icon: Dashboard,
-        href: '/'
+        href: '/profile/'
     },
     {
         id: 2,
@@ -23,11 +23,11 @@ const sidebarItems = [
         icon: BookOpen,
         href: null,
         subMenu: [
-            {id: 1, title: 'وبینارها', href: '/classes/webinars'},
-            {id: 2, title: 'ورکشاپ‌ها', href: '/classes/workshops'},
-            {id: 3, title: 'کلاس‌های گروهی', href: '/classes/group'},
-            {id: 4, title: 'کلاس‌های خصوصی', href: '/classes/private'},
-            {id: 5, title: 'نتایج آزمون‌های کلاسی', href: '/classes/exams'},
+            {id: 1, title: 'وبینارها', href: '/profile/classes/webinar'},
+            {id: 2, title: 'ورکشاپ‌ها', href: '/profile/classes/workshop'},
+            {id: 3, title: 'کلاس‌های گروهی', href: '/profile/classes/group'},
+            {id: 4, title: 'کلاس‌های خصوصی', href: '/profile/classes/private'},
+            {id: 5, title: 'نتایج آزمون‌های کلاسی', href: '/profile/classes/exams'},
         ],
         key: 'classes'
     },
@@ -37,9 +37,9 @@ const sidebarItems = [
         icon: Books,
         href: null,
         subMenu: [
-            {id: 1, title: 'کتابخانه من', href: '/books/library'},
-            {id: 2, title: 'کتاب‌های رایگان', href: '/books/free'},
-            {id: 3, title: 'کتاب‌های خریداری شده ', href: '/books/payed'},
+            {id: 1, title: 'کتابخانه من', href: '/profile/books/library'},
+            {id: 2, title: 'کتاب‌های رایگان', href: '/profile/books/free'},
+            {id: 3, title: 'کتاب‌های خریداری شده ', href: '/profile/books/payed'},
         ],
         key: 'books'
     },
@@ -49,10 +49,10 @@ const sidebarItems = [
         icon: File,
         href: null,
         subMenu: [
-            {id: 1, title: 'آزمون پلاس', href: '/exams/plus'},
-            {id: 2, title: 'آزمون پرداخت', href: '/exams/pay'},
-            {id: 3, title: 'آزمون تعیین سطح', href: '/exams/level'},
-            {id: 4, title: 'نتایج آزمون‌های من', href: '/exams/results'},
+            {id: 1, title: 'آزمون پلاس', href: '/profile/exams/plus'},
+            {id: 2, title: 'آزمون پرداخت', href: '/profile/exams/pay'},
+            {id: 3, title: 'آزمون تعیین سطح', href: '/profile/exams/level'},
+            {id: 4, title: 'نتایج آزمون‌های من', href: '/profile/exams/results'},
         ],
         key: 'exams'
     },
@@ -60,43 +60,37 @@ const sidebarItems = [
         id: 5,
         title: 'گواهینامه‌ها',
         icon: Badge,
-        href: '/'
+        href: '/profile/certificate',
     },
     {
         id: 6,
         title: 'کیف پول',
         icon: Wallet,
-        href: '/wallet'
+        href: '/profile/wallet'
     },
     {
         id: 7,
         title: 'گزارشات',
         icon: Receipt,
-        href: '/reports'
+        href: '/profile/reports'
     },
     {
         id: 8,
-        title: 'وبلاگ',
-        icon: Clipboard,
-        href: '/blog'
+        title: 'نظرات',
+        icon: Chats,
+        href: '/profile/feedback'
     },
     {
         id: 9,
-        title: 'نظرات',
-        icon: Chats,
-        href: '/feedback'
+        title: 'پشتیبانی',
+        icon: Vector,
+        href: '/profile/support'
     },
     {
         id: 10,
-        title: 'پشتیبانی',
-        icon: Vector,
-        href: '/support'
-    },
-    {
-        id: 11,
         title: 'راهنمای کلاس‌ها',
         icon: Laptop,
-        href: '/classes/guide'
+        href: '/profile/guide'
     }
 ];
 export {sidebarItems};

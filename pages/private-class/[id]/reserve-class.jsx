@@ -64,11 +64,11 @@ const Reserve = () => {
         setSteps(steps + 1)
     }
     return (
-        !isLoading ? <>
+        !isLoading ? (data && <>
             <main className='my-6' dir='rtl'>
                 <div className="container">
                     <Progress title="کلاس خصوصی" link='private-class' active={steps} steps={stepsList}
-                              page={data.professor?.name}/>
+                              page={data?.professor?.name}/>
                     <div className="grid lg:grid-cols-4 grid-cols-1 lg:gap-6 gap-y-6 my-10">
                         {steps !== 3 && <div
                             className="col-span-1 h-fit lg:order-1 sm:p-4 py-4 px-3 rounded-lg border border-natural_gray-100 bg-white flex flex-col gap-10 items-center">
@@ -130,11 +130,6 @@ const Reserve = () => {
                                             /></TabPoint>
                                         <TabClass data={data.class_types_details} state={state} setState={setState}/>
                                         <ChooseBook data={data.books} setState={setState} state={state}/>
-                                        <Input label="در صورتی که کد تخفیف دارید آن را وارد کنید." type="number"
-                                               value={state.discount}
-                                               onValueChange={e => setState(p => ({...p, discount: e}))}
-                                               radius='sm' labelPlacement='outside' variant='bordered'
-                                               className='sm:w-[448px]'/>
                                         <Textarea label="در صورتی که پیامی برای استاد دارید بنویسید." type="number"
                                                   value={state.text}
                                                   onValueChange={e => setState(p => ({...p, text: e}))}
@@ -153,7 +148,7 @@ const Reserve = () => {
                     </div>
                 </div>
             </main>
-        </> : <div className="centerOfParent  h-[50vh] my-10"><Spinner color='success' size='lg'/></div>
+        </> ): <div className="centerOfParent  h-[50vh] my-10"><Spinner color='success' size='lg'/></div>
     );
 };
 

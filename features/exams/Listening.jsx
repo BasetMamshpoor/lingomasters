@@ -6,7 +6,7 @@ import QuestionRenderer from "@/features/exams/QuestionRenderer";
 import {formatTextToJSX} from "@/helpers/formatText";
 
 const Listening = () => {
-    const {data, part, setPart, isLoading} = useExamsContext();
+    const {data, formRef} = useExamsContext();
     return (
         <>
             <div className="flex flex-col gap-14">
@@ -19,13 +19,17 @@ const Listening = () => {
                                 </div>
                                 {e.description && <p className="text-sm">{e.description}</p>}
                             </div> :
-                            <SoundPlayer audio_url={e.media_path} />
+                            <SoundPlayer audio_url={e.media_path}/>
                     ))}
                     <div className="flex flex-col gap-4">
-                        {data.part_title && <p className="whitespace-break-spaces font-bold text-xl">{data.part_title}</p>}
-                        {data.description && <p className="whitespace-break-spaces">{formatTextToJSX(data.description)}</p>}
+                        {data.part_title &&
+                            <p className="whitespace-break-spaces font-bold text-xl">{data.part_title}</p>}
+                        {data.description &&
+                            <p className="whitespace-break-spaces">{formatTextToJSX(data.description)}</p>}
                         {data.center_message && <p className="text-center">{data.center_message}</p>}
-                        {data.questions.map((e, i) => <QuestionRenderer key={e.id} question={e} index={i}/>)}
+                        <form ref={formRef}>
+                            {data.questions.map((e, i) => <QuestionRenderer key={e.id} question={e} index={i}/>)}
+                        </form>
                     </div>
                 </div>
             </div>

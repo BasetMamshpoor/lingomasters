@@ -6,17 +6,18 @@ import {HeroUIProvider, ToastProvider} from "@heroui/react";
 import axios from "axios";
 import {useRouter} from "next/router";
 import Sidebar from "@/features/profile/Sidebar/Sidebar";
-import InformationProvider from "@/providers/InformationProvider";
+import InformationProvider, {Information} from "@/providers/InformationProvider";
 import LanguageProvider from "@/providers/languageProvider";
 import Right from "@icons/chevron-right.svg";
 import Link from "next/link";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import HeaderProfile from "@/features/profile/HeaderProfile";
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 
 export default function App({Component, pageProps}) {
-    const {push, pathname} = useRouter();
+    const {student} = useContext(Information)
+    const {push, pathname, back} = useRouter();
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [title, setTitle] = useState('')
     const open = pathname.includes('/profile')
@@ -50,18 +51,18 @@ export default function App({Component, pageProps}) {
                                     <HeaderProfile setSidebarOpen={setSidebarOpen} isSidebarOpen={isSidebarOpen}
                                                    title={title} setTitle={setTitle}/>
                                     <div className='flex flex-col gap-6'>
-                                        {open && <Link href='/'
-                                                       onClick={() => setTitle("داشبورد")}
-                                                       className='flex items-center text-primary-700 gap-2 mr-5'>
+                                        {open && <div
+                                            onClick={back}
+                                            className='flex items-center text-primary-700 gap-2 mr-5 cursor-pointer'>
                                             <Right className='fill-primary-700 w-5 h-5'/>
                                             بازگشت
-                                        </Link>}
+                                        </div>}
                                         <Component {...pageProps}/>
                                     </div>
                                 </div>
                             </div> :
                             <div className='max-w-[1440px] mx-auto'>
-                                <Header/>
+                                <Header setTitle={setTitle}/>
                                 <Component {...pageProps} />
                                 <Footer/>
                             </div>}

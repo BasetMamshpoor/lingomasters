@@ -30,9 +30,9 @@ const useGetRequest = (useToken = false, url, page = 1, obj) => {
                 .catch(err => {
                     if (err.response?.status === 401 && pathname.startsWith('/profile')) {
                         push('/auth/login');
-                    } else if (err.response?.status !== 401) {
+                    } else if (err.response?.status !== 401 && err.response?.data.message) {
                         addToast({
-                            title: err.response?.data.message || `ایراد در لود اطلاعات ${url}`,
+                            title: err.response?.data.message,
                             color: 'danger'
                         })
                     }

@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
 import Image from "next/image";
 import {formatTextToJSXInput} from "@/helpers/formatText";
+import {useExamsContext} from "@/providers/ExamProvider";
 
 const ShortAnswer = ({data, number}) => {
+    const {state} = useExamsContext()
     const {title, description, question_text, medias} = data;
-    const [blanks, setBlanks] = useState({});
-
-    function handleInputChange(inputId, value) {
-        setBlanks((prev) => ({...prev, [inputId]: value}));
-    }
 
     return (
         <>
@@ -24,7 +21,7 @@ const ShortAnswer = ({data, number}) => {
                         {e.description && <p className="text-sm">{e.description}</p>}
                     </div>
                 ))}
-                <p className='text-sm'>{number}. {formatTextToJSXInput(question_text, number, handleInputChange)}</p>
+                <p className='text-sm'>{number}. {formatTextToJSXInput(question_text, data.id, state[data.id])}</p>
             </div>
         </>
     );

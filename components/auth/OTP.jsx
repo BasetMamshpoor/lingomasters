@@ -18,7 +18,7 @@ const Otp = ({setStep, user, login, data: Data}) => {
             if (!user) push(-1)
             else {
                 const send_otp = async () => {
-                    await axios.post('/send-otp', {...user})
+                    await axios.post('/send-otp', user)
                         .then(res => {
                             addToast({
                                 title: 'ارسال شد',
@@ -26,14 +26,16 @@ const Otp = ({setStep, user, login, data: Data}) => {
                                 color: 'success',
                             })
                             setResponse({expires_in: parseInt(res.data.response.data.remain)})
-                        }).catch(err => {
-                            setResponse({expires_in: 0})
+                        })
+                        .catch(err => {
                             addToast({
                                 title: 'خطا',
                                 description: err.response?.data.message || 'خطایی رخ داده است',
                                 color: 'danger',
                             })
-                        }).finally(() => setLoading(false))
+                            setResponse({expires_in: 0})
+                        })
+                        .finally(() => setLoading(false))
                 }
                 send_otp()
             }

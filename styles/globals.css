@@ -270,3 +270,59 @@ input:focus-within {
 .leaflet-pane, .leaflet-top, .leaflet-bottom {
     z-index: 10 !important;
 }
+
+.education-calendar.rmdp-wrapper {
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid #E5E5E5;
+}
+
+.education-calendar .rmdp-day-hidden {
+    background-color: white !important;
+}
+
+.education-calendar .rmdp-selected {
+    background-color: white !important;
+    border: 1px solid #366CDA !important;
+
+    span {
+        color: #366CDA !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+    }
+}
+
+.education-calendar .rmdp-calendar {
+    width: 100%;
+}
+
+.education-calendar .rmdp-day-picker > * {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.education-calendar .rmdp-day {
+    background-color: #F5F7F8;
+    border-radius: 4px;
+
+    span {
+        border-radius: 0 !important;
+    }
+}
+
+.education-calendar .rmdp-day.rmdp-today span {
+    color: #000 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+@media (hover: hover) {
+    .education-calendar .rmdp-day:not(.rmdp-disabled,.rmdp-day-hidden) span:hover {
+        background-color: unset !important;
+        color: #000 !important;
+    }
+}

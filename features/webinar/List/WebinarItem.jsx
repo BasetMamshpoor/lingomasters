@@ -1,5 +1,4 @@
 import React from 'react';
-import Star from '@icons/magic-star.svg'
 import Image from "next/image";
 import Link from "next/link";
 import Like from "@/components/Like";

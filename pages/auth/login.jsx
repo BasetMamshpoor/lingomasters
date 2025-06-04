@@ -97,7 +97,7 @@ const Login = () => {
             data: Data,
             successMessage,
             errorMessage
-        } = await sendPostRequest('POST', '/login', data, false, false)
+        } = await sendPostRequest('POST', '/login', data)
         if (success) {
             addToast({
                 title: successMessage,
@@ -106,7 +106,7 @@ const Login = () => {
             const {token, ...other} = Data.response.data
             Cookies.set('token', JSON.stringify(token), {expires: token.expires_at})
             localStorage.setItem('student', JSON.stringify(other))
-            await push('/profile/user-information')
+            await push(query.backUrl || '/profile')
         } else {
             addToast({
                 title: errorMessage,

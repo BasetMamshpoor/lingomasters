@@ -8,6 +8,7 @@ import User from '@icons/user-tick.svg'
 import Logout from '@icons/logout.svg'
 import Bell from '@icons/bell.svg'
 import Heart from '@icons/heart.svg'
+import FillHeart from '@icons/fill-heart.svg'
 import Message from '@icons/message-alt.svg'
 import Calendar from '@icons/calendar.svg'
 import Menu from '@icons/menu.svg'
@@ -16,12 +17,13 @@ import Off from '@icons/percentage-square.svg'
 import {Information} from "@/providers/InformationProvider";
 import {Language} from "@/providers/languageProvider";
 import Image from "next/image";
+import withAuth from "@/components/withAuth";
 
 const links = [
     {href: "/profile/calendar", icon: Calendar, activeIcon: 'CalendarFill', text: "تقویم آموزشی"},
     {href: "/profile/messages", icon: Message, activeIcon: 'MessageFill', text: "پیام‌ها"},
     {href: "/profile/offers", icon: Off, activeIcon: 'OffFill', text: "پیام‌ها"},
-    {href: "/profile/favorites", icon: Heart, activeIcon: 'StarFill', text: "امتیازها"},
+    {href: "/profile/favorites", icon: Heart, activeIcon: FillHeart, text: "علاقه مندی ها"},
     {href: "/profile/notifications", icon: Bell, activeIcon: 'BellFill', text: "اعلان‌ها"},
 ];
 const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
@@ -59,9 +61,9 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                                 <li key={link.href} className="centerOfParent">
                                     <Link href={link.href} onClick={() => setTitle(link.text)}>
                                         {isActive ? (
-                                            <link.activeIcon className="w-6 h-6"/>
+                                            <link.activeIcon className="fill-primary-600"/>
                                         ) : (
-                                            <link.icon className="w-6 h-6 "/>
+                                            <link.icon className=""/>
                                         )}
                                     </Link>
                                 </li>
@@ -87,7 +89,7 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                             <DropdownMenu
                                 aria-label="langauge Actions"
                                 variant="bordered">
-                                {languages.student_languages.map((lang) => {
+                                {languages?.student_languages.map((lang) => {
                                     return <DropdownItem key={lang.language} onPress={e => handleSelectLanguage(lang)}>
                                         <Image width={24} height={24} src={lang.flag} alt={lang.language}/>
                                     </DropdownItem>
@@ -116,7 +118,8 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                             <DropdownMenu
                                 aria-label="Profile Actions"
                                 variant="bordered">
-                                <DropdownItem key="profile" href='/profile' onPress={() => setTitle('پروفایل')}>
+                                <DropdownItem key="profile" href='/profile/user-information'
+                                              onPress={() => setTitle('پروفایل')}>
                                     <div className='flex items-center gap-4 justify-end'>
                                         <span>پروفایل کاربری</span>
                                         <div className="centerOfParent"><User className={'fill-primary-700'}/></div>
@@ -150,4 +153,4 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
     );
 };
 
-export default HeaderProfile;
+export default withAuth(HeaderProfile, false, true);

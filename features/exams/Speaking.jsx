@@ -9,8 +9,7 @@ const AudioRecorder = dynamic(() => import('../../components/Comments/VoiceRecor
 
 
 const Speaking = () => {
-    const {data, part, setPart, isLoading} = useExamsContext();
-    const [voice, setVoice] = useState(null)
+    const {data, setVoice} = useExamsContext();
 
     return (
         <>
@@ -19,7 +18,7 @@ const Speaking = () => {
                     {!!data.medias.length && data.medias.map(e => (
                         e.media_type === 'image' ? <div className="flex flex-col gap-4">
                                 <div className="centerOfParent w-full">
-                                    <Image alt={title} src={e.media_path} width={100} height={100}
+                                    <Image alt={data.part_title} src={e.media_path} width={100} height={100}
                                            className="w-fit h-fit object-contain"/>
                                 </div>
                                 {e.description && <p className="text-sm">{e.description}</p>}

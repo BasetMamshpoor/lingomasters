@@ -48,7 +48,7 @@ function ProfileImage({justImage}) {
             setSelectedFile(file);
         }
     };
-    // Submit the new image
+    // Submit the new.jsx image
     const handleSubmit = async () => {
         if (selectedFile) {
             const {

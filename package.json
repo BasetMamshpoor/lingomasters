@@ -9,13 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@heroui/react": "2.7.5",
+    "@heroui/react": "^2.7.8",
     "@svgr/webpack": "^8.1.0",
     "@wavesurfer/react": "^1.0.7",
     "axios": "^1.7.9",
     "js-cookie": "^3.0.5",
     "laravel-echo": "^2.0.2",
     "leaflet": "^1.9.4",
+    "linkify-react": "^4.3.1",
     "next": "14.2.20",
     "pusher-js": "^8.4.0",
     "react": "18.2.0",
@@ -23,6 +24,7 @@
     "react-leaflet": "^4.2.1",
     "react-media-recorder": "^1.7.1",
     "react-multi-date-picker": "^4.5.2",
+    "recharts": "^2.15.3",
     "swiper": "^11.1.15",
     "wavesurfer.js": "^7.8.10"
   },
