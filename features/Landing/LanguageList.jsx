@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Right from "@icons/chevron-right.svg";
 import Left from "@icons/arrow-left.svg";
 import useHorizontalScroll from "@/hooks/useHorizontalScroll";
-import {Chip} from "@heroui/react";
 
 const LanguageList = ({data, setId, id}) => {
     const [isScrollable, setIsScrollable] = useState(false);

@@ -36,7 +36,7 @@ const CheckCoupon = ({model, id, setCoupon}) => {
                     isClearable={true}
                     isRequired
                     errorMessage=" "
-                    label="کد تخفیف خود را وارد کنید" type="number"
+                    label="کد تخفیف خود را وارد کنید"
                     radius='sm' labelPlacement='outside' variant='bordered'
                     className='max-w-1/2'/>
                 <Button

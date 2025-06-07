@@ -6,17 +6,15 @@ import {HeroUIProvider, ToastProvider} from "@heroui/react";
 import axios from "axios";
 import {useRouter} from "next/router";
 import Sidebar from "@/features/profile/Sidebar/Sidebar";
-import InformationProvider, {Information} from "@/providers/InformationProvider";
-import LanguageProvider from "@/providers/languageProvider";
-import Right from "@icons/chevron-right.svg";
-import Link from "next/link";
-import {useContext, useState} from "react";
 import HeaderProfile from "@/features/profile/HeaderProfile";
+import Right from "@icons/chevron-right.svg";
+import InformationProvider, from "@/providers/InformationProvider";
+import LanguageProvider from "@/providers/languageProvider";
+import { useState} from "react";
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 
 export default function App({Component, pageProps}) {
-    const {student} = useContext(Information)
     const {push, pathname, back} = useRouter();
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [title, setTitle] = useState('')
