@@ -1,5 +1,5 @@
 import React, {useMemo, useState} from 'react';
-import {BreadcrumbItem, Breadcrumbs, Tab, Tabs} from "@heroui/react";
+import {BreadcrumbItem, Breadcrumbs, Spinner, Tab, Tabs} from "@heroui/react";
 import Book from '@icons/book2.svg';
 import Pepole from "@icons/users.svg";
 import {useRouter} from "next/router";
@@ -16,10 +16,10 @@ const Index = () => {
 
     const filters = useMemo(() => query, [JSON.stringify(query)]);
 
-    useGetRequest(true, `/user-exams`,currentPage,filters)
+    const [exams, set, reload, pagination, , isLoading] = useGetRequest(true, `/exams/user-exams`, currentPage, filters)
 
     const handleChange = (value) => {
-        router.replace({pathname: router.asPath.split('?')[0], query: {...query, is_inside: value},},
+        router.replace({pathname: router.asPath.split('?')[0], query: {...query, is_foreign: value},},
             undefined,
             {shallow: false}
         );
@@ -44,11 +44,11 @@ const Index = () => {
                         <BreadcrumbItem>آزمون پلاس</BreadcrumbItem>
                     </Breadcrumbs>
                     <div className="self-center centerOfParent gap-6">
+                        <Book className="w-10 h-10 fill-primary-700"/>
                         <div className="flex items-center gap-2">
                             <h1 className="text-2xl">آزمون پلاس</h1>
                             <span className='text-xl'>( شبیه ساز آزمون )</span>
                         </div>
-                        <Book className="w-10 h-10 fill-primary-700"/>
                     </div>
                     <p className="whitespace-break-spaces text-natural_gray-950" dir='auto'>آزمون پلاس شبیه ساز
                         آزمون‌های مختلف است که با پرداخت مبلغ کمی می‌ توانید همانند آزمون مدنظر خود
@@ -67,7 +67,7 @@ const Index = () => {
                             <h1 className="font-semibold text-primary-700">اساتید</h1>
                         </div>
                         <div className="centerOfParent">
-                            {/*<Filter setCurrentPage={setCurrentPage}/>*/}
+                            <Filter setCurrentPage={setCurrentPage}/>
                         </div>
                     </div>
                     <Tabs
@@ -80,23 +80,31 @@ const Index = () => {
                             cursor: "w-full bg-warning",
                             tabContent: "sm:text-sm text-xs group-data-[selected=true]:text-warning"
                         }}
-                        selectedKey={query.is_inside || 'in'}
+                        selectedKey={query.is_foreign || '0'}
                         onSelectionChange={handleChange}
                         aria-label="Options">
-                        <Tab key="in" title="آزمون های داخل ایران"/>
-                        <Tab key="out" title="آزمون های خارج ایران"/>
+                        <Tab key="0" title="آزمون های داخل ایران"/>
+                        <Tab key="1" title="آزمون های خارج ایران"/>
                     </Tabs>
                     <div className='grid lg:grid-cols-12 grid-cols-1 lg:gap-6'>
                         <div className='hidden lg:block lg:col-span-3 h-fit'>
-                            {/*<Filters setCurrentPage={setCurrentPage}/>*/}
+                            <Filters setCurrentPage={setCurrentPage}/>
                         </div>
-                        <div
-                            className='lg:col-span-9 col-span-1 grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-x-6 sm:gap-y-10 gap-6'>
-                            {[...Array(14)].map((_, i) => <ExamItem/>)}
-                        </div>
+                        {isLoading ?
+                            <div className="w-full lg:col-span-9 col-span-1 centerOfParent"><Spinner color="success"/>
+                            </div>
+                            : <div
+                                className='lg:col-span-9 col-span-1 grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-x-6 sm:gap-y-10 gap-6'>
+                                {exams?.length ? exams.map((e, i) => <ExamItem key={e.id} {...e}/>) :
+                                    <p>آزمونی پیدا نشد</p>}
+                            </div>}
                     </div>
                     <div className="w-full centerOfParent mt-6">
-                        <PaginationApp currentPage={1} total={10} per_page={1}/>
+                        <PaginationApp
+                            currentPage={currentPage}
+                            total={pagination?.total}
+                            onChange={setCurrentPage}
+                            per_page={pagination?.per_page}/>
                     </div>
                 </div>
             </div>

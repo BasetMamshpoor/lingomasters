@@ -7,13 +7,12 @@ import Image from "next/image";
 import useGetRequest from "@/hooks/useGetRequest";
 import {useRouter} from "next/router";
 import {Chip, Spinner} from "@heroui/react";
-import Comments from "@/components/Comments";
 import Like from "@/components/Like";
 import Link from "next/link";
 
 const Exam = () => {
     const {query} = useRouter()
-    const [data, , , , , loading] = useGetRequest(true, query.id && `/exams/${query.id}`)
+    const [data, , , , , loading] = useGetRequest(true, query.id && `/exams/${query.id}/detail`)
 
     return (
         <>
@@ -26,7 +25,7 @@ const Exam = () => {
                             <p className="text-natural_gray-950 lg:text-lg sm:text-base text-sm">آژمون SAT چیست</p>
                             <p className="text-natural_gray-900 sm:text-sm text-xs">از سیر تا پیاز در مورد آزمون
                                 SAT </p>
-                            <Link href={`/exams/${query.id}/reserve`}
+                            <Link href={`/exams/plus/${query.id}/reserve`}
                                   className='text-white bg-primary-600 rounded py-2 px-4 w-full text-sm centerOfParent'>رزرو
                                 آزمون</Link>
                         </div>

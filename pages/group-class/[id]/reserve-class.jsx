@@ -20,7 +20,7 @@ const stepsList = [
 const Reserve = () => {
     const {query, push, asPath} = useRouter()
     const [steps, setSteps] = useState(1)
-    const {student} = useContext(Information)
+    const {wallet} = useContext(Information)
     const [selected, setSelected] = useState('1')
     const [coupon, setCoupon] = useState()
     const [data, setData, setReload, paginations, setPaginations, loading] = useGetRequest(false, query.id && `/group_reserve/info/${query.id}`)
@@ -126,7 +126,7 @@ const Reserve = () => {
                                         <Button
                                             isLoading={isLoading}
                                             type='button'
-                                            isDisabled={data.offPrice > student?.wallet && selected === "2"}
+                                            isDisabled={data.offPrice > wallet?.balance && selected === "2"}
                                             onPress={handlePay}
                                             color="success" style={{
                                             "--heroui-success": "140 82% 33%",

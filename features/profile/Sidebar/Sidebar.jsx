@@ -20,7 +20,7 @@ const Sidebar = ({mobileOpen, setSidebarOpen, setTitle}) => {
                           className={`text-3xl duration-300 font-Metal`}>{process.env.NEXT_PUBLIC_LOGO}</Link>
                     <div className="flex flex-col w-full gap-4">
                         {sidebarItems.map((item) => {
-                            const isActive = pathname.includes(item.key)
+                            const isActive = pathname === item.href;
                             return (
                                 <div className='group' key={item.id}>
                                     <SidebarItem
@@ -51,7 +51,7 @@ const Sidebar = ({mobileOpen, setSidebarOpen, setTitle}) => {
             >
                 <div className="flex flex-col w-full gap-4 pb-4">
                     {sidebarItems.map((item) => {
-                        const isActive = pathname.includes(item.key)
+                        const isActive = pathname === item.href;
                         return <div className='group' key={item.id}>
                             <SidebarItem
                                 title={item.title}

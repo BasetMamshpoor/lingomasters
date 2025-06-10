@@ -22,8 +22,7 @@ const Progress = ({title, link, active, page, withBreadcrumb = true, steps = []}
                                     href={link}>{title}</BreadcrumbItem>
                     <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'
                                     href={`${link}/${id}`}>{page}</BreadcrumbItem>
-                    <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'>رزرو
-                        کلاس</BreadcrumbItem>
+                    <BreadcrumbItem className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'>رزرو کلاس</BreadcrumbItem>
                 </Breadcrumbs>
             </div>}
 
