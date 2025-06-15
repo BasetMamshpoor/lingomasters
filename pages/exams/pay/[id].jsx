@@ -31,7 +31,7 @@ const Exam = ({title}) => {
     const [steps, setSteps] = useState(1)
     const [selected, setSelected] = useState('1')
     const [state, setState] = useState({})
-    const [data = {}, setData, setReload, paginations, setPaginations, loading] = useGetRequest(false, query.id && `/exam/pay/${query.id}`)
+    const [data = {}, setData, setReload, paginations, setPaginations, loading] = useGetRequest(true, query.id && `/exam/pay/${query.id}`)
     const {sendPostRequest, isLoading} = usePostRequest()
 
     const handlePay = async () => {
@@ -40,7 +40,7 @@ const Exam = ({title}) => {
             data: Data,
             success,
             errorMessage
-        } = await sendPostRequest("POST", `/exam/pay/${id}`, {}, false, true)
+        } = await sendPostRequest("POST", `/exam/pay/${id}`, {})
         if (success) {
             push(Data.url)
         } else
@@ -214,7 +214,7 @@ const Exam = ({title}) => {
                                                 {new Date(state.date).toLocaleDateString('fa-IR', {
                                                     month: 'long',
                                                     day: '2-digit',
-                                                    weekday:'long'
+                                                    weekday: 'long'
                                                 })}
                                             </p>
                                         </div>
@@ -226,7 +226,7 @@ const Exam = ({title}) => {
                                                 {new Date(state.time).toLocaleTimeString('en-US', {
                                                     hour: '2-digit',
                                                     minute: '2-digit',
-                                                    hour12:false
+                                                    hour12: false
                                                 })}
                                             </p>
                                         </div>

@@ -1,19 +1,56 @@
-import useGetRequest from '@/hooks/useGetRequest';
-import React, {useRef, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import {
     Input,
     Radio,
     RadioGroup,
-    Skeleton
 } from "@heroui/react";
 import {useRouter} from "next/router";
 
 import FilterIcon from '@icons/filter.svg';
 import Search from '@icons/search.svg';
+import {Language} from "@/providers/languageProvider";
+
+const initialData = {
+    teachingTypes: [
+        {
+            id: 1,
+            key: 'PhD',
+            value: "دکتری",
+        },
+        {
+            id: 2,
+            key: 'Master',
+            value: "ارشد",
+        },
+        {
+            id: 3,
+            key: 'School',
+            value: "زبان مدرسه",
+        },
+    ],
+    type: [
+        {
+            id: 1,
+            key: 'public',
+            value: "عمومی",
+        },
+        {
+            id: 2,
+            key: 'Specialized',
+            value: "تخصصی",
+        },
+        {
+            id: 3,
+            key: 'Both',
+            value: "هردو",
+        },
+    ]
+};
 
 const Filters = ({setCurrentPage}) => {
     const searchRef = useRef(null)
     const router = useRouter()
+    const {languages} = useContext(Language)
     const {...queries} = router.query
 
     const readUrl = () => {
@@ -73,85 +110,90 @@ const Filters = ({setCurrentPage}) => {
 
     return (
         <>
-            {data ?
-                <div
-                    className='flex flex-col gap-6 lg:border border-natural_gray-100 rounded-xl bg-white lg:py-6 pb-6 lg:px-4 overflow-hidden'
-                    dir='rtl'>
-                    <div className='lg:flex hidden items-center gap-4 py-3'>
-                        <div className="centerOfParent"><FilterIcon/></div>
-                        <p className='text-lg font-semibold'>فیلتر ها</p>
-                    </div>
-                    <form
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            const {value} = searchRef.current
-                            const {search, ...query} = queries
-                            router.replace({
-                                pathname: router.asPath.split('?')[0],
-                                query: value.trim().length ? {...query, search: value} : {...query},
-                            }, undefined, {shallow: true})
-                        }}>
-                        <Input defaultValue={filters.search ? filters.search[0].value : null} ref={searchRef}
-                               type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو آزمون'
-                               variant='bordered' radius='sm'
-                               startContent={
-                                   <button className="bg-white centerOfParent"><Search
-                                       className='fill-natural_gray-600'/></button>
-                               }/>
-                    </form>
-                    <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>انتخاب مقطع</label>
-                        <RadioGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            defaultValue={filters.teachingTypes ? filters.teachingTypes[0].value : undefined}
-                            style={{
-                                "--heroui-default-500": "196 94% 25%",
-                            }}
-                            color='default'
-                            onValueChange={(e) => handleFilter('teachingTypes', e)}
-                        >
-                            {data.teachingTypes?.map(a => <Radio key={a.value} classNames={{base:"w-1/2 max-w-1/2"}}
-                                                                 value={a.value.toString()}>{a.name}</Radio>)}
-                        </RadioGroup>
-                    </div>
-                    <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>انتخاب مقطع</label>
-                        <RadioGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            defaultValue={filters.teachingTypes ? filters.teachingTypes[0].value : undefined}
-                            style={{
-                                "--heroui-default-500": "196 94% 25%",
-                            }}
-                            color='default'
-                            onValueChange={(e) => handleFilter('teachingTypes', e)}
-                        >
-                            {data.teachingTypes?.map(a => <Radio key={a.value} classNames={{base:"w-1/2 max-w-1/2"}}
-                                                                 value={a.value.toString()}>{a.name}</Radio>)}
-                        </RadioGroup>
-                    </div>
-                    <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>انتخاب مقطع</label>
-                        <RadioGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            defaultValue={filters.teachingTypes ? filters.teachingTypes[0].value : undefined}
-                            style={{
-                                "--heroui-default-500": "196 94% 25%",
-                            }}
-                            color='default'
-                            onValueChange={(e) => handleFilter('teachingTypes', e)}
-                        >
-                            {data.teachingTypes?.map(a => <Radio key={a.value} classNames={{base:"w-1/2 max-w-1/2"}}
-                                                                 value={a.value.toString()}>{a.name}</Radio>)}
-                        </RadioGroup>
-                    </div>
+            <div
+                className='flex flex-col gap-6 lg:border border-natural_gray-100 rounded-xl bg-white lg:py-6 pb-6 lg:px-4 overflow-hidden'
+                dir='rtl'>
+                <div className='lg:flex hidden items-center gap-4 py-3'>
+                    <div className="centerOfParent"><FilterIcon/></div>
+                    <p className='text-lg font-semibold'>فیلتر ها</p>
                 </div>
-                : <Skeleton className="rounded-lg h-full">
-                    <div className="h-24 rounded-lg bg-default-300"></div>
-                </Skeleton>
-            }
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        const {value} = searchRef.current
+                        const {search, ...query} = queries
+                        router.replace({
+                            pathname: router.asPath.split('?')[0],
+                            query: value.trim().length ? {...query, search: value} : {...query},
+                        }, undefined, {shallow: true})
+                    }}>
+                    <Input
+                        defaultValue={filters.search ? filters.search[0].value : null}
+                        ref={searchRef}
+                        type="text"
+                        classNames={{clearButton: '!p-px',}}
+                        isClearable
+                        placeholder='جستجو آزمون'
+                        variant='bordered' radius='sm'
+                        startContent={
+                            <button className="bg-white centerOfParent"><Search
+                                className='fill-natural_gray-600'/></button>
+                        }/>
+                </form>
+                <div className="flex flex-col gap-4">
+                    <label className='font-semibold'>انتخاب مقطع</label>
+                    <RadioGroup
+                        aria-label=" "
+                        orientation="horizontal"
+                        defaultValue={filters.level ? filters.level[0].value : undefined}
+                        style={{
+                            "--heroui-default-500": "196 94% 25%",
+                        }}
+                        color='default'
+                        onValueChange={(e) => handleFilter('level', e)}
+                    >
+                        {initialData.teachingTypes.map(a => (
+                            <Radio key={a.id} classNames={{base: "w-1/2 max-w-1/2"}}
+                                   value={a.key}>{a.value}</Radio>))}
+                    </RadioGroup>
+                </div>
+                <div className="flex flex-col gap-4">
+                    <label className='font-semibold'>انتخاب زبان</label>
+                    <RadioGroup
+                        aria-label=" "
+                        orientation="horizontal"
+                        defaultValue={filters.language ? filters.language[0].value : undefined}
+                        style={{
+                            "--heroui-default-500": "196 94% 25%",
+                        }}
+                        color='default'
+                        onValueChange={(e) => handleFilter('language', e)}
+                    >
+                        {languages?.languages.map(a => <Radio key={a.id} classNames={{base: "w-1/2 max-w-1/2"}}
+                                                              value={a.id}>{a.language}</Radio>)}
+                    </RadioGroup>
+                </div>
+                <div className="flex flex-col gap-4">
+                    <label className='font-semibold'>انتخاب مقطع</label>
+                    <RadioGroup
+                        aria-label=" "
+                        orientation="horizontal"
+                        defaultValue={filters.teachingTypes ? filters.teachingTypes[0].value : undefined}
+                        style={{
+                            "--heroui-default-500": "196 94% 25%",
+                        }}
+                        color='default'
+                        onValueChange={(e) => handleFilter('teachingTypes', e)}
+                    >
+                        {initialData.type?.map(a => (
+                            <Radio
+                                key={a.id}
+                                classNames={{base: "w-1/2 max-w-1/2"}}
+                                value={a.key}>{a.value}</Radio>)
+                        )}
+                    </RadioGroup>
+                </div>
+            </div>
         </>
     );
 };

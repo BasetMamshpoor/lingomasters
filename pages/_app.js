@@ -10,7 +10,7 @@ import HeaderProfile from "@/features/profile/HeaderProfile";
 import Right from "@icons/chevron-right.svg";
 import InformationProvider, from "@/providers/InformationProvider";
 import LanguageProvider from "@/providers/languageProvider";
-import { useState} from "react";
+import {useState} from "react";
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 
