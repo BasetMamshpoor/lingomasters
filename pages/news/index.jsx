@@ -197,7 +197,7 @@ const Index = () => {
                         </div>
                         <div className=" grid grid-cols-1 sm:grid-cols-2 gap-8">
                             {secondData.news.data?.map(e => (
-                                <Link href={`/news/${e.id}`} className="flex items-center gap-6">
+                                <Link href={`/news/${e.id}`} key={e.id} className="flex items-center gap-6">
                                     <Image src={e.image}
                                            alt={e.title}
                                            width={100} height={100}
@@ -250,7 +250,7 @@ const Index = () => {
                         </div>
                         <div className=" grid grid-cols-1 sm:grid-cols-2 gap-8">
                             {thirdData.news.data?.map(e => (
-                                <Link href={`/news/${e.id}`} className="flex items-center gap-6">
+                                <Link href={`/news/${e.id}`} key={e.id} className="flex items-center gap-6">
                                     <Image src={e.image}
                                            alt={e.title}
                                            width={100} height={100}

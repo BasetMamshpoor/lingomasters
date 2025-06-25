@@ -24,7 +24,7 @@ const SubMenu = ({setSidebarOpen, Item, i}) => {
                 <ul className="px-4 flex flex-col border border-natural_gray-200 rounded max-h-64 overflow-y-auto">
                     {i.items === null ?
                         languages?.languages.map(e => (
-                            <li onClick={() => setSidebarOpen(false)}>
+                            <li onClick={() => setSidebarOpen(false)} key={e.id}>
                                 <Link href={`/private-class?language=${e.id}`}
                                       className='flex items-center gap-1 py-1 border-b'>
                                     <Image
@@ -34,7 +34,7 @@ const SubMenu = ({setSidebarOpen, Item, i}) => {
                             </li>
                         ))
                         : i.items.map(e => (
-                            <li onClick={() => setSidebarOpen(false)}>
+                            <li onClick={() => setSidebarOpen(false)} key={e.id}>
                                 <Link href={e.link} className='flex items-center gap-1 py-1 border-b'>{e.text}</Link>
                             </li>
                         ))

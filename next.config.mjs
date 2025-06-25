@@ -2,7 +2,6 @@
 
 const nextConfig = {
   reactStrictMode: false,
-  output: 'export',
   images: {
     unoptimized: true, // Disable image optimization for static export
   },

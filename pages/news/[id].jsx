@@ -2,7 +2,7 @@ import React from 'react';
 import {BreadcrumbItem, Breadcrumbs, Chip} from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
-import Chalendar from "@icons/chalendar.svg";
+import Chalendar from "@icons/calendar.svg";
 import Youtube from "@icons/youtube.svg";
 import Facebook from "@icons/facebook.svg";
 import Whatsapp from "@icons/whatsapp.svg"

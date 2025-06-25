@@ -57,7 +57,7 @@ const Index = () => {
                     </div> :
                     <div className="flex flex-col gap-6">
                         {data.map(e => (
-                            <div
+                            <div  key={e.id}
                                 className="flex items-center justify-between border border-natural_gray-200 rounded-lg bg-white w-full px-6 py-3">
                                 <div className="flex items-center flex-col md:flex-row gap-3">
                                     <p className="text-xs md:text-base font-bold text-natural_gray-950">گواهینامه ‌
