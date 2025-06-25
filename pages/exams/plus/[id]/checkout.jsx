@@ -4,33 +4,22 @@ import {
     BreadcrumbItem,
     Breadcrumbs,
     Button,
-    Input,
-    Radio,
-    RadioGroup,
     Spinner,
-    Textarea
 } from "@heroui/react";
 import Progress from "@/components/Progress";
 import {useRouter} from "next/router";
 import useGetRequest from "@/hooks/useGetRequest";
 import usePostRequest from "@/hooks/usePostRequest";
 import Image from "next/image";
-import DatePicker, {DateObject} from "react-multi-date-picker";
-import TimePicker from "react-multi-date-picker/plugins/time_picker";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
-import Calendar from "@icons/calendar.svg";
-import Watch from "@icons/watch.svg";
 import Link from "next/link";
 import TrashIcon from "@icons/bin.svg";
-import EditIcon from "@icons/edit-icon.svg";
 import Payment from "@/components/Payment";
 
 const stepsList = ["تاییدیه", "پرداخت"]
 const Reserve = ({title}) => {
     const {query, push} = useRouter()
     const [selected, setSelected] = useState('1')
-    const [data = {}, setData, setReload, paginations, setPaginations, loading] = useGetRequest(true, query.id && `/exams/examCheckout/${query.id}`)
+    const [data = {}, , , , , loading] = useGetRequest(true, query.id && `/exams/examCheckout/${query.id}`)
     const {sendPostRequest, isLoading} = usePostRequest()
 
     const handlePay = async () => {
@@ -41,7 +30,7 @@ const Reserve = ({title}) => {
             success,
             successMessage,
             errorMessage
-        } = await sendPostRequest("POST", `/exam/pay${selected === '2' ? "/wallet" : ""}/${id}`, {code: coupon?.code || null}, false, true)
+        } = await sendPostRequest("POST", `/exams/pay${selected === '2' ? "/wallet" : ""}/${id}`, {code: coupon?.code || null}, false, true)
         if (success) {
             if (selected === '1')
                 push(Data.url)
