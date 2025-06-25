@@ -10,10 +10,47 @@ import FilterIcon from '@icons/filter.svg';
 import Search from '@icons/search.svg';
 import {Language} from "@/providers/languageProvider";
 
+const initialData = {
+    teachingTypes: [
+        {
+            id: 1,
+            key: 'PhD',
+            value: "دکتری",
+        },
+        {
+            id: 2,
+            key: 'Master',
+            value: "ارشد",
+        },
+        {
+            id: 3,
+            key: 'School',
+            value: "زبان مدرسه",
+        },
+    ],
+    type: [
+        {
+            id: 1,
+            key: 'public',
+            value: "عمومی",
+        },
+        {
+            id: 2,
+            key: 'Specialized',
+            value: "تخصصی",
+        },
+        {
+            id: 3,
+            key: 'Both',
+            value: "هردو",
+        },
+    ]
+};
+
 const Filters = ({setCurrentPage}) => {
     const searchRef = useRef(null)
-    const {languages} = useContext(Language)
     const router = useRouter()
+    const {languages} = useContext(Language)
     const {...queries} = router.query
 
     const readUrl = () => {
@@ -90,28 +127,50 @@ const Filters = ({setCurrentPage}) => {
                             query: value.trim().length ? {...query, search: value} : {...query},
                         }, undefined, {shallow: true})
                     }}>
-                    <Input defaultValue={filters.search ? filters.search[0].value : null} ref={searchRef}
-                           type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو آزمون'
-                           variant='bordered' radius='sm'
-                           startContent={
-                               <button className="bg-white centerOfParent"><Search
-                                   className='fill-natural_gray-600'/></button>
-                           }/>
+                    <Input
+                        defaultValue={filters.search ? filters.search[0].value : null}
+                        ref={searchRef}
+                        type="text"
+                        classNames={{clearButton: '!p-px',}}
+                        isClearable
+                        placeholder='جستجو آزمون'
+                        variant='bordered' radius='sm'
+                        startContent={
+                            <button className="bg-white centerOfParent"><Search
+                                className='fill-natural_gray-600'/></button>
+                        }/>
                 </form>
                 <div className="flex flex-col gap-4">
                     <label className='font-semibold'>انتخاب مقطع</label>
                     <RadioGroup
                         aria-label=" "
                         orientation="horizontal"
-                        defaultValue={filters.teachingTypes ? filters.teachingTypes[0].value : undefined}
+                        defaultValue={filters.level ? filters.level[0].value : undefined}
                         style={{
                             "--heroui-default-500": "196 94% 25%",
                         }}
                         color='default'
-                        onValueChange={(e) => handleFilter('teachingTypes', e)}
+                        onValueChange={(e) => handleFilter('level', e)}
                     >
-                        {[{key:"",value:"دکتری"},{key:"",value:"ارشد"},{key:"",value:"زبان مدرسه"},].map(a => <Radio key={a.key} classNames={{base: "w-1/2 max-w-1/2"}}
-                                                             value={a.value}>{a.value}</Radio>)}
+                        {initialData.teachingTypes.map(a => (
+                            <Radio key={a.id} classNames={{base: "w-1/2 max-w-1/2"}}
+                                   value={a.key}>{a.value}</Radio>))}
+                    </RadioGroup>
+                </div>
+                <div className="flex flex-col gap-4">
+                    <label className='font-semibold'>انتخاب زبان</label>
+                    <RadioGroup
+                        aria-label=" "
+                        orientation="horizontal"
+                        defaultValue={filters.language ? filters.language[0].value : undefined}
+                        style={{
+                            "--heroui-default-500": "196 94% 25%",
+                        }}
+                        color='default'
+                        onValueChange={(e) => handleFilter('language', e)}
+                    >
+                        {languages?.languages.map(a => <Radio key={a.id} classNames={{base: "w-1/2 max-w-1/2"}}
+                                                              value={a.id}>{a.language}</Radio>)}
                     </RadioGroup>
                 </div>
                 <div className="flex flex-col gap-4">
@@ -126,24 +185,12 @@ const Filters = ({setCurrentPage}) => {
                         color='default'
                         onValueChange={(e) => handleFilter('teachingTypes', e)}
                     >
-                        {languages.languages.map(a => <Radio key={a.id} classNames={{base: "w-1/2 max-w-1/2"}}
-                                                             value={a.language}>{a.language}</Radio>)}
-                    </RadioGroup>
-                </div>
-                <div className="flex flex-col gap-4">
-                    <label className='font-semibold'>انتخاب مقطع</label>
-                    <RadioGroup
-                        aria-label=" "
-                        orientation="horizontal"
-                        defaultValue={filters.teachingTypes ? filters.teachingTypes[0].value : undefined}
-                        style={{
-                            "--heroui-default-500": "196 94% 25%",
-                        }}
-                        color='default'
-                        onValueChange={(e) => handleFilter('teachingTypes', e)}
-                    >
-                        {[{key:"",value:"عمومی"},{key:"",value:"تخصصی"},{key:"",value:"هردو"},].map(a => <Radio key={a.key} classNames={{base: "w-1/2 max-w-1/2"}}
-                                                             value={a.value}>{a.value}</Radio>)}
+                        {initialData.type?.map(a => (
+                            <Radio
+                                key={a.id}
+                                classNames={{base: "w-1/2 max-w-1/2"}}
+                                value={a.key}>{a.value}</Radio>)
+                        )}
                     </RadioGroup>
                 </div>
             </div>

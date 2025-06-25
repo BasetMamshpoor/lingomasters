@@ -30,8 +30,6 @@ const categories = [
 
 const levels = ["", 'بد', 'نیاز به تلاش', 'متوسط', 'خوب', 'عالی'];
 
-const data1 = [4, 1, 2, 1, 3, 2, 4, 1, 3, 4,];
-const data2 = [3, 3, 1, 5, 0, 1, 3, 2, 5, 0];
 
 export default function SessionChart() {
     const router = useRouter();
