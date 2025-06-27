@@ -17,7 +17,7 @@ const Story = ({story, trigger, ...props}) => {
                      className="grow border-2 cursor-pointer max-w-full border-primary-700  overflow-hidden rounded-[50%]">
                     <div
                         className="border-2 border-white overflow-hidden rounded-[50%] lg:w-[116px] lg:h-[116px] sm:w-[96px] sm:h-[96px] w-20 h-20">
-                        <Image src={story.cover || 'images/banner.jpg'} alt={story.name} width={100}
+                        <Image src={story.cover || '/images/banner.jpg'} alt={story.name} width={100}
                                height={100} className="w-full h-full object-cover"/>
                     </div>
                 </div>}

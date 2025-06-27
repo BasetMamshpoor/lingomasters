@@ -8,7 +8,7 @@ import {useRouter} from "next/router";
 import Sidebar from "@/features/profile/Sidebar/Sidebar";
 import HeaderProfile from "@/features/profile/HeaderProfile";
 import Right from "@icons/chevron-right.svg";
-import InformationProvider, from "@/providers/InformationProvider";
+import InformationProvider from "@/providers/InformationProvider";
 import LanguageProvider from "@/providers/languageProvider";
 import {useState} from "react";
 

@@ -3,7 +3,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    unoptimized: true, // Disable image optimization for static export
+    domains: ['api.lingomasters.ir'],
   },
   webpack(config) {
     config.module.rules.push({
