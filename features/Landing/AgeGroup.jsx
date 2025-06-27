@@ -16,7 +16,7 @@ const AgeGroup = () => {
                     <div
                         className="flex flex-col items-center justify-center gap-8 md:gap-12 lg:gap-20 w-full h-full flex-grow">
                         <div className="relative w-full h-full">
-                            <Image src="/images/group-childrens.png" alt="" width={100} height={100}
+                            <Image unoptimized src="/images/group-childrens.png" alt="" width={100} height={100}
                                    className="w-full  z-20"/>
                         </div>
                         <p className="text-base md:text-xl">کودکان</p>
@@ -24,7 +24,7 @@ const AgeGroup = () => {
                     <div
                         className="flex flex-col items-center justify-center gap-8 md:gap-12 lg:gap-20 flex-grow w-full h-full">
                         <div className="relative w-full h-full">
-                            <Image src="/images/young-girl.png" alt="" width={100} height={100}
+                            <Image unoptimized src="/images/young-girl.png" alt="" width={100} height={100}
                                    className="w-full z-20"/>
                         </div>
                         <p className="text-base md:text-xl">نوجوانان</p>
@@ -32,7 +32,7 @@ const AgeGroup = () => {
                     <div
                         className="flex flex-col items-center justify-center gap-8 md:gap-12 lg:gap-20 flex-grow w-full h-full">
                         <div className="relative w-full h-full">
-                            <Image src="/images/Adults.png" alt="" width={100} height={100}
+                            <Image unoptimized src="/images/Adults.png" alt="" width={100} height={100}
                                    className="w-full h-full "/>
                         </div>
                         <p className="text-base md:text-xl">بزرگسالان</p>

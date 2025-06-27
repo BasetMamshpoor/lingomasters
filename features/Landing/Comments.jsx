@@ -28,17 +28,17 @@ const textData = [
 ];
 const audioData = [
     {
-        avatar: '',
+        avatar: '/Comments/V_1.jpg',
         name: 'مهناز عیشی',
         url: '/Comments/audio_1.ogg',
     },
     {
-        avatar: '/Comments/audio_1.png',
+        avatar: '/Comments/V_2.jpg',
         name: 'گلناز عباسی',
         url: '/Comments/audio_2.ogg',
     },
     {
-        avatar: '',
+        avatar: '/Comments/V_3.jpg',
         name: 'ساناز فیضی',
         url: '/Comments/audio_3.ogg',
     },

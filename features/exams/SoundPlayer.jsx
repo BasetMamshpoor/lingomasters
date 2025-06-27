@@ -2,7 +2,7 @@ import React, {useCallback, useRef, useState, useEffect} from 'react';
 import {useWavesurfer} from '@wavesurfer/react';
 import Pause from '@icons/pause.svg';
 import Play from '@icons/play.svg';
-import {Button, Spinner} from "@heroui/react";
+import {addToast, Button, Spinner} from "@heroui/react";
 
 let activePlayer = null;
 
@@ -32,7 +32,6 @@ const SoundPlayer = ({audio_url}) => {
         barGap: 4,
         barHeight: 1,
         fillParent: true,
-        mediaType: 'audio/webm',
     });
     const stopPreviousPlayer = useCallback(() => {
         if (activePlayer && activePlayer !== wavesurfer && activePlayer.isPlaying()) {
@@ -45,25 +44,22 @@ const SoundPlayer = ({audio_url}) => {
     // مدیریت زمان و خطاها
     useEffect(() => {
         if (wavesurfer) {
-            // تنظیم زمان اولیه (مدت‌زمان کل)
             wavesurfer.on('ready', () => {
                 const duration = wavesurfer.getDuration();
                 setRemainingTime(duration);
             });
 
-            // به‌روزرسانی زمان باقی‌مانده
             wavesurfer.on('timeupdate', () => {
                 const currentTime = wavesurfer.getCurrentTime();
                 setRemainingTime(currentTime);
             });
 
-            // نمایش خطا با alert
             wavesurfer.on('error', (err) => {
                 if (!errorShown) {
                     addToast({
                         title: 'خطا در بارگذاری صوت',
                         color: 'danger',
-                        description: `خطا در بارگذاری صوت: ${err.message || 'مشکل ناشناخته'}`,
+                        description: ` ${err?.message || 'مشکل ناشناخته'}`,
                     });
                     setErrorShown(true);
                 }

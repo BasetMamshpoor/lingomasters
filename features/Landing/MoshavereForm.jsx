@@ -71,7 +71,7 @@ const MoshavereForm = () => {
                         <p className="text-natural_gray-600 lg:text-base text-sm">این فیلدها رو تکمیل کنید و برامون
                             بفرستید تا کارشناسان لینگومسترز توی سریع‌ترین زمان ممکن، برای راهنمایی با شما تماس
                             بگیرن!</p>
-                        <form className="grid sm:grid-cols-2 grid-cols-1 sm:gap-6" onSubmit={handleSubmit}>
+                        <form className="grid sm:grid-cols-2 grid-cols-1 gap-6" onSubmit={handleSubmit}>
                             <Input
                                 isRequired
                                 errorMessage=" "

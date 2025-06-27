@@ -7,7 +7,7 @@ const Ostad = () => {
         <>
             <div className="flex items-center flex-col sm:flex-row justify-between w-full gap-7 px-5">
                 <div className="">
-                    <Image src="/images/intresect.png" alt="" width={100} height={100} className="w-full"/>
+                    <Image unoptimized src="/images/intresect.png" alt="" width={100} height={100} className="w-full"/>
                 </div>
                 <div className="flex flex-col gap-32">
                     <div className="flex flex-col gap-4">

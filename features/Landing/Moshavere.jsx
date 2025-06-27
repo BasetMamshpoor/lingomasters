@@ -20,13 +20,13 @@ const Moshavere = () => {
                             سطح
                         </Link>
                         <a href="#moshavere"
-                              className="self-end px-14 py-3 text-secondary-500 border-1.5  border-secondary-500 rounded-md whitespace-nowrap">مشاوه
+                           className="self-end px-14 py-3 text-secondary-500 border-1.5  border-secondary-500 rounded-md whitespace-nowrap">مشاوه
                             تلفنی
                         </a>
                     </div>
                 </div>
                 <div className="order-1 sm:order-2">
-                    <Image src="/images/young-man.png" alt="" width={100} height={100} className="w-full"/>
+                    <Image unoptimized src="/images/young-man.png" alt="" width={100} height={100} className="w-full"/>
                 </div>
             </div>
         </>

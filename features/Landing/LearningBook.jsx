@@ -9,11 +9,11 @@ const LandingBook = () => {
                 className="flex items-center justify-between gap-4 w-full bg-[#F0F6FE99] h-36 sm:h-56 md:h-[275px] relative px-5">
                 <div className="w-full ">
                     <div className="rounded-r-3xl w-full z-0">
-                        <Image src="/images/Frame.png" alt="" width={100} height={100}
+                        <Image unoptimized src="/images/Frame.png" alt="" width={100} height={100}
                                className="absolute w-36 sm:w-72 md:w-96 z-20 top-0"/>
-                        <Image src="/images/Union.png" alt="" width={100} height={100}
+                        <Image unoptimized src="/images/Union.png" alt="" width={100} height={100}
                                className="absolute w-36 sm:w-72 md:w-96 z-10 top-0"/>
-                        <Image src="/images/product.png" alt="" width={100} height={100}
+                        <Image unoptimized src="/images/product.png" alt="" width={100} height={100}
                                className="absolute w-32 top-0 sm:right-5 sm:w-48 md:w-60 z-30 md:top-10 md:right-14"/>
                     </div>
                     <div

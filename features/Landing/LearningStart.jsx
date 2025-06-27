@@ -26,7 +26,7 @@ const LearningStart = () => {
                         <Arrow6 className="w-20 h-20 sm:hidden absolute -bottom-10 -left-20 "/>
                     </div>
                     <div className="py-12 ">
-                        <Image src="/images/Register.png" alt="" width={100} height={100}
+                        <Image unoptimized src="/images/Register.png" alt="" width={100} height={100}
                                className="w-full h-full"/>
                     </div>
                     <div className="flex self-end pl-10 pb-10">
@@ -51,7 +51,7 @@ const LearningStart = () => {
                                 <Arrow6 className="w-20 h-20 sm:hidden absolute -bottom-10 -left-20 "/>
                             </div>
                             <div className="py-12 ">
-                                <Image src="/images/Register.png" alt="" width={100} height={100}
+                                <Image unoptimized src="/images/Register.png" alt="" width={100} height={100}
                                        className="w-full h-full"/>
                             </div>
                         </div>
@@ -75,8 +75,8 @@ const LearningStart = () => {
                                 در لینگومسترز</p>
                             <Arrow6 className="w-20 h-20 absolute -bottom-10 right-28"/>
                         </div>
-                        <div className="py-12 ">
-                            <Image src="/images/Register.png" alt="" width={100} height={100}
+                        <div className="py-12 w-full">
+                            <Image unoptimized src="/images/Register.png" alt="" width={100} height={100}
                                    className="w-full h-full"/>
                         </div>
                         <div className="flex self-end pl-10 pb-10">
