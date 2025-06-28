@@ -24,30 +24,66 @@ import Watch from "@icons/watch.svg";
 import Link from "next/link";
 import TrashIcon from "@icons/bin.svg";
 import EditIcon from "@icons/edit-icon.svg";
+import PayCheckout from "@/features/exams/PayCheckout";
+import Payment from "@/components/Payment";
 
 const stepsList = ['تکمیل سفارش', "تاییدیه", "پرداخت"]
-const Exam = ({title}) => {
-    const {query, push} = useRouter()
+const Exam = () => {
+    const {query, push, asPath} = useRouter()
     const [steps, setSteps] = useState(1)
     const [selected, setSelected] = useState('1')
     const [state, setState] = useState({})
-    const [data = {}, setData, setReload, paginations, setPaginations, loading] = useGetRequest(true, query.id && `/exam/pay/${query.id}`)
+    const [data = {}, , , , , loading] = useGetRequest(true, query.id && `/exam-payments/${query.id}/info`)
     const {sendPostRequest, isLoading} = usePostRequest()
 
     const handlePay = async () => {
-        const id = data?.id
         const {
             data: Data,
+            status,
+            success,
+            successMessage,
+            errorMessage
+        } = await sendPostRequest("POST", `/exam-payments/pay${selected === '2' ? "/wallet" : ""}/${state.id}`, {})
+        if (success) {
+            if (selected === '1')
+                push(Data.url)
+            else {
+                addToast({
+                    title: 'پرداخت با موفقیت انجام شد',
+                    description: successMessage,
+                    color: 'success',
+                })
+                push(`/exams/pay/success`)
+            }
+        } else
+            addToast({
+                title: 'خطا',
+                description: errorMessage,
+                color: 'danger',
+                endContent: status === 400 ? <Link href={`/profile/wallet?backUrl=${asPath}`}
+                                                   className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">افزایش
+                    موجودی</Link> : undefined
+            })
+    }
+
+    const handleSubmit = async () => {
+        const {
+            data,
+            status,
             success,
             errorMessage
-        } = await sendPostRequest("POST", `/exam/pay/${id}`, {})
+        }
+            = await sendPostRequest("POST", `/exam-payments`, {...state, exam_payment_id: query.id})
         if (success) {
-            push(Data.url)
+            setSteps(2)
+            setState(prev => ({...prev, id: data.response.data.id}))
         } else
             addToast({
                 title: 'مشکلی به وجود آمد',
-                description: errorMessage,
+                description: status === 401 ? "لطفا ابتدا وارد حساب خود شوید" : errorMessage,
                 color: 'danger',
+                endContent: status === 401 ? <Link href={`/auth/login?backUrl=${asPath}`}
+                                                   className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">ورود</Link> : undefined
             })
     }
     return (
@@ -67,7 +103,7 @@ const Exam = ({title}) => {
                                 <BreadcrumbItem href="/">صفحه اصلی</BreadcrumbItem>
                                 <BreadcrumbItem>آزمون ها</BreadcrumbItem>
                                 <BreadcrumbItem href="/exams/pay">آزمون پرداخت</BreadcrumbItem>
-                                <BreadcrumbItem>{title}</BreadcrumbItem>
+                                <BreadcrumbItem>{data?.name}</BreadcrumbItem>
                             </Breadcrumbs>
                             <Progress withBreadcrumb={false} steps={stepsList} active={steps}/>
                             <div className="grid lg:grid-cols-4 grid-cols-1 lg:gap-6 gap-y-6 my-10">
@@ -81,7 +117,7 @@ const Exam = ({title}) => {
                                                 sizes="100vw"
                                                 className="w-full h-full object-cover"
                                                 src={data.image || '/images/image 144.png'}
-                                                alt={'data.name'}
+                                                alt={data.name}
                                             />
                                         </div>
                                         <h1 className='sm:text-xl text-base'>{data.title}</h1>
@@ -89,161 +125,40 @@ const Exam = ({title}) => {
                                     <div className="gap-2 w-full lg: flex flex-col">
                                         <div className="bg-natural_gray-50 px-3 py-2  flex items-center justify-between">
                                             <p className="text-natural_gray-950 text-xs">قیمت لار</p>
-                                            <p className="text-primary-700 text-sm text-left hasToman">{data.professor}</p>
+                                            <p className="text-primary-700 text-sm text-left hasToman">{data.DollarPrice?.toLocaleString()}</p>
                                         </div>
                                         <div className="bg-natural_gray-50 px-3 py-2  flex items-center justify-between">
                                             <p className="text-natural_gray-950 text-xs">مالیات</p>
-                                            <p className="text-secondary-600 text-sm text-left hasToman">{data.professor}</p>
+                                            <p className="text-secondary-600 text-sm text-left hasToman">{data.tax?.toLocaleString()}</p>
                                         </div>
                                         <div className="bg-natural_gray-50 px-3 py-2  flex items-center justify-between">
                                             <p className="text-natural_gray-950 text-xs">کارمزد</p>
-                                            <p className="text-secondary-600 text-sm text-left hasToman">{data.professor}</p>
+                                            <p className="text-secondary-600 text-sm text-left hasToman">{data.wage?.toLocaleString()}</p>
                                         </div>
                                         <div className="bg-natural_gray-50 px-3 py-2  flex items-center justify-between">
                                             <p className="text-natural_gray-950 text-xs font-semibold">مبلغ نهایی</p>
-                                            <p className="text-success-700 text-sm text-left hasToman">{data.professor}</p>
+                                            <p className="text-success-700 text-sm text-left hasToman">{data.total?.toLocaleString()}</p>
                                         </div>
                                     </div>
-                                    {steps === 2 ? <>
-                                        <div
-                                            className="z-[100] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
-                                            <Button
-                                                isLoading={isLoading}
-                                                type='button'
-                                                onPress={handlePay}
-                                                color="success" style={{
-                                                "--heroui-success": "140 82% 33%",
-                                            }} className="text-white" radius='sm'>پرداخت آنلاین</Button>
-                                            <div className="flex  justify-end gap-2">
-                                                {data.price !== data.price_discount &&
-                                                    <div
-                                                        className="text-red-700 h-fit bg-red-200 rounded-lg py-0.5 px-2 text-xs">
-                                                        {data.discount}٪
-                                                    </div>}
-                                                <div className="flex flex-col">
-                                                    {data.price !== data.price_discount && <del
-                                                        className="text-sm text-natural_gray-500 hasToman">{data.price?.toLocaleString()}</del>}
-                                                    <p className="text-sm hasToman text-green-600 hasToman">{data.price_discount?.toLocaleString()}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <RadioGroup
-                                            className='w-full'
-                                            color='success'
-                                            style={{
-                                                "--heroui-success": "196 94% 25%",
-                                            }}
-                                            value={selected}
-                                            onValueChange={setSelected}>
-                                            <Radio value="1" classNames={{label: 'text-xs'}}>پرداخت آنلاین</Radio>
-                                            <Radio isDisabled value="2" classNames={{label: 'text-xs'}}>پرداخت با
-                                                کیف‌پول</Radio>
-                                        </RadioGroup>
-                                        <Button
+                                    {steps === 2 ?
+                                        <Payment price={data.total} isLoading={isLoading} handlePay={handlePay}
+                                                 selected={selected} setSelected={setSelected}/>
+                                        : <Button
+                                            onPress={handleSubmit}
                                             isLoading={isLoading}
-                                            type='button'
-                                            onPress={handlePay}
-                                            color="success" style={{
-                                            "--heroui-success": "140 82% 33%",
-                                        }} className="w-full text-white" radius='sm'>پرداخت آنلاین</Button>
-                                    </> : <Button
-                                        type='button'
-                                        onPress={() => setSteps(2)}
-                                        color="success"
-                                        style={{
-                                            "--heroui-success": "220 69% 53%",
-                                        }}
-                                        className="text-white max-w-full w-full" radius='sm'>تایید</Button>}
+                                            color="success"
+                                            style={{
+                                                "--heroui-success": "220 69% 53%",
+                                            }}
+                                            className="text-white max-w-full w-full" radius='sm'>تایید</Button>}
                                 </div>
                                 {steps === 2 ?
-                                    <div
-                                        className="col-span-3 rounded-lg border border-natural_gray-100 bg-white py-10 px-3 flex flex-col gap-5">
-                                        <div className="grid sm:grid-cols-3 items-center">
-                                            <div className="grid lg:grid-cols-2 grid-cols-3 sm:col-span-2 items-center">
-                                                <p className="text-natural_gray-950 sm:text-base text-[10px]">
-                                                    نام و نام خانوادگی
-                                                </p>
-                                                <p className="text-natural_gray-950 sm:text-base text-xs">
-                                                    {data.name}
-                                                </p>
-                                            </div>
-                                            <div className="flex sm:order-1 -order-1 items-center justify-end gap-3">
-                                                <Link href='/exams/pay'
-                                                      className="flex gap-2 items-center py-1 px-3 text-sm rounded-md border-2 border-red-600 text-red-600">
-                                                    <TrashIcon className="w-5 h-5 fill-red-600"/>
-                                                    <p className="md:block hidden">حذف</p>
-                                                </Link>
-                                                <button type='button' onClick={() => setSteps(1)}
-                                                        className="flex gap-2 items-center py-1 px-3 text-sm rounded-md border-2 border-primary-600 text-primary-600">
-                                                    <EditIcon className="w-5 h-5"/>
-                                                    <p className="md:block hidden">ویرایش</p>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className="grid grid-cols-3 items-center">
-                                            <p className="text-natural_gray-950 sm:text-base text-[10px]">
-                                                شماره تلفن </p>
-                                            <p
-                                                className="text-natural_gray-950 text-start sm:text-base text-xs">
-                                                {data.mobile}
-                                            </p>
-                                        </div>
-                                        <div className="grid grid-cols-3 items-center">
-                                            <p className="text-natural_gray-950 sm:text-base text-[10px]">
-                                                ایمیل
-                                            </p>
-                                            <p
-                                                className="text-natural_gray-950 text-start sm:text-base text-xs">
-                                                {data.email}
-                                            </p>
-                                        </div>
-                                        <div className="grid grid-cols-3 items-center">
-                                            <p className="text-natural_gray-950 sm:text-base text-[10px]">
-                                                محل آزمون
-                                            </p>
-                                            <p
-                                                className="text-natural_gray-950 text-start sm:text-base text-xs">
-                                                {state.place}
-                                            </p>
-                                        </div>
-                                        <div className="grid grid-cols-3 items-center">
-                                            <p className="text-natural_gray-950 sm:text-base text-[10px]">
-                                                تاریخ آزمون
-                                            </p>
-                                            <p className="text-natural_gray-950 text-start sm:text-base text-xs">
-                                                {new Date(state.date).toLocaleDateString('fa-IR', {
-                                                    month: 'long',
-                                                    day: '2-digit',
-                                                    weekday: 'long'
-                                                })}
-                                            </p>
-                                        </div>
-                                        <div className="grid grid-cols-3 items-center">
-                                            <p className="text-natural_gray-950 sm:text-base text-[10px]">
-                                                ساعت آزمون
-                                            </p>
-                                            <p className="text-natural_gray-950 text-start sm:text-base text-xs">
-                                                {new Date(state.time).toLocaleTimeString('en-US', {
-                                                    hour: '2-digit',
-                                                    minute: '2-digit',
-                                                    hour12: false
-                                                })}
-                                            </p>
-                                        </div>
-                                        <div className="grid grid-cols-3 items-center">
-                                            <p className="text-natural_gray-950 sm:text-base text-[10px]">
-                                                توضیحات
-                                            </p>
-                                            <p className="text-natural_gray-950 text-start sm:text-base text-xs">
-                                                {state.description}
-                                            </p>
-                                        </div>
-                                    </div>
+                                    state.id && <PayCheckout id={state.id} setSteps={setSteps}/>
                                     : <div
                                         className="col-span-3 h-fit py-6 sm:px-4 px-3 border rounded-lg border-natural_gray-100 bg-white grid sm:grid-cols-2 grid-cols-1 gap-6">
                                         <Input label="نام کاربری" placeholder="نام کاربری"
-                                               value={state.user_name}
-                                               onValueChange={e => setState(p => ({...p, user_name: e}))}
+                                               value={state.username}
+                                               onValueChange={e => setState(p => ({...p, username: e}))}
                                                radius='sm' labelPlacement='outside' variant='bordered'
                                                classNames={{base: 'max-w-1/2', label: 'text-sm'}}/>
                                         <Input label="رمز عبور" placeholder="رمز عبور"
@@ -251,9 +166,9 @@ const Exam = ({title}) => {
                                                onValueChange={e => setState(p => ({...p, password: e}))}
                                                radius='sm' labelPlacement='outside' variant='bordered'
                                                classNames={{base: 'max-w-1/2', label: 'text-sm'}}/>
-                                        <Input label="محل آژمون" placeholder="محل آزمون"
-                                               value={state.place}
-                                               onValueChange={e => setState(p => ({...p, place: e}))}
+                                        <Input label="محل آزمون" placeholder="محل آزمون"
+                                               value={state.exam_location}
+                                               onValueChange={e => setState(p => ({...p, exam_location: e}))}
                                                radius='sm' labelPlacement='outside' variant='bordered'
                                                classNames={{
                                                    base: 'max-w-1/2 sm:col-span-2 col-span-1',
@@ -261,10 +176,10 @@ const Exam = ({title}) => {
                                                }}/>
                                         <div className="flex w-full flex-col justify-between gap-2 relative">
                                             <label className='text-xs font-semibold text-natural_gray-950'>تاریخ
-                                                تولد</label>
+                                                آزمون</label>
                                             <DatePicker
-                                                value={state.date}
-                                                onChange={e => setState(prev => ({...prev, date: e.toDate()}))}
+                                                value={state.exam_date}
+                                                onChange={e => setState(prev => ({...prev, exam_date: e.toDate()}))}
                                                 inputClass={' w-full h-full py-1.5 px-2 text-primary-950 outline-none border-2 border-default-200 rounded-md appearance-none text-sm'}
                                                 containerClassName={'w-full !height-full max-w-1/2'}
                                                 editable={false}
@@ -281,10 +196,10 @@ const Exam = ({title}) => {
                                                 className='text-xs font-normal text-natural_gray-950'>ساعت</label>
                                             <DatePicker
                                                 name='time'
-                                                value={state.time}
+                                                value={state.exam_time}
                                                 onChange={(e, i) => setState(prev => ({
                                                     ...prev,
-                                                    time: e.toDate()
+                                                    exam_time: e.toDate()
                                                 }))}
                                                 disableDayPicker
                                                 format="HH:mm"

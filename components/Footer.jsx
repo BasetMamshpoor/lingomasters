@@ -14,97 +14,93 @@ const Footer = () => {
                             <div className="grid sm:grid-cols-3 grid-cols-1 sm:gap-8 gap-4 grow">
                                 <div className="flex flex-col gap-4 justify-between">
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="https://store.lingomasters.ir">
                                         <span>فروشگاه</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/profile/support">
                                         <span>پشتیبانی</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/about-us">
                                         <span>درباره ما</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/contact-us">
                                         <span>تماس با ما</span>
                                         <Left/></Link>
+                                    {/*<Link className='effect-3'*/}
+                                    {/*      href="/">*/}
+                                    {/*    <span>کتابخانه</span>*/}
+                                    {/*    <Left/></Link>*/}
                                     <Link className='effect-3'
-                                          href="/">
-                                        <span>کتابخانه</span>
-                                        <Left/></Link>
-                                    <Link className='effect-3'
-                                          href="/">
+                                          href="/hiring-professors">
                                         <span>استخدام اساتید</span>
                                         <Left/></Link>
                                 </div>
                                 <div className="flex flex-col gap-4 justify-between">
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/blogs">
                                         <span>وبلاگ</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/age-group">
                                         <span>رده های سنی</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/exams/plus">
                                         <span>آزمون پلاس</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/exams/pay">
                                         <span>آزمون پرداخت</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/exams/placement">
                                         <span>آزمون تعیین سطح</span>
-                                        <Left/></Link>
-                                    <Link className='effect-3'
-                                          href="/">
-                                        <span>لینک های مفید و کاربردی</span>
                                         <Left/></Link>
                                 </div>
                                 <div className="flex flex-col gap-4 justify-between">
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/rules">
                                         <span>قوانین و مقررات</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/news">
                                         <span>اخبار و اطلاعیه ها</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/faq?ru=par">
                                         <span>سوالات متداول اولیا</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/faq?ru=pro">
                                         <span>سوالات متداول اساتید</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/faq?ru=stu">
                                         <span>سوالات متداول زبان آموزان</span>
                                         <Left/></Link>
                                     <Link className='effect-3'
-                                          href="/">
+                                          href="/class-guide">
                                         <span>راهنمای کلاس های آنلاین</span>
                                         <Left/></Link>
                                 </div>
                             </div>
                         </div>
                         <div className="flex flex-col gap-8 lg:w-fit w-full">
-                            <p className="lg:block hidden"> دانلود اپلیکیشن</p>
+                            {/*<p className="lg:block hidden"> دانلود اپلیکیشن</p>*/}
                             <div className="flex lg:flex-row flex-col lg:gap-20 gap-6 grow lg:self-end">
-                                <div className="flex lg:flex-col gap-6 items-center justify-center">
-                                    <Image src={'/images/ios-app.png'} alt={'ios-app'}
-                                           className="lg:w-full sm:w-1/5 w-1/2 max-h-[180px] object-cover"
-                                           width={100}
-                                           height={100}/>
-                                    <Image src={'/images/android-app.png'} alt={'android'}
-                                           className="lg:w-full sm:w-1/5 w-1/2 max-h-[180px] object-cover"
-                                           width={100}
-                                           height={100}/>
-                                </div>
+                                {/*<div className="flex lg:flex-col gap-6 items-center justify-center">*/}
+                                {/*    <Image src={'/images/ios-app.png'} alt={'ios-app'}*/}
+                                {/*           className="lg:w-full sm:w-1/5 w-1/2 max-h-[180px] object-cover"*/}
+                                {/*           width={100}*/}
+                                {/*           height={100}/>*/}
+                                {/*    <Image src={'/images/android-app.png'} alt={'android'}*/}
+                                {/*           className="lg:w-full sm:w-1/5 w-1/2 max-h-[180px] object-cover"*/}
+                                {/*           width={100}*/}
+                                {/*           height={100}/>*/}
+                                {/*</div>*/}
                                 <div className="flex lg:flex-col gap-6 lg:justify-between items-center justify-center">
                                     <Image src={'/images/etehadie.png'} alt={'etehadie'}
                                            className="lg:w-full sm:w-1/5 w-1/2 max-h-[180px] object-cover"

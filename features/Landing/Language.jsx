@@ -31,7 +31,7 @@ const Language = ({data}) => {
     return (
         <>
             <div className="flex items-center gap-4 border-x py-1 max-w-full">
-                <div className="flex items-center rounded-lg bg-primary-950 sm:p-6 p-2 sm:gap-10 gap-3 w-full">
+                <div className="flex items-center rounded-lg bg-primary-950 sm:p-4 p-2 sm:gap-10 gap-3 w-full">
                     <div className="flex flex-col items-center gap-2">
                         <Earth className="w-16 h-16 sm:w-28 sm:h-28"/>
                         <p className="text-sm sm:text-base text-white whitespace-nowrap sm:block hidden">زبان‌های

@@ -13,7 +13,7 @@ const Slider = ({loop, data, isLoading, Component, children, to, Icon, title}) =
                 <div className="flex flex-col items-center gap-6 w-full">
                     <div className="flex flex-col gap-5">
                         <div className="flex items-center gap-2">
-                            <Icon className='fill-primary-600 lg:w-10 lg:h-10'/>
+                            <Icon className='  lg:w-10 lg:h-10'/>
                             <h3 className="text-2xl">{title}</h3>
                         </div>
                         <Link href={to}

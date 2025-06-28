@@ -20,10 +20,10 @@ const GeneralQuestions = () => {
                             <Image src="/images/teacher-Home-page.png" width={60} height={60} alt=""
                                    className="absolute -top-7 left-1/2 -translate-x-1/2 z-20 "/>
                             <div
-                                className="flex flex-col items-center justify-center h-full pt-4 px-4 text-center gap-10">
-                                <p className="text-sm sm:text-base md:text-lg">جامع ترین وبسایت اساتید زبان های
+                                className="flex flex-col items-center gap-10 h-full pt-14 pb-8 px-4 text-center">
+                                <p className="text-sm sm:text-base lg:text-lg">جامع ترین وبسایت اساتید زبان های
                                     خارجی</p>
-                                <p className="text-xs sm:text-sm md:text-base">شما می تونید استادتون رو از بین کلی
+                                <p className="text-xs sm:text-sm lg:text-base">شما می تونید استادتون رو از بین کلی
                                     استاد مجرب انتخاب کنید</p>
                             </div>
                         </div>
@@ -37,9 +37,9 @@ const GeneralQuestions = () => {
                             <Image src="/images/cheque_Home-page.png" width={60} height={60} alt=""
                                    className="absolute -top-7 left-1/2 -translate-x-1/2 z-20"/>
                             <div
-                                className="flex flex-col items-center justify-center h-full pt-4 px-4 text-center gap-10">
-                                <p className="text-sm sm:text-base md:text-lg">برنامه ریزی انعطاف پذیر</p>
-                                <p className="text-xs sm:text-sm md:text-base">کلاس هاتون رو طبق برنامه خاص خودتون
+                                className="flex flex-col items-center gap-10 h-full pt-14 pb-8 px-4 text-center">
+                                <p className="text-sm sm:text-base lg:text-lg">برنامه ریزی انعطاف پذیر</p>
+                                <p className="text-xs sm:text-sm lg:text-base">کلاس هاتون رو طبق برنامه خاص خودتون
                                     رزرو میکنید</p>
                             </div>
                         </div>
@@ -53,9 +53,9 @@ const GeneralQuestions = () => {
                             <Image src="/images/learning_Home-page.png" width={60} height={60} alt=""
                                    className="absolute -top-7 left-1/2 -translate-x-1/2 z-20"/>
                             <div
-                                className="flex flex-col items-center justify-center h-full pt-4 px-4 text-center gap-10">
-                                <p className="text-sm sm:text-base md:text-lg">دروس اختصاصی سفارشی شده توسط شما</p>
-                                <p className="text-xs sm:text-sm md:text-base">شما می تونید مطالب درسی رو براساس
+                                className="flex flex-col items-center gap-10 h-full pt-14 pb-8 px-4 text-center">
+                                <p className="text-sm sm:text-base lg:text-lg">دروس اختصاصی سفارشی شده توسط شما</p>
+                                <p className="text-xs sm:text-sm lg:text-base">شما می تونید مطالب درسی رو براساس
                                     نیاز و علاقه تون انتخاب کنید</p>
                             </div>
                         </div>
@@ -69,9 +69,9 @@ const GeneralQuestions = () => {
                             <Image src="/images/money-Home-page.png" width={60} height={60} alt=""
                                    className="absolute -top-7 left-1/2 -translate-x-1/2 z-20"/>
                             <div
-                                className="flex flex-col items-center justify-center h-full pt-4 px-4 text-center gap-10">
-                                <p className="text-sm sm:text-base md:text-lg">پرداخت تدریجی و درس به درس</p>
-                                <p className="text-xs sm:text-sm md:text-base">شما می تونید فقط وقتی که به کلاس نیاز
+                                className="flex flex-col items-center gap-10 h-full pt-14 pb-8 px-4 text-center">
+                                <p className="text-sm sm:text-base lg:text-lg">پرداخت تدریجی و درس به درس</p>
+                                <p className="text-xs sm:text-sm lg:text-base">شما می تونید فقط وقتی که به کلاس نیاز
                                     دارید رزرو کنید</p>
                             </div>
                         </div>
@@ -85,10 +85,9 @@ const GeneralQuestions = () => {
                             <Image src="/images/calendar-Home-page.png" width={60} height={60} alt=""
                                    className="absolute -top-7 left-1/2 -translate-x-1/2 z-20"/>
                             <div
-                                className="flex flex-col items-center justify-center h-full pt-4 px-4 text-center gap-10">
-                                <p className="text-sm sm:text-base md:text-lg">امکان لغو و رزرو مجدد</p>
-                                <p className="text-xs sm:text-sm md:text-base">تا دوازده ساعت قبل از کلاس می تونید
-                                    کلاس خودتون رو لغو یا مجددا رزرو کنید</p>
+                                className="flex flex-col items-center gap-10 h-full pt-14 pb-8 px-4 text-center">
+                                <p className="text-sm sm:text-base lg:text-lg">امکان لغو و رزرو مجدد</p>
+                                <p className="text-xs sm:text-sm lg:text-base">تا 24 ساعت قبل از شروع کلاس خودتون رو لغو و یا مجددا بدون کسر هزینه رزرو کنید</p>
                             </div>
                         </div>
                     </div>
@@ -101,10 +100,10 @@ const GeneralQuestions = () => {
                             <Image src="/images/transfer-Home-page.png" width={60} height={60} alt=""
                                    className="absolute -top-7 left-1/2 -translate-x-1/2 z-20"/>
                             <div
-                                className="flex flex-col items-center justify-center h-full pt-4 px-4 text-center gap-10">
-                                <p className="text-sm sm:text-base md:text-lg">امکان ارسال پیام به استاد قبل از
+                                className="flex flex-col items-center gap-10 h-full pt-14 pb-8 px-4 text-center">
+                                <p className="text-sm sm:text-base lg:text-lg">امکان ارسال پیام به استاد قبل از
                                     کلاس</p>
-                                <p className="text-xs sm:text-sm md:text-base">شما می توانید خواسته هاتون رو قبل
+                                <p className="text-xs sm:text-sm lg:text-base">شما می توانید خواسته هاتون رو قبل
                                     کلاس به استادتون با ارسال پیام اطلاع بدید.</p>
                             </div>
                         </div>

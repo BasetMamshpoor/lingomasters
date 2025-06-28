@@ -1,10 +1,9 @@
 import Home from "@icons/home.svg";
 import Store from "@icons/store.svg";
 import Users from "@icons/users.svg";
-import Book from "@icons/book-open.svg";
-import Seller from "@icons/seller.svg";
-import SearchOrder from "@icons/file.svg";
-import Library from "@icons/books.svg";
+import People from "@icons/people.svg";
+import Seller from "@icons/Webinar2.svg";
+import SearchOrder from "@icons/Quiz.svg";
 import About from "@icons/about.svg";
 import Contact from "@icons/vector.svg";
 
@@ -18,13 +17,18 @@ const links = [
         underMenu: true,
         items: null
     },
-    {link: '/group-class', icon: <Book/>, text: 'کلاس‌های‌گروهی', underMenu: false},
+    {link: '/group-class', icon: <People/>, text: 'کلاس‌های‌گروهی', underMenu: false},
     {
-        link: '',
+        link: '/webinar',
         icon: <Seller/>,
         text: 'وبینارها',
-        underMenu: true,
-        items: [{link: '/webinar', text: 'وبینار'}, {link: '/workshop', text: 'ورکشاپ'}]
+        items:null
+    },
+    {
+        link: '/workshop',
+        icon: <Seller/>,
+        text: 'ورکشاپ ها',
+        items:null
     },
     {
         link: '',
@@ -37,8 +41,8 @@ const links = [
             {link: '/exams/plus', text: 'آزمون پلاس'}
         ]
     },
-    {link: '/', icon: <Library/>, text: 'کتابخانه', underMenu: false},
-    {link: '/', icon: <About/>, text: 'درباره‌ما', underMenu: false},
-    {link: '/', icon: <Contact/>, text: 'تماس‌با‌ما', underMenu: false},
+    // {link: '/', icon: <Library/>, text: 'کتابخانه', underMenu: false},
+    {link: '/about-us', icon: <About/>, text: 'درباره‌ما', underMenu: false},
+    {link: '/contact-us', icon: <Contact/>, text: 'تماس‌با‌ما', underMenu: false},
 ]
 export default links;

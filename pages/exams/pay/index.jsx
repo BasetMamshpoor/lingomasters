@@ -1,10 +1,13 @@
 import React from 'react';
-import {BreadcrumbItem, Breadcrumbs, Select, SelectItem} from "@heroui/react";
+import {BreadcrumbItem, Breadcrumbs, Select, SelectItem, Spinner} from "@heroui/react";
 import Book from "@icons/book2.svg";
 import Verify from "@icons/verified.svg";
 import Link from "next/link";
+import useGetRequest from "@/hooks/useGetRequest";
+import Image from "next/image";
 
 const Pay = () => {
+    const [data, , , , , isLoading] = useGetRequest(false, '/exam-payments')
     return (
         <div className="container my-10 space-y-6" dir="rtl">
             <Breadcrumbs
@@ -33,54 +36,42 @@ const Pay = () => {
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-3">
                             <Verify className='fill-success-700'/>
-                            <p className="text-natural_gray-950">در این بخش نیازی نیست که شما درگیر روند ثبت نام آزمون ها شوید و فقط با پرداخت به ما ، ما این روند را برای شما طی می کنیم.</p>
+                            <p className="text-natural_gray-950">در این بخش نیازی نیست که شما درگیر روند ثبت نام آزمون
+                                ها شوید و فقط با پرداخت به ما ، ما این روند را برای شما طی می کنیم.</p>
                         </div>
                         <div className="flex items-center gap-3">
                             <Verify className='fill-success-700'/>
-                            <p className="text-natural_gray-950">اینجا پرداخت به صورت کاملا امن بوده و اگر مشکلی در روند ثبت نام پیش بیاید ما پول را به شما برمیگردانیم.</p>
+                            <p className="text-natural_gray-950">اینجا پرداخت به صورت کاملا امن بوده و اگر مشکلی در روند
+                                ثبت نام پیش بیاید ما پول را به شما برمیگردانیم.</p>
                         </div>
                         <div className="flex items-center gap-3">
                             <Verify className='fill-success-700'/>
-                            <p className="text-natural_gray-950">اطلاعات آزمون و نحوه ثبت نام در پنل کاربری شما اطلاع رسانی خواهد شد.</p>
+                            <p className="text-natural_gray-950">اطلاعات آزمون و نحوه ثبت نام در پنل کاربری شما اطلاع
+                                رسانی خواهد شد.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <form className="flex flex-col gap-10 py-10 px-6 rounded-2xl bg-white border border-natural_gray-200">
-                <p  className="font-bold text-lg">برای پرداخت آزمون ها اطلاعات زیر را پر کنید.</p>
-                <Select
-                    isRequired
-                    errorMessage={' '}
-                    labelPlacement="outside"
-                    className="w-full"
-                    label="نوع آژمون"
-                    // selectedKeys={[data.teaching_type]}
-                    // onChange={e => setData(prev => ({
-                    //     ...prev,
-                    //     teaching_type: e.target.value
-                    // }))}
-                    placeholder='TOFEL'
-                    name='country'
-                    variant="bordered"
-                    radius="sm"
-                    classNames={{
-                        label: 'text-xs font-semibold',
-                        input: 'text-xs',
-                        listbox: '[&>ul>li>span>svg]:w-3 [&>ul>li>span>svg]:h-3'
-                    }}
-                >
-                    <SelectItem
-                        key="1"
-                        className="flex-row-reverse"
-                        textValue="tofel">
-                        <p className="flex items-center justify-end w-full">TOFEL</p>
-                    </SelectItem>
-                </Select>
-                <div className="self-end">
-                    <Link
-                        href="/" className="bg-primary-600 rounded text-white py-2 px-6 text-sm">وارد کردن اطلاعات</Link>
-                </div>
-            </form>
+            <div className="flex flex-col gap-10 py-10 px-6 rounded-2xl bg-white border border-natural_gray-200">
+                <p className="font-bold text-lg">آزمون مورد نظر خود را انتخاب کنید.</p>
+                {isLoading ?
+                    <div className="centerOfParent w-full"><Spinner color="success" label="در حال بارگزاری"/></div>
+                    : <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-6 sm:gap-5 gap-4">
+                        {data?.map(e => (
+                            <div className="relative w-full max-h-[195px]" key={e.id}>
+                                <Image alt={e.name} src={e.image || "/images/exam4.png"} width={100} height={100}
+                                       className="w-full h-full object-cover rounded-xl"/>
+                                <div
+                                    className="absolute -bottom-4 left-2 right-2 flex items-center gap-4 p-2 bg-white rounded-lg">
+                                    <Link href={`/exams/pay/${e.id}`}
+                                          className="centerOfParent w-full border border-primary-600 bg-primary-600 text-white rounded py-1 text-sm effect-2">
+                                           رزرو آزمون {e.name}
+                                    </Link>
+                                </div>
+                            </div>
+                        ))}
+                    </div>}
+            </div>
         </div>
     );
 };
