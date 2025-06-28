@@ -3,6 +3,7 @@ import useSwipeScroll from "@/hooks/useHorizontalScroll";
 import Story from "@/components/Stories/Story";
 import Right from "@icons/chevron-right.svg";
 import Left from "@icons/arrow-left.svg";
+import Mobile from "@icons/mobile.svg";
 
 const Stories = ({data: Stories = []}) => {
     const scroll = useSwipeScroll()
@@ -31,8 +32,12 @@ const Stories = ({data: Stories = []}) => {
         <>
             <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between gap-4">
-                    <p className='text-primary-950 font-semibold '>استوری ها</p>
-                    <div className="centerOfParent gap-4">
+                    <div className="flex-1"></div>
+                    <div className='centerOfParent gap-4'>
+                        <Mobile className="fill-primary-700 lg:w-10 lg:h-10"/>
+                        <p className="lg:text-2xl sm:text-lg text-sm font-semibold">استوری های اساتید</p>
+                    </div>
+                    <div className="flex-1 justify-end centerOfParent gap-4">
                         {isScrollable && (
                             <>
                                 <button
