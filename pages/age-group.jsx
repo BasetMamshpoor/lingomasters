@@ -28,11 +28,13 @@ const AgeGroup = () => {
                         <Chevron className=" w-5 h-5 fill-primary-700"/>
                         <p className="text-lg">رده های سنی</p>
                     </Link>
-                    <Image width={100} height={100} src="/images/age-group.png" alt="" className="w-full h-full"/>
+                    <Image unoptimized width={100} height={100} src="/images/age-group.png" alt=""
+                           className="w-full h-full"/>
                 </div>
                 <div className="flex flex-col gap-6">
                     <p className="text-sm font-bold sm:text-lg ">رده‌های سنی مختلف برای یادگیری زبان‌ها:</p>
-                    <p className="text-xs sm:text-base">توانایی انسان برای یادگیری زبان، پدیده‌ای شگفت‌انگیز است که تحت تاثیر عوامل مختلفی از جمله سن
+                    <p className="text-xs sm:text-base">توانایی انسان برای یادگیری زبان، پدیده‌ای شگفت‌انگیز است که تحت
+                        تاثیر عوامل مختلفی از جمله سن
                         قرار می‌گیرد. به طور کلی، می‌توان گفت که هر چه سن فرد برای یادگیری زبان پایین‌تر باشد، آسان‌تر و
                         سریع‌تر زبان را یاد می‌گیرد.</p>
                 </div>
@@ -72,13 +74,18 @@ const AgeGroup = () => {
                         </li>
                     </ul>
                 </div>
-                <Image width={100} height={100} src="/images/age-group-224.png" alt="" className="w-full h-full"/>
-                <p className="text-xs sm:text-base">طبق استاندارد مرجع اروپایی مشترک برای زبان‌ها (CEFR)، شش سطح برای دسته‌بندی مهارت‌های زبانی تعریف شده
+                <Image unoptimized width={100} height={100} src="/images/age-group-224.png" alt=""
+                       className="w-full h-full"/>
+                <p className="text-xs sm:text-base">طبق استاندارد مرجع اروپایی مشترک برای زبان‌ها (CEFR)، شش سطح برای
+                    دسته‌بندی مهارت‌های زبانی تعریف شده
                     است.</p>
-                <Image width={100} height={100} src="/images/age-group-245.png" alt="" className="w-full h-full"/>
+                <Image unoptimized width={100} height={100} src="/images/age-group-245.png" alt=""
+                       className="w-full h-full"/>
                 <p className="text-xs sm:text-base">این سطوح از A1 (مبتدی) تا C2 (فوق پیشرفته) را شامل می‌شوند.</p>
-                <Image width={100} height={100} src="/images/age-group-246.png" alt="" className="w-full h-full"/>
-                <Image width={100} height={100} src="/images/age-group-247.png" alt="" className="w-1/2 mx-auto"/>
+                <Image unoptimized width={100} height={100} src="/images/age-group-246.png" alt=""
+                       className="w-full h-full"/>
+                <Image unoptimized width={100} height={100} src="/images/age-group-247.png" alt=""
+                       className="w-1/2 mx-auto"/>
                 <div className="flex flex-col gap-6 text-xs sm:text-base">
                     <p className="font-bold">در هر سطح، مهارت‌های زبانی به چهار دسته تقسیم می‌شوند:</p>
                     <ul className="list-disc">
@@ -88,7 +95,8 @@ const AgeGroup = () => {
                         <li>مهارت هاری خواندن و درک متون: توانایی درک متون نوشته شده</li>
                     </ul>
                 </div>
-                <Image width={100} height={100} src="/images/age-group-248.png" alt="" className="w-3/4 mx-auto"/>
+                <Image unoptimized width={100} height={100} src="/images/age-group-248.png" alt=""
+                       className="w-3/4 mx-auto"/>
                 <div className="flex flex-col gap-6 text-xs sm:text-base">
                     <p className="font-bold">شرح سطوح زبانی به طور خلاصه</p>
                     <ul className="list-disc">
@@ -98,7 +106,7 @@ const AgeGroup = () => {
                         <li>جملات و عبارات ساده‌ای را که در موقعیت‌های روزمره با آن‌ها سروکار دارند، درک کنند.</li>
                     </ul>
                     <ul className="list-disc">
-                        <p> <span className="font-bold">پیش متوسط (A2):</span> در این سطح، افراد می‌توانند</p>
+                        <p><span className="font-bold">پیش متوسط (A2):</span> در این سطح، افراد می‌توانند</p>
                         <li>در مورد موضوعات آشنایی به صورت ساده اطلاعات رد و بدل کنند.</li>
                         <li>در مورد تجربیات و رویدادهای ساده‌ای که برایشان اتفاق افتاده، صحبت کنند.</li>
                         <li>جملات و عبارات رایج را در مورد موضوعات متداول در زندگی روزمره، مانند خانواده، محل کار، خرید،
@@ -106,7 +114,7 @@ const AgeGroup = () => {
                         </li>
                     </ul>
                     <ul className="list-disc">
-                        <p> <span className="font-bold">متوسط (B1):</span> در این سطح، افراد می‌توانند</p>
+                        <p><span className="font-bold">متوسط (B1):</span> در این سطح، افراد می‌توانند</p>
                         <li>در مورد موضوعات مختلف به صورت ساده و پیوسته صحبت کنند.</li>
                         <li>تجربیات و رویدادها را شرح داده و برنامه‌ها و اهداف خود را بیان کنند.</li>
                         <li>نکات کلیدی را در مورد موضوعات مختلف که به صورت متداول در محل کار، مدرسه، اوقات فراغت و غیره
@@ -114,28 +122,31 @@ const AgeGroup = () => {
                         </li>
                     </ul>
                     <ul className="list-disc">
-                        <p> <span className="font-bold">بالاتر از متوسط(B2):</span> در این سطح، افراد می‌توانند</p>
+                        <p><span className="font-bold">بالاتر از متوسط(B2):</span> در این سطح، افراد می‌توانند</p>
                         <li>به طور واضح و روان در مورد موضوعات مختلف صحبت کنند.</li>
                         <li>ایده‌های خود را به صورت تفصیلی شرح داده و استدلال‌های خود را بیان کنند.</li>
                         <li>مکالمات را به طور مؤثر کنترل کرده و از عبارات مناسب برای بیان ایده‌های خود استفاده کنند.
                         </li>
                     </ul>
                     <ul className="list-disc">
-                        <p> <span className="font-bold">پیشرفته (C1):</span> در این سطح، افراد می توانند</p>
+                        <p><span className="font-bold">پیشرفته (C1):</span> در این سطح، افراد می توانند</p>
                         <li>به طور کامل و روان در مورد موضوعات مختلف صحبت کنند.</li>
                         <li>ایده‌ها و نظرات پیچیده را به صورت شفاف و دقیق بیان کنند.</li>
                         <li>در مورد موضوعات تخصصی به صورت علمی و استدلالی بحث کنند.</li>
                     </ul>
                     <ul className="list-disc">
-                        <p> <span className="font-bold">فوق پیشرفته (C2):</span> در این سطح، افراد می‌توانند</p>
+                        <p><span className="font-bold">فوق پیشرفته (C2):</span> در این سطح، افراد می‌توانند</p>
                         <li>به طور کاملاً روان و بدون هیچ گونه تلاشی صحبت کنند.</li>
                         <li>به طور دقیق و ظریف در مورد موضوعات مختلف، حتی موضوعات پیچیده و انتزاعی، بحث کنند.</li>
                     </ul>
                 </div>
-                <p className="text-xs sm:text-base">به طور کاملاً مسلط و با استفاده از عبارات و اصطلاحات روزمره، از زبان انگلیسی در زمینه‌های مختلف، از
+                <p className="text-xs sm:text-base">به طور کاملاً مسلط و با استفاده از عبارات و اصطلاحات روزمره، از زبان
+                    انگلیسی در زمینه‌های مختلف، از
                     جمله موارد آکادمیک و تخصصی، استفاده کنند.</p>
-                <Image width={100} height={100} src="/images/age-group-249.png" alt="" className="w-full h-full"/>
-                <p className="text-xs sm:text-base">آزمون ها و گواهینامه های بین المللی دانشگاه کمبریج برای سطوح مختلف زبان انگلیسی</p>
+                <Image unoptimized width={100} height={100} src="/images/age-group-249.png" alt=""
+                       className="w-full h-full"/>
+                <p className="text-xs sm:text-base">آزمون ها و گواهینامه های بین المللی دانشگاه کمبریج برای سطوح مختلف
+                    زبان انگلیسی</p>
             </div>
         </>
     );

@@ -17,7 +17,7 @@ const StoryContent = ({onClose, id, isOpen, Stories, index}) => {
     const [storyId, setStoryId] = useState(id);
     const [indexStory, setIndexStory] = useState(index);
     const [data] = useGetRequest(`/story/show/${storyId}`);
-    const story = data ? data.story : {seller: {}, comments: []};
+    const story = data ? data.story : {professor: {}, comments: []};
 
     const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -90,9 +90,9 @@ const StoryContent = ({onClose, id, isOpen, Stories, index}) => {
                         <div className="absolute top-0 righ-0 left-0 z-10 flex items-center gap-4 w-full p-4"
                              dir={'rtl'}>
                             <Back className='fill-white cursor-pointer' onClick={onClose}/>
-                            <Avatar src={story.seller.image} isBordered color='primary'
-                                    alt={`${story.seller.name}'s avatar`}/>
-                            <span className="text-lg font-semibold">{story.seller.name || '...'}</span>
+                            <Avatar src={story.professor.image} isBordered color='primary'
+                                    alt={`${story.professor.name}'s avatar`}/>
+                            <span className="text-lg font-semibold">{story.professor.name || '...'}</span>
                         </div>
                         <div className="w-full aspect-w-9 aspect-h-16 bg-black rounded-lg overflow-hidden">
                             <video

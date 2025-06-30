@@ -183,7 +183,7 @@ const Register = () => {
                                                 editable={false}
                                                 monthYearSeparator="|"
                                                 format="DD/MMMM/YYYY"
-                                                minDate={new DateObject({calendar: persian}).subtract(0, "days")}
+                                                maxDate={new DateObject({calendar: persian}).subtract(0, "days")}
                                                 placeholder={new Date().toLocaleDateString('fa-IR')}
                                                 calendar={persian}
                                                 locale={persian_fa}

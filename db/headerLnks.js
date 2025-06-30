@@ -3,6 +3,7 @@ import Store from "@icons/store.svg";
 import Users from "@icons/users.svg";
 import People from "@icons/people.svg";
 import Seller from "@icons/Webinar2.svg";
+import Workshop from "@icons/workshop.svg";
 import SearchOrder from "@icons/Quiz.svg";
 import About from "@icons/about.svg";
 import Contact from "@icons/vector.svg";
@@ -26,7 +27,7 @@ const links = [
     },
     {
         link: '/workshop',
-        icon: <Seller/>,
+        icon: <Workshop/>,
         text: 'ورکشاپ ها',
         items:null
     },

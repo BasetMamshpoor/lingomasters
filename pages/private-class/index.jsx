@@ -60,11 +60,11 @@ const PrivateClass = () => {
                         <Tab key="in" title="اساتید داخل ایران"> </Tab>
                         <Tab key="out" title="اساتید خارج ایران"> </Tab>
                     </Tabs>
-                    <div
-                        className="w-full flex items-start gap-4 rounded-lg bg-[#FFFBEB] p-6 sm:text-base text-sm text-[#F3A218] mb-6">
-                        <div className="centerOfParent rounded-full h-6 w-6 warningDots"></div>
-                        <p>زبان آموز گرامی، لطفاً هنگام رزرو کلاس های خصوصی چه آنلاین و چه حضوری به حداقل زمان قبول کلاس، توسط استاد توجه نمایید.</p>
-                    </div>
+                    {/*<div*/}
+                    {/*    className="w-full flex items-start gap-4 rounded-lg bg-[#FFFBEB] p-6 sm:text-base text-sm text-[#F3A218] mb-6">*/}
+                    {/*    <div className="centerOfParent rounded-full h-6 w-6 warningDots"></div>*/}
+                    {/*    <p>زبان آموز گرامی، لطفاً هنگام رزرو کلاس های خصوصی چه آنلاین و چه حضوری به حداقل زمان قبول کلاس، توسط استاد توجه نمایید.</p>*/}
+                    {/*</div>*/}
                     <div className='grid lg:grid-cols-12 grid-cols-1'>
                         <div className='hidden lg:block lg:col-span-3 bg-white'>
                             <Filters setCurrentPage={setCurrentPage}/>

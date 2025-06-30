@@ -35,11 +35,11 @@ const Workshop = () => {
                         <Alert color="warning" variant="faded"
                                description={"ورکشاپ های تعریف شده توسط اساتید لینگومسترز، صرفاً تا ۲۴ ساعت قبل از شروع، بدون کسر هیچ هزینه ای قابل انصراف هستند \n" +
                                    "و کل شهریه پرداختی، به کیف پول شما برگشت داده می شود ولی کمتر از ۲۴ ساعت قبل از شروع، قابلیت انصراف ندارند."}/>
-                        <div
-                            className="w-full flex items-start gap-4 rounded-lg bg-[#FFFBEB] p-6 sm:text-base text-sm text-[#F3A218] mb-6">
-                            <div className="centerOfParent rounded-full h-6 w-6 warningDots"></div>
-                            <p>حداقل زمان رزرو ورکشاپ ها، تا یک روز قبل از شروع می باشد مگر اینکه جهت تکمیل ظرفیت تا یک ساعت قبل از شروع. زمان ثبت نام تمدید شود.</p>
-                        </div>
+                        {/*<div*/}
+                        {/*    className="w-full flex items-start gap-4 rounded-lg bg-[#FFFBEB] p-6 sm:text-base text-sm text-[#F3A218] mb-6">*/}
+                        {/*    <div className="centerOfParent rounded-full h-6 w-6 warningDots"></div>*/}
+                        {/*    <p>حداقل زمان رزرو ورکشاپ ها، تا یک روز قبل از شروع می باشد مگر اینکه جهت تکمیل ظرفیت تا یک ساعت قبل از شروع. زمان ثبت نام تمدید شود.</p>*/}
+                        {/*</div>*/}
                     </div>
                     <div className="lg:flex hidden items-center justify-center gap-2">
                         <div className="centerOfParent"><WebinarIcon className='w-8 h-8'/></div>

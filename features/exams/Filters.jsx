@@ -174,7 +174,7 @@ const Filters = ({setCurrentPage}) => {
                     </RadioGroup>
                 </div>
                 <div className="flex flex-col gap-4">
-                    <label className='font-semibold'>انتخاب مقطع</label>
+                    <label className='font-semibold'>انتخاب نوع</label>
                     <RadioGroup
                         aria-label=" "
                         orientation="horizontal"

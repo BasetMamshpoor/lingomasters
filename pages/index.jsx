@@ -28,6 +28,7 @@ import Blogs from "@/features/Landing/Blogs";
 import MoshavereForm from "@/features/Landing/MoshavereForm";
 import Comments from "@/features/Landing/Comments";
 import AgeGroup from "@/features/Landing/AgeGroup";
+import HeroBanner from "@/features/Landing/HeroBanner";
 
 
 export default function Home() {
@@ -35,6 +36,7 @@ export default function Home() {
     return (
         <>
             <div dir="rtl" className="container flex flex-col items-center justify-center gap-28 pb-40 my-10">
+                <HeroBanner />
                 <Carousel data={data?.slider}/>
                 <Language data={data?.language}/>
                 <div className="w-full">

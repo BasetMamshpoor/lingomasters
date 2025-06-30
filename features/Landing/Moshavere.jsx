@@ -6,7 +6,7 @@ const Moshavere = () => {
     return (
         <>
             <div className="flex items-center flex-col sm:flex-row justify-between w-full gap-7 px-5">
-                <div className="flex flex-col items-center gap-10 order-2 sm:order-1">
+                <div className="flex flex-col gap-10 order-2 sm:order-1">
                     <div className="flex flex-col gap-4">
                         <p className="text-sm sm:text-xl md:text-2xl">زبان آموز هستی؟</p>
                         <p className="text-xs sm:text-base md:text-lg">برای پیدا کردن استاد وقت نداری؟</p>

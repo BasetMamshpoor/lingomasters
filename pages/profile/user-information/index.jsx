@@ -27,6 +27,7 @@ import usePostRequest from "@/hooks/usePostRequest";
 const Map = dynamic(() => import('@/components/Map'), {
     ssr: false,
 });
+const platforms = ["voov", "teams", "zoom", "googleMeet", "Class in", "Big Blue Button", "Adobe Connect", "whatsapp"];
 
 const UserInformation = () => {
     const [data, setData] = useState({})
@@ -37,7 +38,7 @@ const UserInformation = () => {
         label: 'text-xs text-natural_gray-950 font-semibold',
     }
     const [initData] = useGetRequest(true, '/student-panel')
-    const [location, setLocation, Q, W, E, loading] = useGetRequest(false,`/countries?country=${country || data.country_id}`)
+    const [location, setLocation, Q, W, E, loading] = useGetRequest(false, `/countries?country=${country || data.country_id}`)
     const {sendPostRequest, isLoading} = usePostRequest()
 
     useEffect(() => {
@@ -62,10 +63,7 @@ const UserInformation = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const {errorMessage, success, successMessage} = await sendPostRequest('POST', '/student-panel/store', {
-            ...data,
-            date_of_birth: data.date_of_birth?.toISOString().split('T')[0].replace(/-/g, '/'),
-        })
+        const {errorMessage, success, successMessage} = await sendPostRequest('POST', '/student-panel/store', data)
         if (success) {
             addToast({
                 title: successMessage,
@@ -93,7 +91,7 @@ const UserInformation = () => {
                                 color='default'
                                 radius='sm'><Plus className='w-5 h-5 fill-primary-800'/>
                         </Button>
-                        {languages.student_languages.map((lang) => {
+                        {languages?.student_languages.map((lang) => {
                             return (
                                 <div key={lang.id} className="centerOfParent">
                                     <Image src={lang.flag} alt={lang.language} width={100} height={100}
@@ -124,11 +122,6 @@ const UserInformation = () => {
                                 <Input isRequired errorMessage=' ' label='نام خانوادگی' labelPlacement='outside'
                                        name='last_name'
                                        radius='sm' value={data.last_name}
-                                       onChange={handleChange}
-                                       classNames={inputClass}/>
-                                <Input isRequired errorMessage=' ' label='نام کاربری' labelPlacement='outside'
-                                       name='user_name'
-                                       value={data.user_name} radius='sm'
                                        onChange={handleChange}
                                        classNames={inputClass}/>
                                 <Select
@@ -179,13 +172,13 @@ const UserInformation = () => {
                                     <label className='text-xs font-semibold text-natural_gray-950'>تاریخ تولد</label>
                                     <DatePicker
                                         name='date_of_birth'
-                                        value={data.date_of_birth}
+                                        value={data.date_of_birth ? new Date(data.date_of_birth) : undefined}
                                         onChange={setDateState}
                                         inputClass={' w-full h-full py-1.5 px-2 outline-none  rounded-md appearance-none text-sm'}
                                         containerClassName={'w-full !height-full grow'}
                                         editable={false}
                                         monthYearSeparator="|"
-                                        format="DD/MMMM/YYYY"
+                                        format="YYYY/MM/DD"
                                         maxDate={new DateObject({calendar: persian}).subtract(0, "days")}
                                         placeholder={new Date(data.date_of_birth).toLocaleDateString('fa-IR')}
                                         calendar={persian}
@@ -232,27 +225,6 @@ const UserInformation = () => {
                                     value={data.work_Landline} classNames={inputClass}/>}
                             </div>
                         </AccordionItem>
-                        <AccordionItem key="3" aria-label="Accordion 3"
-                                       title="لینک برنامه ها">
-                            <div className="grid sm:grid-cols-2 grid-cols-1 sm:gap-x-6 gap-y-4">
-                                <Input isRequired errorMessage=' ' label='نام کاربری در Voov' labelPlacement='outside'
-                                       radius='sm' name='voov_user_name'
-                                       onChange={handleChange}
-                                       value={data.voov_user_name} classNames={inputClass}/>
-                                <Input isRequired errorMessage=' ' label='نام کاربری در Zoom' labelPlacement='outside'
-                                       radius='sm' name='zoom_user_name'
-                                       onChange={handleChange}
-                                       value={data.zoom_user_name} classNames={inputClass}/>
-                                <Input isRequired errorMessage=' ' label='نام کاربری در Skype' labelPlacement='outside'
-                                       radius='sm' name='skype_user_name'
-                                       onChange={handleChange}
-                                       value={data.skype_user_name} classNames={inputClass}/>
-                                <Input isRequired errorMessage=' ' label='نام کاربری در Google Meet'
-                                       labelPlacement='outside' radius='sm'
-                                       onChange={handleChange} name='meet_user_name'
-                                       value={data.meet_user_name} classNames={inputClass}/>
-                            </div>
-                        </AccordionItem>
                         <AccordionItem key="4" aria-label="Accordion 4"
                                        title="آدرس ها">
                             <div className="flex flex-col gap-6">
@@ -262,18 +234,19 @@ const UserInformation = () => {
                                 <div className="flex flex-col gap-1">
                                     <label className='text-sm'>انتخاب موقعیت از روی نقشه</label>
                                     <div className="centerOfParent">
-                                        <Map setLocation={setData}
+                                        <Map  setLocation={setData}
                                              location={[data.latitude || 0, data.longitude || 0]}/>
                                     </div>
                                 </div>
                                 <div className="flex flex-col sm:flex-row gap-4">
                                     {location && <>
                                         <Select
+                                            isRequired
                                             labelPlacement="outside"
                                             className="w-full"
                                             label="کشور محل سکونت"
                                             name='country_id'
-                                            selectedKeys={[data.country_id?.toString()]}
+                                            selectedKeys={data.country_id?.toString()}
                                             onChange={(e) => {
                                                 setLocation(prev => ({...prev, city: []}))
                                                 handleChange(e)
@@ -290,13 +263,14 @@ const UserInformation = () => {
                                             }}
                                         >
                                             {(c) => (
-                                                <SelectItem key={c.id} className="flex-row-reverse"
-                                                            textValue={c.title}>
-                                                    <p className="flex items-center justify-end w-full">{c.title}</p>
+                                                <SelectItem key={c.value} className="flex-row-reverse"
+                                                            textValue={c.name}>
+                                                    <p className="flex items-center justify-end w-full">{c.name}</p>
                                                 </SelectItem>
                                             )}
                                         </Select>
                                         <Autocomplete
+                                            isRequired
                                             labelPlacement="outside"
                                             className="w-full"
                                             label="شهر محل سکونت"
@@ -305,7 +279,7 @@ const UserInformation = () => {
                                             selectedKey={data.city_id?.toString()}
                                             isLoading={loading}
                                             variant="bordered"
-                                            onSelectionChange={e => setData(prev=>({...prev,city_id:e}))}
+                                            onSelectionChange={e => setData(prev => ({...prev, city_id: e}))}
                                             radius="sm"
                                             inputProps={{
                                                 classNames: {
@@ -388,6 +362,24 @@ const UserInformation = () => {
                                         classNames={inputClass}
                                     />
                                 </div>
+                            </div>
+                        </AccordionItem>
+                        <AccordionItem key="3" aria-label="Accordion 3"
+                                       title="لینک برنامه ها">
+                            <div className="grid sm:grid-cols-2 grid-cols-1 sm:gap-x-6 gap-y-4">
+                                {platforms.map((platform) => (
+                                        <Input
+                                            isRequired errorMessage=' '
+                                            key={platform}
+                                            label={`نام کاربردی در ${platform.charAt(0).toUpperCase() + platform.slice(1)}`}
+                                            labelPlacement='outside'
+                                            name={`${platform}_user_name`}
+                                            defaultValue={data[platform] || ""}
+                                            onChange={handleChange}
+                                            radius="sm"
+                                            classNames={inputClass}
+                                        />
+                                    ))}
                             </div>
                         </AccordionItem>
                     </Accordion>

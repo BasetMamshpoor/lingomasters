@@ -20,15 +20,15 @@ const Faq = () => {
                     <Question/>
                 </div>
                 <Tabs
-
                     aria-label="Tabs variants"
                     variant='underlined'
                     classNames={{
-                        tabList: 'border-b pb-0 gap-2',
+                        tabList: 'border-b pb-0 gap-2 w-full',
                         cursor: "shadow-none w-full",
-                        tabContent: 'w-64 sm:text-sm text-xs',
+                        tabContent: 'lg:w-64 w-full sm:text-sm text-xs',
                         tab: "py-4 h-fit",
-                        panel: 'w-full'
+                        panel: 'w-full',
+                        base:'lg:w-fit w-full'
                     }}
                     style={{
                         "--heroui-success": "38 87% 56%",

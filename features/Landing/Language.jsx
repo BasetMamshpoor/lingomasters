@@ -52,7 +52,7 @@ const Language = ({data}) => {
                             {data?.map(e => (
                                 <div
                                     className="flex flex-col items-center lg:gap-10 sm:gap-6 sm:min-w-fit min-w-12">
-                                    <Image src={e.flag} className="w-12 h-10 sm:w-20 sm:h-14"
+                                    <Image src={e.flag} className="w-12 h-10 sm:w-20 sm:h-14 border rounded-xl border-natural_gray-200"
                                            width={100} height={100} alt={e.title}/>
                                     <p className="hidden sm:block whitespace-nowrap">اساتید {e.title}</p>
                                 </div>

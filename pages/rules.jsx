@@ -160,20 +160,20 @@ const Rules = () => {
                             <th className="text-xs sm:text-base">کاهش اعتبار مالی استاد و پرداخت به لینگومسترز</th>
                         </tr>
                         <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                            <th className="text-natural_gray-950 font-medium text-[10px] sm:text-base ">3 ساعت و کمتر از آن</th>
-                            <th className="text-natural_gray-950 font-medium text-[10px] sm:text-base">50% مبلغ کلاس</th>
+                            <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base ">3 ساعت و کمتر از آن</th>
+                            <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">50% مبلغ کلاس</th>
                         </tr>
                         <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                            <th className="text-natural_gray-950 font-medium text-[10px] sm:text-base">بیشتر از 3 ساعت و کمتر از 12 ساعت</th>
-                            <th className="text-natural_gray-950 font-medium text-[10px] sm:text-base">30% مبلغ کلاس</th>
+                            <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">بیشتر از 3 ساعت و کمتر از 12 ساعت</th>
+                            <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">30% مبلغ کلاس</th>
                         </tr>
                         <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                            <th className="text-natural_gray-950 font-medium text-[10px] sm:text-base">بین 12 تا 24 ساعت</th>
-                            <th className="text-natural_gray-950 font-medium text-[10px] sm:text-base">15% مبلغ کلاس</th>
+                            <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">بین 12 تا 24 ساعت</th>
+                            <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">15% مبلغ کلاس</th>
                         </tr>
                         <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                            <th className="text-natural_gray-950 font-medium text-[10px] sm:text-base">بیش از 24 ساعت</th>
-                            <th className="text-natural_gray-950 font-medium text-[10px] sm:text-base">بدون کاهش اعتبار</th>
+                            <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">بیش از 24 ساعت</th>
+                            <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">بدون کاهش اعتبار</th>
                         </tr>
                         </thead>
                     </table>
@@ -193,39 +193,32 @@ const Rules = () => {
                             </th>
                         </tr>
                         <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                            <th>زمان لغو</th>
-                            <th className="text-natural_gray-950 font-medium">3 ساعت و کمتر از آن</th>
-                            <th className="text-natural_gray-950 font-medium">بیشتر از 3 ساعت و کمتر از 12 ساعت</th>
-                            <th className="text-natural_gray-950 font-medium">بین 12 تا 24 ساعت</th>
-                            <th className="text-natural_gray-950 font-medium">بیش از 24 ساعت</th>
+                            <th>مدت زمان باقی مانده به شروع کلاس</th>
+                            <th className="text-natural_gray-950 font-semibold">میزان جریمه</th>
                         </tr>
                         <tr className="[&>th]:border-x [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                            <th>کاهش اعتبار مالی استاد و پرداخت به لینگومسترز</th>
-                            <th className="text-natural_gray-950 font-medium">50% مبلغ کلاس</th>
-                            <th className="text-natural_gray-950 font-medium">30% مبلغ کلاس</th>
-                            <th className="text-natural_gray-950 font-medium">15% مبلغ کلاس</th>
-                            <th className="text-natural_gray-950 font-medium">بدون کاهش اعتبار</th>
+                            <th>پس از شروع کلاس (غیبت)</th>
+                            <th className="text-natural_gray-950 font-semibold">100%</th>
                         </tr>
                         <tr className="[&>th]:border-x [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                            <th>کاهش اعتبار مالی دانش آموز</th>
-                            <th className="text-natural_gray-950 font-medium">100% مبلغ کلاس</th>
-                            <th className="text-natural_gray-950 font-medium">60% مبلغ کلاس</th>
-                            <th className="text-natural_gray-950 font-medium">40% مبلغ کلاس</th>
-                            <th className="text-natural_gray-950 font-medium">بدون کاهش اعتبار</th>
+                            <th>کمتر از 3 ساعت قبل از شروع کلاس</th>
+                            <th className="text-natural_gray-950 font-semibold">80%</th>
                         </tr>
                         <tr className="[&>th]:border-x [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                            <th>پرداختی به استاد</th>
-                            <th className="text-natural_gray-950 font-medium">65%</th>
-                            <th className="text-natural_gray-950 font-medium">35%</th>
-                            <th className="text-natural_gray-950 font-medium">25%</th>
-                            <th className="text-natural_gray-950 font-medium">0%</th>
+                            <th>تا 3 ساعت قبل از شروع کلاس</th>
+                            <th className="text-natural_gray-950 font-semibold">60%</th>
                         </tr>
                         <tr className="[&>th]:border-x [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                            <th>پرداختی به لینگومسترز</th>
-                            <th className="text-natural_gray-950 font-medium">35%</th>
-                            <th className="text-natural_gray-950 font-medium">25%</th>
-                            <th className="text-natural_gray-950 font-medium">15%</th>
-                            <th className="text-natural_gray-950 font-medium">0%</th>
+                            <th>بین 3 تا 6 ساعت قبل از شروع کلاس</th>
+                            <th className="text-natural_gray-950 font-semibold">40%</th>
+                        </tr>
+                        <tr className="[&>th]:border-x [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
+                            <th>بین 6 تا 12 ساعت قبل از شروع کلاس</th>
+                            <th className="text-natural_gray-950 font-semibold">20%</th>
+                        </tr>
+                        <tr className="[&>th]:border-x [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
+                            <th>بیش از 24 ساعت قبل از شروع کلاس</th>
+                            <th className="text-natural_gray-950 font-semibold">بدون جریمه</th>
                         </tr>
                         </thead>
                     </table>

@@ -1,14 +1,23 @@
+import React from "react";
 import Left from '@icons/arrow-left.svg'
 import Link from 'next/link'
-import Image from "next/image";
+import X from '@icons/x.svg'
+import Youtube from '@icons/youtube.svg'
+import Insta from "@icons/instagram.svg";
+import Whats from "@icons/whatsapp.svg";
+import Tel from "@icons/telegram.svg";
+import Apa from "@icons/aparat.svg";
+import Tik from "@icons/tik_tok.svg";
+import Pi from "@icons/pinterest.svg";
+import Fac from "@icons/facebook.svg";
 
 const Footer = () => {
     return (
         <>
             <div className="relative mt-40 flex flex-col" dir='rtl'>
                 <div
-                    className="flex gap-20 lg:py-20 lg:px-20 sm:py-10 sm:px-8 py-8 px-4 bg-[linear-gradient(90deg,_#B5C7DF_0%,_#E8EFF8_100%)]">
-                    <div className="flex flex-wrap gap-10 justify-between w-full">
+                    className="flex flex-col gap-10 lg:pt-20 lg:px-20 sm:py-10 sm:px-8 py-8 px-4 bg-[linear-gradient(90deg,_#B5C7DF_0%,_#E8EFF8_100%)]">
+                    <div className="flex flex-wrap items-end gap-10 justify-between w-full">
                         <div className="flex flex-col gap-8 grow">
                             <p className="">دسترسی ها</p>
                             <div className="grid sm:grid-cols-3 grid-cols-1 sm:gap-8 gap-4 grow">
@@ -88,22 +97,59 @@ const Footer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex lg:flex-col gap-6 lg:justify-between items-center justify-center">
-                            <div className="lg:w-full sm:w-1/5 w-1/2 max-h-[180px]">
+                        <div className="flex gap-6 items-center h-fit">
+                            <div className="">
                                 <img src={'/images/etehadie.png'} alt={'etehadie'}
-                                     className="w-full h-full object-contain"
+                                     className="w-full max-h-[130px] object-contain"
                                 />
                             </div>
                             <a referrerPolicy='origin' target='_blank'
-                               className="lg:w-full sm:w-1/5 w-1/2 max-h-[180px]"
+                               className=""
                                href='https://trustseal.enamad.ir/?id=511544&Code=b5B03h3L84P1noEJN4Gvb8Ma1dJOBQub'>
                                 <img
-                                    className="w-full h-full object-contain mix-blend-multiply"
+                                    className="w-full max-h-[130px] object-contain mix-blend-multiply"
                                     referrerPolicy='origin'
                                     src="/images/enamad_1024.png"
                                     alt='' code='b5B03h3L84P1noEJN4Gvb8Ma1dJOBQub'/>
                             </a>
                         </div>
+                    </div>
+                    <div className="centerOfParent gap-2">
+                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_YOUTUBE} target="_blank"
+                              rel="noopener noreferrer">
+                            <Youtube/>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM} target="_blank"
+                              rel="noopener noreferrer">
+                            <Insta/>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_WHATSAPP} target="_blank"
+                              rel="noopener noreferrer">
+                            <Whats/>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_TELEGRAM} target="_blank"
+                              rel="noopener noreferrer">
+                            <Tel/>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_APARAT} target="_blank"
+                              rel="noopener noreferrer">
+                            <Apa/>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_TIKTOK} target="_blank"
+                              rel="noopener noreferrer">
+                            <Tik/>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_PINTEREST} target="_blank"
+                              rel="noopener noreferrer">
+                            <Pi/>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK} target="_blank"
+                              rel="noopener noreferrer">
+                            <Fac/>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_X} target="_blank" rel="noopener noreferrer">
+                            <X/>
+                        </Link>
                     </div>
                 </div>
                 <div

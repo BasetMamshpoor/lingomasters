@@ -135,6 +135,7 @@ const MoshavereForm = () => {
                                 minRows={4}
                                 maxRows={8}
                             />
+                            <div className="sm:block hidden"></div>
                             <div className="flex items-center *:flex-1">
                                 {/*reCAPTCHA */}
                                 <Button isLoading={isLoading} type='submit'

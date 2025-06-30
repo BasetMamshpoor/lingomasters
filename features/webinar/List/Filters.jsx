@@ -10,7 +10,7 @@ import {
     Input,
     Radio,
     RadioGroup,
-    Skeleton
+    Skeleton, Switch
 } from "@heroui/react";
 import {useRouter} from "next/router";
 
@@ -159,6 +159,7 @@ const Filters = ({setCurrentPage}) => {
                                 "--heroui-default-500": "196 94% 25%",
                             }}
                             color='default'
+                            classNames={{wrapper: 'grid grid-cols-2'}}
                             onValueChange={(e) => handleFilter('languageLevels', e)}
                         >
                             {data.languageLevels?.map(a => <Radio key={a.value}
@@ -233,22 +234,10 @@ const Filters = ({setCurrentPage}) => {
                             )}
                         </RadioGroup>
                     </div>
-                    <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>نزدیک‌ترین زمان تشکیل وبینار</label>
-                        <div className='grid grid-cols-2 gap-y-2'>
-                            {data.near?.map(c => {
-                                return <Checkbox
-                                    style={{
-                                        "--heroui-success": "196 94% 25%",
-                                    }}
-                                    color='success'
-                                    isSelected={Array.isArray(filters.near) ? filters.near[0].value : filters.near === c.key}
-                                    onValueChange={e => handleFilter('near', e ? c.key : null)}
-                                    classNames={{icon: 'text-white'}} key={c.key}
-                                    value={c.key}>{c.title}</Checkbox>
-                            })}
-                        </div>
-                    </div>
+                    <Switch isSelected={filters.near ? filters.near[0]?.value : undefined}
+                            color="success"
+                            onValueChange={e => handleFilter('near', e)}>نزدیکترین زمان تشکیل
+                        وبینار</Switch>
                 </div>
                 : <Skeleton className="rounded-lg h-full">
                     <div className="h-24 rounded-lg bg-default-300"></div>

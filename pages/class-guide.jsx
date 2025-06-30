@@ -7,6 +7,8 @@ import Calendar from "@icons/calendar.svg"
 import Chevron from "@icons/chevron-right.svg";
 import Task from "@icons/task-square.svg";
 
+const platforms = ["voov", "teams", "zoom", "googleMeet", "Class in", "Big Blue Button", "Adobe Connect", "whatsapp"];
+
 const ClassGuide = () => {
     return (
         <>
@@ -45,12 +47,12 @@ const ClassGuide = () => {
                                 به
                                 راحتی با اساتید و همکلاسی های خود در ارتباط باشید.
                             </p>
-                            <div className="flex items-center gap-4 mx-auto ">
+                            <div className="flex items-center gap-4 sm:mx-auto">
                                 <Link href="/private-class"
-                                      className="px-6 py-3 text-white bg-primary-600 border-1.5  border-primary-600 rounded-md">کلاس
+                                      className="sm:px-6 sm:py-3 sm:w-fit w-full py-2 text-white bg-primary-600 border-1.5  border-primary-600 rounded-md text-center">کلاس
                                     های آنلاین خصوصی</Link>
                                 <Link href="/group-class"
-                                      className="px-6 py-3 text-secondary-500 rounded-md border-1.5 border-secondary-500">کلاس
+                                      className="sm:px-6 sm:py-3 sm:w-fit w-full py-2 text-secondary-500 rounded-md border-1.5 border-secondary-500 text-center">کلاس
                                     های آنلاین گروهی</Link>
                             </div>
                         </div>
@@ -115,8 +117,8 @@ const ClassGuide = () => {
                         <div className="flex flex-col gap-24 ">
                             <p className="text-base sm:text-xl">
                                 ما در لینگومسترز کلای های حضوری و آنلاین داریم. <br/>
-                                لینگومسترز کلاس های آنلاین خصوصی و گروهی خود را در بستر نرم افزارهای VooV, Skype, Zoom و
-                                Google Meet اجرا میکند. <br/>
+                                لینگومسترز کلاس های آنلاین خصوصی و گروهی خود را در بستر نرم
+                                افزارهای {platforms.join(", ")} اجرا میکند. <br/>
                                 شما می توانید با نصب هر یک از این برنامه ها از کلاس های ما استفاده کنید و در فضای آنلاین
                                 به
                                 راحتی با اساتید و همکلاسی های خود در ارتباط باشید. </p>
@@ -143,7 +145,7 @@ const ClassGuide = () => {
                            className="w-full h-full  flex sm:hidden"/>
                 </div>
                 <div className="flex lg:items-center justify-between gap-6 lg:flex-row flex-col">
-                    <p className="text-2xl">برنامه این دوره ها بر اساس برنامه استاد چیده میشود.</p>
+                    <p className="">برنامه این دوره ها بر اساس برنامه استاد چیده میشود.</p>
                     <Link href="/group-class"
                           className="self-end px-6 text-center py-2 w-44 text-white bg-primary-600 border-1.5  border-primary-600 rounded-md">رزرو
                         کلاس گروهی</Link>

@@ -63,11 +63,11 @@ const GroupClass = () => {
                         <Tab key="in" title="کلاس های گروهی داخل ایران"/>
                         <Tab key="out" title="کلاس های گروهی خارج ایران"/>
                     </Tabs>
-                    <div
-                        className="w-full flex items-start gap-4 rounded-lg bg-[#FFFBEB] p-6 sm:text-base text-sm text-[#F3A218] mb-6">
-                            <div className="centerOfParent rounded-full h-6 w-6 warningDots"></div>
-                        <p>حداقل زمان رزرو کلاس های گروهی، تا یک روز قبل از شروع می باشد مگر اینکه جهت تکمیل ظرفیت تا یک ساعت قبل از شروع. زمان ثبت نام تمدید شود.</p>
-                    </div>
+                    {/*<div*/}
+                    {/*    className="w-full flex items-start gap-4 rounded-lg bg-[#FFFBEB] p-6 sm:text-base text-sm text-[#F3A218] mb-6">*/}
+                    {/*        <div className="centerOfParent rounded-full h-6 w-6 warningDots"></div>*/}
+                    {/*    <p>حداقل زمان رزرو کلاس های گروهی، تا یک روز قبل از شروع می باشد مگر اینکه جهت تکمیل ظرفیت تا یک ساعت قبل از شروع. زمان ثبت نام تمدید شود.</p>*/}
+                    {/*</div>*/}
                     <div className='grid lg:grid-cols-12 grid-cols-1'>
                         <div className='hidden lg:block lg:col-span-3 bg-white'>
                             <Filters setCurrentPage={setCurrentPage}/>
