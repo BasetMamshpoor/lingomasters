@@ -1,4 +1,3 @@
-import Dropdown from '@/components/Dropdown/DropDown';
 import useGetRequest from '@/hooks/useGetRequest';
 import React, {useRef, useState} from 'react';
 import RangeSlider from '@/components/Range';
@@ -18,6 +17,7 @@ import FilterIcon from '@icons/filter.svg';
 import Search from '@icons/search.svg';
 import SortList from './sort.json'
 import weekDays from '@/func/Calendar.json'
+import Dropdown from "@/components/Dropdown/DropDown";
 
 const Filters = ({setCurrentPage}) => {
     const searchRef = useRef(null)
