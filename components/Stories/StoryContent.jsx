@@ -1,11 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import Back from "@icons/chevron-right.svg";
-import Like from "@icons/fill-heart.svg";
-import Unlike from "@icons/heart.svg";
 import Chat from "@icons/chat-alt.svg";
 import {Avatar, Input, ModalBody} from "@heroui/react";
 import useGetRequest from "@/hooks/useGetRequest"
 import StoryComments from "@/components/Stories/StoryComments";
+import Like from "@/components/Like";
 
 const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
@@ -16,8 +15,8 @@ const formatTime = (timeInSeconds) => {
 const StoryContent = ({onClose, id, isOpen, Stories, index}) => {
     const [storyId, setStoryId] = useState(id);
     const [indexStory, setIndexStory] = useState(index);
-    const [data] = useGetRequest(`/story/show/${storyId}`);
-    const story = data ? data.story : {professor: {}, comments: []};
+    const [data] = useGetRequest(true, `/story/show/${storyId}`);
+    const story = data ? data.story : {seller: {}, comments: []};
 
     const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -90,9 +89,9 @@ const StoryContent = ({onClose, id, isOpen, Stories, index}) => {
                         <div className="absolute top-0 righ-0 left-0 z-10 flex items-center gap-4 w-full p-4"
                              dir={'rtl'}>
                             <Back className='fill-white cursor-pointer' onClick={onClose}/>
-                            <Avatar src={story.professor.image} isBordered color='primary'
-                                    alt={`${story.professor.name}'s avatar`}/>
-                            <span className="text-lg font-semibold">{story.professor.name || '...'}</span>
+                            <Avatar src={story.seller?.image} isBordered color='primary'
+                                    alt={`${story.seller?.name}'s avatar`}/>
+                            <span className="text-lg font-semibold">{story.seller?.name || '...'}</span>
                         </div>
                         <div className="w-full aspect-w-9 aspect-h-16 bg-black rounded-lg overflow-hidden">
                             <video
@@ -133,21 +132,21 @@ const StoryContent = ({onClose, id, isOpen, Stories, index}) => {
                                      style={{width: `${100 - progressPercentage}%`}}></div>
                             </div>
                         </div>
-                        <div className='absolute z-10 flex flex-col gap-4 items-center bottom-10 left-0 p-4'>
+                        {data && <div className='absolute z-10 flex flex-col gap-4 items-center bottom-10 left-0 p-4'>
                             <div className="flex items-center cursor-pointer flex-col gap-2" onClick={handleLike}>
                                 <div className="centerOfParent">
-                                    {story.is_like ? <Like/> : <Unlike className={'fill-white'}/>}
+                                    <Like isLike={story.is_liked} url="/story" id={story.id} className="fill-white"/>
                                 </div>
-                                <span className="text-xs" np>{story.likes_count || 0}</span>
+                                <span className="text-xs">{story.likes_count || 0}</span>
                             </div>
                             <div className="flex items-center cursor-pointer flex-col gap-2"
                                  onClick={() => setShowComments(true)}>
                                 <div className="centerOfParent">
-                                    <Chat/>
+                                    <Chat className="fill-white"/>
                                 </div>
                                 <span className="text-xs">{story.comments_count || 0}</span>
                             </div>
-                        </div>
+                        </div>}
                         {!!data && <StoryComments storyId={id} lastPage={story.pagination.last_page}
                                                   comments={data.story.comments} showComments={showComments}
                                                   setShowComments={setShowComments}/>}
