@@ -35,7 +35,7 @@ const Language = ({data}) => {
                     <div className="flex flex-col items-center gap-2">
                         <Earth className="w-16 h-16 sm:w-28 sm:h-28"/>
                         <p className="text-sm sm:text-base text-white whitespace-nowrap sm:block hidden">زبان‌های
-                            لیگومسترز</p>
+                            لیگنومسترز</p>
                     </div>
                     <div className="relative overflow-hidden">
                         {isScrollable && (

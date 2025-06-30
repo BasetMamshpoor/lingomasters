@@ -21,7 +21,7 @@ export default function Skills({data}) {
     return (
         <>
             <div
-                className="p-4 flex flex-col gap-4 bg-white border border-natural_gray-50 rounded-lg withYellowCircel  scroll-m-24"
+                className="p-4 flex flex-col gap-4 bg-white border border-natural_gray-50 rounded-lg withYellowCircel  scroll-m-52"
                 id="specialties">
                 <div className="centerOfParent gap-2 w-fit">
                     <div className="centerOfParent"><Badge className='w-5 h-5 fill-primary-600'/></div>

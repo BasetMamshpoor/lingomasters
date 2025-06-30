@@ -10,7 +10,7 @@ const Story = ({story, trigger, ...props}) => {
         <>
             {trigger ? <div onClick={onOpen}
                             className={`centerOfParent relative w-fit max-h-80 rounded-lg overflow-hidden cursor-pointer`}>
-                    <Image alt="" src={story.cover} width='100' height='100' sizes='100vw'
+                    <Image alt="" src={story.cover || '/images/banner.jpg'} width='100' height='100' sizes='100vw'
                            className='w-full h-full object-contain'/>
                 </div> :
                 <div onClick={onOpen}

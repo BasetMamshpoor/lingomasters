@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import Icon from '@icons/sellers.svg';
 import LikeIcon from '@icons/like.svg'
 import LikeFill from '@icons/like-fill.svg'
-import Dislike from '@icons/dislike.svg'
-import DislikeFill from '@icons/dislike-fill.svg'
 import Down from '@icons/arrow-down.svg'
 import Chat from '@icons/chat-alt.svg';
 import useSwipeScroll from '@/hooks/useHorizontalScroll';
@@ -18,7 +16,7 @@ const Stories = ({data}) => {
     return (
         <>
             <div
-                className="sm:p-6 px-3 py-4 flex flex-col gap-4 bg-white rounded-lg border-natural_gray-100 border scroll-m-24"
+                className="sm:p-6 px-3 py-4 flex flex-col gap-4 bg-white rounded-lg border-natural_gray-100 border scroll-m-52"
                 id='stories'>
                 <div className="centerOfParent gap-2 w-fit">
                     <div className="centerOfParent"><Icon className='w-5 h-5'/></div>

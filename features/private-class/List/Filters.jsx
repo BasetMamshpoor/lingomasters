@@ -3,8 +3,6 @@ import useGetRequest from '@/hooks/useGetRequest';
 import React, {useRef, useState} from 'react';
 import RangeSlider from '@/components/Range';
 import {
-    Autocomplete, AutocompleteItem,
-    AutocompleteSection,
     Checkbox,
     CheckboxGroup,
     Input,
@@ -113,26 +111,18 @@ const Filters = ({setCurrentPage}) => {
                     </form>
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>مرتب سازی بر اساس</label>
-                        <CheckboxGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            color='success'
-                            style={{
-                                "--heroui-success": "196 94% 25%",
-                            }}
-                            value={filters.sort ? [filters.sort] : 'newest'}
-                            onValueChange={(e) => {
-                                if (e.length === 0) {
-                                    handleFilter('sort', null); // Handle unselecting all checkboxes
-                                } else {
-                                    handleFilter('sort', e[e.length - 1]); // Use the last selected value
-                                }
-                            }}
-                            classNames={{wrapper: 'grid grid-cols-2'}}
-                        >
-                            {SortList.sort.map(c => <Checkbox classNames={{icon: 'text-white'}} key={c.key}
-                                                              value={c.key}>{c.title}</Checkbox>)}
-                        </CheckboxGroup>
+                        <div className='grid grid-cols-2 gap-y-2'>
+                            {SortList.sort.map(c =>
+                                <Checkbox
+                                    style={{
+                                        "--heroui-success": "196 94% 25%",
+                                    }}
+                                    color='success'
+                                    isSelected={Array.isArray(filters.sort) ? filters.sort[0].value : filters.sort === c.key}
+                                    onValueChange={e => handleFilter('sort', c.key)}
+                                    classNames={{icon: 'text-white'}} key={c.key}
+                                    value={c.key}>{c.title}</Checkbox>)}
+                        </div>
                     </div>
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>نوع تدریس</label>

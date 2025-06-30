@@ -13,7 +13,7 @@ export default function PointOfLearning({data}) {
     return (
         <>
             <div
-                className="p-4 flex flex-col gap-4 bg-white border border-natural_gray-50 rounded-lg withYellowCircel scroll-m-24"
+                className="p-4 flex flex-col gap-4 bg-white border border-natural_gray-50 rounded-lg withYellowCircel scroll-m-52"
                 id="target"
             >
                 <div className="centerOfParent gap-2 w-fit">

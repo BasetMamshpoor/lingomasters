@@ -305,22 +305,6 @@ const Filters = ({setCurrentPage}) => {
                             color="success"
                             onValueChange={e => handleFilter('near', e)}>نزدیکترین زمان تشکیل
                         کلاس</Switch>
-                    {/*<div className="flex flex-col gap-4">*/}
-                    {/*    <label className='font-semibold'>نزدیک‌ترین زمان تشکیل کلاس</label>*/}
-                    {/*    <div className='grid grid-cols-2 gap-y-2'>*/}
-                    {/*        {data.near?.map(c => {*/}
-                    {/*            return <Checkbox*/}
-                    {/*                style={{*/}
-                    {/*                    "--heroui-success": "196 94% 25%",*/}
-                    {/*                }}*/}
-                    {/*                color='success'*/}
-                    {/*                isSelected={Array.isArray(filters.near) ? filters.near[0].value : filters.near === c.key}*/}
-                    {/*                onValueChange={e => handleFilter('near', e ? c.key : null)}*/}
-                    {/*                classNames={{icon: 'text-white'}} key={c.key}*/}
-                    {/*                value={c.key}>{c.title}</Checkbox>*/}
-                    {/*        })}*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
                 : <Skeleton className="rounded-lg h-full">
                     <div className="h-24 rounded-lg bg-default-300"></div>

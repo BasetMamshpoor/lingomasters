@@ -20,11 +20,11 @@ const list = [
     },
     {
         n: 'استاد',
-        id: 'movie'
+        id: 'resume'
     },
     {
         n: 'نوع کلاس',
-        id: 'target'
+        id: 'type'
     },
     {
         n: 'تقویم آموزشی',
