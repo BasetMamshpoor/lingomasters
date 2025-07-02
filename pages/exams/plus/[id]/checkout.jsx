@@ -30,7 +30,7 @@ const Reserve = ({title}) => {
             success,
             successMessage,
             errorMessage
-        } = await sendPostRequest("POST", `/exams/pay${selected === '2' ? "/wallet" : ""}/${id}`, {code: coupon?.code || null}, false, true)
+        } = await sendPostRequest("POST", `/exams/pay${selected === '2' ? "/wallet" : ""}/${id}`, {code: coupon?.code || null},)
         if (success) {
             if (selected === '1')
                 push(Data.url)

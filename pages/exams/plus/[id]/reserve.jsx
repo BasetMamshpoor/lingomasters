@@ -9,13 +9,7 @@ import Progress from "@/components/Progress";
 import Image from "next/image";
 import Payment from "@/components/Payment";
 import CheckCoupon from "@/components/CheckCoupon";
-import Users from "@icons/users.svg";
 import TrashIcon from "@icons/bin.svg";
-import EditIcon from "@icons/edit-icon.svg";
-import HistoryIcon from "@icons/history.svg";
-import Add from "@icons/user-add.svg";
-import KingdomFlag from "@icons/Flags/Country=United Kingdom, Style=Flag, Radius=On.svg";
-import GrowthIcon from "@icons/growth.svg";
 
 const stepsList = [
     'تاییدیه',

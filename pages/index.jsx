@@ -15,7 +15,6 @@ import Stories from "@/components/Stories/Stories";
 import GeneralQuestions from "@/features/Landing/GeneralQuestions";
 import Amar from "@/features/Landing/Amar";
 import LandingBook from "@/features/Landing/LearningBook";
-import LearningStart from "@/features/Landing/LearningStart";
 import Moshavere from "@/features/Landing/Moshavere";
 import Ostad from "@/features/Landing/Ostad";
 import Language from "@/features/Landing/Language";
@@ -29,6 +28,7 @@ import MoshavereForm from "@/features/Landing/MoshavereForm";
 import Comments from "@/features/Landing/Comments";
 import AgeGroup from "@/features/Landing/AgeGroup";
 import HeroBanner from "@/features/Landing/HeroBanner";
+import LearningFlow from "@/features/Landing/LearningBookLanding/LearningFlowContainer";
 
 
 export default function Home() {
@@ -55,7 +55,7 @@ export default function Home() {
                     title='معرفی کلاس‌های گروهی'
                     loop
                     to={`/group-class`}/>
-                <LearningStart/>
+                <LearningFlow/>
                 <AgeGroup />
                 <Moshavere/>
                 <Ostad/>
