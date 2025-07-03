@@ -10,8 +10,8 @@ const DiscountCard = ({code, expires_at, id, limit, percentage, title}) => {
             <div dir="rtl" id={id}
                  className="flex items-center flex-col lg:flex-row bg-white rounded-xl p-4 gap-4 w-full max-w-2xl border border-gray-200 h-fit">
                 <div
-                    className="w-full  h-1/2 lg:h-full lg:w-1/3 bg-blue-50 flex items-center justify-center rounded-xl overflow-hidden">
-                    <Image src="/images/offer.png" alt="" width={100} height={100} className="w-full h-full"/>
+                    className="w-full max-h-32 lg:max-h-full lg:w-1/3 centerOfParent rounded-xl overflow-hidden">
+                    <Image unoptimized src="/images/offer.png" alt="" width={100} height={100} className="w-full h-full object- cover"/>
                 </div>
                 <div
                     className="w-full lg:w-2/3 flex flex-col border-t-2 lg:border-r-2 lg:border-t-0 border-dashed pt-5 lg:p-0 lg:pr-5 gap-6">

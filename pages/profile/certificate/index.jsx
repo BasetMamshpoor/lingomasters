@@ -47,7 +47,7 @@ const Index = () => {
             {isLoading ?
                 <div className="w-full centerOfParent mt-6">
                     <Spinner color='success'/>
-                </div> : !data.length ? <div className="flex flex-col items-center gap-4 md:gap-6">
+                </div> : !data?.length ? <div className="flex flex-col items-center gap-4 md:gap-6">
                         <File className="w-16 h-16 md:w-24 md:h-24"/>
                         <p className="text-sm text-natural_gray-700">هیچ گواهینامه‌ای ثبت نشده است.</p>
                         <p className="text-xs lg:text-sm text-primary-800">

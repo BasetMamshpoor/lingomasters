@@ -21,7 +21,7 @@ const LandingBook = () => {
                         <Link href="https://store.lingomastres.ir"
                               className="text-xs sm:text-base self-end px-4 md:px-12 py-2 text-white bg-primary-600 border-1.5  border-primary-600 rounded-md whitespace-nowrap">
                             خرید کتاب ها </Link>
-                        <a href={'/public/book samples.pdf'} download='/public/book samples.pdf'
+                        <a href="/book%20samples.pdf" download
                            className="text-xs sm:text-base self-end px-4 py-2 text-secondary-500 border-1.5  border-secondary-500 rounded-md whitespace-nowrap">مشاهده
                             نمونه صفحات
                         </a>

@@ -18,7 +18,7 @@ const Slider = ({loop, data, isLoading, Component, children, to, Icon, title}) =
                         </div>
                         <Link href={to}
                               className="centerOfParent gap-2 text-primary-600 fill-primary-600 lg:text-base text-sm">
-                            مشاهده همه کلاس ها
+                            مشاهده بیشتر
                             <Left className="w-5 h-5"/>
                         </Link>
                     </div>

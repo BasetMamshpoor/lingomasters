@@ -66,14 +66,14 @@ const Slider = ({data}) => {
                                     400: {
                                         slidesPerView: 1.5,
                                     },
-                                    // 460: {
-                                    //     slidesPerView: 1.8,
-                                    // },
+                                    460: {
+                                        slidesPerView: 1.8,
+                                    },
                                     500: {
                                         slidesPerView: 2,
                                     },
                                     570: {
-                                        slidesPerView: 2.3,
+                                        slidesPerView: 2,
                                     },
                                     // 640: {
                                     //     slidesPerView: 2.1,

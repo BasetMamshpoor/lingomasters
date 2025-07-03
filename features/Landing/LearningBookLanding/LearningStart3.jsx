@@ -32,7 +32,7 @@ const LearningStart3 = ({path, onSelect,onBack}) => {
                         <div className="flex flex-col items-center justify-center gap-6 ml-10">
                             <p className="text-3xl text-white">چون هیچی بلد نیستی باید از صفر شروع کنی</p>
                             <div className="flex items-center justify-center gap-6">
-                                <Link href="/group-class"
+                                <Link href="/private-class"
                                       className=" px-12 py-3 w-1/3 flex items-center justify-center text-white bg-primary-600 rounded-md whitespace-nowrap ">انتخاب
                                     کلاس خصوصی</Link>
                                 <Link href="/group-class"
@@ -65,7 +65,7 @@ const LearningStart3 = ({path, onSelect,onBack}) => {
                             <p className="text-xl text-white whitespace-nowrap">چون هیچی بلد نیستی باید از صفر شروع
                                 کنی</p>
                             <div className="flex items-center justify-center gap-6">
-                                <Link href="/group-class"
+                                <Link href="/private-class"
                                       className=" px-3 py-2 text-white bg-primary-600 rounded-md whitespace-nowrap ">انتخاب
                                     کلاس خصوصی</Link>
                                 <Link href="/group-class"
@@ -98,7 +98,7 @@ const LearningStart3 = ({path, onSelect,onBack}) => {
                             <p className="text-sm text-white whitespace-nowrap">چون هیچی بلد نیستی باید از صفر شروع
                                 کنی</p>
                             <div className="flex items-center justify-center gap-4">
-                                <Link href="/group-class"
+                                <Link href="/private-class"
                                       className=" px-3 py-2 text-white bg-primary-600 rounded-md whitespace-nowrap text-xs">انتخاب
                                     کلاس خصوصی</Link>
                                 <Link href="/group-class"

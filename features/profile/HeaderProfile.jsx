@@ -8,7 +8,6 @@ import User from '@icons/user-tick.svg'
 import Logout from '@icons/logout.svg'
 import Bell from '@icons/bell.svg'
 import Heart from '@icons/heart.svg'
-import FillHeart from '@icons/fill-heart.svg'
 import Message from '@icons/message-alt.svg'
 import Calendar from '@icons/calendar.svg'
 import Menu from '@icons/menu.svg'
@@ -20,11 +19,11 @@ import Image from "next/image";
 import withAuth from "@/components/withAuth";
 
 const links = [
-    {href: "/profile/calendar", icon: Calendar, activeIcon: 'CalendarFill', text: "تقویم آموزشی"},
-    {href: "/profile/messages", icon: Message, activeIcon: 'MessageFill', text: "پیام‌ها"},
-    {href: "/profile/offers", icon: Off, activeIcon: 'OffFill', text: "پیام‌ها"},
-    {href: "/profile/favorites", icon: Heart, activeIcon: FillHeart, text: "علاقه مندی ها"},
-    {href: "/profile/notifications", icon: Bell, activeIcon: 'BellFill', text: "اعلان‌ها"},
+    {href: "/profile/calendar", icon: Calendar, activeIcon: Calendar, text: "تقویم آموزشی"},
+    {href: "/profile/messages", icon: Message, activeIcon: Message, text: "پیام‌ها"},
+    {href: "/profile/offers", icon: Off, activeIcon: Off, text: "پیام‌ها"},
+    {href: "/profile/favorites", icon: Heart, activeIcon: Heart, text: "علاقه مندی ها"},
+    {href: "/profile/notifications", icon: Bell, activeIcon: Bell, text: "اعلان‌ها"},
 ];
 const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
     const {student, logout} = useContext(Information)
@@ -52,7 +51,8 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                     </div>
                     <p className='lg:block hidden text-primary-950 text-sm font-semibold'>{title || 'اطلاعات کاربری'}</p>
                 </div>
-                <h1 className='lg:hidden sm:text-3xl text-lg font-Metal'>{process.env.NEXT_PUBLIC_LOGO}</h1>
+                <Link href="/"
+                      className='lg:hidden sm:text-3xl text-lg font-Metal'>{process.env.NEXT_PUBLIC_LOGO}</Link>
                 <div className='flex items-center gap-8'>
                     <ul className="lg:flex hidden items-center gap-8">
                         {links.map((link) => {
@@ -61,7 +61,7 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                                 <li key={link.href} className="centerOfParent">
                                     <Link href={link.href} onClick={() => setTitle(link.text)}>
                                         {isActive ? (
-                                            <link.activeIcon className="fill-primary-600"/>
+                                            <link.activeIcon className={'fill-primary-700'}/>
                                         ) : (
                                             <link.icon className=""/>
                                         )}
@@ -70,7 +70,7 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                             );
                         })}
                     </ul>
-                    <div className="sm:flex items-center justify-center hidden">
+                    {!!languages?.student_languages?.length && <div className="sm:flex items-center justify-center hidden">
                         <Dropdown
                             placement="bottom-start"
                             classNames={{content: 'rounded min-w-0'}}
@@ -96,7 +96,7 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                                 })}
                             </DropdownMenu>
                         </Dropdown>
-                    </div>
+                    </div>}
                     <div className="centerOfParent">
                         <Dropdown
                             placement="bottom-start"
@@ -127,7 +127,7 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
                                 </DropdownItem>
                                 {links.map((link) => {
                                     return (
-                                        <DropdownItem key={link.href}
+                                        <DropdownItem key={link.href} href={link.href}
                                                       className="lg:hidden flex items-center justify-center">
                                             <div className='flex items-center gap-4 justify-end'>
                                                 <span>{link.text}</span>

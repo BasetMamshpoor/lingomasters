@@ -27,7 +27,7 @@ const LearningStart = ({ onNext }) => {
                         <Arrow6 className="fill-white w-20 h-20 sm:hidden absolute -bottom-10 -left-20 "/>
                     </div>
                     <div className="py-12 ">
-                        <Image src="/images/Register.png" alt="" width={100} height={100}
+                        <Image unoptimized src="/images/Register.png" alt="" width={100} height={100}
                                className="w-full h-full"/>
                     </div>
                     <div className="flex self-end pl-10 pb-10">
@@ -52,14 +52,14 @@ const LearningStart = ({ onNext }) => {
                                 <Arrow6 className="fill-white w-20 h-20 sm:hidden absolute -bottom-10 -left-20 "/>
                             </div>
                             <div className="py-12 ">
-                                <Image src="/images/Register.png" alt="" width={100} height={100}
+                                <Image unoptimized src="/images/Register.png" alt="" width={100} height={100}
                                        className="w-full h-full"/>
                             </div>
                         </div>
                         <div className="flex self-end pl-10 pb-10">
-                            <Link href="/group-class"
+                            <button  onClick={onNext}
                                   className=" self-end px-9 py-3 text-white border-1.5  border-white rounded-md whitespace-nowrap text-xs sm:text-base">بزن
-                                بریم</Link>
+                                بریم</button>
                         </div>
                     </div>
                 </div>
@@ -77,13 +77,13 @@ const LearningStart = ({ onNext }) => {
                             <Arrow6 className="fill-white w-20 h-20 absolute -bottom-10 right-28"/>
                         </div>
                         <div className="py-12 ">
-                            <Image src="/images/Register.png" alt="" width={100} height={100}
+                            <Image unoptimized src="/images/Register.png" alt="" width={100} height={100}
                                    className="w-full h-full"/>
                         </div>
                         <div className="flex self-end pl-2 pb-10">
-                            <Link href="/group-class"
+                            <button  onClick={onNext}
                                   className=" self-end px-6 py-1 text-white border-1.5  border-white rounded-md whitespace-nowrap text-base">بزن
-                                بریم</Link>
+                                بریم</button>
                         </div>
                     </div>
                 </div>

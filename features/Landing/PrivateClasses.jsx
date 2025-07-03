@@ -15,7 +15,7 @@ const PrivateClasses = ({languages}) => {
                 isLoading={isLoading}
                 data={data}
                 Icon={Users}
-                title='معرفی کلاس‌های خصوصی'
+                title='معرفی اساتید'
                 loop
                 to={`/private-class?language=${id}`}>
                 <LanguageList data={languages} setId={setId} id={id}/>

@@ -150,7 +150,7 @@ const Comment =
                             {type === 'video' && (
                                 <div className="centerOfParent rounded-full w-40 h-auto">
                                     <Card
-                                        movie={content} bgSrc={'/images/profile.png'}/></div>
+                                        movie={content} bgSrc={'/images/profile.jpg'}/></div>
                             )}
                         </div>
                         {isApproved && <LikeDislike setReload={setReload} id={id}

@@ -72,7 +72,7 @@ function GroupCard({price, discount, view, is_like, title, image, language, id, 
                         </div>
                         <p className="text-xs text-natural_gray-900">روز/ساعت</p>
                     </div>
-                    <p className="text-sm">{day}</p>
+                    <p className="text-sm text-left">{day}</p>
                 </div>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1">
@@ -110,7 +110,7 @@ function GroupCard({price, discount, view, is_like, title, image, language, id, 
                     جزئیات
                 </Link>
                 <Link href={`/group-class/${id}/reserve-class`}
-                      className="py-2 px-4 border bg-blue-600 text-white text-center w-full rounded-md effect-2 text-sm">
+                      className="py-2 px-4 border bg-blue-600 whitespace-nowrap text-white text-center w-full rounded-md effect-2 text-sm">
                     رزرو کلاس
                 </Link>
             </div>

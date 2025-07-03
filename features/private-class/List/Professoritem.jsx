@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import Star from '@icons/magic-star.svg'
 import EyeIcon from "@icons/eye-right.svg";
-import HeartIcon from "@icons/heart.svg";
+import Tadris from "@icons/webinar.svg";
 import Image from "next/image";
-import {Card, CardBody, ScrollShadow, Tab, Tabs} from "@heroui/react";
+import {ScrollShadow, Tab, Tabs} from "@heroui/react";
 import Link from "next/link";
 import Video from "@icons/video.svg";
 import UserIcon from "@icons/user-tick.svg";
@@ -158,7 +158,7 @@ const ProfessorItem = ({r = {languages: [], genders: [], teaching_types: [], age
                         variant="underlined"
                         className="justify-center flex"
                         classNames={{
-                            tabList: "sm:gap-6 relative",
+                            tabList: "sm:gap-2 relative",
                             cursor: "w-full bg-primary-800 h-px",
                             tab: "max-w-fit sm:px-4 h-12",
                             panel: 'py-0 [&>div]:shadow-none [&>div>div]:!p-0',
@@ -178,10 +178,10 @@ const ProfessorItem = ({r = {languages: [], genders: [], teaching_types: [], age
                                 </div>
                             }
                         >
-                            <Card>
-                                <CardBody><CardVideo bgSrc={r.cover} movie={r.about_video}
-                                                     className='!max-h-full h-full w-full'/></CardBody>
-                            </Card>
+                            <CardVideo
+                                bgSrc={r.cover}
+                                movie={r.about_video}
+                                className='!max-h-full h-full w-full'/>
                         </Tab>
                         <Tab
                             key="description"
@@ -196,13 +196,27 @@ const ProfessorItem = ({r = {languages: [], genders: [], teaching_types: [], age
                                 </div>
                             }
                         >
-                            <Card>
-                                <CardBody>
-                                    <ScrollShadow hideScrollBar className="max-h-96">
-                                        <p className="font-normal text-justify">{r.about_text}</p>
-                                    </ScrollShadow>
-                                </CardBody>
-                            </Card>
+                            <ScrollShadow hideScrollBar className="max-h-96">
+                                <p className="font-normal text-justify">{r.about_text}</p>
+                            </ScrollShadow>
+                        </Tab>
+                        <Tab
+                            key="video2"
+                            title={
+                                <div className="flex items-center gap-2">
+                                    <div className="centerOfParent">
+                                        <Tadris/>
+                                    </div>
+                                    <span className="text-sm text-natural_gray-800">
+                                        نمونه تدریس
+                                    </span>
+                                </div>
+                            }
+                        >
+                            <CardVideo
+                                bgSrc={r.cover_course}
+                                movie={r.video_course}
+                                className='!max-h-full h-full w-full'/>
                         </Tab>
                     </Tabs>
                     <div className="gap-8 h-full w-full md:hidden flex flex-col items-center">

@@ -271,11 +271,11 @@ const Filters = ({setCurrentPage}) => {
                         defaultValue={Array.isArray(filters.direction) ? filters.direction[0].value : filters.direction}
                         Searchable label="جهت جغرافیایی" setState={handleFilter} name="direction" placeHolder="جهت"
                         className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
-                    <Dropdown
-                        array={data.region ?? []}
-                        defaultValue={Array.isArray(filters.region) ? filters.region[0].value : filters.region}
-                        Searchable label="منطقه" setState={handleFilter} name="region" placeHolder="منطقه"
-                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
+                    {/*<Dropdown*/}
+                    {/*    array={data.region ?? []}*/}
+                    {/*    defaultValue={Array.isArray(filters.region) ? filters.region[0].value : filters.region}*/}
+                    {/*    Searchable label="منطقه" setState={handleFilter} name="region" placeHolder="منطقه"*/}
+                    {/*    className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>*/}
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>نزدیک‌ترین زمان تشکیل کلاس</label>
                         <div className='grid grid-cols-2 gap-y-4'>

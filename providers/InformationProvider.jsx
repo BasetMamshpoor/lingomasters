@@ -29,7 +29,7 @@ const InformationProvider = ({children}) => {
                     description: successMessage,
                     color: 'success',
                 })
-                setReload()
+                setReload(Math.random())
                 onOpenChange()
                 push('/')
                 Cookies.remove('token')

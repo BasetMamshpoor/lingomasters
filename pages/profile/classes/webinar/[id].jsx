@@ -128,19 +128,6 @@ const Webinar = () => {
                         <div className="grid grid-cols-3 items-center">
                             <div className="flex items-center">
                                 <div className="centerOfParent ml-2">
-                                    <History className='fill-primary-600'/>
-                                </div>
-                                <p className="text-natural_gray-950 sm:text-base text-[10px]">
-                                    تعداد جلسات
-                                </p>
-                            </div>
-                            <p className="sm:text-base text-xs col-span-2">
-                                {data.sessions_count} جلسه
-                            </p>
-                        </div>
-                        <div className="grid grid-cols-3 items-center">
-                            <div className="flex items-center">
-                                <div className="centerOfParent ml-2">
                                     <RakingIcon/>
                                 </div>
                                 <p className="text-natural_gray-950 sm:text-base text-[10px]">

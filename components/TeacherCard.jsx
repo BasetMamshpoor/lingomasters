@@ -92,11 +92,11 @@ function TeacherCard
                 </div>
                 <div className="w-full flex gap-3 mt-10">
                     <Link href={`/private-class/${id}`}
-                          className="py-2 px-4 border-1.5 border-secondary-500 text-secondary-500 text-center w-full rounded-md effect-2 text-sm">
+                          className="py-2 px-4 border-1.5 border-secondary-500 text-secondary-500 text-center w-full rounded-md whitespace-nowrap effect-2 text-sm">
                         مشاهده رزومه
                     </Link>
                     <Link href={`/private-class/${id}`}
-                          className="py-2 px-4 bg-blue-600 text-white text-center w-full rounded-md effect-2 text-sm">
+                          className="py-2 px-4 bg-blue-600 text-white text-center whitespace-nowrap w-full rounded-md effect-2 text-sm">
                         انتخاب استاد
                     </Link>
                 </div>

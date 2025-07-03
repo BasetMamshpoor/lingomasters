@@ -54,7 +54,7 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                    <div className="relative flex flex-col gap-4 p-6 bg-success-100 rounded-xl flex-grow">
+                    <div className="relative flex flex-col gap-4 p-6 bg-success-100 rounded-xl flex-grow col-span-2 md:col-span-1">
                         <Group2 className="absolute top-0 bottom-0 right-0 left-0 w-full h-full "/>
                         <div className="flex flex-col items-center gap-4">
                             <p className="text-sm md:text-base font-bold">تعداد کتاب‌های من</p>

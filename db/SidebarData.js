@@ -85,11 +85,11 @@ const sidebarItems = [
         icon: Vector,
         href: '/profile/support'
     },
-    {
-        id: 10,
-        title: 'راهنمای کلاس‌ها',
-        icon: Laptop,
-        href: '/profile/guide'
-    }
+    // {
+    //     id: 10,
+    //     title: 'راهنمای کلاس‌ها',
+    //     icon: Laptop,
+    //     href: '/profile/guide'
+    // }
 ];
 export {sidebarItems};

@@ -62,7 +62,7 @@ const Stories = ({data: Stories = []}) => {
                         <div key={story.id}
                              className="flex flex-col gap-4 justify-center items-center sm:max-w-[120px] w-full max-w-[90px]">
                             <Story story={story} Stories={Stories} index={index}/>
-                            <div className="text-sm line-clamp-2 ">{story.title}</div>
+                            <div className="text-sm grow line-clamp-1 text-center">{story.title}</div>
                         </div>
                     ))}
                 </div>

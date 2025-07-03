@@ -56,7 +56,7 @@ const PrivateCard =
                                             <Calendar className='fill-primary-700 w-4 h-4'/>
                                             <p className="sm:text-sm text-xs text-natural_gray-900">تاریخ</p>
                                         </div>
-                                        <p className="text-sm whitespace-nowrap line-clamp-1">{new Date(date).toLocaleDateString('fa-IR', {
+                                        <p className="text-sm whitespace-nowrap line-clamp-1">{date&&new Date(date).toLocaleDateString('fa-IR', {
                                             day: '2-digit',
                                             month: 'long',
                                             weekday: 'long'

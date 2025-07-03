@@ -44,7 +44,7 @@ const TabClass = ({data, setState, state}) => {
                     classNames={{
                         tab: "[&>span]:hidden w-fit min-w-32 justify-start",
                         panel: 'py-0 [&>div]:shadow-none [&>div>div]:!p-0',
-                        tabList: 'flex-wrap'
+                        tabList: 'grid xl:grid-cols-4 grid-cols-2'
                     }}
                     aria-label="Tabs variants"
                     variant="underlined"

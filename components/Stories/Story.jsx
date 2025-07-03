@@ -10,14 +10,14 @@ const Story = ({story, trigger, ...props}) => {
         <>
             {trigger ? <div onClick={onOpen}
                             className={`centerOfParent relative w-fit max-h-80 rounded-lg overflow-hidden cursor-pointer`}>
-                    <Image alt="" src={story.cover || '/images/banner.jpg'} width='100' height='100' sizes='100vw'
+                    <Image alt="" src={story.cover || '/images/profile.jpg'} width='100' height='100' sizes='100vw'
                            className='w-full h-full object-contain'/>
                 </div> :
                 <div onClick={onOpen}
-                     className="grow border-2 cursor-pointer max-w-full border-primary-700  overflow-hidden rounded-[50%]">
+                     className="border-2 cursor-pointer max-w-full border-primary-700  overflow-hidden rounded-[50%]">
                     <div
                         className="border-2 border-white overflow-hidden rounded-[50%] lg:w-[116px] lg:h-[116px] sm:w-[96px] sm:h-[96px] w-20 h-20">
-                        <Image src={story.cover || '/images/banner.jpg'} alt={story.name} width={100}
+                        <Image src={story.cover || '/images/profile.jpg'} alt={story.name} width={100}
                                height={100} className="w-full h-full object-cover"/>
                     </div>
                 </div>}

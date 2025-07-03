@@ -89,20 +89,20 @@ const Register = () => {
                                         />
                                         <Input
                                             label="ایمیل"
-                                            type="text"
                                             isRequired
                                             errorMessage=' '
                                             labelPlacement="outside"
                                             variant="bordered"
                                             radius='sm'
                                             name='email'
+                                            type='email'
                                             value={data.email}
                                             onChange={handleChange}
                                             classNames={{label: "sm:text-sm text-xs", input: "sm:text-sm text-xs"}}
                                         />
                                         <Input
-                                            label="تلفن"
-                                            type="text"
+                                            label="شماره موبایل"
+                                            type="tel"
                                             isRequired
                                             errorMessage=' '
                                             labelPlacement="outside"
@@ -175,14 +175,14 @@ const Register = () => {
                                             <label className='text-xs font-semibold text-natural_gray-950'>تاریخ
                                                 تولد</label>
                                             <DatePicker
-                                                name='birthday'
+                                                name='date_of_birth'
                                                 value={data.date_of_birth}
                                                 onChange={setDateState}
                                                 inputClass={' w-full h-full py-1.5 px-2 text-primary-950 border-2 border-natural_gray-200 outline-none  rounded-md appearance-none text-sm'}
                                                 containerClassName={'w-full !height-full grow'}
                                                 editable={false}
                                                 monthYearSeparator="|"
-                                                format="DD/MMMM/YYYY"
+                                                format="YYYY/MM/DD"
                                                 maxDate={new DateObject({calendar: persian}).subtract(0, "days")}
                                                 placeholder={new Date().toLocaleDateString('fa-IR')}
                                                 calendar={persian}

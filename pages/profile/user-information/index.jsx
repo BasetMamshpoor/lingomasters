@@ -4,7 +4,6 @@ import Calendar from "@icons/calendar.svg";
 import {
     Accordion,
     AccordionItem,
-    Button,
     Autocomplete,
     AutocompleteItem,
     Input,
@@ -18,11 +17,9 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import dynamic from "next/dynamic";
 import Hero from "@/features/profile/Hero";
-import Plus from '@icons/plus.svg';
 import useGetRequest from "@/hooks/useGetRequest";
-import {Language} from "@/providers/languageProvider";
-import Image from "next/image";
 import usePostRequest from "@/hooks/usePostRequest";
+import MyLanguages from "@/features/profile/MyLanguages";
 
 const Map = dynamic(() => import('@/components/Map'), {
     ssr: false,
@@ -32,7 +29,6 @@ const platforms = ["voov", "teams", "zoom", "googleMeet", "Class in", "Big Blue 
 const UserInformation = () => {
     const [data, setData] = useState({})
     const [country, setCountry] = useState()
-    const {languages} = useContext(Language)
     const inputClass = {
         inputWrapper: 'bg-white group-data-[focus=true]:bg-white',
         label: 'text-xs text-natural_gray-950 font-semibold',
@@ -79,28 +75,7 @@ const UserInformation = () => {
     return (
         <>
             <div className="flex flex-col sm:gap-10 gap-6">
-                <div className="flex items-center justify-between  p-6 rounded-2xl bg-primary-50">
-                    <p className='sm:text-lg text-primary-950'>زبان‌های من (انگلیسی )</p>
-                    <div className="flex items-center gap-10">
-                        <Button isIconOnly
-                                variant='bordered'
-                                className={'sm:h-8 h-5  sm:w-8 w-5'}
-                                style={{
-                                    "--heroui-default": "var(--heroui-primary-400)",
-                                }}
-                                color='default'
-                                radius='sm'><Plus className='w-5 h-5 fill-primary-800'/>
-                        </Button>
-                        {languages?.student_languages.map((lang) => {
-                            return (
-                                <div key={lang.id} className="centerOfParent">
-                                    <Image src={lang.flag} alt={lang.language} width={100} height={100}
-                                           className='w-10 h-10'/>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
+                <MyLanguages/>
                 <Hero level={data.level} imageSrc={data.profile}/>
                 <form className='flex flex-col gap-10' onSubmit={handleSubmit}>
                     <Accordion
@@ -234,7 +209,7 @@ const UserInformation = () => {
                                 <div className="flex flex-col gap-1">
                                     <label className='text-sm'>انتخاب موقعیت از روی نقشه</label>
                                     <div className="centerOfParent">
-                                        <Map  setLocation={setData}
+                                        <Map setLocation={setData}
                                              location={[data.latitude || 0, data.longitude || 0]}/>
                                     </div>
                                 </div>
@@ -368,18 +343,17 @@ const UserInformation = () => {
                                        title="لینک برنامه ها">
                             <div className="grid sm:grid-cols-2 grid-cols-1 sm:gap-x-6 gap-y-4">
                                 {platforms.map((platform) => (
-                                        <Input
-                                            isRequired errorMessage=' '
-                                            key={platform}
-                                            label={`نام کاربردی در ${platform.charAt(0).toUpperCase() + platform.slice(1)}`}
-                                            labelPlacement='outside'
-                                            name={`${platform}_user_name`}
-                                            defaultValue={data[platform] || ""}
-                                            onChange={handleChange}
-                                            radius="sm"
-                                            classNames={inputClass}
-                                        />
-                                    ))}
+                                    <Input
+                                        key={platform}
+                                        label={`نام کاربردی در ${platform.charAt(0).toUpperCase() + platform.slice(1)}`}
+                                        labelPlacement='outside'
+                                        name={`${platform}_user_name`}
+                                        defaultValue={data[platform] || ""}
+                                        onChange={handleChange}
+                                        radius="sm"
+                                        classNames={inputClass}
+                                    />
+                                ))}
                             </div>
                         </AccordionItem>
                     </Accordion>

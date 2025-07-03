@@ -212,7 +212,7 @@ const PrivateClassDetails = () => {
                                     تاریخ
                                 </p>
                             </div>
-                            <p className="sm:text-base text-xs col-span-2">{new Date(data.time_slots?.date).toLocaleDateString('fa-IR', {
+                            <p className="sm:text-base text-xs col-span-2">{data.time_slots?.date&&new Date(data.time_slots?.date).toLocaleDateString('fa-IR', {
                                 day: '2-digit',
                                 month: 'long',
                                 weekday: 'long'

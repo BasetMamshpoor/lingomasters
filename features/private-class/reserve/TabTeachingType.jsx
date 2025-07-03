@@ -10,7 +10,8 @@ const TabTeachingType = ({data, selected, setSelected, address, platforms}) => {
 
     const validTypes = [
         {value: "inPersonAtSchool", label: "حضوری در آموزشگاه"},
-        {value: "inPersonAtStudentPlace", label: "حضوری در مکان زبان‌آموز"},
+        {value: "inPersonAtStudentHome", label: "حضوری در خانه زبان‌آموز"},
+        {value: "inPersonAtStudentWork", label: "حضوری در محل کار زبان‌آموز"},
         {value: "inPersonAtTeacherHome", label: "حضوری در منزل استاد"},
     ];
 

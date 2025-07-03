@@ -95,10 +95,11 @@ const WebinarCard =
                                 <p className=" sm:text-sm text-xs text-secondary-500 text-center whitespace-nowrap">مشاهده
                                     جزئیات</p>
                             </Link>
-                            <Link href={`${link}/${id}`}
-                                  className="sm:py-3 py-2 px-0.5 sm:h-12 h-8 centerOfParent flex-1 border-1.5 border-primary-600 bg-primary-600 rounded ">
-                                <p className=" sm:text-sm text-xs text-white text-center whitespace-nowrap">ورود به وبینار</p>
-                            </Link>
+                            {link === 'webinar' && <Link href={`${link}/${id}`}
+                                                          className="sm:py-3 py-2 px-0.5 sm:h-12 h-8 centerOfParent flex-1 border-1.5 border-primary-600 bg-primary-600 rounded ">
+                                <p className=" sm:text-sm text-xs text-white text-center whitespace-nowrap">ورود به
+                                    وبینار</p>
+                            </Link>}
                         </div>
                     </div>
                 </div>

@@ -120,11 +120,11 @@ function PrivateCard
                     </div>
                     <div className="w-full flex gap-3 mt-10">
                         <Link href={`/private-class/${id}#resume`}
-                              className="py-2 px-4 whitespace-nowrap border-1.5 border-secondary-500 text-secondary-500 text-center w-full rounded-md effect-2 text-sm">
+                              className="sm:py-2 py-1 sm:px-4 px-2 whitespace-nowrap border-1.5 border-secondary-500 text-secondary-500 text-center w-full rounded-md effect-2 sm:text-sm text-xs">
                             مشاهده رزومه
                         </Link>
                         <Link href={`/private-class/${id}`}
-                              className="py-2 px-4 whitespace-nowrap bg-blue-600 text-white text-center w-full rounded-md effect-2 text-sm">
+                              className="sm:py-2 py-1 sm:px-4 px-2 whitespace-nowrap bg-blue-600 text-white text-center w-full rounded-md effect-2 sm:text-sm text-xs">
                             انتخاب استاد
                         </Link>
                     </div>

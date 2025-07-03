@@ -16,11 +16,11 @@ const Moshavere = () => {
                     </div>
                     <div className="flex items-center gap-4 text-sm sm:text-base">
                         <Link href="/exams/placement"
-                              className="self-end px-14 py-3 text-white bg-primary-600 border-1.5  border-primary-600 rounded-md whitespace-nowrap">تعیین
+                              className="sm:px-14 px-6 sm:py-3 py-1 sm:text-base text-sm text-white bg-primary-600 border-1.5  border-primary-600 rounded-md whitespace-nowrap">تعیین
                             سطح
                         </Link>
                         <a href="#moshavere"
-                           className="self-end px-14 py-3 text-secondary-500 border-1.5  border-secondary-500 rounded-md whitespace-nowrap">مشاوه
+                           className="sm:px-14 px-6 sm:py-3 py-1 sm:text-base text-sm text-secondary-500 border-1.5  border-secondary-500 rounded-md whitespace-nowrap">مشاوه
                             تلفنی
                         </a>
                     </div>

@@ -32,8 +32,8 @@ const Hero = ({level, children, isSuggestion, identification_code}) => {
                                title={"در حال حاضر سطح زبان شما مشخص نمی‌باشد. پینشهاد لینگومسترز به شما این است که از آزمون تعیین سطح لینگومسترز استفاده کنید.\n" +
                                    "برای شروع می‌توانید بر روی دکمه رزرو تعیین سطح کلیک کنید و تعیین سطح زبان خود را در کمترین زمان انجام دهید. \n" +
                                    "در غیر این صورت می‌توانید از اساتید و کلاس‌های گروهی سطح پایه استفاده کنید."}/>
-                        <Link href='/public'
-                              className='bg-primary-600 text-white rounded px-4 py-2 self-end sm:text-base text-sm'>
+                        <Link href='/exams/placement'
+                              className='bg-primary-600 text-white rounded px-4 py-2 sm:self-end self-center sm:text-base text-sm'>
                             رزرو تعیین سطح لینگومسترز
                         </Link>
                     </div> :

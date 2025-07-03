@@ -97,7 +97,7 @@ const Footer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex gap-6 items-center h-fit">
+                        <div className="flex gap-6 items-center sm:justify-start justify-center sm:w-fit w-full h-fit">
                             <div className="">
                                 <img src={'/images/etehadie.png'} alt={'etehadie'}
                                      className="w-full max-h-[130px] object-contain"
