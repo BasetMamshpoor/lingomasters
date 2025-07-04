@@ -26,7 +26,8 @@ const LanguageProvider = ({children}) => {
 
     return (<>
         <Language.Provider value={{selectedLanguage, handleSelectLanguage, languages, setReload}}>
-            {!isLoading ? children : <Loading/>}
+            {/*{!isLoading ? children : <Loading/>}*/}
+            {children}
         </Language.Provider>
     </>);
 };
