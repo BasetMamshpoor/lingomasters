@@ -3,7 +3,6 @@ import Cards from "/features/profile/Books/Card.jsx";
 import Books from "@icons/books.svg";
 import Chevron from "@icons/arrow-down.svg";
 import Link from "next/link";
-import Chevron_right from "@icons/chevron-right.svg";
 import ChevronLeft from "@icons/arrow-left.svg"
 import {Spinner} from "@heroui/react";
 import useGetRequest from "@/hooks/useGetRequest";
@@ -16,10 +15,6 @@ const Index = () => {
             <div dir="rtl" className="container flex flex-col gap-16 md:gap-20">
                 <div className="flex flex-col gap-6">
                     <p className="hidden lg:flex font-bold">لیست کتاب‌های خریداری شده</p>
-                    <Link href="/public" className="hidden md:flex lg:hidden items-center gap-2">
-                        <Chevron_right className="h-5 w-5 fill-primary-600"/>
-                        <p className="text-primary-500 text-base">کتابخانه ( کتاب‌های خریداری شده )</p>
-                    </Link>
                     <div className="md:hidden flex items-center gap-2">
                         <Books className="fill-primary-700"/>
                         <p className="text-sm font-bold text-primary-700">کتابخانه</p>

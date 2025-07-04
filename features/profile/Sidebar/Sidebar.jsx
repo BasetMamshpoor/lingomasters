@@ -139,4 +139,4 @@ const Sidebar = ({mobileOpen, setSidebarOpen, setTitle}) => {
         </>
     );
 }
-export default withAuth(Sidebar, false, true);
+export default (Sidebar);

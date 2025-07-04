@@ -22,11 +22,7 @@ const FreeBookDetails = () => {
             <div className="flex flex-col gap-16">
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col lg:flex-row  lg:justify-between">
-                        <Link href="/" className="flex items-center gap-2">
-                            <ChevronRight className="h-5 w-5 fill-primary-600"/>
-                            <p className="hidden lg:flex text-primary-500 text-base">بازگشت</p>
-                            <p className=" flex lg:hidden text-primary-500 text-xs md:text-base">کتابخانه</p>
-                        </Link>
+                      <div className=""></div>
                         <div className="hidden md:flex justify-end w-full">
                             <Link href="/"
                                   className="centerOfParent px-8 py-2 text-base rounded-md bg-primary-600 text-white ">مشاهده
