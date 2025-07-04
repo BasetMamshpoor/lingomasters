@@ -20,12 +20,12 @@ let staticComments = [
     'بد بود',
     'بسیار بد بود',
 ];
-const Text = ({id, url}) => {
+const Text = ({id, url, justForm}) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [data, setData] = useState("")
     const [xComment, setXComment] = useState(true)
     const [showMore, setShowMore] = useState(false)
-    const [comments, setComments, setReload, pagination, , loading] = useGetRequest(true, `/${url}/comment/${id}?type=text`, currentPage)
+    const [comments, setComments, setReload, pagination, , loading] = useGetRequest(true, !justForm && `/${url}/comment/${id}?type=text`, currentPage)
     const {isLoading, sendPostRequest} = usePostRequest()
     const {isLoading: isLikeLoading, sendPostRequest: sendLikeRequest} = usePostRequest()
     const ref = useSwipeScroll()
@@ -92,11 +92,11 @@ const Text = ({id, url}) => {
                         </button>
                     </form>
                 </div>
-                <div className="flex flex-col gap-6">
+                {!justForm&&<div className="flex flex-col gap-6">
                     <p className="text-primary-950 font-semibold sm:text-sm text-xs self-start">نظرات کاربران</p>
                     {!loading ? <div className="flex flex-col gap-6">
                         <ul className="flex flex-col gap-4 items-stretch">
-                            {!!comments.length ? comments.map((c, i) => {
+                            {!!comments?.length ? comments.map((c, i) => {
                                 if (i < (showMore ? 10 : 5)) return <li
                                     className="flex items-center justify-between gap-3" key={c.id}>
                                     <div className="flex items-center gap-3">
@@ -111,7 +111,7 @@ const Text = ({id, url}) => {
                                 </li>
                             }) : <div className="centerOfParent w-full">کامنتی ثبت نشده است</div>}
                         </ul>
-                        {pagination.total > 5 && <div className="self-center">
+                        {pagination?.total > 5 && <div className="self-center">
                             {showMore ?
                                 <div className="w-full">
                                     <Pagination total={pagination.total} per_page={pagination.per_page}
@@ -124,7 +124,7 @@ const Text = ({id, url}) => {
                                 </div>}
                         </div>}
                     </div> : <div className="centerOfParent w-full">درحال بارگزاری...</div>}
-                </div>
+                </div>}
             </div>
         </>
     );

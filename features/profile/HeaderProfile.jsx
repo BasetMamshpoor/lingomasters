@@ -153,4 +153,4 @@ const HeaderProfile = ({isSidebarOpen, setSidebarOpen, title, setTitle}) => {
     );
 };
 
-export default (HeaderProfile);
+export default withAuth(HeaderProfile, false, true);

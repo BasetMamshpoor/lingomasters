@@ -44,8 +44,8 @@ const InformationProvider = ({children}) => {
         }
         return (<>
             <Information.Provider value={{student, setReload, logout, wallet, reloadWallet}}>
-                {/*{!loading ? children : <Loading/>}*/}
-                {children }
+                {!loading ? children : <Loading/>}
+                {/*{children }*/}
             </Information.Provider>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>

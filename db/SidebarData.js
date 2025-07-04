@@ -36,7 +36,6 @@ const sidebarItems = [
         icon: Books,
         href: null,
         subMenu: [
-            {id: 1, title: 'کتابخانه من', href: '/profile/books/library'},
             {id: 2, title: 'کتاب‌های رایگان', href: '/profile/books/free'},
             {id: 3, title: 'کتاب‌های خریداری شده ', href: '/profile/books/payed'},
         ],

@@ -9,7 +9,7 @@ import Text from './Text';
 import Audio from './Audio';
 import Videos from './Videos';
 
-const Comments = ({id, url}) => {
+const Comments = ({id, url,justForm}) => {
     return (
         <>
             <div
@@ -35,7 +35,7 @@ const Comments = ({id, url}) => {
                                      <span className='sm:text-base text-sm text-natural_gray-900'>متنی</span>
                                  </div>
                              }>
-                            <Text id={id} url={url}/>
+                            <Text justForm={justForm} id={id} url={url}/>
                         </Tab>
                         <Tab key="audio"
                              title={
@@ -44,7 +44,7 @@ const Comments = ({id, url}) => {
                                      <span className='sm:text-base text-sm text-natural_gray-900'>صوتی</span>
                                  </div>
                              }>
-                            <Audio id={id} url={url}/>
+                            <Audio justForm={justForm} id={id} url={url}/>
                         < /Tab>
                         <Tab key="video"
                              title={
@@ -53,7 +53,7 @@ const Comments = ({id, url}) => {
                                      <span className='sm:text-base text-sm text-natural_gray-900'>ویدیویی</span>
                                  </div>
                              }>
-                            <Videos id={id} url={url}/>
+                            <Videos justForm={justForm} id={id} url={url}/>
                         </Tab>
                     </Tabs>
                 </div>

@@ -140,7 +140,7 @@ const Filters = ({setCurrentPage}) => {
                                 className='fill-natural_gray-600'/></button>
                         }/>
                 </form>
-                <div className="flex flex-col gap-4">
+                {router.query.is_foreign !== '1' && <div className="flex flex-col gap-4">
                     <label className='font-semibold'>انتخاب مقطع</label>
                     <RadioGroup
                         aria-label=" "
@@ -156,7 +156,7 @@ const Filters = ({setCurrentPage}) => {
                             <Radio key={a.id} classNames={{base: "w-1/2 max-w-1/2"}}
                                    value={a.key}>{a.value}</Radio>))}
                     </RadioGroup>
-                </div>
+                </div>}
                 <div className="flex flex-col gap-4">
                     <label className='font-semibold'>انتخاب زبان</label>
                     <RadioGroup
@@ -173,7 +173,7 @@ const Filters = ({setCurrentPage}) => {
                                                               value={a.id}>{a.language}</Radio>)}
                     </RadioGroup>
                 </div>
-                <div className="flex flex-col gap-4">
+                {router.query.is_foreign !== '1' && <div className="flex flex-col gap-4">
                     <label className='font-semibold'>انتخاب نوع</label>
                     <RadioGroup
                         aria-label=" "
@@ -192,7 +192,7 @@ const Filters = ({setCurrentPage}) => {
                                 value={a.key}>{a.value}</Radio>)
                         )}
                     </RadioGroup>
-                </div>
+                </div>}
             </div>
         </>
     );

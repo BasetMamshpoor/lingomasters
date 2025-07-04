@@ -2,6 +2,7 @@ import React from 'react';
 import Link from "next/link";
 import Chevron_right from "@icons/chevron-right.svg";
 import Image from "next/image";
+import Comments from "@/components/Comments";
 
 const MyLibraryDetails = () => {
     return (
@@ -12,7 +13,7 @@ const MyLibraryDetails = () => {
                         <Link href="/" className="flex items-center gap-2">
                             <Chevron_right className="h-5 w-5 fill-primary-600"/>
                             <p className="hidden lg:flex text-primary-500 text-base">بازگشت</p>
-                            <p className=" flex lg:hidden text-primary-500 text-xs md:text-base">کتابخانه ( کتاب‌های خریداری شده )</p>
+                            <p className=" flex lg:hidden text-primary-500 text-xs md:text-base">کتابخانه</p>
                         </Link>
                         <div className="hidden md:flex justify-end w-full">
                             <Link href="/"
@@ -121,7 +122,7 @@ const MyLibraryDetails = () => {
                             </div>
                             <div className="flex items-center w-full">
                                 <div className="flex items-center gap-1 w-1/2">
-                                    <p className="text-sm md:text-base text-primary-950 font-medium">اطلاعات ارسال</p>
+                                    <p className="text-sm md:text-base text-primary-950 font-semibold">اطلاعات ارسال</p>
                                 </div>
                             </div>
                             <div className="flex items-center w-full">
@@ -140,7 +141,8 @@ const MyLibraryDetails = () => {
                                 <div className="flex items-center gap-1 w-1/2">
                                     <p className="text-xs md:text-base text-natural_gray-900">آدرس</p>
                                 </div>
-                                <p className="text-xs md:text-base w-1/2 ">تهران، خیابان تهران ، کوچه تهران ، پللاک 1</p>
+                                <p className="text-xs md:text-base w-1/2 ">تهران، خیابان تهران ، کوچه تهران ، پللاک
+                                    1</p>
                             </div>
                             <div className="flex items-center w-full">
                                 <div className="flex items-center gap-1 w-1/2">
@@ -150,7 +152,7 @@ const MyLibraryDetails = () => {
                             </div>
                             <div className="flex items-center w-full">
                                 <div className="flex items-center gap-1 w-1/2">
-                                    <p className="text-sm md:text-base text-primary-950 font-medium">اطلاعات گیرنده</p>
+                                    <p className="text-sm md:text-base text-primary-950 font-semibold">اطلاعات گیرنده</p>
                                 </div>
                             </div>
                             <div className="flex items-center w-full">
@@ -167,7 +169,8 @@ const MyLibraryDetails = () => {
                             </div>
                             <div className="flex items-center w-full">
                                 <div className="flex items-center gap-1 w-1/2">
-                                    <p className="text-sm md:text-base text-primary-950 font-medium">اطلاعات خرید کتاب</p>
+                                    <p className="text-sm md:text-base text-primary-950 font-semibold">اطلاعات خرید
+                                        کتاب</p>
                                 </div>
                             </div>
                             <div className="flex items-center w-full">
@@ -187,11 +190,12 @@ const MyLibraryDetails = () => {
                                 <p className="text-xs md:text-base w-1/2">11:30-12:00</p>
                             </div>
                         </div>
-                        <div className="flex w-full lg:w-1/2 lg:justify-end">
-                            <Image src="/Images/banner.jpg" alt={"Book"} width={50} height={50}
-                                   className="w-56 h-52 "/>
+                        <div className="flex w-full lg:w-1/2 lg:justify-end justify-center">
+                            <Image src="/Images/product.png" alt={"Book"} width={100} height={100}
+                                   className="lg:max-w-64 max-w-[50%] w-full h-fit object-cover"/>
                         </div>
                     </div>
+                    <Comments justForm url='product' id={1}  />
                 </div>
                 <Link href="/"
                       className="md:hidden w-full flex items-center justify-center px-8 py-2 text-base rounded-md bg-primary-700 text-white ">مشاهده

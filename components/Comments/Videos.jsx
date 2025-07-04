@@ -24,9 +24,9 @@ const generateUniqueFilename = (blob) => {
     return uniqueName;
 };
 
-const Videos = ({id, url}) => {
+const Videos = ({id, url, justForm}) => {
     const [showMore, setShowMore] = useState(false)
-    const [comments, setComments, setReload, pagination] = useGetRequest(true, `/${url}/comment/${id}?type=video`)
+    const [comments, setComments, setReload, pagination] = useGetRequest(true, !justForm && `/${url}/comment/${id}?type=video`)
     const [recordedBlob, setRecordedBlob] = useState(null);
     const {isLoading, sendPostRequest} = usePostRequest()
 
@@ -87,11 +87,11 @@ const Videos = ({id, url}) => {
                         </button>
                     </form>
                 </div>
-                <div className="flex flex-col gap-6">
+                {!justForm && <div className="flex flex-col gap-6">
                     <p className="text-primary-950 font-semibold text-sm self-start">نظرات کاربران</p>
                     {!!comments ? <div className="flex flex-col gap-6">
                         <ul className="flex flex-col gap-4 items-stretch">
-                            {!!comments.length ? comments.map((c, i) => {
+                            {!!comments?.length ? comments.map((c, i) => {
                                 if (i < (showMore ? 10 : 5)) return <li
                                     className="flex items-center justify-between gap-3" key={i}>
                                     <div className="flex items-center gap-3">
@@ -103,7 +103,7 @@ const Videos = ({id, url}) => {
                                 </li>
                             }) : <div className="centerOfParent w-full">کامنتی ثبت نشده است</div>}
                         </ul>
-                        {pagination.total > 5 && <div className="self-center">
+                        {pagination?.total > 5 && <div className="self-center">
                             {showMore ?
                                 <div className="w-full">
                                     <Pagination total={pagination.total} per_page={pagination.per_page}/>
@@ -115,7 +115,7 @@ const Videos = ({id, url}) => {
                                 </div>}
                         </div>}
                     </div> : <div className="centerOfParent w-full">درحال بارگزاری...</div>}
-                </div>
+                </div>}
             </div>
         </>
     );
