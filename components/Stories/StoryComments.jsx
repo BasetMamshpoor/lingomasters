@@ -11,7 +11,7 @@ import Like from "@/components/Like";
 
 const StoryComments = ({storyId, showComments, lastPage, comments: List, setShowComments}) => {
     const [comments, setComments] = useState(List ?? []);
-    const {seller} = useContext(Information)
+    const {student} = useContext(Information)
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const commentsRef = useRef(null);
@@ -76,8 +76,8 @@ const StoryComments = ({storyId, showComments, lastPage, comments: List, setShow
                 body: dataa.body,
                 is_liked: false,
                 likes_count: 0,
-                name: seller?.name,
-                profile_image: seller?.profile
+                name: student?.name,
+                profile_image: student?.profile
             }
             setComments(prev => ([comment, ...prev]))
             e.target.reset()

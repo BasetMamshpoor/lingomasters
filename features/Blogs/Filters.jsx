@@ -13,7 +13,7 @@ import {Language} from "@/providers/languageProvider";
 const Filters = ({setCurrentPage}) => {
     const searchRef = useRef(null)
     const router = useRouter()
-    const {language} = useContext(Language)
+    const {languages} = useContext(Language)
     const {...queries} = router.query
 
     const readUrl = () => {
@@ -116,7 +116,7 @@ const Filters = ({setCurrentPage}) => {
                     </div>
                 </div>
                 <Dropdown
-                    array={language?.language || []} defaultValue={filters['language']}
+                    array={languages?.languages || []} defaultValue={filters['language']}
                     Multiple Searchable label="انتخاب زبان" setState={handleFilter} name="language"
                     placeHolder='زبان هدف'
                     className='!px-3 !py-2 border border-gray-400 rounded-lg bg-white'/>

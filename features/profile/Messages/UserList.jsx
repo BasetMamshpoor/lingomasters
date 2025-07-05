@@ -61,14 +61,14 @@ export default function UserList({activeUser, onSelectUser}) {
             echo.connector.pusher.connect();
         }
 
-        const channel = echo.channel(`chat-updates.${student.user_id}`);
+        const channel = echo.channel(`chat-updates.${student?.user_id}`);
 
         channel.listen('.chat.updated', (event) => {
             setUsers(prev => updateUsersList(prev, event));
         });
 
         return () => {
-            echo.leave(`chat-updates.${student.user_id}`);
+            echo.leave(`chat-updates.${student?.user_id}`);
         };
     }, [echo, student]);
 

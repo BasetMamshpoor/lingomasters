@@ -30,7 +30,7 @@ function ReserveCheckout({setSteps, id: class_id}) {
     const {id} = router.query
     const [data,] = useGetRequest(true, `/private-reserve/info/${class_id}`)
     const [coupon, setCoupon] = useState()
-    const {student} = useContext(Information)
+    const {wallet} = useContext(Information)
     const [selected, setSelected] = useState('1')
     const {sendPostRequest, isLoading} = usePostRequest()
 
@@ -112,7 +112,7 @@ function ReserveCheckout({setSteps, id: class_id}) {
                     className="z-[100] gap-6 w-full border-t border-natural_gray-200 lg:hidden flex items-center justify-between fixed bottom-0 p-6 bg-white">
                     <Button
                         isLoading={isLoading}
-                        isDisabled={data.offPrice > student?.wallet && selected === "2"}
+                        isDisabled={data.offPrice > wallet?.balance && selected === "2"}
                         type='button'
                         onPress={handlePay}
                         color="success" style={{

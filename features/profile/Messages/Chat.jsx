@@ -23,8 +23,8 @@ const Chat = ({user, onBack, onProfileClick, activeView}) => {
     // const {query} = useRouter()
     // const messageId = query?.messageId
 
-    let user1_id = Math.min(user?.id, student.user_id);
-    let user2_id = Math.max(user?.id, student.user_id);
+    let user1_id = Math.min(user?.id, student?.user_id);
+    let user2_id = Math.max(user?.id, student?.user_id);
 
     const [chats, setChats, setReload, pagination, setP, isLoading] = useGetRequest(true, user && `/chat/messages/${user.id}`, page)
     const pages = Math.ceil(pagination?.total / pagination?.per_page) || 1
@@ -134,7 +134,7 @@ const Chat = ({user, onBack, onProfileClick, activeView}) => {
                                     <MessageItem
                                         key={msg.id}
                                         message={msg}
-                                        isSender={msg.sender_id === student.user_id}
+                                        isSender={msg.sender_id === student?.user_id}
                                         onReply={handleReply}
                                         onPin={handlePin}
                                     />
