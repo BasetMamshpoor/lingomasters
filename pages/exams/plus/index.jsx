@@ -1,55 +1,110 @@
-import React from 'react';
-import {Tab, Tabs} from "@heroui/react";
-import Exam from "components/Exams/Exams"
-import Link from "next/link";
-import Chevron from "@icons/chevron-right.svg"
-import Card from "components/Exams/Card"
+import React, {useMemo, useState} from 'react';
+import {BreadcrumbItem, Breadcrumbs, Spinner, Tab, Tabs} from "@heroui/react";
+import Book from '@icons/book2.svg';
+import Pepole from "@icons/users.svg";
+import {useRouter} from "next/router";
+import Filter from "@/features/exams/Filter";
+import Filters from "@/features/exams/Filters";
+import ExamItem from "@/features/exams/ExamItem";
+import PaginationApp from "@/components/Pagination";
+import useGetRequest from "@/hooks/useGetRequest";
 
 const Index = () => {
+    const router = useRouter()
+    const {query} = router
+    const [currentPage, setCurrentPage] = useState(1)
+
+    const filters = useMemo(() => query, [JSON.stringify(query)]);
+
+    const [exams, set, reload, pagination, , isLoading] = useGetRequest(true, `/exams/user-exams`, currentPage, filters)
+
+    const handleChange = (value) => {
+        router.replace({pathname: router.asPath.split('?')[0], query: {...query, is_foreign: value},},
+            undefined,
+            {shallow: false}
+        );
+    }
+
     return (
         <>
-            <div dir="rtl" className="container flex flex-col gap-20">
-                <div className="flex flex-col gap-6 ">
-                    <p className="text-base font-bold text-primary-950">لیست آزمون پلاس‌ها</p>
-                    <Tabs
-                        aria-label="Options"
+            <div dir='rtl' className="flex flex-col gap-10 my-10 container">
+                <div
+                    className="p-10 bg-gradient-to-t from-[#E9EEF9] to-[#F5F9FE] rounded-2xl flex flex-col gap-12 items-center">
+                    <Breadcrumbs
+                        separator='/'
                         classNames={{
-                            tabList: "gap-6 w-full border-b relative rounded-none p-0",
-                            cursor: "w-full bg-secondary-400",
-                            tab: "w-full px-2 h-12 ",
-                            tabContent: "group-data-[selected=true]:text-secondary-400 ",
+                            base: 'w-full lg:flex hidden',
+                            list: 'last:[&>li>span]:text-primary-950 [&>li]:text-natural_gray-600 text-xs'
                         }}
-                        variant="underlined"
-                    >
-                        <Tab
-                            key="1"
-                            title={
-                                <span>رزرو شده</span>
-                            }
-                        >
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
-                                <Exam/>
-                            </div>
-                        </Tab>
-                        <Tab
-                            key="2"
-                            title={
-                                <span>خاتمه یافته</span>
-                            }
-                        >
-                        </Tab>
-                    </Tabs>
-                </div>
-                <div className="flex flex-col gap-6 ">
-                    <div className="flex items-center justify-between w-full">
-                        <p className="text-sm md:text-base font-bold text-primary-950 whitespace-nowrap">آزمون پلاس‌های بیشتر</p>
-                        <Link href="/" className="flex items-center gap-2">
-                            <p className="text-sm md:text-base text-primary-600 whitespace-nowrap">مشاهده همه آزمون‌ها</p>
-                            <Chevron className="fill-primary-600 rotate-180 w-5 h-5"/>
-                        </Link>
+                        itemClasses={{
+                            separator: "px-2 text-natural_gray-600"
+                        }}>
+                        <BreadcrumbItem href="/">صفحه اصلی</BreadcrumbItem>
+                        <BreadcrumbItem>آزمون ها</BreadcrumbItem>
+                        <BreadcrumbItem>آزمون پلاس</BreadcrumbItem>
+                    </Breadcrumbs>
+                    <div className="self-center centerOfParent gap-6">
+                        <Book className="w-10 h-10 fill-primary-700"/>
+                        <div className="flex items-center gap-2">
+                            <h1 className="text-2xl">آزمون پلاس</h1>
+                            <span className='text-xl'>( شبیه ساز آزمون )</span>
+                        </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-4">
-                        <Card/>
+                    <p className="whitespace-break-spaces text-natural_gray-950" dir='auto'>آزمون پلاس شبیه ساز
+                        آزمون‌های مختلف است که با پرداخت مبلغ کمی می‌ توانید همانند آزمون مدنظر خود
+                        را انجام دهید. آزمون پلاس شبیه ساز آزمون‌های مختلف است که با پرداخت مبلغ کمی می‌‌توانید همانند
+                        آزمون مدنظر خود را انجام دهید. آزمون پلاس شبیه ساز آزمون‌های مختلف است که با پرداخت مبلغ کمی می‌
+                        توانید همانند آزمون مدنظر خود را انجام دهید. آزمون پلاس شبیه ساز آزمون‌های مختلف است که با
+                        پرداخت مبلغ کمی می‌‌توانید همانند آزمون مدنظر خود را انجام دهید.
+                        آزمون پلاس شبیه ساز آزمون‌های مختلف است که با پرداخت مبلغ کمی می‌ توانید همانند آزمون مدنظر خود
+                        را انجام دهید. آزمون پلاس شبیه ساز آزمون‌های مختلف است که با پرداخت مبلغ کمی می‌‌توانید همانند
+                        آزمون مدنظر خود را انجام دهید.</p>
+                </div>
+                <div className="flex flex-col gap-6">
+                    <div className='lg:hidden flex items-center justify-between'>
+                        <div className="flex items-center gap-4">
+                            <Pepole className='fill-primary-700 w-6 h-6'/>
+                            <h1 className="font-semibold text-primary-700">اساتید</h1>
+                        </div>
+                        <div className="centerOfParent">
+                            <Filter setCurrentPage={setCurrentPage}/>
+                        </div>
+                    </div>
+                    <Tabs
+                        variant="underlined"
+                        fullWidth
+                        classNames={{
+                            tabList: 'grow gap-0 items-center justify-center',
+                            tab: 'sm:w-1/4 h-16 border-b w-full',
+                            panel: 'px-0 [&>div>div]:px-0',
+                            cursor: "w-full bg-warning",
+                            tabContent: "sm:text-sm text-xs group-data-[selected=true]:text-warning"
+                        }}
+                        selectedKey={query.is_foreign || '0'}
+                        onSelectionChange={handleChange}
+                        aria-label="Options">
+                        <Tab key="0" title="آزمون های داخل ایران"/>
+                        <Tab key="1" title="آزمون های خارج ایران"/>
+                    </Tabs>
+                    <div className='grid lg:grid-cols-12 grid-cols-1 lg:gap-6'>
+                        <div className='hidden lg:block lg:col-span-3 h-fit'>
+                            <Filters setCurrentPage={setCurrentPage}/>
+                        </div>
+                        {isLoading ?
+                            <div className="w-full lg:col-span-9 col-span-1 centerOfParent"><Spinner color="success"/>
+                            </div>
+                            : <div
+                                className='lg:col-span-9 col-span-1 grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-x-6 sm:gap-y-10 gap-6'>
+                                {exams?.length ? exams.map((e, i) => <ExamItem key={e.id} {...e}/>) :
+                                    <p>آزمونی پیدا نشد</p>}
+                            </div>}
+                    </div>
+                    <div className="w-full centerOfParent mt-6">
+                        <PaginationApp
+                            currentPage={currentPage}
+                            total={pagination?.total}
+                            onChange={setCurrentPage}
+                            per_page={pagination?.per_page}/>
                     </div>
                 </div>
             </div>
