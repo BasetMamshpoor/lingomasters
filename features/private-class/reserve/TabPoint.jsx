@@ -21,7 +21,7 @@ const TabPoint = ({data, selected, setSelected, children}) => {
                         }}
                         aria-label="Tabs variants"
                         variant="underlined"
-                        selectedKey={tab}
+                        selectedKey={tab?.toString()}
                         onSelectionChange={setTab}
                     >
                         {data.map(t => {
@@ -29,7 +29,7 @@ const TabPoint = ({data, selected, setSelected, children}) => {
                                 key={t.id}
                                 title={
                                     <RadioGroup
-                                        value={tab}
+                                        value={tab?.toString()}
                                         onValueChange={setTab}
                                         color="default"
                                         style={{"--heroui-default-500": "196 94% 25%"}}

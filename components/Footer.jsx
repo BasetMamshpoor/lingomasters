@@ -38,10 +38,10 @@ const Footer = () => {
                                           href="/contact-us">
                                         <span>تماس با ما</span>
                                         <Left/></Link>
-                                    {/*<Link className='effect-3'*/}
-                                    {/*      href="/">*/}
-                                    {/*    <span>کتابخانه</span>*/}
-                                    {/*    <Left/></Link>*/}
+                                    <Link className='effect-3'
+                                          href="/library">
+                                        <span>کتابخانه</span>
+                                        <Left/></Link>
                                     <Link className='effect-3'
                                           href="/hiring-professors">
                                         <span>استخدام اساتید</span>

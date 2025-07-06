@@ -24,7 +24,7 @@ export default function Card({bgSrc, trigger, className, movie, withPlayIcon = t
                     <div className="centerOfParent absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"><Play
                         className='w-8 h-8 fill-white'/></div>}
             </div> : !trigger && <Skeleton
-                className={`centerOfParent relative w-1/2 min-h-80 rounded-lg overflow-hidden cursor-pointer ${className}`}/>}
+                className={`centerOfParent relative w-full min-h-80 rounded-lg overflow-hidden cursor-pointer ${className}`}/>}
             {trigger ? <p onClick={movie ? onOpen : null}
                           className='text-center text-sm text-primary-950 cursor-pointer'>{trigger}</p> : null}
             <Modal

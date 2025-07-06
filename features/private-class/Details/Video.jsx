@@ -11,7 +11,7 @@ const Video = ({ movie, image, }) => {
                     <span className='sm:text-base text-sm text-primary-950'>نمونه تدریس</span>
                 </div>
                 <div className="relative cursor-pointer rounded overflow-hidden">
-                    <Card bgSrc={image} className='h-[268px] [&>img]:object-cover' movie={movie} />
+                    <Card bgSrc={image} className='h-[268px] !w-full [&>img]:object-cover' movie={movie} />
                 </div>
             </div>
         </>

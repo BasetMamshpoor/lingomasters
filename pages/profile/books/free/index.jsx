@@ -8,7 +8,7 @@ import useGetRequest from "@/hooks/useGetRequest";
 import {Spinner} from "@heroui/react";
 
 const Index = () => {
-    const [data = [1, 2, 3, 4, 5, 6], , , , , isLoading] = useGetRequest(true, '/student/books')
+    const [data, , , , , isLoading] = useGetRequest(true, '/student/book')
     return (
         <>
             <div dir="rtl" className="container flex flex-col gap-16 md:gap-20">
