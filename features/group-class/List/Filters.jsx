@@ -250,11 +250,11 @@ const Filters = ({setCurrentPage}) => {
                         defaultValue={Array.isArray(filters.direction) ? filters.direction[0].value : filters.direction}
                         Searchable label="جهت جغرافیایی" setState={handleFilter} name="direction" placeHolder="جهت"
                         className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
-                    {/*<Dropdown*/}
-                    {/*    array={data.region ?? []}*/}
-                    {/*    defaultValue={Array.isArray(filters.region) ? filters.region[0].value : filters.region}*/}
-                    {/*    Searchable label="منطقه" setState={handleFilter} name="region" placeHolder="منطقه"*/}
-                    {/*    className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>*/}
+                    <Dropdown
+                        array={data.region ?? []}
+                        defaultValue={Array.isArray(filters.region) ? filters.region[0].value : filters.region}
+                        Searchable label="منطقه" setState={handleFilter} name="region" placeHolder="منطقه"
+                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
                     <Switch isSelected={filters.near ? filters.near[0]?.value : undefined}
                             color="success"
                             onValueChange={e => handleFilter('near', e)}>نزدیکترین زمان تشکیل

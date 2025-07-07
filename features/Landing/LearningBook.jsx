@@ -30,7 +30,7 @@ const LandingBook = () => {
                 <div className="flex flex-col gap-1 md:gap-2 lg:gap-3 sm:text-base text-sm md:text-base md:pr-5 text-center py-7 w-full md:w-3/4">
                     <p> برای یادگیری زبان انگلیسی به صورت خودآموز و با کتاب های چاپی، پیشنهاد ما این پک
                         ویژه است!</p>
-                    <p className="text-secondary-600">مکان رفع اشکال آنلاین رایگان با نویسنده</p>
+                    <p className="text-secondary-600">امکان رفع اشکال آنلاین رایگان با نویسنده!</p>
                     <p>امکان تدریس انگلیسی پس از تسلط کامل به کتاب های طلسم مکالمه و شرکت در آزمون!</p>
                     <p className="text-primary-700">در لینگومسترز برای زبان آموزان ایرانی و پلتفرم های خارجی برای زبان آموزان بین المللی!</p>
                 </div>
