@@ -156,7 +156,7 @@ const Dropdown = ({
                          className={`${style.dropdown_input} ${className || ' '}`}>
                     <div className={style.dropdown_selected_value} ref={scrollRef}>{getDisplay()}</div>
                     <div className={style.dropdown_tools} style={showMenu ? {transform: 'rotate(180deg)'} : null}>
-                        <Down className='w-4 h-4'/>
+                        <Down className='w-3 h-3'/>
                     </div>
                 </section>
                 {showMenu && (

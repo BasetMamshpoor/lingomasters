@@ -1,18 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Slider } from "@heroui/react";
-import { useDebounce } from "@/hooks/useDebounce";
+import React, {useState, useEffect, useRef} from "react";
+import {Slider} from "@heroui/react";
+import {useDebounce} from "@/hooks/useDebounce";
 import formatCurrency from "@/helpers/formatCurrency";
 
-export default function RangeSlider({ filters, handleFilter, data,title }) {
+export default function RangeSlider({filters, handleFilter, data, title}) {
 
-    const minSliderValue = data?.min_price || 0;
+    const minSliderValue = 0;
     const maxSliderValue = data?.max_price || 1;
 
     const firstTime2 = useRef(true)
     const firstTime3 = useRef(true)
 
     const [values, setValues] = useState([minSliderValue, maxSliderValue]);
-
     const [min, max] = useDebounce(values);
 
     useEffect(() => {
@@ -22,20 +21,17 @@ export default function RangeSlider({ filters, handleFilter, data,title }) {
     useEffect(() => {
         if (firstTime2.current) {
             firstTime2.current = false
-            return
         } else
-            handleFilter('min_price', [{ value: min.toString() }])
+            handleFilter('min_price', [{value: min.toString()}])
     }, [min])
     useEffect(() => {
         if (firstTime3.current) {
             firstTime3.current = false
-            return
         } else
-            handleFilter('max_price', [{ value: max.toString() }])
+            handleFilter('max_price', [{value: max.toString()}])
     }, [max])
 
 
-    // Handle input change for min value
     const handleMinChange = (e) => {
         const newMin = Number(e.target.value.replace(/[^0-9]/g, ""));
         if (newMin >= minSliderValue && newMin <= values[1]) {
@@ -45,7 +41,6 @@ export default function RangeSlider({ filters, handleFilter, data,title }) {
         }
     };
 
-    // Handle input change for max value
     const handleMaxChange = (e) => {
         const newMax = Number(e.target.value.replace(/[^0-9]/g, ""));
         if (newMax <= maxSliderValue && newMax >= values[0]) {
@@ -62,7 +57,7 @@ export default function RangeSlider({ filters, handleFilter, data,title }) {
                 <div className="flex flex-col gap-2 w-full">
                     <Slider
                         aria-label=' '
-                        step={50}
+                        step={1000}
                         minValue={minSliderValue}
                         maxValue={maxSliderValue}
                         value={values}
@@ -72,9 +67,9 @@ export default function RangeSlider({ filters, handleFilter, data,title }) {
                             track: "h-1",
                             filler: "bg-[#035477]"
                         }}
-                        renderThumb={({ index, ...props }) => (
-                            <div {...props} className="p-0.5 top-1/2 bg-[#035477] rounded-full cursor-grab" >
-                                <span className='block rounded-full w-2 h-2' />
+                        renderThumb={({index, ...props}) => (
+                            <div {...props} className="p-0.5 top-1/2 bg-[#035477] rounded-full cursor-grab">
+                                <span className='block rounded-full w-2 h-2'/>
                             </div>
                         )}
                     />

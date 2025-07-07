@@ -13,12 +13,12 @@
     {
       "id": 5,
       "title": "پربازدیدترین",
-      "key": "most_viewed"
+      "key": "view"
     },
     {
       "id": 6,
       "title": "تخفیف دار",
-      "key": "discounted"
+      "key": "discount"
     },
     {
       "id": 3,

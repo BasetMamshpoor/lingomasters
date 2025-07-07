@@ -105,6 +105,16 @@ const AboutUs = () => {
                                 برای مطالعه و یادگیری بهتر، و پشتیبانی فنی در استفاده از بستر آموزشی آنلاین می‌باشند.
                             </p>
                         </div>
+                        <div
+                            className="flex items-center flex-col gap-6 py-6 px-4 rounded-lg shadow-lg bg-[linear-gradient(180deg,_rgba(255,_255,_255,_0.40)_0%,_rgba(231,_237,_255,_0.40)_100%)]">
+                            <div
+                                className="flex justify-center items-center p-3 text-sm sm:text-lg text-white rounded-lg w-full bg-[linear-gradient(90deg,_rgba(43,_73,_162,_0.90)_0%,_rgba(87,_124,_235,_0.70)_100%)]">
+                                فرصت‌های شغلی پس از یادگیری زبان
+                            </div>
+                            <p className="text-natural_gray-950 text-right text-xs sm:text-sm">
+                                لینگومسترز با هدف ایجاد مسیرهای حرفه‌ای برای زبان‌آموزان، امکان فعالیت شغلی را برای افرادی که به سطح متوسط به بالا یا پیشرفته در زبان موردنظر رسیده‌اند، فراهم می‌کند. زبان‌آموزان مستعد پس از ارزیابی علمی و آموزشی می‌توانند به عنوان مدرس، مترجم، تولیدکننده محتوا، یا پشتیبان آموزشی در لینگومسترز فعالیت کرده و ضمن کسب تجربه، درآمد نیز داشته باشند. این فرصت‌ها انگیزه‌ای مضاعف برای ادامه مسیر یادگیری و ورود به بازار کار تخصصی زبان ایجاد می‌کند.
+                            </p>
+                        </div>
                     </div>
                     <div className="flex flex-col justify-center items-center gap-5 p-7 text-xs sm:text-sm">
                         <div className="flex items-center gap-2">

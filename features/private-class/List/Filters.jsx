@@ -16,28 +16,16 @@ import FilterIcon from '@icons/filter.svg';
 import Search from '@icons/search.svg';
 import SortList from './sort.json'
 import weekDays from '@/func/Calendar.json'
+import useFiltersFromUrl from "@/hooks/useFiltersFromUrl";
+import {changeUrl} from "@/func/ChangeUrl";
 
 const Filters = ({setCurrentPage}) => {
     const searchRef = useRef(null)
     const router = useRouter()
     const {...queries} = router.query
 
-    const readUrl = () => {
-        let object = {};
-        for (const name in queries) {
-            if (Object.hasOwnProperty.call(queries, name)) {
-                let filter = []
-                const value = queries[name];
-                const newValue = value.split('-')
-                newValue.forEach((f, i) => {
-                    filter.push({value: f, name: i})
-                })
-                object[name] = filter
-            }
-        }
-        return object
-    }
-    const [filters, setFilters] = useState(readUrl() || {})
+    const [filters, setFilters] = useFiltersFromUrl();
+
     const [country, setCountry] = useState(Array.isArray(filters.country) ? filters.country[0].value : filters.country)
 
     const [data] = useGetRequest(false, `/private-reserve/get-filter${filters.city ? `?city_id=${filters.city}` : ""}`)
@@ -50,35 +38,8 @@ const Filters = ({setCurrentPage}) => {
                 [name]: value
             }
         })
-        changeUrl(name, value)
+        changeUrl(router, name, value)
         setCurrentPage(1)
-    }
-
-    const changeUrl = (name, value) => {
-        let str = null;
-        !!Array.isArray(value) ? value.forEach((f, i) => {
-            const is_Array_String = typeof f === 'string'
-            if (i > 0) {
-                str = str + '-' + (is_Array_String ? f : f.value)
-            } else if (i === 0) {
-                str = is_Array_String ? f : f.value
-            } else {
-                str = null
-            }
-        }) : str = value
-        if (str === null) {
-            const {[name]: O, ...query} = router.query
-            router.replace({pathname: router.asPath.split('?')[0], query: {...query},},
-                undefined,
-                {shallow: true}
-            );
-        } else {
-            const {...query} = router.query
-            router.replace({pathname: router.asPath.split('?')[0], query: {...query, [name]: str},},
-                undefined,
-                {shallow: true}
-            );
-        }
     }
 
     return (
@@ -94,18 +55,16 @@ const Filters = ({setCurrentPage}) => {
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
-                            const {value} = searchRef.current
-                            const {search, ...query} = queries
-                            router.replace({
-                                pathname: router.asPath.split('?')[0],
-                                query: value.trim().length ? {...query, search: value} : {...query},
-                            }, undefined, {shallow: true})
+                            const form = new FormData(e.target);
+                            const {search} = Object.fromEntries(form.entries())
+                            handleFilter('search', search)
                         }}>
                         <Input defaultValue={filters.search ? filters.search[0].value : null} ref={searchRef}
-                               type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو'
+                               type="text" name="search" classNames={{clearButton: '!p-px',}} isClearable
+                               placeholder='جستجو کتاب'
                                variant='bordered' radius='sm'
                                startContent={
-                                   <button className="bg-white centerOfParent"><Search
+                                   <button type='submit' className="bg-white centerOfParent"><Search
                                        className='fill-natural_gray-600'/></button>
                                }/>
                     </form>
@@ -118,10 +77,10 @@ const Filters = ({setCurrentPage}) => {
                                         "--heroui-success": "196 94% 25%",
                                     }}
                                     color='success'
-                                    isSelected={Array.isArray(filters.sort) ? filters.sort[0].value : filters.sort === c.key}
+                                    isSelected={Array.isArray(filters.sort) ? filters.sort[0].value === c.key?.toString() : filters.sort === c.key}
                                     onValueChange={e => handleFilter('sort', c.key)}
                                     classNames={{icon: 'text-white'}} key={c.key}
-                                    value={c.key}>{c.title}</Checkbox>)}
+                                    value={c.key?.toString()}>{c.title}</Checkbox>)}
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
@@ -171,7 +130,7 @@ const Filters = ({setCurrentPage}) => {
                         <RadioGroup
                             aria-label=" "
                             orientation="horizontal"
-                            defaultValue={filters.languageLevels ? filters.languageLevels[0].value : undefined}
+                            defaultValue={filters.languageLevels ? filters.languageLevels[0]?.value : undefined}
                             style={{
                                 "--heroui-default-500": "196 94% 25%",
                             }}

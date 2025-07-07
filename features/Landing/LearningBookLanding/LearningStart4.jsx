@@ -142,19 +142,19 @@ const LearningStart4 = ({path, knowsLevel, onNeedHelp,onBack}) => {
                                 <p className="text-3xl">ما سه روش داریم میتونی یکی رو انتخاب کنی!</p>
                                 <div className="flex items-center justify-between w-full">
                                     <p className="text-lg">تعیین سطح آنلاین با اساتید لینگومسترز</p>
-                                    <Link href="/exams/placement"
+                                    <Link href="/exams/placement?type=prof"
                                           className=" px-8 py-4 text-white bg-primary-600 rounded-md whitespace-nowrap text-xs">کلیک
                                         کنید</Link>
                                 </div>
                                 <div className="flex items-center justify-between w-full">
                                     <p className="text-lg">تعیین سطح آنلاین با لینگومسترز</p>
-                                    <Link href="/"
+                                    <Link href="/exams/placement?type=lingo"
                                           className=" px-8 py-4 text-white bg-primary-600 rounded-md whitespace-nowrap text-xs">کلیک
                                         کنید</Link>
                                 </div>
                                 <div className="flex items-center justify-between w-full">
                                     <p className="text-lg">تعیین سطح آنلاین دانشگاه کمبریج</p>
-                                    <Link href="/"
+                                    <Link href="/exams/placement?type=camb"
                                           className=" px-8 py-4 text-white bg-primary-600 rounded-md whitespace-nowrap text-xs">کلیک
                                         کنید</Link>
                                 </div>
@@ -183,19 +183,19 @@ const LearningStart4 = ({path, knowsLevel, onNeedHelp,onBack}) => {
                                 <p className="text-lg">ما سه روش داریم میتونی یکی رو انتخاب کنی!</p>
                                 <div className="flex items-center justify-between w-full">
                                     <p className="">تعیین سطح آنلاین با اساتید لینگومسترز</p>
-                                    <Link href="/"
+                                    <Link href="/exams/placement?type=prof"
                                           className=" px-2 py-2 text-white bg-primary-600 rounded-md whitespace-nowrap text-xs">کلیک
                                         کنید</Link>
                                 </div>
                                 <div className="flex items-center justify-between w-full">
                                     <p className="">تعیین سطح آنلاین با لینگومسترز</p>
-                                    <Link href="/"
+                                    <Link href="/exams/placement?type=lingo"
                                           className=" px-2 py-2 text-white bg-primary-600 rounded-md whitespace-nowrap text-xs">کلیک
                                         کنید</Link>
                                 </div>
                                 <div className="flex items-center justify-between w-full">
                                     <p className="">تعیین سطح آنلاین دانشگاه کمبریج</p>
-                                    <Link href="/"
+                                    <Link href="/exams/placement?type=camb"
                                           className=" px-2 py-2 text-white bg-primary-600 rounded-md whitespace-nowrap text-xs">کلیک
                                         کنید</Link>
                                 </div>
@@ -224,19 +224,19 @@ const LearningStart4 = ({path, knowsLevel, onNeedHelp,onBack}) => {
                                 <p className="text-sm">ما سه روش داریم میتونی یکی رو انتخاب کنی!</p>
                                 <div className="flex items-center justify-between w-full">
                                     <p className="text-xs">تعیین سطح آنلاین با اساتید لینگومسترز</p>
-                                    <Link href="/"
+                                    <Link href="/exams/placement?type=prof"
                                           className=" px-2 py-2 text-white bg-primary-600 rounded-md whitespace-nowrap text-[10px]">کلیک
                                         کنید</Link>
                                 </div>
                                 <div className="flex items-center justify-between w-full">
                                     <p className="text-xs">تعیین سطح آنلاین با لینگومسترز</p>
-                                    <Link href="/"
+                                    <Link href="/exams/placement?type=lingo"
                                           className=" px-2 py-2 text-white bg-primary-600 rounded-md whitespace-nowrap text-[10px]">کلیک
                                         کنید</Link>
                                 </div>
                                 <div className="flex items-center justify-between w-full">
                                     <p className="text-xs">تعیین سطح آنلاین دانشگاه کمبریج</p>
-                                    <Link href="/"
+                                    <Link href="/exams/placement?type=camb"
                                           className=" px-2 py-2 text-white bg-primary-600 rounded-md whitespace-nowrap text-[10px]">کلیک
                                         کنید</Link>
                                 </div>

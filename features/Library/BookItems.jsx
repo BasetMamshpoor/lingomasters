@@ -15,8 +15,9 @@ function BookItems({currentPage, setCurrentPage}) {
                     ? <>
                         {!!data.length
                             ?
-                            <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full">{data.map(r =>
-                                <Book data={r} key={r.id}/>)}</div>
+                            <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full">
+                                {data.map(r =>
+                                    <Book link="/library" isSuggestion {...r} key={r.id}/>)}</div>
                             : <p className='w-full'>کتابی پیدا نشد لطفا فیلتر ها را تغییر دهید</p>}
                         <div className="centerOfParent">
                             <PaginationApp total={pagination.total} per_page={pagination.per_page}

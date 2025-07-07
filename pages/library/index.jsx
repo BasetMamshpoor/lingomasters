@@ -11,11 +11,11 @@ const Library = () => {
         <>
             <section className='py-12' dir="rtl">
                 <div className="container">
-                    <div className="lg:flex hidden items-center justify-center gap-2">
+                    <div className="lg:flex hidden items-center justify-center gap-2 mb-10">
                         <div className="centerOfParent"><BookIcon className='fill-primary-600 w-8 h-8'/></div>
                         <h1 className='text-2xl text-primary-950 font-semibold'>کتابخانه</h1>
                     </div>
-                    <div className='lg:hidden flex items-center justify-between'>
+                    <div className='lg:hidden flex items-center justify-between mb-10'>
                         <div className="flex items-center gap-4">
                             <BookIcon className='fill-primary-600 w-6 h-6'/>
                             <h1 className="font-semibold text-primary-950">کتابخانه</h1>

@@ -9,6 +9,8 @@ import {useRouter} from "next/router";
 import FilterIcon from '@icons/filter.svg';
 import Search from '@icons/search.svg';
 import {Language} from "@/providers/languageProvider";
+import useFiltersFromUrl from "@/hooks/useFiltersFromUrl";
+import {changeUrl} from "@/func/ChangeUrl";
 
 const initialData = {
     teachingTypes: [
@@ -53,23 +55,7 @@ const Filters = ({setCurrentPage}) => {
     const {languages} = useContext(Language)
     const {...queries} = router.query
 
-    const readUrl = () => {
-        let object = {};
-        for (const name in queries) {
-            if (Object.hasOwnProperty.call(queries, name)) {
-                let filter = []
-                const value = queries[name];
-                const newValue = value.split('-')
-                newValue.forEach((f, i) => {
-                    filter.push({value: f, name: i})
-                })
-                object[name] = filter
-            }
-        }
-        return object
-    }
-    const [filters, setFilters] = useState(readUrl() || {})
-
+    const [filters, setFilters] = useFiltersFromUrl();
     const handleFilter = (name, value) => {
         setFilters(prev => {
             return {
@@ -77,35 +63,8 @@ const Filters = ({setCurrentPage}) => {
                 [name]: value
             }
         })
-        changeUrl(name, value)
+        changeUrl(router, name, value)
         setCurrentPage(1)
-    }
-
-    const changeUrl = (name, value) => {
-        let str = null;
-        !!Array.isArray(value) ? value.forEach((f, i) => {
-            const is_Array_String = typeof f === 'string'
-            if (i > 0) {
-                str = str + '-' + (is_Array_String ? f : f.value)
-            } else if (i === 0) {
-                str = is_Array_String ? f : f.value
-            } else {
-                str = null
-            }
-        }) : str = value
-        if (str === null) {
-            const {[name]: O, ...query} = router.query
-            router.replace({pathname: router.asPath.split('?')[0], query: {...query},},
-                undefined,
-                {shallow: true}
-            );
-        } else {
-            const {...query} = router.query
-            router.replace({pathname: router.asPath.split('?')[0], query: {...query, [name]: str},},
-                undefined,
-                {shallow: true}
-            );
-        }
     }
 
     return (
@@ -120,25 +79,18 @@ const Filters = ({setCurrentPage}) => {
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
-                        const {value} = searchRef.current
-                        const {search, ...query} = queries
-                        router.replace({
-                            pathname: router.asPath.split('?')[0],
-                            query: value.trim().length ? {...query, search: value} : {...query},
-                        }, undefined, {shallow: true})
+                        const form = new FormData(e.target);
+                        const {search} = Object.fromEntries(form.entries())
+                        handleFilter('search', search)
                     }}>
-                    <Input
-                        defaultValue={filters.search ? filters.search[0].value : null}
-                        ref={searchRef}
-                        type="text"
-                        classNames={{clearButton: '!p-px',}}
-                        isClearable
-                        placeholder='جستجو آزمون'
-                        variant='bordered' radius='sm'
-                        startContent={
-                            <button className="bg-white centerOfParent"><Search
-                                className='fill-natural_gray-600'/></button>
-                        }/>
+                    <Input defaultValue={filters.search ? filters.search[0].value : null} ref={searchRef}
+                           type="text" name="search" classNames={{clearButton: '!p-px',}} isClearable
+                           placeholder='جستجو آزمون'
+                           variant='bordered' radius='sm'
+                           startContent={
+                               <button type='submit' className="bg-white centerOfParent"><Search
+                                   className='fill-natural_gray-600'/></button>
+                           }/>
                 </form>
                 {router.query.is_foreign !== '1' && <div className="flex flex-col gap-4">
                     <label className='font-semibold'>انتخاب مقطع</label>
@@ -162,7 +114,7 @@ const Filters = ({setCurrentPage}) => {
                     <RadioGroup
                         aria-label=" "
                         orientation="horizontal"
-                        defaultValue={filters.language ? filters.language[0].value : undefined}
+                        defaultValue={filters.language ? filters.language[0]?.value : undefined}
                         style={{
                             "--heroui-default-500": "196 94% 25%",
                         }}
@@ -178,7 +130,7 @@ const Filters = ({setCurrentPage}) => {
                     <RadioGroup
                         aria-label=" "
                         orientation="horizontal"
-                        defaultValue={filters.teachingTypes ? filters.teachingTypes[0].value : undefined}
+                        defaultValue={filters.teachingTypes ? filters.teachingTypes[0]?.value : undefined}
                         style={{
                             "--heroui-default-500": "196 94% 25%",
                         }}

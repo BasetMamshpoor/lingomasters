@@ -12,7 +12,7 @@ const LearningStart = ({ onNext }) => {
             <div className="flex flex-col items-center gap-16 w-full px-5">
                 <div className="flex items-center justify-center gap-3">
                     <Question className="w-10 h-10"/>
-                    <p className="text-2xl">برای یادگیری زبان در لینگومسترز از کجا شروع کنم؟</p>
+                    <p className="text-2xl text-center">برای یادگیری زبان در لینگومسترز از کجا شروع کنم؟</p>
                 </div>
                 <div className="hidden lg:flex items-center justify-between bg-primary-950 w-full gap-3">
                     <div

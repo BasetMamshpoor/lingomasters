@@ -1,7 +1,10 @@
 import useGetRequest from '@/hooks/useGetRequest';
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import RangeSlider from '@/components/Range';
 import {
+    Autocomplete,
+    AutocompleteItem,
+    AutocompleteSection,
     Checkbox,
     CheckboxGroup,
     Input,
@@ -14,35 +17,16 @@ import {useRouter} from "next/router";
 import FilterIcon from '@icons/filter.svg';
 import Search from '@icons/search.svg';
 import SortList from './sort.json'
-import weekDays from '@/func/Calendar.json'
 import Dropdown from "@/components/Dropdown/DropDown";
+import useFiltersFromUrl from "@/hooks/useFiltersFromUrl";
+import {changeUrl} from "@/func/ChangeUrl";
 
 const Filters = ({setCurrentPage}) => {
     const searchRef = useRef(null)
     const router = useRouter()
-    const {...queries} = router.query
+    const [data, , , , , isLoading] = useGetRequest(true, `/library/GetFilter`)
 
-    const readUrl = () => {
-        let object = {};
-        for (const name in queries) {
-            if (Object.hasOwnProperty.call(queries, name)) {
-                let filter = []
-                const value = queries[name];
-                const newValue = value.split('-')
-                newValue.forEach((f, i) => {
-                    filter.push({value: f, name: i})
-                })
-                object[name] = filter
-            }
-        }
-        return object
-    }
-    const [filters, setFilters] = useState(readUrl() || {})
-    const [country, setCountry] = useState(Array.isArray(filters.country) ? filters.country[0].value : filters.country)
-
-    const [data] = useGetRequest(true, `/library/get-filter${filters.city ? `?city_id=${filters.city}` : ""}`)
-    const [location, setLocation, Q, W, E, loading] = useGetRequest(false, `/countries?country=${country}`)
-
+    const [filters, setFilters] = useFiltersFromUrl();
     const handleFilter = (name, value) => {
         setFilters(prev => {
             return {
@@ -50,39 +34,13 @@ const Filters = ({setCurrentPage}) => {
                 [name]: value
             }
         })
-        changeUrl(name, value)
+        changeUrl(router, name, value)
         setCurrentPage(1)
-    }
-
-    const changeUrl = (name, value) => {
-        let str = null;
-        !!Array.isArray(value) ? value.forEach((f, i) => {
-            if (i > 0) {
-                str = str + '-' + (typeof f === "object" ? f.value : f)
-            } else if (i === 0) {
-                str = typeof f === "object" ? f.value : f
-            } else {
-                str = null
-            }
-        }) : str = value
-        if (str === null) {
-            const {[name]: O, slug, ...query} = router.query
-            router.replace({pathname: router.asPath.split('?')[0], query: {...query},},
-                undefined,
-                {shallow: true}
-            );
-        } else {
-            const {slug, ...query} = router.query
-            router.replace({pathname: router.asPath.split('?')[0], query: {...query, [name]: str},},
-                undefined,
-                {shallow: true}
-            );
-        }
     }
 
     return (
         <>
-            {data ?
+            {!isLoading ? data &&
                 <div
                     className='flex flex-col gap-6 lg:border border-natural_gray-100 rounded-xl bg-white lg:py-6 pb-6 lg:px-4'
                     dir='rtl'>
@@ -93,16 +51,13 @@ const Filters = ({setCurrentPage}) => {
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
-                            const {value} = searchRef.current
-                            const {search, ...query} = queries
-                            router.replace({
-                                pathname: router.asPath.split('?')[0],
-                                query: value.trim().length ? {...query, search: value} : {...query},
-                            }, undefined, {shallow: true})
-                            handleFilter('search', value)
+                            const form = new FormData(e.target);
+                            const {search} = Object.fromEntries(form.entries())
+                            handleFilter('search', search)
                         }}>
                         <Input defaultValue={filters.search ? filters.search[0].value : null} ref={searchRef}
-                               type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو کتاب'
+                               type="text" name="search" classNames={{clearButton: '!p-px',}} isClearable
+                               placeholder='جستجو کتاب'
                                variant='bordered' radius='sm'
                                startContent={
                                    <button type='submit' className="bg-white centerOfParent"><Search
@@ -118,10 +73,10 @@ const Filters = ({setCurrentPage}) => {
                                         "--heroui-success": "196 94% 25%",
                                     }}
                                     color='success'
-                                    isSelected={Array.isArray(filters.sort) ? filters.sort[0].value : filters.sort === c.key}
+                                    isSelected={Array.isArray(filters.sort) ? filters.sort[0].value === c.key.toString() : filters.sort === c.key}
                                     onValueChange={e => handleFilter('sort', c.key)}
                                     classNames={{icon: 'text-white'}} key={c.key}
-                                    value={c.key}>{c.title}</Checkbox>)}
+                                    value={c.key.toString()}>{c.title}</Checkbox>)}
                         </div>
                     </div>
                     <Dropdown
@@ -129,32 +84,61 @@ const Filters = ({setCurrentPage}) => {
                         defaultValue={Array.isArray(filters.language) ? filters.language[0].value : filters.language}
                         Searchable label="انتخاب زبان" setState={handleFilter} name="language"
                         placeHolder='زبان هدف'
-                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
+                        className='!px-3 !py-2 border-2 border-natural_gray-200 rounded-lg bg-white'/>
                     <Dropdown
-                        array={data.subject}
-                        defaultValue={Array.isArray(filters.subject) ? filters.subject[0].value : filters.subject}
-                        Searchable label="موضوع کتاب" setState={handleFilter} name="subject" placeHolder="موضوع"
-                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
-                    <Dropdown
-                        array={data.publisher}
-                        defaultValue={Array.isArray(filters.publisher) ? filters.publisher[0].value : filters.publisher}
-                        Searchable label="انتشارات" setState={handleFilter} name="publisher" placeHolder="انتشارات"
-                        className='!px-3 !py-2 border border-natural_gray-200 rounded-lg bg-white'/>
+                        array={data.publication}
+                        defaultValue={Array.isArray(filters.publication) ? filters.publication[0].value : filters.publication}
+                        Searchable label="انتشارات" setState={handleFilter} name="publication" placeHolder="انتشارات"
+                        className='!px-3 !py-2 border-2 border-natural_gray-200 rounded-lg bg-white'/>
+                    <Autocomplete
+                        variant='bordered'
+                        radius='sm'
+                        selectedKey={filters.learning_goals ? filters.learning_goals[0]?.value : undefined}
+                        onSelectionChange={e => handleFilter('learning_goals', e)}
+                        label="موضوع کتاب"
+                        placeholder='موضوع کتاب'
+                        labelPlacement="outside"
+                        isClearable={false}
+                        classNames={{
+                            input: 'text-xs',
+                            trigger: 'bg-white',
+                            listbox: '[&>ul>li>span>svg]:w-3 [&>ul>li>span>svg]:h-3',
+                        }}
+                        inputProps={{
+                            classNames: {label: 'mb-4 font-semibold'}
+                        }}
+                    >
+                        {data.learning_goals.map(obj =>
+                            <AutocompleteSection
+                                classNames={{
+                                    base: 'text-right'
+                                }}
+                                showDivider key={obj.goal_id} title={obj.goal_title}>
+                                {obj.subgoals.map(subgoal => (
+                                    <AutocompleteItem
+                                        classNames={{
+                                            selectedIcon: '[&>svg]:w-3 [&>svg]:h-3'
+                                        }}
+                                        key={subgoal.value}
+                                        title={subgoal.name}/>
+                                ))}
+                            </AutocompleteSection>
+                        )}
+                    </Autocomplete>
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>سطح کتاب</label>
                         <RadioGroup
                             aria-label=" "
                             orientation="horizontal"
-                            defaultValue={filters.languageLevels ? filters.languageLevels[0].value : undefined}
+                            defaultValue={filters.level ? filters.level[0].value : undefined}
                             style={{
                                 "--heroui-default-500": "196 94% 25%",
                             }}
                             color='default'
                             classNames={{wrapper: 'grid grid-cols-2'}}
-                            onValueChange={(e) => handleFilter('languageLevels', e)}
+                            onValueChange={(e) => handleFilter('level', e)}
                         >
-                            {data.languageLevels?.map(a => <Radio key={a.value}
-                                                                  value={a.value.toString()}>{a.name}</Radio>)}
+                            {data.level?.map(a => <Radio key={a.value} value={a.value.toString()}>{a.name}</Radio>)}
                         </RadioGroup>
                     </div>
                     <div className="flex flex-col gap-4">
@@ -167,26 +151,27 @@ const Filters = ({setCurrentPage}) => {
                                 "--heroui-default-500": "196 94% 25%",
                             }}
                             color='default'
+                            classNames={{wrapper: 'grid grid-cols-2'}}
                             onValueChange={(e) => handleFilter('age_group', e)}
                         >
                             {data.age_group?.map(a => <Radio key={a.value} value={a.value.toString()}>{a.name}</Radio>)}
                         </RadioGroup>
                     </div>
-                    <div className="flex flex-col gap-4">
-                        <label className='font-semibold'>نوع کتاب</label>
-                        <RadioGroup
-                            aria-label=" "
-                            orientation="horizontal"
-                            defaultValue={filters.book_type ? filters.book_type[0].value : undefined}
-                            style={{
-                                "--heroui-default-500": "196 94% 25%",
-                            }}
-                            color='default'
-                            onValueChange={(e) => handleFilter('book_type', e)}
-                        >
-                            {data.book_type?.map(a => <Radio key={a.value} value={a.value.toString()}>{a.name}</Radio>)}
-                        </RadioGroup>
-                    </div>
+                    {/*<div className="flex flex-col gap-4">*/}
+                    {/*    <label className='font-semibold'>نوع کتاب</label>*/}
+                    {/*    <RadioGroup*/}
+                    {/*        aria-label=" "*/}
+                    {/*        orientation="horizontal"*/}
+                    {/*        defaultValue={filters.book_type ? filters.book_type[0].value : undefined}*/}
+                    {/*        style={{*/}
+                    {/*            "--heroui-default-500": "196 94% 25%",*/}
+                    {/*        }}*/}
+                    {/*        color='default'*/}
+                    {/*        onValueChange={(e) => handleFilter('book_type', e)}*/}
+                    {/*    >*/}
+                    {/*        {data.book_type?.map(a => <Radio key={a.value} value={a.value.toString()}>{a.name}</Radio>)}*/}
+                    {/*    </RadioGroup>*/}
+                    {/*</div>*/}
                     <div className="flex flex-col gap-4">
                         <label className='font-semibold'>تعداد جلد</label>
                         <RadioGroup
@@ -197,9 +182,10 @@ const Filters = ({setCurrentPage}) => {
                                 "--heroui-default-500": "196 94% 25%",
                             }}
                             color='default'
+                            classNames={{wrapper: 'grid grid-cols-2'}}
                             onValueChange={(e) => handleFilter('volume', e)}
                         >
-                            {[{name: 'تک جلدی', value: '1'}, {name: 'چند جلدی', value: '2'},].map(a => <Radio
+                            {data.Dimensions?.map(a => <Radio
                                 key={a.value} value={a.value.toString()}>{a.name}</Radio>)}
                         </RadioGroup>
                     </div>
@@ -212,14 +198,14 @@ const Filters = ({setCurrentPage}) => {
                                 "--heroui-success": "196 94% 25%",
                             }}
                             color='success'
-                            value={filters.edit && (typeof filters.edit[0] === "object") ? filters.edit.map(e => e.value) : filters.edit}
-                            onValueChange={(value) => handleFilter('edit', value)}
-                            classNames={{wrapper: 'grid grid-cols-2'}}
+                            value={filters.time_of_print && (typeof filters.time_of_print[0] === "object") ? filters.time_of_print.map(e => e.value) : filters.time_of_print}
+                            onValueChange={(value) => handleFilter('time_of_print', value)}
+                            classNames={{wrapper: 'grid grid-cols-3'}}
                         >
-                            {data.edit?.map(c =>
+                            {data.time_of_print?.map(c =>
                                 <Checkbox
-                                    classNames={{icon: 'text-white'}} key={c.id}
-                                    value={c.id}>{c.name}</Checkbox>)}
+                                    classNames={{icon: 'text-white'}} key={c.value}
+                                    value={c.value.toString()}>{c.name}</Checkbox>)}
                         </CheckboxGroup>
                     </div>
                     <RangeSlider {...{filters, handleFilter, data: data.price_range, title: 'قیمت کتاب'}} />

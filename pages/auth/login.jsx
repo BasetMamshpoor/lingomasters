@@ -125,7 +125,7 @@ const Login = () => {
                         className="bg-white lg:w-[533px] sm:w-[504px] w-[328px] shadow-md border sm:rounded-3xl rounded-xl absolute top-[15%] lg:right-[10%] right-1/2 lg:translate-x-0 translate-x-1/2 py-5 px-6 flex flex-col gap-5">
                         <div className="flex flex-col gap-10 items-center">
                             <p className="text-blue-600 sm:text-4xl text-xl">لینگومسترز</p>
-                            <p>ورود</p>
+                            <p>ورود زبان آموزان</p>
                         </div>
                         <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                             <div className="flex flex-col gap-1">

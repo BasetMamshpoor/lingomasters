@@ -63,6 +63,7 @@
 }
 .dropdown_selected_value {
   overflow-x: auto;
+  font-size: 14px;
 }
 .dropdown_selected_value::-webkit-scrollbar {
   height: 4px;

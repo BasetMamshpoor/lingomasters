@@ -7,7 +7,7 @@ import {Spinner} from "@heroui/react";
 
 const SmallMonthly = ({date, selected}) => {
     const calendarRef = useRef();
-    const [data, , , , , isLoading] = useGetRequest(true, `/calendar/monthly?date=${date}&type=${selected}`);
+    const [data, , , , , isLoading] = useGetRequest(true, `/student/calendar/monthly?date=${date}&type=${selected}`);
 
     useEffect(() => {
         const cal = calendarRef.current;

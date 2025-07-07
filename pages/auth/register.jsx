@@ -55,7 +55,7 @@ const Register = () => {
                         className="bg-white lg:w-[533px] sm:w-[504px] w-[328px] shadow-md border sm:rounded-3xl rounded-xl absolute top-[5%] lg:right-[10%] right-1/2 lg:translate-x-0 translate-x-1/2 lg:py-8 sm:py-5 py-3 lg:px-10 sm:px-6 px-4 flex flex-col gap-5">
                         <div className="flex flex-col gap-10 items-center">
                             <p className="text-blue-600 sm:text-4xl text-xl">لینگومسترز</p>
-                            <p>ثبت نام</p>
+                            <p>ثبت نام زبان آموزان</p>
                         </div>
                         <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                             <div className="flex flex-col gap-1">
@@ -205,18 +205,15 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className="w-full flex items-center gap-2 mt-10">
-                                <div className="w-full overflow-hidden">
-                                    <Link href="/auth/login"
-                                          className="border border-secondary-400 text-secondary-400 w-full inline-block sm:text-base text-sm text-center px-3 py-2 rounded effect-1">
-                                        بازگشت
-                                    </Link>
-                                </div>
-                                <div className="w-full">
-                                    <button
-                                        className="disabled:bg-natural_gray-400 text-white bg-primary-700 w-full px-3 py-2 sm:text-base text-sm rounded effect-2">
-                                        ثبت نام
-                                    </button>
-                                </div>
+                                <Link href="/auth/login"
+                                      className="border border-secondary-400 text-secondary-400 w-full inline-block sm:text-base text-sm text-center px-3 py-2 rounded effect-1">
+                                    بازگشت
+                                </Link>
+
+                                <button
+                                    className="disabled:bg-natural_gray-400 text-white bg-primary-700 w-full px-3 py-2 sm:text-base text-sm rounded effect-2">
+                                    ثبت نام
+                                </button>
                             </div>
                         </form>
                     </div>

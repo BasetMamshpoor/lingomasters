@@ -42,7 +42,7 @@ const BookDetail = () => {
     const {query} = useRouter()
     const {id} = query
 
-    const [product] = useGetRequest(true, id ? `/product/show/${id}` : null)
+    const [product] = useGetRequest(true, id ? `/library/show/${id}` : null)
 
     return (
         <>

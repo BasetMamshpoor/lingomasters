@@ -77,7 +77,7 @@ const FreeBookDetails = () => {
                                     <Dollar className="fill-primary-700 w-4 h-4"/>
                                     <p className="text-xs md:text-base">قیمت</p>
                                 </div>
-                                <p className="text-xs md:text-base w-1/2">{data.price ? data.price.toLocaleString() : "رایگان"}</p>
+                                <p className="text-xs md:text-base w-1/2">{data.price?data.price.toLocaleString():"رایگان"}</p>
                             </div>
                             <div className="flex items-center w-full">
                                 <div className="flex items-center gap-2 w-1/2">
@@ -120,9 +120,7 @@ const FreeBookDetails = () => {
                                     <p className="text-xs md:text-base">اساتیدی که کتاب را تدریس می‌کنند</p>
                                 </div>
                                 <div dir="ltr">
-                                    <AvatarGroup max={5}
-                                                 total={data.professors?.length > 5 ? data.professors?.length : 0}
-                                                 dir="ltr"
+                                    <AvatarGroup max={5} total={data.professors?.length > 5 ? data.professors?.length : 0} dir="ltr"
                                                  classNames={{count: "w-7 h-7 text-tiny border-3 border-white"}}>
                                         {data.professors?.map(el => (
                                             <Avatar
@@ -136,7 +134,7 @@ const FreeBookDetails = () => {
                             </div>
                         </div>
                         <div className="flex w-full lg:w-1/2 lg:justify-end justify-center">
-                            <Image src={data.image || "/Images/product.png"} alt={data.title} width={100} height={100}
+                            <Image src={data.image||"/Images/product.png"} alt={data.title} width={100} height={100}
                                    className="lg:max-w-64 max-w-[50%] w-full h-fit object-cover"/>
                         </div>
                     </div>

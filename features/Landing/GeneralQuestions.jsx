@@ -8,7 +8,7 @@ const GeneralQuestions = () => {
             <div className="flex flex-col gap-20">
                 <div className="flex items-center justify-center gap-1 md:gap-3">
                     <Question className="w-6 h-6 sm:w-10 sm:h-10"/>
-                    <p className="text-md sm:text-lg md:text-3xl">چرا لینگومسترز بهترین گزینه ممکن برای یادگیری انواع زبان هاست؟</p>
+                    <p className="text-md sm:text-lg md:text-3xl text-center">چرا لینگومسترز بهترین گزینه ممکن برای یادگیری انواع زبان هاست؟</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-20 px-4">
                     <div className="relative flex justify-center h-56">

@@ -1,14 +1,13 @@
 import React from 'react';
 import Book from '/features/profile/Books/Book';
-import Link from "next/link";
 import Chevron from "@icons/arrow-down.svg"
-import ChevronLeft from "@icons/arrow-left.svg"
 import Books from "@icons/books.svg"
 import useGetRequest from "@/hooks/useGetRequest";
 import {Spinner} from "@heroui/react";
+import SuggestionBooks from "@/features/profile/Books/SuggestionBooks";
 
 const Index = () => {
-    const [data, , , , , isLoading] = useGetRequest(true, '/student/book')
+    const [data, , , , , isLoading] = useGetRequest(true, '/student/book/index_dow')
     return (
         <>
             <div dir="rtl" className="container flex flex-col gap-16 md:gap-20">
@@ -33,18 +32,7 @@ const Index = () => {
                         </div>}
                     </div>
                 </div>
-                <div className="flex flex-col gap-6">
-                    <div className="flex items-center justify-between w-full">
-                        <p className="lg:text-base font-bold text-primary-950">دانلود کتاب‌های بیشتر</p>
-                        <Link href="/public" className="flex items-center gap-2">
-                            <p className="text-primary-500 text-xs md:text-base">مشاهده همه کتاب‌ها</p>
-                            <ChevronLeft className="h-5 w-5 fill-primary-600"/>
-                        </Link>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-5 lg:gap-6">
-                        <Book/>
-                    </div>
-                </div>
+                <SuggestionBooks/>
             </div>
         </>
     );

@@ -17,7 +17,7 @@ const Footer = () => {
             <div className="relative mt-40 flex flex-col" dir='rtl'>
                 <div
                     className="flex flex-col gap-10 lg:pt-20 lg:px-20 sm:py-10 sm:px-8 py-8 px-4 bg-[linear-gradient(90deg,_#B5C7DF_0%,_#E8EFF8_100%)]">
-                    <div className="flex flex-wrap items-end gap-10 justify-between w-full">
+                    <div className="flex flex-wrap items-end gap-4 justify-between w-full">
                         <div className="flex flex-col gap-8 grow">
                             <p className="">دسترسی ها</p>
                             <div className="grid sm:grid-cols-3 grid-cols-1 sm:gap-8 gap-4 grow">
@@ -97,59 +97,62 @@ const Footer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex gap-6 items-center sm:justify-start justify-center sm:w-fit w-full h-fit">
-                            <div className="">
-                                <img src={'/images/etehadie.png'} alt={'etehadie'}
-                                     className="w-full max-h-[130px] object-contain"
-                                />
+                        <div className="flex flex-col items-center sm:justify-start justify-center flex-1 gap-6 sm:w-fit w-full">
+                            <div
+                                className="flex gap-6 items-center sm:justify-start justify-center sm:w-fit w-full h-fit">
+                                <div className="">
+                                    <img src={'/images/etehadie.png'} alt={'etehadie'}
+                                         className="w-full max-h-[130px] object-contain"
+                                    />
+                                </div>
+                                <a referrerPolicy='origin' target='_blank'
+                                   className=""
+                                   href='https://trustseal.enamad.ir/?id=511544&Code=b5B03h3L84P1noEJN4Gvb8Ma1dJOBQub'>
+                                    <img
+                                        className="w-full max-h-[130px] object-contain mix-blend-multiply"
+                                        referrerPolicy='origin'
+                                        src="/images/enamad_1024.png"
+                                        alt='' code='b5B03h3L84P1noEJN4Gvb8Ma1dJOBQub'/>
+                                </a>
                             </div>
-                            <a referrerPolicy='origin' target='_blank'
-                               className=""
-                               href='https://trustseal.enamad.ir/?id=511544&Code=b5B03h3L84P1noEJN4Gvb8Ma1dJOBQub'>
-                                <img
-                                    className="w-full max-h-[130px] object-contain mix-blend-multiply"
-                                    referrerPolicy='origin'
-                                    src="/images/enamad_1024.png"
-                                    alt='' code='b5B03h3L84P1noEJN4Gvb8Ma1dJOBQub'/>
-                            </a>
+                            <div className="centerOfParent gap-2">
+                                <Link href={process.env.NEXT_PUBLIC_SOCIAL_YOUTUBE} target="_blank"
+                                      rel="noopener noreferrer">
+                                    <Youtube/>
+                                </Link>
+                                <Link href={process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM} target="_blank"
+                                      rel="noopener noreferrer">
+                                    <Insta/>
+                                </Link>
+                                <Link href={process.env.NEXT_PUBLIC_SOCIAL_WHATSAPP} target="_blank"
+                                      rel="noopener noreferrer">
+                                    <Whats/>
+                                </Link>
+                                <Link href={process.env.NEXT_PUBLIC_SOCIAL_TELEGRAM} target="_blank"
+                                      rel="noopener noreferrer">
+                                    <Tel/>
+                                </Link>
+                                <Link href={process.env.NEXT_PUBLIC_SOCIAL_APARAT} target="_blank"
+                                      rel="noopener noreferrer">
+                                    <Apa/>
+                                </Link>
+                                <Link href={process.env.NEXT_PUBLIC_SOCIAL_TIKTOK} target="_blank"
+                                      rel="noopener noreferrer">
+                                    <Tik/>
+                                </Link>
+                                <Link href={process.env.NEXT_PUBLIC_SOCIAL_PINTEREST} target="_blank"
+                                      rel="noopener noreferrer">
+                                    <Pi/>
+                                </Link>
+                                <Link href={process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK} target="_blank"
+                                      rel="noopener noreferrer">
+                                    <Fac/>
+                                </Link>
+                                <Link href={process.env.NEXT_PUBLIC_SOCIAL_X} target="_blank" rel="noopener noreferrer">
+                                    <X/>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
-                    <div className="centerOfParent gap-2">
-                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_YOUTUBE} target="_blank"
-                              rel="noopener noreferrer">
-                            <Youtube/>
-                        </Link>
-                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM} target="_blank"
-                              rel="noopener noreferrer">
-                            <Insta/>
-                        </Link>
-                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_WHATSAPP} target="_blank"
-                              rel="noopener noreferrer">
-                            <Whats/>
-                        </Link>
-                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_TELEGRAM} target="_blank"
-                              rel="noopener noreferrer">
-                            <Tel/>
-                        </Link>
-                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_APARAT} target="_blank"
-                              rel="noopener noreferrer">
-                            <Apa/>
-                        </Link>
-                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_TIKTOK} target="_blank"
-                              rel="noopener noreferrer">
-                            <Tik/>
-                        </Link>
-                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_PINTEREST} target="_blank"
-                              rel="noopener noreferrer">
-                            <Pi/>
-                        </Link>
-                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK} target="_blank"
-                              rel="noopener noreferrer">
-                            <Fac/>
-                        </Link>
-                        <Link href={process.env.NEXT_PUBLIC_SOCIAL_X} target="_blank" rel="noopener noreferrer">
-                            <X/>
-                        </Link>
                     </div>
                 </div>
                 <div

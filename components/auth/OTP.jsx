@@ -88,7 +88,7 @@ const Otp = ({setStep, user, login, data: Data}) => {
                         </div>
                         <div className="flex flex-col gap-5">
                             <div className="mt-10">
-                                <p>کد تایید ارسال شده به ایمیل را وارد کنید</p>
+                                <p>کد تایید ارسال شده را وارد کنید</p>
                                 <div className="flex items-stretch justify-center" dir='ltr'>
                                     <InputOtp
                                         classNames={{

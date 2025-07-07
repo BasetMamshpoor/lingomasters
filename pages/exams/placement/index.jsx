@@ -165,7 +165,7 @@ const Index = () => {
                             </div>
                             <div
                                 className="relative bg-white bg-opacity-20 backdrop-blur-[20px] rounded-xl h-full shadow-lg z-10">
-                                <Image src="/images/money.png" width={60} height={60} alt=""
+                                <Image src="/images/money-Home-page" width={60} height={60} alt=""
                                        className="absolute -top-7 left-1/2 -translate-x-1/2 z-20"/>
                                 <div
                                     className="flex flex-col items-center justify-center h-full pt-4 px-4 text-center gap-10">

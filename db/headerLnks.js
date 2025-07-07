@@ -5,7 +5,7 @@ import People from "@icons/people.svg";
 import Seller from "@icons/Webinar2.svg";
 import Workshop from "@icons/workshop.svg";
 import SearchOrder from "@icons/Quiz.svg";
-import About from "@icons/about.svg";
+import Library from "@icons/books.svg";
 import Contact from "@icons/vector.svg";
 
 const links = [
@@ -42,8 +42,8 @@ const links = [
             {link: '/exams/plus', text: 'آزمون پلاس'}
         ]
     },
-    // {link: '/', icon: <Library/>, text: 'کتابخانه', underMenu: false},
-    {link: '/about-us', icon: <About/>, text: 'درباره‌ما', underMenu: false},
+    {link: '/library', icon: <Library/>, text: 'کتابخانه', underMenu: false},
+    // {link: '/about-us', icon: <About/>, text: 'درباره‌ما', underMenu: false},
     {link: '/contact-us', icon: <Contact/>, text: 'تماس‌با‌ما', underMenu: false},
 ]
 export default links;

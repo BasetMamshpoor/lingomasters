@@ -17,7 +17,7 @@ const add30Minutes = (time) => {
 
 const DesktopDaily = ({date, selected, update}) => {
     const [weekDays, setWeekDays] = useState([]);
-    const [classes, , , , , isLoading] = useGetRequest(true, `/calendar/daily?date=${date}&type=${selected}`);
+    const [classes, , , , , isLoading] = useGetRequest(true, `/student/calendar/daily?date=${date}&type=${selected}`);
     const [data, , , , , dataLoading] = useGetRequest(true, '/reservation')
 
     useEffect(() => {

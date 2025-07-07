@@ -18,28 +18,14 @@ import Search from '@icons/search.svg';
 import SortList from './sort.json'
 import weekDays from '@/func/Calendar.json'
 import Dropdown from "@/components/Dropdown/DropDown";
+import useFiltersFromUrl from "@/hooks/useFiltersFromUrl";
+import {changeUrl} from "@/func/ChangeUrl";
 
 const Filters = ({setCurrentPage}) => {
     const searchRef = useRef(null)
     const router = useRouter()
-    const {...queries} = router.query
+    const [filters, setFilters] = useFiltersFromUrl();
 
-    const readUrl = () => {
-        let object = {};
-        for (const name in queries) {
-            if (Object.hasOwnProperty.call(queries, name)) {
-                let filter = []
-                const value = queries[name];
-                const newValue = value.split('-')
-                newValue.forEach((f, i) => {
-                    filter.push({value: f, name: i})
-                })
-                object[name] = filter
-            }
-        }
-        return object
-    }
-    const [filters, setFilters] = useState(readUrl() || {})
     const [country, setCountry] = useState(Array.isArray(filters.country) ? filters.country[0].value : filters.country)
 
     const [data] = useGetRequest(false, `/group_reserve/get-filter${filters.city ? `?city_id=${filters.city}` : ""}`)
@@ -52,34 +38,8 @@ const Filters = ({setCurrentPage}) => {
                 [name]: value
             }
         })
-        changeUrl(name, value)
+        changeUrl(router, name, value)
         setCurrentPage(1)
-    }
-
-    const changeUrl = (name, value) => {
-        let str = null;
-        !!Array.isArray(value) ? value.forEach((f, i) => {
-            if (i > 0) {
-                str = str + '-' + (typeof f === "object" ? f.value : f)
-            } else if (i === 0) {
-                str = typeof f === "object" ? f.value : f
-            } else {
-                str = null
-            }
-        }) : str = value
-        if (str === null) {
-            const {[name]: O, slug, ...query} = router.query
-            router.replace({pathname: router.asPath.split('?')[0], query: {...query},},
-                undefined,
-                {shallow: true}
-            );
-        } else {
-            const {slug, ...query} = router.query
-            router.replace({pathname: router.asPath.split('?')[0], query: {...query, [name]: str},},
-                undefined,
-                {shallow: true}
-            );
-        }
     }
 
     return (
@@ -95,16 +55,13 @@ const Filters = ({setCurrentPage}) => {
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
-                            const {value} = searchRef.current
-                            const {search, ...query} = queries
-                            router.replace({
-                                pathname: router.asPath.split('?')[0],
-                                query: value.trim().length ? {...query, search: value} : {...query},
-                            }, undefined, {shallow: true})
-                            handleFilter('search', value)
+                            const form = new FormData(e.target);
+                            const {search} = Object.fromEntries(form.entries())
+                            handleFilter('search', search)
                         }}>
                         <Input defaultValue={filters.search ? filters.search[0].value : null} ref={searchRef}
-                               type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو کلاس'
+                               type="text" name="search" classNames={{clearButton: '!p-px',}} isClearable
+                               placeholder='جستجو کلاس'
                                variant='bordered' radius='sm'
                                startContent={
                                    <button type='submit' className="bg-white centerOfParent"><Search
@@ -114,16 +71,13 @@ const Filters = ({setCurrentPage}) => {
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
-                            const {value} = searchRef.current
-                            const {search, ...query} = queries
-                            router.replace({
-                                pathname: router.asPath.split('?')[0],
-                                query: value.trim().length ? {...query, professor: value} : {...query},
-                            }, undefined, {shallow: true})
-                            handleFilter('professor', value)
+                            const form = new FormData(e.target);
+                            const {professor} = Object.fromEntries(form.entries())
+                            handleFilter('professor', professor)
                         }}>
                         <Input defaultValue={filters.professor ? filters.professor[0].value : null} ref={searchRef}
-                               type="text" classNames={{clearButton: '!p-px',}} isClearable placeholder='جستجو استاد'
+                               type="text" name="professor" classNames={{clearButton: '!p-px',}} isClearable
+                               placeholder='جستجو استاد'
                                variant='bordered' radius='sm'
                                startContent={
                                    <button type='submit' className="bg-white centerOfParent"><Search
@@ -139,10 +93,10 @@ const Filters = ({setCurrentPage}) => {
                                         "--heroui-success": "196 94% 25%",
                                     }}
                                     color='success'
-                                    isSelected={Array.isArray(filters.sort) ? filters.sort[0].value : filters.sort === c.key}
+                                    isSelected={Array.isArray(filters.sort) ? filters.sort[0].value === c.key?.toString() : filters.sort === c.key}
                                     onValueChange={e => handleFilter('sort', c.key)}
                                     classNames={{icon: 'text-white'}} key={c.key}
-                                    value={c.key}>{c.title}</Checkbox>)}
+                                    value={c.key?.toString()}>{c.title}</Checkbox>)}
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
@@ -211,7 +165,7 @@ const Filters = ({setCurrentPage}) => {
                     <Autocomplete
                         variant='bordered'
                         radius='sm'
-                        selectedKey={filters.subject_id}
+                        selectedKey={filters.subject_id ? filters.subject_id[0]?.value : undefined}
                         onSelectionChange={e => handleFilter('subject_id', e)}
                         label="هدف از آموزش"
                         placeholder='هدف از آموزش'

@@ -29,6 +29,9 @@ import Comments from "@/features/Landing/Comments";
 import AgeGroup from "@/features/Landing/AgeGroup";
 import HeroBanner from "@/features/Landing/HeroBanner";
 import LearningFlow from "@/features/Landing/LearningBookLanding/LearningFlowContainer";
+import Badge from "@icons/badge.svg";
+import Income from "@/features/Landing/Income";
+import NewsletterModal from "@/features/Landing/NewsletterModal";
 
 
 export default function Home() {
@@ -36,7 +39,7 @@ export default function Home() {
     return (
         <>
             <div dir="rtl" className="container flex flex-col items-center justify-center gap-28 pb-40 my-10">
-                <HeroBanner />
+                <HeroBanner/>
                 <Carousel data={data?.slider}/>
                 <Language data={data?.language}/>
                 <div className="w-full">
@@ -56,7 +59,7 @@ export default function Home() {
                     loop
                     to={`/group-class`}/>
                 <LearningFlow/>
-                <AgeGroup />
+                <AgeGroup/>
                 <Moshavere/>
                 <Ostad/>
                 {/*<div*/}
@@ -124,8 +127,10 @@ export default function Home() {
                 {/*    </div>*/}
                 {/*</div>*/}
                 <Blogs data={data?.blog}/>
-                <Comments />
-                <MoshavereForm />
+                <Comments/>
+                <MoshavereForm/>
+                <Income/>
+                <NewsletterModal/>
             </div>
         </>
     );
