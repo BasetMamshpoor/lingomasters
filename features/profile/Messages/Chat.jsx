@@ -109,17 +109,17 @@ const Chat = ({user, onBack, onProfileClick, activeView}) => {
                     </div>
 
                     {/* پین شده */}
-                    {pinned && (
-                        <div
-                            className="bg-yellow-100 text-yellow-800 px-4 py-2 text-sm border-b flex justify-between items-center">
-                            <div>
-                                <strong>پیام سنجاق‌شده:</strong> {pinned.text}
-                            </div>
-                            <button onClick={() => setPinned(null)} className="text-xs text-gray-600">
-                                <Close/>
-                            </button>
-                        </div>
-                    )}
+                    {/*{pinned && (*/}
+                    {/*    <div*/}
+                    {/*        className="bg-yellow-100 text-yellow-800 px-4 py-2 text-sm border-b flex justify-between items-center">*/}
+                    {/*        <div>*/}
+                    {/*            <strong>پیام سنجاق‌شده:</strong> {pinned.text}*/}
+                    {/*        </div>*/}
+                    {/*        <button onClick={() => setPinned(null)} className="text-xs text-gray-600">*/}
+                    {/*            <Close/>*/}
+                    {/*        </button>*/}
+                    {/*    </div>*/}
+                    {/*)}*/}
 
                     {/* Messages */}
 

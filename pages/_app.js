@@ -11,6 +11,7 @@ import Right from "@icons/chevron-right.svg";
 import InformationProvider from "@/providers/InformationProvider";
 import LanguageProvider from "@/providers/languageProvider";
 import {useState} from "react";
+import SurveyModal from "@/components/SurveyModal";
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 
@@ -39,6 +40,7 @@ export default function App({Component, pageProps}) {
                 :
                 <InformationProvider>
                     <LanguageProvider>
+                        <SurveyModal/>
                         {isProfileRoute ?
                             <div
                                 className='max-w-[1440px] mx-auto py-6 sm:px-6 px-2 gap-6 overflow-x-hidden flex min-h-screen relative'

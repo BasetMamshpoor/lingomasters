@@ -227,29 +227,29 @@ export default function MessageItem({message, isSender, onReply, onPin, ref}) {
                 </div>
             )}
 
-            <div className={`absolute ${!isSender ? 'right-1 ' : 'left-1'} top-1.5`}>
-                <Dropdown dir='rtl' placement={isSender ? 'left-start' : 'right-start'}>
-                    <DropdownTrigger>
-                        <div className={`centerOfParent w-fit cursor-pointer`}>
-                            <Dots className={`${isSender ? 'fill-white' : ''} w-4 h-4`}/></div>
-                    </DropdownTrigger>
-                    <DropdownMenu aria-label="WoW">
-                        <DropdownItem key="replay" onPress={() => onReply(message)}>ریپلای</DropdownItem>
-                        <DropdownItem key="pin" onPress={() => onPin(message)}>پین کردن</DropdownItem>
-                        {!isVoiceMessage && !isTextMessage && <DropdownItem key="download" onPress={() => {
-                            if (isFileDownloaded) {
-                                window.open(message.file_path, '_blank');
-                            } else {
-                                addToast({
-                                    title: 'دانلود فایل',
-                                    description: 'فایل هنوز دانلود نشده است.',
-                                    color: 'warning',
-                                });
-                            }
-                        }}>دانلود</DropdownItem>}
-                    </DropdownMenu>
-                </Dropdown>
-            </div>
+            {/*<div className={`absolute ${!isSender ? 'right-1 ' : 'left-1'} top-1.5`}>*/}
+            {/*    <Dropdown dir='rtl' placement={isSender ? 'left-start' : 'right-start'}>*/}
+            {/*        <DropdownTrigger>*/}
+            {/*            <div className={`centerOfParent w-fit cursor-pointer`}>*/}
+            {/*                <Dots className={`${isSender ? 'fill-white' : ''} w-4 h-4`}/></div>*/}
+            {/*        </DropdownTrigger>*/}
+            {/*        <DropdownMenu aria-label="WoW">*/}
+            {/*            <DropdownItem key="replay" onPress={() => onReply(message)}>ریپلای</DropdownItem>*/}
+            {/*            <DropdownItem key="pin" onPress={() => onPin(message)}>پین کردن</DropdownItem>*/}
+            {/*            {!isVoiceMessage && !isTextMessage && <DropdownItem key="download" onPress={() => {*/}
+            {/*                if (isFileDownloaded) {*/}
+            {/*                    window.open(message.file_path, '_blank');*/}
+            {/*                } else {*/}
+            {/*                    addToast({*/}
+            {/*                        title: 'دانلود فایل',*/}
+            {/*                        description: 'فایل هنوز دانلود نشده است.',*/}
+            {/*                        color: 'warning',*/}
+            {/*                    });*/}
+            {/*                }*/}
+            {/*            }}>دانلود</DropdownItem>}*/}
+            {/*        </DropdownMenu>*/}
+            {/*    </Dropdown>*/}
+            {/*</div>*/}
             <p className={`absolute flex items-center gap-1 bottom-0 ${isSender ? 'left-2 text-white' : 'right-2 flex-row-reverse'} text-[10px] select-none`}>
                 {!isTextMessage && <div className={`flex items-center gap-1 ${isSender ? '' : ' flex-row-reverse'}`}>
                     <span dir="ltr">{message.file_size}</span>
