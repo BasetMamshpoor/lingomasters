@@ -54,16 +54,16 @@ const Carousel = ({ data }) => {
                                         <div className="w-full h-full max-h-[537px]">
                                             <picture>
                                                 <source
-                                                    srcSet={s.mobil_image || "/images/Slider/sm.jpg"}
+                                                    srcSet={s.mobil_image}
                                                     media="(max-width: 639px)" />
                                                 <source
-                                                    srcSet={s.tablet_image || "/images/Slider/md.jpg"}
+                                                    srcSet={s.tablet_image}
                                                     media="(min-width: 640px) and (max-width: 1023px)" />
                                                 <source
-                                                    srcSet={s.laptop_image || "/images/Slider/lg.jpg"}
+                                                    srcSet={s.laptop_image}
                                                     media="(min-width: 1024px)" />
                                                 <Image
-                                                    src={s.laptop_image || "/images/Slider/lg.jpg"}
+                                                    src={s.laptop_image}
                                                     alt="Responsive example"
                                                     width={0}
                                                     height={0} sizes='100vw'

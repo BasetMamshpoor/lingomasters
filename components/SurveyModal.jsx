@@ -4,6 +4,13 @@ import {Modal, ModalContent, ModalHeader, ModalBody, Button, addToast, RadioGrou
 import useGetRequest from "@/hooks/useGetRequest";
 import usePostRequest from "@/hooks/usePostRequest";
 
+const typeLabels = {
+    private: "خصوصی",
+    workshop: "ورکشاپ",
+    webinar: "وبینار",
+    group: "گروهی",
+};
+
 const SurveyModal = () => {
     const {student, setReload} = useContext(Information);
     const {isLoading, sendPostRequest} = usePostRequest();
@@ -73,32 +80,45 @@ const SurveyModal = () => {
     };
 
     return (
-        <Modal isOpen={true} onOpenChange={() => {
+        <Modal
+            scrollBehavior="inside"
+            dir="rtl"
+            size="lg"
+            hideCloseButton
+            placement="center"
+            classNames={{base: "pb-6"}}
+            isOpen={true} onOpenChange={() => {
         }}>
             <ModalContent>
                 {(onClose) => (
                     <>
-                        <ModalHeader>نظرسنجی برای کلاس {currentClass.type}</ModalHeader>
+                        <ModalHeader>
+                            نظرسنجی برای کلاس {typeLabels[currentClass.type] || currentClass.type}
+                        </ModalHeader>
                         <ModalBody>
-                            <p className="mb-4 text-gray-600">کلاس با شناسه {currentClass.id}</p>
-
                             {[...data]
                                 .sort((a, b) => a.order - b.order)
-                                .map((question) => (
+                                .map((question, index) => (
                                     <div key={question.id} className="mb-6">
-                                        <label className="block font-semibold mb-2">{question.question}</label>
+                                        <label
+                                            className="block font-semibold mb-2">{index + 1}. {question.question}</label>
                                         <RadioGroup
+                                            style={{
+                                                "--heroui-default-500": "196 94% 25%",
+                                            }}
+                                            color='default'
                                             orientation="horizontal"
+                                            classNames={{wrapper: 'justify-between'}}
                                             value={
                                                 answers.find((a) => a.question_id === question.id)?.rating?.toString() || ""
                                             }
                                             onValueChange={(val) => handleChange(question.id, val)}
                                         >
-                                            <Radio value="1">1</Radio>
-                                            <Radio value="2">2</Radio>
-                                            <Radio value="3">3</Radio>
-                                            <Radio value="4">4</Radio>
                                             <Radio value="5">5</Radio>
+                                            <Radio value="4">4</Radio>
+                                            <Radio value="3">3</Radio>
+                                            <Radio value="2">2</Radio>
+                                            <Radio value="1">1</Radio>
                                         </RadioGroup>
                                     </div>
                                 ))}

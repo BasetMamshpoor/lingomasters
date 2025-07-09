@@ -20,6 +20,23 @@ import {Language} from "@/providers/languageProvider";
 import Arrow from "@icons/arrow-down.svg";
 import Image from "next/image";
 
+
+function isSidebarItemActive(item, pathname) {
+    if (item.href) {
+        if (item.href === '/') {
+            return pathname === '/';
+        }
+        return pathname === item.href || pathname.startsWith(item.href + '/');
+    }
+
+    if (item.subMenu) {
+        return item.subMenu.some(sub =>
+            pathname === sub.href || pathname.startsWith(sub.href + '/')
+        );
+    }
+
+    return false;
+}
 const Sidebar = ({mobileOpen, setSidebarOpen, setTitle}) => {
     const {pathname} = useRouter()
     const {languages, selectedLanguage, handleSelectLanguage} = useContext(Language)
@@ -34,9 +51,7 @@ const Sidebar = ({mobileOpen, setSidebarOpen, setTitle}) => {
                           className={`text-3xl duration-300 font-Metal`}>{process.env.NEXT_PUBLIC_LOGO}</Link>
                     <div className="flex flex-col w-full gap-4">
                         {sidebarItems.map((item) => {
-                            const isActive = item.href
-                                ? pathname === item.href
-                                : item.subMenu?.some(sub => pathname.startsWith(sub.href));
+                            const isActive = isSidebarItemActive(item, pathname);
                             return (
                                 <div className='group' key={item.id}>
                                     <SidebarItem
@@ -109,9 +124,7 @@ const Sidebar = ({mobileOpen, setSidebarOpen, setTitle}) => {
                                         </Dropdown>
                                     </div>}
                                     {sidebarItems.map((item) => {
-                                        const isActive = item.href
-                                            ? pathname === item.href
-                                            : item.subMenu?.some(sub => pathname.startsWith(sub.href));
+                                        const isActive = isSidebarItemActive(item, pathname);
                                         return <div className='group' key={item.id}>
                                             <SidebarItem
                                                 title={item.title}
