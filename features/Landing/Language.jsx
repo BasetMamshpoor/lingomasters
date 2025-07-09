@@ -4,6 +4,7 @@ import Image from "next/image";
 import useHorizontalScroll from "@/hooks/useHorizontalScroll";
 import Right from "@icons/chevron-right.svg";
 import Left from "@icons/arrow-left.svg";
+import Link from "next/link";
 
 const Language = ({data}) => {
 
@@ -50,12 +51,13 @@ const Language = ({data}) => {
                             className="flex lg:gap-12 gap-4 w-full bg-white rounded-lg px-2 sm:py-6 py-2 overflow-x-scroll scrollbar-hide select-none sm:text-sm text-xs"
                             ref={ref}>
                             {data?.map(e => (
-                                <div
-                                    className="flex flex-col items-center lg:gap-10 sm:gap-6 sm:min-w-fit min-w-12">
-                                    <Image src={e.flag} className="w-12 h-10 sm:w-20 sm:h-14 border rounded-xl border-natural_gray-200"
+                                <Link href={`/private-class?language=${e.id}`}
+                                      className="flex flex-col items-center lg:gap-10 sm:gap-6 sm:min-w-fit min-w-12">
+                                    <Image src={e.flag}
+                                           className="w-12 h-10 sm:w-20 sm:h-14 border rounded-xl border-natural_gray-200"
                                            width={100} height={100} alt={e.title}/>
                                     <p className="hidden sm:block whitespace-nowrap">اساتید {e.title}</p>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                         {isScrollable && (

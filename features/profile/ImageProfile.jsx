@@ -12,6 +12,12 @@ function ProfileImage({justImage}) {
     const [isDragging, setIsDragging] = useState(false);
     const {sendPostRequest, isLoading, message} = usePostRequest();
 
+    useEffect(() => {
+        if (student?.profile) {
+            setDisplayImageSrc(student.profile);
+        }
+    }, [student]);
+
     // Drag-and-drop event handlers
     const handleDragOver = (event) => {
         event.preventDefault();

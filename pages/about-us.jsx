@@ -16,7 +16,7 @@ import X from "@icons/x.svg";
 const AboutUs = () => {
     return (
         <>
-            <div dir="rtl" className="container flex flex-col gap-20">
+            <div dir="rtl" className="container flex flex-col gap-20 my-10">
                 <div className="flex flex-col items-center justify-between bg-primary-50 lg:grid lg:grid-cols-2">
                     <div className="flex flex-col gap-10 p-5 sm:p-20">
                         <div className="flex items-center gap-2 ml-auto relative">

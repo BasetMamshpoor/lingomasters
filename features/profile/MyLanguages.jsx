@@ -6,7 +6,8 @@ import {
     ModalBody,
     ModalFooter,
     Button,
-    useDisclosure, addToast,} from "@heroui/react";
+    useDisclosure, addToast,
+} from "@heroui/react";
 import Plus from "@icons/plus.svg";
 import Image from "next/image";
 import {Language} from "@/providers/languageProvider";
@@ -33,6 +34,7 @@ const MyLanguages = () => {
                 color: "success",
             })
             setReload(Math.random())
+            onOpenChange()
         } else {
             addToast({
                 title: 'ثبت نشد',

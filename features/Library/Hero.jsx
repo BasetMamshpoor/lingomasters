@@ -18,6 +18,7 @@ const Hero = ({product = {}}) => {
         views_count,
         rate_count,
         subject,
+        book_level,
         age_group,
         page_number, flag,
     } = product
@@ -105,7 +106,7 @@ const Hero = ({product = {}}) => {
                             </div>
                             <div
                                 className="centerOfParent h-12 flex-[1_0_0] gap-1 rounded-lg bg-primary-50 [box-shadow:0px_4px_6px_0px_rgba(54,_108,_218,_0.08)]">
-                            <p className='text-natural_gray-700 text-xs'>سطح کتاب</p>
+                                <p className='text-natural_gray-700 text-xs'>سطح کتاب</p>
                                 <h4 className='text-sm font-semibold'>{book_level}</h4>
                             </div>
                             <div

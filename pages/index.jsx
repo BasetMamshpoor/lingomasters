@@ -38,7 +38,7 @@ export default function Home() {
     const [data, , , , , isLoading] = useGetRequest(true, `/landing-page`)
     return (
         <>
-            <div dir="rtl" className="container flex flex-col items-center justify-center gap-28 pb-40 my-10">
+            <div dir="rtl" className="container flex flex-col items-center justify-center gap-28 pb-20 my-10">
                 <HeroBanner/>
                 <Carousel data={data?.slider}/>
                 <Language data={data?.language}/>

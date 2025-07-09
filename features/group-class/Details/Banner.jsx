@@ -183,7 +183,7 @@ function Banner({data = {}, setReload}) {
                     <PopoverTrigger>
                         <div className="flex items-center gap-1 cursor-pointer">
                             <div className="centerOfParent"><Alert/></div>
-                            <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس استاد</span>
+                            <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس توسط زبان آموز</span>
                         </div>
                     </PopoverTrigger>
                     <PopoverContent className="w-screen max-w-full"><RuleOfCancle/></PopoverContent>

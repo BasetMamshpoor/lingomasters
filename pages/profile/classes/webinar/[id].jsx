@@ -42,7 +42,7 @@ const Webinar = () => {
                                     radius='sm'>{data.is_certificate ? "مشاهده" : "صدور"} گواهینامه</Link>
                             }
                             {data.status === 0 && <>
-                                <Link href={`/messages?user=${data.user_id}`}
+                                <Link href={`/profile/messages?user=${data.user_id}`}
                                       className='text-primary-600 centerOfParent gap-2 border-1.5 sm:text-base text-xs text-center bg-white border-primary-600 rounded py-2 px-4 sm:w-fit w-full'>
                                     <Message className={'fill-primary-600'}/>
                                     پیام به استاد

@@ -7,9 +7,9 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import useGetRequest from "@/hooks/useGetRequest";
 import {useRouter} from "next/router";
 
-const Messages = () => {
+const Messages = ({initialUser}) => {
     const {query} = useRouter()
-    const [activeUser, setActiveUser] = useState(query.user ? {id: query.user} : null);
+    const [activeUser, setActiveUser] = useState(initialUser ? { id: initialUser } : null);
     const [activeView, setActiveView] = useState("list");
     const [user] = useGetRequest(true, activeUser && `/chat/user_details/${activeUser.id}`)
 
@@ -101,3 +101,12 @@ const Messages = () => {
 };
 
 export default Messages;
+
+export async function getServerSideProps(context) {
+    const { user } = context.query;
+    return {
+        props: {
+            initialUser: user || null,
+        },
+    };
+}

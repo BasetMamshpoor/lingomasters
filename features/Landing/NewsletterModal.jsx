@@ -75,6 +75,8 @@ export default function NewsletterModal() {
                                         label={"ایمیل خود را وارد کنید"}
                                         labelPlacement="outside"
                                         placeholder="@gmail.com"
+                                        isRequired
+                                        errorMessage="ایمیل خود را به درستی وارد کنید"
                                         radius="sm"
                                         variant="bordered"
                                         classNames={{

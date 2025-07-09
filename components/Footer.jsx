@@ -14,7 +14,7 @@ import Fac from "@icons/facebook.svg";
 const Footer = () => {
     return (
         <>
-            <div className="relative mt-40 flex flex-col" dir='rtl'>
+            <div className="relative flex flex-col" dir='rtl'>
                 <div
                     className="flex flex-col gap-10 lg:pt-20 lg:px-20 sm:py-10 sm:px-8 py-8 px-4 bg-[linear-gradient(90deg,_#B5C7DF_0%,_#E8EFF8_100%)]">
                     <div className="flex flex-wrap items-end gap-4 justify-between w-full">

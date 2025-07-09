@@ -79,7 +79,7 @@ const Hero = ({product = {}}) => {
                                 <PopoverTrigger>
                                     <div className="flex items-center gap-1 cursor-pointer">
                                         <div className="centerOfParent"><Alert/></div>
-                                        <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس استاد</span>
+                                        <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس زبان آموز</span>
                                     </div>
                                 </PopoverTrigger>
                                 <PopoverContent><RuleOfCancle/></PopoverContent>

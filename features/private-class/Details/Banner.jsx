@@ -27,17 +27,6 @@ import Rate from "@/components/Rate";
 
 function Banner({data = {}}) {
     const {about = {}} = data
-    const {query, asPath, replace} = useRouter()
-
-    const handleChange = (value) => {
-        replace({pathname: asPath.split('?')[0], query: {...query, language: value}},
-            undefined,
-            {shallow: true}
-        );
-    }
-    useEffect(() => {
-        handleChange(about.languages[0].id)
-    }, []);
     return (
         <>
             <div className="lg:hidden flex flex-col">
@@ -135,21 +124,8 @@ function Banner({data = {}}) {
                             <div className="centerOfParent flex-col gap-2 lg:hidden w-full">
                                 <h1 className='sm:text-xl text-base font-semibold '>{about.name}</h1>
                                 <p className='text-natural_gray-600 text-xs'>(کد استاد: {data.id})</p>
-                                <RadioGroup
-                                    value={query.language}
-                                    onValueChange={handleChange}
-                                    color='success'
-                                    style={{"--heroui-success": "196 94% 25%"}}
-                                    orientation="horizontal">
-                                    {about.languages.map(e => (
-                                        <Radio value={e.id.toString()} key={e.id} classNames={{label: 'flex items-center gap-2'}}>
-                                            <div className="centerOfParent w-fit">
-                                                <Image width={24} height={24} alt='flag'
-                                                       src={e.flag}/></div>
-                                            <span>{e.title}</span>
-                                        </Radio>
-                                    ))}
-                                </RadioGroup>
+                                <Image width={24} height={24} alt='flag'
+                                       src={data.flag}/>
                                 <div className="flex items-center gap-1">
                                     <Rate rate={about.rate} id={data.id} url='/private-reserve'/>
                                     <div className="flex items-center gap-2">
@@ -241,7 +217,7 @@ function Banner({data = {}}) {
                     <PopoverTrigger>
                         <div className="flex items-center gap-1 cursor-pointer">
                             <div className="centerOfParent"><Info/></div>
-                            <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس استاد</span>
+                            <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس توسط زبان آموز</span>
                         </div>
                     </PopoverTrigger>
                     <PopoverContent><RuleOfCancle/></PopoverContent>

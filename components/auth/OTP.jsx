@@ -99,6 +99,7 @@ const Otp = ({setStep, user, login, data: Data}) => {
                                         }}
                                         length={6}
                                         variant='bordered'
+                                        errorMessage="کد تایید باید 6 رقمی باشد"
                                         value={value}
                                         onValueChange={setValue}/>
                                 </div>

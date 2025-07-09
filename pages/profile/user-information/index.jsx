@@ -164,7 +164,7 @@ const UserInformation = () => {
                             </div>
                         </AccordionItem>
                         <AccordionItem key="2" aria-label="Accordion 2"
-                                       title="تلفن">
+                                       title="تلفن و ایمیل">
                             <div className="grid sm:grid-cols-2 grid-cols-1 sm:gap-x-6 gap-y-4">
                                 <Input label='تلفن ثابت' labelPlacement='outside'
                                        name='Landline'
@@ -263,7 +263,7 @@ const UserInformation = () => {
                                             }}
                                         >
                                             {(item => (
-                                                <AutocompleteItem key={item.id} className="flex-row-reverse"
+                                                <AutocompleteItem key={item.value} className="flex-row-reverse"
                                                                   textValue={item.name}>
                                                     <p className="flex items-center justify-end w-full">{item.name}</p>
                                                 </AutocompleteItem>

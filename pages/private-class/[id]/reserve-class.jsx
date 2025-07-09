@@ -130,10 +130,25 @@ const Reserve = () => {
                                             /></TabPoint>
                                         <TabClass data={data.class_types_details} state={state} setState={setState}/>
                                         <ChooseBook data={data.books} setState={setState} state={state}/>
-                                        <Textarea label="در صورتی که پیامی برای استاد دارید بنویسید." type="number"
-                                                  value={state.text}
-                                                  onValueChange={e => setState(p => ({...p, text: e}))}
-                                                  radius='sm' labelPlacement='outside' variant='bordered'/>
+                                        <div className="flex flex-col gap-4">
+                                            <p>در صورتی که پیامی برای استاد دارید بنویسید.</p>
+                                            <div>
+                                                <span className="font-semibold">نکته مهم:</span>
+                                              <p className="whitespace-break-spaces text-sm leading-7">
+                                                  نوشتن یک توضیح کوتاه در مورد هدف یا <b>اهداف کلی‌تون، دلیل انتخاب این کلاس، زمینه‌هایی که در آن‌ها احساس آمادگی یا تسلط دارید، چالش‌هایی که با آن‌ها روبه‌رو هستید، و همچنین مهارت یا مهارت‌هایی که مایل به تقویت‌شون هستید</b> (حتی اگر بازه زمانی خاصی مد نظرتون هست)
+                                                  <br />
+                                                  به استاد کمک می‌کنه تا طرح درسی رو دقیق‌تر و بر اساس نیازها و خواسته‌های شما تنظیم کنه؛
+                                                  <br />
+                                                  در نتیجه، در طول کلاس از زمان بهترین استفاده رو خواهید برد و یادگیری مؤثرتری تجربه می‌کنید.
+                                              </p>
+                                            </div>
+                                            <Textarea
+                                                type="number"
+                                                value={state.text}
+                                                onValueChange={e => setState(p => ({...p, text: e}))}
+                                                radius='sm'
+                                                variant='bordered'/>
+                                        </div>
                                     </div>
                                     <div className="flex items-end sm:self-end gap-6">
                                         <Link href='/private-class'
@@ -148,7 +163,7 @@ const Reserve = () => {
                     </div>
                 </div>
             </main>
-        </> ): <div className="centerOfParent  h-[50vh] my-10"><Spinner color='success' size='lg'/></div>
+        </>) : <div className="centerOfParent  h-[50vh] my-10"><Spinner color='success' size='lg'/></div>
     );
 };
 
