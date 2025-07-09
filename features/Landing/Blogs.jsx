@@ -30,7 +30,7 @@ const Blogs = ({data}) => {
                                         className="rounded-2xl shadow-lg border-[10px] border-white border-opacity-10 h-[370px]">
                                 <Link href={`/blogs/${e.id}`}
                                       className="relative justify-end shrink-0 w-full">
-                                    <Image src={e.image} alt={e.title} width={100} height={100}
+                                    <Image unoptimized src={e.image || '/images'} alt={e.title} width={100} height={100}
                                            className="w-full h-full object-cover rounded-2xl"/>
                                     <div
                                         className="absolute shadow-lg rounded-b-2xl overflow-hidden backdrop-filter w-full bottom-0">
