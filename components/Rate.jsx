@@ -11,8 +11,10 @@ import Star from "@icons/magic-star.svg";
 import React, {useState} from "react";
 import Link from "next/link";
 import usePostRequest from "@/hooks/usePostRequest";
+import {useRouter} from "next/router";
 
 export default function Rate({rate, url, id}) {
+    const {asPath} = useRouter()
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const {isLoading, sendPostRequest} = usePostRequest()
     const [value, setValue] = useState(rate)
@@ -34,7 +36,8 @@ export default function Rate({rate, url, id}) {
                 description: errorMessage,
                 color: 'danger',
                 endContent: status === 401 &&
-                    <Link href='/auth/login' className='border border-rose-600 rounded px-2'>ورود</Link>
+                    <Link href={`/auth/login?backUrl=${asPath}`}
+                          className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">ورود</Link>
             })
         }
     }
@@ -47,7 +50,7 @@ export default function Rate({rate, url, id}) {
                 <Star className={rate < 2 ? '' : 'fill-[#F3B944]'}/>
                 <Star className={rate < 1 ? '' : 'fill-[#F3B944]'}/>
             </div>
-            <Modal dir='rtl' isOpen={isOpen} onOpenChange={onOpenChange} placement='center' >
+            <Modal dir='rtl' isOpen={isOpen} onOpenChange={onOpenChange} placement='center'>
                 <ModalContent>
                     {(onClose) => (
                         <>

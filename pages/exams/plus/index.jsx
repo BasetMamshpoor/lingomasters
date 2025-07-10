@@ -45,9 +45,9 @@ const Index = () => {
                     </Breadcrumbs>
                     <div className="self-center centerOfParent gap-6">
                         <Book className="w-10 h-10 fill-primary-700"/>
-                        <div className="flex items-center gap-2">
-                            <h1 className="text-2xl">آزمون پلاس</h1>
-                            <span className='text-xl'>( شبیه ساز آزمون )</span>
+                        <div className="flex items-center flex-wrap gap-2">
+                            <h1 className="text-2xl whitespace-nowrap">آزمون پلاس</h1>
+                            <span className='text-xl whitespace-nowrap'>( شبیه ساز آزمون )</span>
                         </div>
                     </div>
                     <div className="whitespace-break-spaces text-natural_gray-950" dir='auto'>

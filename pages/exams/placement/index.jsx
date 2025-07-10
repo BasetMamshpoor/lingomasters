@@ -1,9 +1,12 @@
 import React, {useState,} from 'react';
 import {BreadcrumbItem, Breadcrumbs} from "@heroui/react";
 import Book from "@icons/book.svg"
-import Cart from "@/features/exams/Cart";
-import Item from "@/features/exams/Item"
+import Cart from "@/features/exams/Placement/Cart";
+import Item from "@/features/exams/Placement/Item"
 import Image from "next/image";
+import LingomastersItem from "@/features/exams/Placement/LingomastersItem";
+import ProfessorItem from "@/features/exams/Placement/ProfessorItem";
+import CambridgeItem from "@/features/exams/Placement/CambridgeItem";
 
 const cart = [
     {
@@ -32,71 +35,34 @@ const cart = [
 const items = [
     {
         id: 0,
-        levelDetermination: "✦تعیین سطح آنلاین",
-        title: "همین امروز مهارت زبانت رو بسنج!",
-        text: "با لینگومسترز در هر زمان و با هر بودجه‌ای میتونی تعیین سطح زبانت را با چند مرحله ساده و سریع انجام بدی.",
-        ul: [
-            "انتخاب زبان هدف",
-            "انتخاب مهارت ‌( گفتاری - شنیداری - نوشتاری - خواندن و درک متون )",
-            "انتخاب گروه سنی ( کودک - نوجوان - بزرگسال )",
-            "انتخاب سطح تخمینی ( مبتدی - متوسط - پیشرفته )",
-            "انتخاب استاد از اساتید لینگومسترز",
-        ],
-        button: "پلن‌های تعیین سطح لینگومسترز",
+        component: Item
     },
     {
         id: 1,
-        levelDetermination: "✦تعیین سطح آنلاین توسط لینگومسترز",
-        title: "تعیین سطح همه زبان‌ها تنها با ۳ مرحله",
-        text: "",
-        ul: [
-            "انتخاب زبان هدف",
-            "انتخاب گروه سنی ( کودک - نوجوان - بزرگسال )",
-            "انتخاب تخمینی سطح زبان( مبتدی - متوسط - پیشرفته )",
-            "نمره‌دهی تعیین سطح آنلاین توسط لینگومسترز",
-        ],
-        titleImage: "ارزیابی تعیین سطح آنلاین توسط لینگومسترز",
-        image: "/images/exams-cart.png",
-        button: "ادامه",
+        component: LingomastersItem
     },
     {
         id: 2,
-        levelDetermination: "✦تعیین سطح آنلاین توسط اساتید لینگومسترز",
-        title: "تعیین سطح همه زبان‌ها تنها با ۴ مرحله",
-        ul: [
-            "انتخاب زبان هدف",
-            "انتخاب مهارت ‌( گفتاری - شنیداری - نوشتاری - خواندن و درک متون )",
-            "انتخاب گروه سنی ( کودک - نوجوان - بزرگسال )",
-            "انتخاب استاد از اساتید لینگومسترز",
-            "نمره‌دهی تعیین سطح آنلاین توسط اساتید لینگومسترز",
-        ],
-        titleImage: "ارزیابی تعیین سطح آنلاین توسط لینگومسترز",
-        button: "ادامه",
+        component: ProfessorItem
     },
     {
         id: 3,
-        levelDetermination: "✦تعیین سطح آنلاین توسط دانشگاه کمبریج",
-        attention: "توجه: توجه داشته باشید که پس از اتمام آزمون تعیین سطح آنلاین دانشگاه کمبریج نتیجه آزمون بلافاصله به شما نمایش داده می‌شود و شما باید این نتیجه را ذخیره کنید، لینگومسترز به نتیجه این آزمون دسترسی نخواهد داشت.",
-        title: "تعیین سطح زبان انگلیسی تنها با ۱ مرحله",
-        text: "در این تعیین سطح شما می‌توانید هدف خود را از تعیین سطح زبان انگلیسی انتخاب کنید و با توجه به چارچوب‌های دانشگاه کمبریج سطح زبان انگلیسی خود را سریعا تشخیص دهید.",
-        ul: [
-            "انتخاب آزمون انگلیسی (عمومی - مدرسه - تجاری - کودکان)",
-        ],
-        titleImage: "نمره‌دهی آزمون دانشگاه کمبریج",
-        image: "/images/exams-cart.png",
-        button: "ادامه",
+        component: CambridgeItem
     },
 ]
 const Index = () => {
     const [selectedId, setSelectedId] = useState(0);
 
     const handleClick = (id) => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
         if (selectedId === id) {
             setSelectedId(0);
+
         } else {
             setSelectedId(id);
         }
     }
+    const selectedItem = items.find(item => item.id === selectedId);
     return (
         <>
             <div dir="rtl" className="container flex flex-col gap-10 w-full">
@@ -115,12 +81,11 @@ const Index = () => {
                     <p className="text-2xl">آزمون تعیین سطح</p>
                 </div>
                 <div className="flex flex-col md:flex-row items-center justify-between gap-5 w-full">
-                    <div className="flex flex-col gap-6 order-2 md:order-1 w-full">
+                    <div className="flex flex-col gap-6 order-2 md:order-1">
                         {cart.map(item => <Cart key={item.id} {...item} handleClick={handleClick}/>)}
                     </div>
-                    <div className="order-1 md:order-2 flex flex-col w-full">
-                        {items.filter(item => item.id === selectedId)
-                            .map(item => (<Item key={item.id} {...item}/>))}
+                    <div className="order-1 md:order-2 flex flex-col w-full centerOfParent">
+                        <selectedItem.component/>
                     </div>
                 </div>
                 <div className="flex flex-col items-center gap-y-20">
@@ -186,49 +151,61 @@ const Index = () => {
                         <div
                             className="flex flex-col justify-center p-4 lg:p-6 gap-14 items-center bg-white border-[10px] border-primary-200 rounded-2xl w-full md:min-w-[200px] lg:max-w-[302px]">
                             <div className="flex flex-col items-center justify-center gap-6 md:gap-10 w-full lg:px-4">
-                                <div className="flex flex-row md:flex-col">
-                                    <p className="flex justify-center text-sm font-bold md:font-medium md:text-lg lg:text-2xl text-primary-950 whitespace-nowrap">تعیین سطح آنلاین </p>
-                                    <p className="flex justify-center text-sm font-bold md:font-medium md:text-lg lg:text-2xl text-primary-950 whitespace-nowrap">دانشگاه کمبریج</p>
+                                <div
+                                    className="flex flex-row gap-1 md:flex-col text-sm font-bold md:font-medium md:text-lg lg:text-2xl text-primary-950 whitespace-nowrap">
+                                    <p>تعیین سطح آنلاین </p>
+                                    <p>دانشگاه کمبریج</p>
                                 </div>
-                                <div className="flex flex-col">
-                                    <p className="flex justify-center text-xs md:text-base lg:text-lg text-natural_gray-950 whitespace-nowrap">تعیین سطح زبان
-                                        انگلیسی </p>
-                                    <p className="flex justify-center text-xs md:text-base lg:text-lg text-natural_gray-950 whitespace-nowrap">تنها در ۱ مرحله</p>
+                                <div
+                                    className="text-center text-xs md:text-base lg:text-lg text-natural_gray-950 whitespace-nowrap">
+                                    <p>تعیین سطح زبان انگلیسی </p>
+                                    <p>تنها در ۱ مرحله</p>
                                 </div>
                             </div>
-                            <button className="px-4 py-2 text-white text-base bg-primary-600 rounded-md w-full">بزن
+                            <button onClick={() => handleClick(3)}
+                                    className="px-4 py-2 text-white text-base bg-primary-600 rounded w-full">بزن
                                 بریم
                             </button>
                         </div>
                         <div
                             className="flex flex-col justify-center p-4 lg:p-6 gap-14 items-center bg-white border-[10px] border-primary-200 rounded-2xl w-full md:min-w-[200px] lg:max-w-[302px]">
-                            <div className="flex flex-col items-center justify-center gap-6 md:gap-10 w-full lg:px-4">
-                                <div className="flex flex-row md:flex-col">
-                                    <p className="flex justify-center text-sm font-bold md:font-medium md:text-lg lg:text-2xl text-primary-950 whitespace-nowrap">تعیین سطح آنلاین با</p>
-                                    <p className="flex justify-center text-sm font-bold md:font-medium md:text-lg lg:text-2xl text-primary-950 whitespace-nowrap">ساتید لینگومسترز</p>
+                            <div
+                                className="flex flex-col items-center justify-center gap-6 md:gap-10 w-full lg:px-4 whitespace-nowrap">
+                                <div
+                                    className="flex flex-row gap-1 md:flex-col text-primary-950 text-sm font-bold md:font-medium md:text-lg lg:text-2xl">
+                                    <p>تعیین سطح آنلاین با</p>
+                                    <p>اساتید لینگومسترز</p>
                                 </div>
-                                <div className="flex flex-col">
-                                    <p className="flex justify-center text-xs md:text-base lg:text-lg text-natural_gray-950 whitespace-nowrap">تعیین سطح همه زبان‌ها</p>
-                                    <p className="flex justify-center text-xs md:text-base lg:text-lg text-natural_gray-950 whitespace-nowrap">تنها با ۴ مرحله</p>
+                                <div
+                                    className="text-center text-xs md:text-base lg:text-lg text-natural_gray-950">
+                                    <p>تعیین سطح همه زبان‌ها</p>
+                                    <p>تنها با ۴ مرحله</p>
                                 </div>
                             </div>
-                            <button className="px-4 py-2 text-white text-base bg-primary-600 rounded-md w-full">بزن
+                            <button onClick={() => handleClick(2)}
+                                    className="px-4 py-2 text-white text-base bg-primary-600 rounded w-full">بزن
                                 بریم
                             </button>
                         </div>
                         <div
                             className="flex flex-col justify-center p-4 lg:p-6 gap-14 items-center bg-white border-[10px] border-primary-200 rounded-2xl w-full md:min-w-[200px] lg:max-w-[302px]">
                             <div className="flex flex-col items-center justify-center gap-6 md:gap-10 w-full px-4">
-                                <div className="flex flex-row md:flex-col">
-                                    <p className="flex justify-center text-sm font-bold md:font-medium md:text-lg lg:text-2xl text-primary-950 whitespace-nowrap">تعیین سطح آنلاین </p>
-                                    <p className="flex justify-center text-sm font-bold md:font-medium md:text-lg lg:text-2xl text-primary-950 whitespace-nowrap">با لینگومسترز</p>
+                                <div
+                                    className="flex flex-row gap-1 md:flex-col text-sm font-bold md:font-medium md:text-lg lg:text-2xl text-primary-950 whitespace-nowrap">
+                                    <p>تعیین سطح آنلاین </p>
+                                    <p>با لینگومسترز</p>
                                 </div>
-                                <div className="flex flex-col">
-                                    <p className="flex justify-center text-xs md:text-base lg:text-lg text-natural_gray-950 whitespace-nowrap">تعیین سطح همه زبان‌ها</p>
-                                    <p className="flex justify-center text-xs md:text-base lg:text-lg text-natural_gray-950 whitespace-nowrap">تنها با 3 مرحله</p>
+                                <div
+                                    className="text-center text-xs md:text-base lg:text-lg text-natural_gray-950 whitespace-nowrap">
+                                    <p>تعیین
+                                        سطح همه زبان‌ها</p>
+                                    <p>تنها
+                                        با 3 مرحله</p>
                                 </div>
                             </div>
-                            <button className="px-4 py-2 text-white text-base bg-primary-600 rounded-md w-full">بزن
+                            <button
+                                onClick={() => handleClick(1)}
+                                className="px-4 py-2 text-white text-base bg-primary-600 rounded w-full">بزن
                                 بریم
                             </button>
                         </div>

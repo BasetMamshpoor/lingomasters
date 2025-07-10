@@ -17,6 +17,7 @@ import {addToast} from "@heroui/react";
 import Link from "next/link";
 import usePostRequest from "@/hooks/usePostRequest";
 import LikeDislike from "@/components/Comments/Like&Dislike";
+import {useRouter} from "next/router";
 
 const generateUniqueFilename = (blob) => {
     const fileExtension = blob.type.split('/')[1];
@@ -25,6 +26,7 @@ const generateUniqueFilename = (blob) => {
 };
 
 const Videos = ({id, url, justForm}) => {
+    const {asPath} = useRouter()
     const [showMore, setShowMore] = useState(false)
     const [comments, setComments, setReload, pagination] = useGetRequest(true, !justForm && `/${url}/comment/${id}?type=video`)
     const [recordedBlob, setRecordedBlob] = useState(null);
@@ -64,7 +66,8 @@ const Videos = ({id, url, justForm}) => {
                 description: errorMessage,
                 color: 'danger',
                 endContent: status === 401 &&
-                    <Link href='/auth/login' className='border border-rose-600 rounded px-2'>ورود</Link>
+                    <Link href={`/auth/login?backUrl=${asPath}`}
+                          className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">ورود</Link>
             })
 
     };

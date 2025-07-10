@@ -4,10 +4,12 @@ import {addToast, Spinner} from "@heroui/react";
 import Link from "next/link";
 import Heart from "@icons/fill-heart.svg";
 import HeartIcon from "@icons/heart.svg";
+import {useRouter} from "next/router";
 
 const Like = ({isLike, id, url, className}) => {
     const [is_like, setIs_like] = useState(isLike)
     const {isLoading, sendPostRequest} = usePostRequest()
+    const {asPath} = useRouter()
     const handleLike = async () => {
         const {
             success,
@@ -25,7 +27,8 @@ const Like = ({isLike, id, url, className}) => {
                 description: errorMessage,
                 color: 'danger',
                 endContent: status === 401 &&
-                    <Link href='/auth/login' className='border border-rose-600 rounded px-2'>ورود</Link>
+                    <Link href={`/auth/login?backUrl=${asPath}`}
+                          className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">ورود</Link>
             })
         }
     }

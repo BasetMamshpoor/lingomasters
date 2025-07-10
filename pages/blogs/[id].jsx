@@ -20,7 +20,7 @@ const Blog = () => {
                 <Spinner className="w-full my-10 centerOfParent" color='success'/>
                 : data && <div dir="rtl" className='grid lg:grid-cols-12 grid-cols-1 my-10'>
                 <div className="lg:col-span-3"></div>
-                <div className="flex flex-col gap-6 lg:col-span-9">
+                <div className="flex flex-col gap-6 lg:col-span-9 px-6">
                     <div
                         className="relative sm:min-h-[638px] min-h-[260px] w-full overflow-hidden sm:rounded-2xl rounded-lg centerOfParent">
                         <Like isLike={data.is_like} id={data.id} url='blog'

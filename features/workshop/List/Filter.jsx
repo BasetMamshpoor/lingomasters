@@ -10,7 +10,8 @@ export default function Filter({ setCurrentPage }) {
     return (
         <div className="flex flex-col gap-2">
             <div onClick={onOpen} className='flex items-center gap-4 px-3'>
-                <div className="centerOfParent"><FilterIcon /></div>
+                <div className="centerOfParent gap-3"><FilterIcon/><span
+                    className="font-semibold text-sm">فیلترها</span></div>
             </div>
             <Modal
                 isOpen={isOpen}

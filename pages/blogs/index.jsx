@@ -21,7 +21,7 @@ const Blogs = () => {
                         <div className="centerOfParent"><Pepole className='w-8 h-8 fill-primary-700'/></div>
                         <h1 className='text-2xl text-primary-800'>وبلاگ</h1>
                     </div>
-                    <div className='lg:hidden flex items-center justify-between'>
+                    <div className='lg:hidden flex items-center justify-between mb-6'>
                         <div className="flex items-center gap-4">
                             <Pepole className='w-6 h-6 fill-primary-700'/>
                             <h1 className="font-semibold text-primary-900">وبلاگ</h1>

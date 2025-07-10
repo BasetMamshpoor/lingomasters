@@ -82,8 +82,9 @@ const Exam = () => {
                 title: 'مشکلی به وجود آمد',
                 description: status === 401 ? "لطفا ابتدا وارد حساب خود شوید" : errorMessage,
                 color: 'danger',
-                endContent: status === 401 ? <Link href={`/auth/login?backUrl=${asPath}`}
-                                                   className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">ورود</Link> : undefined
+                endContent: status === 401 &&
+                    <Link href={`/auth/login?backUrl=${asPath}`}
+                          className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">ورود</Link>
             })
     }
     return (

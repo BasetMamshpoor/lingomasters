@@ -6,7 +6,6 @@ import {Accordion, AccordionItem, addToast, Checkbox, Spinner} from "@heroui/rea
 import useGetRequest from '@/hooks/useGetRequest';
 import weekDaysJson from '@/func/Calendar.json'
 import usePostRequest from "@/hooks/usePostRequest";
-import Login from "@/pages/auth/login";
 
 const getStartOfWeek = (date) => {
     const currentDay = date.getDay();
@@ -23,7 +22,7 @@ const formatDate = (date) => {
     return `${year}-${month}-${day}`;
 };
 
-const Calendar = ({setState, state, setSteps, id}) => {
+const Calendar = ({setState, state, setSteps, id, isSingle}) => {
     const [weekDays, setWeekDays] = useState([]);
     const [selectedKeys, setSelectedKeys] = useState(new Set(["بامداد"]))
     const [saturday, setSaturday] = useState(getStartOfWeek(new Date()));
@@ -52,7 +51,7 @@ const Calendar = ({setState, state, setSteps, id}) => {
         const nextWeek = new Date(saturday);
         nextWeek.setDate(saturday.getDate() + 7);
         setSaturday(nextWeek);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({top: 0, behavior: 'smooth'});
     };
 
     const isToday = (date) => {
@@ -195,17 +194,19 @@ const Calendar = ({setState, state, setSteps, id}) => {
                                                                     onValueChange={isSelected => setState(prev => ({
                                                                         ...prev,
                                                                         times: isSelected
-                                                                            ? [...prev.times, t.id]
+                                                                            ? (isSingle ? [t.id] : [...prev.times, t.id])
                                                                             : prev.times.filter(timeId => timeId !== t.id)
                                                                     }))}
                                                                     className='py-2'
-                                                                    classNames={{icon: 'text-white'}} size='sm'
+                                                                    classNames={{icon: 'text-white'}}
+                                                                    size='sm'
                                                                     color="success" radius='sm'
                                                                     style={{
                                                                         "--heroui-success": "196 94% 25%",
                                                                     }}>
                                                                 <span
-                                                                    className='text-center sm:text-sm text-[10px]'>{t.time}</span></Checkbox> : t.status === 'reserved' ? "رزرو شده" : '.'}
+                                                                    className='text-center sm:text-sm text-[10px]'>{t.time}</span></Checkbox>
+                                                                : t.status === 'reserved' ? "رزرو شده" : '.'}
                                                         </td>
                                                     </tr>
                                                 })}

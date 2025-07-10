@@ -6,9 +6,11 @@ import LikeFill from "@icons/like-fill.svg";
 import Like from "@icons/like.svg";
 import Link from "next/link";
 import usePostRequest from "@/hooks/usePostRequest";
+import {useRouter} from "next/router";
 
 const LikeDislike = ({id, c, setReload}) => {
     const {isLoading, sendPostRequest} = usePostRequest()
+    const {asPath} = useRouter()
 
     const handleLike = async (type) => {
         let api;
@@ -34,7 +36,8 @@ const LikeDislike = ({id, c, setReload}) => {
                 description: errorMessage,
                 color: 'danger',
                 endContent: status === 401 &&
-                    <Link href='/auth/login' className='border border-rose-600 rounded px-2'>ورود</Link>
+                    <Link href={`/auth/login?backUrl=${asPath}`}
+                          className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">ورود</Link>
             })
     }
     return (

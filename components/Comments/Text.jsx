@@ -12,6 +12,7 @@ import useSwipeScroll from "@/hooks/useHorizontalScroll";
 import usePostRequest from "@/hooks/usePostRequest";
 import Link from "next/link";
 import LikeDislike from "@/components/Comments/Like&Dislike";
+import {useRouter} from "next/router";
 
 let staticComments = [
     'عالی است',
@@ -22,12 +23,12 @@ let staticComments = [
 ];
 const Text = ({id, url, justForm}) => {
     const [currentPage, setCurrentPage] = useState(1)
+    const {asPath} = useRouter()
     const [data, setData] = useState("")
     const [xComment, setXComment] = useState(true)
     const [showMore, setShowMore] = useState(false)
     const [comments, setComments, setReload, pagination, , loading] = useGetRequest(true, !justForm && `/${url}/comment/${id}?type=text`, currentPage)
     const {isLoading, sendPostRequest} = usePostRequest()
-    const {isLoading: isLikeLoading, sendPostRequest: sendLikeRequest} = usePostRequest()
     const ref = useSwipeScroll()
 
     const handleClick = (value) => {
@@ -54,7 +55,8 @@ const Text = ({id, url, justForm}) => {
                 description: errorMessage,
                 color: 'danger',
                 endContent: status === 401 &&
-                    <Link href='/auth/login' className='border border-rose-600 rounded px-2'>ورود</Link>
+                    <Link href={`/auth/login?backUrl=${asPath}`}
+                          className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">ورود</Link>
             })
     }
 
@@ -92,7 +94,7 @@ const Text = ({id, url, justForm}) => {
                         </button>
                     </form>
                 </div>
-                {!justForm&&<div className="flex flex-col gap-6">
+                {!justForm && <div className="flex flex-col gap-6">
                     <p className="text-primary-950 font-semibold sm:text-sm text-xs self-start">نظرات کاربران</p>
                     {!loading ? <div className="flex flex-col gap-6">
                         <ul className="flex flex-col gap-4 items-stretch">

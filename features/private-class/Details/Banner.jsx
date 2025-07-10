@@ -155,7 +155,7 @@ function Banner({data = {}}) {
                                     <span
                                         className="lg:hidden font-semibold text-primary-700 sm:text-base text-sm">{about.placement_test}</span>
                                     <div className="overflow-hidden w-full">
-                                        <Link href={`/private-class/${data.id}/reserve-class?type=2`}
+                                        <Link href={`/private-class/${data.id}/reserve-placement`}
                                               className="effect-1 w-full lg:h-12 sm:h-10 h-8 lg:py-4 py-2 text-center whitespace-nowrap lg:text-base sm:text-sm text-xs border text-secondary-500 border-secondary-500 rounded flex flex-col justify-center">
                                             تعیین سطح
                                         </Link>

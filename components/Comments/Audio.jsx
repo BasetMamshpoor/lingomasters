@@ -13,6 +13,7 @@ import usePostRequest from "@/hooks/usePostRequest";
 import Link from "next/link";
 import LikeDislike from "@/components/Comments/Like&Dislike";
 import AudioPlayer from "@/components/Comments/AudioPlayer";
+import {useRouter} from "next/router";
 
 const generateUniqueFileName = (blob) => {
     const timestamp = Date.now();
@@ -21,10 +22,12 @@ const generateUniqueFileName = (blob) => {
     return `recording_${timestamp}_${blobSize}_${randomValue}.wav`;
 };
 
-const Audio = ({id, url,justForm}) => {
+const Audio = ({id, url, justForm}) => {
         const [showMore, setShowMore] = useState(false)
+        const {asPath} = useRouter()
 
-        const [comments, setComments, setReload, pagination] = useGetRequest(true, !justForm&&`/${url}/comment/${id}?type=voice`)
+
+        const [comments, setComments, setReload, pagination] = useGetRequest(true, !justForm && `/${url}/comment/${id}?type=voice`)
 
         const [audioBlob, setAudioBlob] = useState(null);
 
@@ -63,7 +66,8 @@ const Audio = ({id, url,justForm}) => {
                     description: errorMessage,
                     color: 'danger',
                     endContent: status === 401 &&
-                        <Link href='/auth/login' className='border border-rose-600 rounded px-2'>ورود</Link>
+                        <Link href={`/auth/login?backUrl=${asPath}`}
+                              className="border border-rose-600 text-sm whitespace-nowrap p-1 rounded">ورود</Link>
                 })
         };
 
@@ -85,7 +89,7 @@ const Audio = ({id, url,justForm}) => {
                             </button>
                         </form>
                     </div>
-                    {!justForm&&<div className="flex flex-col gap-6">
+                    {!justForm && <div className="flex flex-col gap-6">
                         <p className="text-primary-950 font-semibold text-sm self-start">نظرات کاربران</p>
                         {!!comments ? <div className="flex flex-col gap-6">
                             <ul className="flex flex-col gap-4 items-stretch">
