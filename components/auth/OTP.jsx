@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 const Otp = ({setStep, user, login, data: Data}) => {
         const {push} = useRouter()
         const [value, setValue] = React.useState("");
-        const [response, setResponse] = useState({expires_in: 0})
+        const [timer, setTimer] = useState(0)
         const [sendAgain, setSendAgain] = useState()
         const [loading, setLoading] = useState(true)
         const {isLoading, error, sendPostRequest} = usePostRequest()
@@ -25,7 +25,7 @@ const Otp = ({setStep, user, login, data: Data}) => {
                                 description: res.data.message || 'کد تایید ارسال شد',
                                 color: 'success',
                             })
-                            setResponse({expires_in: parseInt(res.data.response.data.remain)})
+                            setTimer(parseInt(res.data.response.data.remain))
                         })
                         .catch(err => {
                             addToast({
@@ -33,7 +33,7 @@ const Otp = ({setStep, user, login, data: Data}) => {
                                 description: err.response?.data.message || 'خطایی رخ داده است',
                                 color: 'danger',
                             })
-                            setResponse({expires_in: 0})
+                            setTimer(0)
                         })
                         .finally(() => setLoading(false))
                 }
@@ -109,16 +109,15 @@ const Otp = ({setStep, user, login, data: Data}) => {
                                 ایمیل یا شماره موبایل
                             </button>
                             <div className="flex items-center gap-6">
-                                {/*<button disabled={loading} type='button'*/}
-                                {/*        className="text-primary-800 disabled:text-natural_gray-500 text-sm">ارسال مجدد*/}
-                                {/*</button>*/}
-                                <span className='text-orange-500'>
-                                <Timer time={response.expires_in} withHour={false}
-                                       message={<p
-                                           className='cursor-pointer text-blue-600'
-                                           onClick={e => {
-                                               setSendAgain(Math.random())
-                                           }}>ارسال مجدد</p>}/></span>
+                                <Timer
+                                    withProgress={false}
+                                    time={timer}
+                                    withHour={false}
+                                    message={<p
+                                        className='cursor-pointer text-blue-600'
+                                        onClick={e => {
+                                            setSendAgain(Math.random())
+                                        }}>ارسال مجدد</p>}/>
                             </div>
                             <div className="w-full flex items-center gap-2 md:mt-20 mt-4">
                                 <div className="w-full">
