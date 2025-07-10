@@ -50,8 +50,9 @@ const SoundPlayer = ({audio_url}) => {
             });
 
             wavesurfer.on('timeupdate', () => {
+                const duration = wavesurfer.getDuration();
                 const currentTime = wavesurfer.getCurrentTime();
-                setRemainingTime(currentTime);
+                setRemainingTime(duration - currentTime);
             });
 
             wavesurfer.on('error', (err) => {
