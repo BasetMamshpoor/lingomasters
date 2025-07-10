@@ -119,7 +119,7 @@ function PrivateCard
                         </div>
                     </div>
                     <div className="w-full flex gap-3 mt-10">
-                        <Link href={`/private-class/${id}#resume`}
+                        <Link href={`/private-class/${id}`}
                               className="sm:py-2 py-1 sm:px-4 px-2 whitespace-nowrap border-1.5 border-secondary-500 text-secondary-500 text-center w-full rounded-md effect-2 sm:text-sm text-xs">
                             مشاهده رزومه
                         </Link>

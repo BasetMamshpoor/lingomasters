@@ -52,6 +52,7 @@ const Calendar = ({setState, state, setSteps, id}) => {
         const nextWeek = new Date(saturday);
         nextWeek.setDate(saturday.getDate() + 7);
         setSaturday(nextWeek);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const isToday = (date) => {

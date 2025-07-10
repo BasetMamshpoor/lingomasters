@@ -20,7 +20,7 @@ const list = [
     },
     {
         n: 'استاد',
-        id: 'movie'
+        id: 'professor'
     },
     {
         n: 'سرفصل ها',
@@ -31,7 +31,7 @@ const list = [
         id: 'calendar'
     },
     {
-        n: 'محل برگزاری',
+        n: 'کتاب',
         id: 'books'
     },
     {

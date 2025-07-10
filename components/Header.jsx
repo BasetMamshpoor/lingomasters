@@ -1,5 +1,15 @@
 import {useContext, useState} from "react";
-import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Input, Button, Avatar} from "@heroui/react";
+import {
+    Dropdown,
+    DropdownTrigger,
+    DropdownMenu,
+    DropdownItem,
+    Input,
+    Button,
+    Avatar,
+    Drawer,
+    DrawerContent, DrawerHeader, DrawerBody
+} from "@heroui/react";
 import Link from "next/link";
 import Search from '@icons/search.svg'
 import Down from '@icons/arrow-down.svg'
@@ -56,7 +66,7 @@ const Header = ({setTitle}) => {
                             </div>
                         </div>
                         <Link href='/' className="centerOfParent"><h1
-                            className="font-Metal sm:text-3xl tetx-xl">{process.env.NEXT_PUBLIC_LOGO}</h1></Link>
+                            className="font-Metal sm:text-3xl text-xl">{process.env.NEXT_PUBLIC_LOGO}</h1></Link>
                         <div className="centerOfParent gap-4">
                             <div className="lg:hidden centerOfParent">
                                 <Dropdown>
@@ -172,29 +182,47 @@ const Header = ({setTitle}) => {
                     </div>
                 </div>
             </header>
-            <div
-                className={`z-[59] fixed lg:hidden top-0 bottom-0 w-full duration-300 backdrop-blur-sm ${isSidebarOpen ? 'right-0' : '-right-full'}`}
-                onClick={(e) => e.target === e.currentTarget ? setSidebarOpen(false) : null}>
-                <aside dir="rtl"
-                       className={`fixed z-10 top-0 right-0 w-64 h-screen pt-[90px] duration-300 ${isSidebarOpen ? '-right-1' : '!-right-full'} sm:translate-x-0 bg-white border-l border-gray-200`}>
-                    <div className="h-full px-3 py-4 overflow-y-auto bg-white">
-                        <ul className="flex flex-col gap-2 font-medium">
-                            {links.map((i, o) => {
-                                return (
-                                    <li key={o} className="[&>a]:flex [&>a]:items-center [&>a]:gap-3 cursor-pointer">
-                                        {i.underMenu ?
-                                            <SubMenu setSidebarOpen={setSidebarOpen} Item={Item} i={i}/>
-                                            : <Link className="p-2 duration-300 hover:bg-gray-50" href={i.link}>
-                                                {i.icon}{i.text}
-                                            </Link>
-                                        }
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </div>
-                </aside>
-            </div>
+            <Drawer size="full" dir="rtl" isOpen={isSidebarOpen} onOpenChange={setSidebarOpen}>
+                <DrawerContent>
+                    {(onClose) => (
+                        <>
+                            <DrawerHeader className="justify-center">
+                                <Link href='/'
+                                      className="font-Metal sm:text-3xl tetx-xl">{process.env.NEXT_PUBLIC_LOGO}</Link>
+                            </DrawerHeader>
+                            <DrawerBody>
+                                <div className="h-full px-3 py-4 overflow-y-auto bg-white">
+                                    <ul className="flex flex-col gap-2 font-medium">
+                                        {links.map((i, o) => {
+                                            return (
+                                                <li key={o}
+                                                    className="[&>a]:flex [&>a]:items-center [&>a]:gap-3 cursor-pointer">
+                                                    {i.underMenu ?
+                                                        <SubMenu setSidebarOpen={onClose} Item={Item} i={i}/>
+                                                        : <Link className="p-2 duration-300 hover:bg-gray-50"
+                                                                onClick={onClose}
+                                                                href={i.link}>
+                                                            {i.icon}{i.text}
+                                                        </Link>
+                                                    }
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
+                            </DrawerBody>
+                        </>
+                    )}
+                </DrawerContent>
+            </Drawer>
+            {/*<div*/}
+            {/*    className={`z-[59] fixed lg:hidden top-0 bottom-0 w-full duration-300 backdrop-blur-sm ${isSidebarOpen ? 'right-0' : '-right-full'}`}*/}
+            {/*    onClick={(e) => e.target === e.currentTarget ? setSidebarOpen(false) : null}>*/}
+            {/*    <aside dir="rtl"*/}
+            {/*           className={`fixed z-10 top-0 right-0 w-64 h-screen pt-[90px] duration-300 ${isSidebarOpen ? '-right-1' : '!-right-full'} sm:translate-x-0 bg-white border-l border-gray-200`}>*/}
+
+            {/*    </aside>*/}
+            {/*</div>*/}
         </>
     );
 };

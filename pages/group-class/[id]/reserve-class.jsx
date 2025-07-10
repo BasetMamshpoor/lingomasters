@@ -170,7 +170,10 @@ const Reserve = () => {
                                         <Link href='/group-class'
                                               className='sm:w-44 w-1/2 effect-1 sm:text-base text-xs sm:px-6 px-4 py-2 rounded border-secondary-500 sm:border-[1.5px] border text-secondary-500 centerOfParent'>انصراف</Link>
                                         <button
-                                            onClick={() => setSteps(steps + 1)}
+                                            onClick={() => {
+                                                setSteps(steps + 1)
+                                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                            }}
                                             className="sm:w-44 w-1/2 effect-2 py-2 sm:px-6 px-4 sm:text-base text-sm rounded text-white bg-primary-600 self-end">ثبت
                                         </button>
                                     </div>
