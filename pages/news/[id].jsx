@@ -68,8 +68,8 @@ const News = () => {
                         <div
                             className="flex flex-col gap-6 px-3 py-4 rounded-lg border border-natural_gray-100 bg-[#FBFCFE]">
                             <p className="text-lg font-bold lg:font-medium ">جدیدترین خبرها</p>
-                            {data.news?.map((item, i) => <Link href={`/news/${item.id}`}
-                                                              className="flex items-center gap-2">
+                            {data.news?.map((item, i) => <Link key={item.id} href={`/news/${item.id}`}
+                                                               className="flex items-center gap-2">
                                 <Image
                                     src={item.image || "/images/blogger-communicating-with-followers-laptop-online.png"}
                                     alt={item.title}
@@ -90,8 +90,8 @@ const News = () => {
                         <div
                             className="flex flex-col gap-6 px-3 py-4 rounded-lg border border-natural_gray-100 bg-[#FBFCFE]">
                             <p className="text-lg font-bold lg:font-medium ">پربازدیدترین خبرها</p>
-                            {data.most_viewed?.map((item, i) => <Link href={`/news/${item.id}`}
-                                                                     className="flex items-center gap-2">
+                            {data.most_viewed?.map((item, i) => <Link key={item.id} href={`/news/${item.id}`}
+                                                                      className="flex items-center gap-2">
                                 <Image
                                     src={item.image || "/images/blogger-communicating-with-followers-laptop-online.png"}
                                     alt={item.title}
