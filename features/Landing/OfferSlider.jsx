@@ -38,11 +38,18 @@ const Slider = ({data}) => {
                                     <p className='text-xl md:text-3xl lg:text-4xl text-secondary-600 '>تخفیف دارها</p>
                                 </div>
                                 <div className="flex items-center gap-6">
-                                    <button className="px-4 py-2 flex justify-center items-center bg-secondary-600 rounded-lg text-xs md:text-base" onClick={() => setType('professor')}>اساتید</button>
-                                    <button className="px-4 py-2 flex justify-center items-center bg-secondary-600 rounded-lg text-xs md:text-base" onClick={() => setType('group_class')}>دوره ها</button>
+                                    <button
+                                        className="px-4 py-2 flex justify-center items-center bg-secondary-600 rounded-lg text-xs md:text-base text-white"
+                                        onClick={() => setType('professor')}>کلاس های خصوصی
+                                    </button>
+                                    <button
+                                        className="px-4 py-2 flex justify-center items-center bg-secondary-600 rounded-lg text-xs md:text-base text-white"
+                                        onClick={() => setType('group_class')}>کلاس های گروهی
+                                    </button>
                                 </div>
                                 <div className="lg:flex hidden ">
-                                    <Image src="/images/offer slider.png" alt="" width={100} height={100} className="w-32 h-52"/>
+                                    <Image src="/images/offer slider.png" alt="" width={100} height={100}
+                                           className="w-32 h-52"/>
                                 </div>
                             </div>
                         </div>

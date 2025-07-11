@@ -3,24 +3,28 @@ import React from 'react';
 const RuleOfCancle = () => {
     return (
         <>
-            <div className="my-20 overflow-x-auto" dir='rtl'>
+            <div className="sm:my-20 my-4 overflow-x-auto" dir='rtl'>
                 <table
-                    className="min-w-full table-auto border-collapse border border-natural_gray-400 bg-natural_gray-50 lg:text-base sm:text-xs text-[10px]">
+                    className="min-w-full table-auto border-collapse border border-natural_gray-400 bg-natural_gray-50 lg:text-base text-xs">
                     <thead>
                     <tr>
                         <th colSpan="4" className="border border-natural_gray-400 py-4 text-center">
-                            لغو کلاس توسط دانش آموز
+                            لغو کلاس
                         </th>
                     </tr>
                     <tr className="[&>th]:lg:border-s [&>th]:border-b [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center">
                         <th className="border-l">مدت زمان باقی مانده به شروع کلاس</th>
-                        <th>میزان جریمه</th>
+                        <th>میزان جریمه (درصد از مبلغ کلاس)</th>
                     </tr>
                     </thead>
                     <tbody
                         className="[&>tr>td]:lg:border-l [&>tr>td]:lg:border-b-0 [&>tr>td]:border-b [&>tr>td]:border-natural_gray-400 [&>tr>td]:py-4 [&>tr>td]:text-center">
                     <tr>
-                        <td className="border-l px-6">پس از شروع کلاس (غیبت)</td>
+                        <td className="border-l px-6">
+                            پس
+                            از شروع
+                            کلاس (غیبت کامل)
+                        </td>
                         <td className="px-6">۱۰۰% مبلغ کلاس</td>
                     </tr>
                     <tr>

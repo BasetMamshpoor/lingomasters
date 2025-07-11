@@ -4,16 +4,15 @@ import Link from "next/link";
 import {
     addToast,
     BreadcrumbItem,
-    Breadcrumbs,
+    Breadcrumbs, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader,
     Popover,
     PopoverContent,
     PopoverTrigger, Radio,
-    RadioGroup
+    RadioGroup, useDisclosure
 } from "@heroui/react";
 
 import Right from '@icons/chevron-right.svg'
 import Clock from "@icons/clock.svg";
-import Share from '@icons/share.svg'
 import Eye from '@icons/eye-right.svg'
 import Info from '@icons/info-circle.svg'
 import RuleOfCancle from "@/components/RuleOfCancle";
@@ -23,10 +22,23 @@ import Like from "@/components/Like";
 import formatNumber from "@/helpers/formatNumber";
 import {useRouter} from "next/router";
 import Rate from "@/components/Rate";
+import Share from "@/components/Share";
 
 
 function Banner({data = {}}) {
-    const {about = {}} = data
+    const {about = {}} = data;
+    const {query, asPath, replace, back} = useRouter()
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+    const handleChange = (value) => {
+        replace({pathname: asPath.split('?')[0], query: {...query, language: value}},
+            undefined,
+            {shallow: true}
+        );
+    }
+    useEffect(() => {
+        handleChange(about.languages[0].id)
+    }, []);
     return (
         <>
             <div className="lg:hidden flex flex-col">
@@ -47,7 +59,7 @@ function Banner({data = {}}) {
                             className='[&>span]:sm:text-base [&>span]:text-xs [&>a]:sm:text-base [&>a]:text-xs'>{about.name}</BreadcrumbItem>
                     </Breadcrumbs>
                 </div>
-                <div className="py-3 flex items-center gap-2 cursor-pointer">
+                <div className="py-3 flex items-center gap-2 cursor-pointer" onClick={back}>
                     <div className="centerOfParent"><Right className='fill-primary-600'/></div>
                     <span className='sm:text-base text-sm font-semibold'>بازگشت</span>
                 </div>
@@ -96,15 +108,8 @@ function Banner({data = {}}) {
                                 className='sm:text-base text-sm text-primary-950'>{formatNumber(about.views_count)}</span>
                         </div>
                         <div className="flex items-center gap-6">
-                            <Like isLike={about.is_like}/>
-                            <div className="centerOfParent cursor-pointer" onClick={() => {
-                                navigator.clipboard.writeText(location.href)
-                                addToast({
-                                    title: 'کپی شد',
-                                    description: 'لینک با موفقیت کپی شد',
-                                    color: 'success',
-                                })
-                            }}><Share/></div>
+                            <Like id={data.id} isLike={about.is_like} url='/private-reserve'/>
+                            <Share title={about.title}/>
                         </div>
                     </div>
                     <div className="gap-10 flex flex-col items-center">
@@ -124,8 +129,22 @@ function Banner({data = {}}) {
                             <div className="centerOfParent flex-col gap-2 lg:hidden w-full">
                                 <h1 className='sm:text-xl text-base font-semibold '>{about.name}</h1>
                                 <p className='text-natural_gray-600 text-xs'>(کد استاد: {data.id})</p>
-                                <Image width={24} height={24} alt='flag'
-                                       src={data.flag}/>
+                                <RadioGroup
+                                    value={query.language}
+                                    onValueChange={handleChange}
+                                    color='success'
+                                    style={{"--heroui-success": "196 94% 25%"}}
+                                    orientation="horizontal">
+                                    {about.languages?.map(e => (
+                                        <Radio value={e.id.toString()} key={e.id}
+                                               classNames={{label: 'flex items-center gap-2'}}>
+                                            <div className="centerOfParent w-fit">
+                                                <Image width={24} height={24} alt='flag'
+                                                       src={e.flag}/></div>
+                                            <span>{e.title}</span>
+                                        </Radio>
+                                    ))}
+                                </RadioGroup>
                                 <div className="flex items-center gap-1">
                                     <Rate rate={about.rate} id={data.id} url='/private-reserve'/>
                                     <div className="flex items-center gap-2">
@@ -213,15 +232,21 @@ function Banner({data = {}}) {
             <div
                 className="lg:hidden flex items-center justify-between bg-white border border-natural_gray-100 rounded-lg w-full py-4 px-3">
                 <p className="text-xs font-semibold">قوانین لغو کلاس</p>
-                <Popover backdrop='blur' className='absolute top-0 left-0 transladte-x-1/2 -translate-y-1/2 w-[90vw]'>
-                    <PopoverTrigger>
-                        <div className="flex items-center gap-1 cursor-pointer">
-                            <div className="centerOfParent"><Info/></div>
-                            <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس توسط زبان آموز</span>
-                        </div>
-                    </PopoverTrigger>
-                    <PopoverContent><RuleOfCancle/></PopoverContent>
-                </Popover>
+                <div className="flex items-center gap-1 cursor-pointer" onClick={onOpen}>
+                    <div className="centerOfParent"><Info/></div>
+                    <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس توسط زبان آموز</span>
+                </div>
+                <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                    <ModalContent>
+                        {(onClose) => (
+                            <>
+                                <ModalHeader/>
+                                <ModalBody><RuleOfCancle/></ModalBody>
+                                <ModalFooter/>
+                            </>
+                        )}
+                    </ModalContent>
+                </Modal>
             </div>
         </>
     );

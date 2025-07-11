@@ -1,12 +1,12 @@
 import {Breadcrumbs, BreadcrumbItem, addToast} from "@heroui/react";
 //icons
-import Share from '@icons/share.svg'
 import Like from "@/components/Like";
 import Rate from "@/components/Rate";
 import Image from "next/image";
 import Eye from "@icons/eye-right.svg";
 import formatNumber from "@/helpers/formatNumber";
 import React from "react";
+import Share from "@/components/Share";
 
 const Hero = ({product = {}}) => {
     const {
@@ -40,37 +40,7 @@ const Hero = ({product = {}}) => {
                                     <BreadcrumbItem href={`/library`}>کتابخانه</BreadcrumbItem>
                                     <BreadcrumbItem>{title}</BreadcrumbItem>
                                 </Breadcrumbs>
-                                <button
-                                    type="button"
-                                    className="centerOfParent cursor-pointer"
-                                    aria-label="اشتراک‌گذاری"
-                                    onClick={() => {
-                                        if (window.innerWidth < 1024 && navigator.share) {
-                                            navigator.share({
-                                                title: title,
-                                                url: window.location.href,
-                                            }).then(() => {
-                                                addToast({
-                                                    description: 'لینک محصول با موفقیت به اشتراک گذاشته شد.',
-                                                    color: 'success',
-                                                });
-                                            }).catch(() => {
-                                                addToast({
-                                                    description: 'اشتراک‌گذاری لغو شد یا پشتیبانی نمی‌شود.',
-                                                    color: 'warning',
-                                                });
-                                            });
-                                        } else if (navigator.clipboard && window.location) {
-                                            navigator.clipboard.writeText(window.location.href);
-                                            addToast({
-                                                description: 'لینک محصول در کلیپ بورد شما کپی شد.',
-                                                color: 'success',
-                                            });
-                                        }
-                                    }}
-                                >
-                                    <Share/>
-                                </button>
+                                <Share title={title}/>
                             </div>
                             <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center gap-3">

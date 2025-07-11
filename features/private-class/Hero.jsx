@@ -8,7 +8,6 @@ import {
     RadioGroup, Radio
 } from "@heroui/react";
 //icons
-import Share from '@icons/share.svg'
 import Eye from '@icons/eye-right.svg'
 import Alert from '@icons/info-circle.svg'
 import RuleOfCancle from '@/components/RuleOfCancle';
@@ -18,6 +17,7 @@ import formatNumber from "@/helpers/formatNumber";
 import Image from "next/image";
 import Rate from "@/components/Rate";
 import {useRouter} from "next/router";
+import Share from "@/components/Share";
 
 const Hero = ({data = {}, id}) => {
     const {query, asPath, replace} = useRouter()
@@ -59,16 +59,9 @@ const Hero = ({data = {}, id}) => {
                                     }}>
                                     <BreadcrumbItem href="/">صفحه اصلی</BreadcrumbItem>
                                     <BreadcrumbItem href={`/private-class`}>کلاس های خصوصی</BreadcrumbItem>
-                                    <BreadcrumbItem>{data.name}</BreadcrumbItem>
+                                    <BreadcrumbItem>{name}</BreadcrumbItem>
                                 </Breadcrumbs>
-                                <div className="centerOfParent cursor-pointer" onClick={() => {
-                                    navigator.clipboard.writeText(location.href)
-                                    addToast({
-                                        title: 'کپی شد',
-                                        description: 'لینک با موفقیت کپی شد',
-                                        color: 'success',
-                                    })
-                                }}><Share/></div>
+                                <Share title={name}/>
                             </div>
                             <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center gap-3">
@@ -92,7 +85,8 @@ const Hero = ({data = {}, id}) => {
                                     style={{"--heroui-success": "196 94% 25%"}}
                                     orientation="horizontal">
                                     {data.languages.map(e => (
-                                        <Radio value={e.id.toString()} key={e.id} classNames={{label: 'flex items-center gap-2'}}>
+                                        <Radio value={e.id.toString()} key={e.id}
+                                               classNames={{label: 'flex items-center gap-2'}}>
                                             <div className="centerOfParent w-fit">
                                                 <Image width={24} height={24} alt='flag'
                                                        src={e.flag}/></div>
@@ -113,7 +107,8 @@ const Hero = ({data = {}, id}) => {
                                 <PopoverTrigger>
                                     <div className="flex items-center gap-1 cursor-pointer">
                                         <div className="centerOfParent"><Alert/></div>
-                                        <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس توسط زبان آموز</span>
+                                        <span
+                                            className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس توسط زبان آموز</span>
                                     </div>
                                 </PopoverTrigger>
                                 <PopoverContent><RuleOfCancle/></PopoverContent>

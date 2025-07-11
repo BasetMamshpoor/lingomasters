@@ -615,6 +615,31 @@ const Rules = () => {
                                     📌 در صورتی که این تاریخ با تعطیلات رسمی مصادف باشد، پرداخت به اولین روز کاری پس از
                                     تعطیلات موکول خواهد شد.
                                 </li>
+                                <p className="my-4 font-semibold">🚫 قانون همکاری خارج از پلتفرم (خط قرمز لینگومسترز)</p>
+                                <li>
+                                    هرگونه برگزاری کلاس، تمدید همکاری یا ایجاد ارتباط آموزشی بین استاد و زبان‌آموز خارج
+                                    از بستر رسمی
+                                    وب‌سایت لینگومسترز، به هر شکل و با هر نیتی، تخلف جدی محسوب می‌شود.
+                                </li>
+                                <p className="my-4 font-semibold">🔴 این عمل، خط قرمز لینگومسترز است و در صورت
+                                    مشاهده:</p>
+                                <li>
+                                    ✅ همکاری استاد به‌ صورت دائمی قطع خواهد شد.
+                                </li>
+                                <li>
+                                    ✅ تمام اعتبار مالی باقی‌مانده در سایت باطل می‌گردد.
+                                </li>
+                                <li>
+                                    ✅ پروفایل‌ها و دسترسی‌ها بدون هشدار قبلی مسدود خواهند شد.
+                                </li>
+                                <li>
+                                    ✅ ارائه خدمات به زبان‌آموز به‌صورت کامل و دائمی متوقف می‌شود.
+                                </li>
+                                <li>
+                                    ⚠️ این قانون به منظور حفظ امنیت مالی، کیفیت آموزشی و جلوگیری از سواستفاده و نقض حقوق
+                                    طرفین
+                                    (استاد، زبان‌آموز و پلتفرم) به‌صورت جدی و بدون استثنا اجرا خواهد شد.
+                                </li>
                             </ul>
                             <div className="overflow-x-auto">
                                 <table
@@ -631,56 +656,68 @@ const Rules = () => {
                                         <th className="text-xs sm:text-base">میزان جریمه (درصد از مبلغ کلاس)</th>
                                     </tr>
                                     <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base ">پس
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base ">
+                                            پس
                                             از شروع
                                             کلاس (غیبت کامل)
                                         </th>
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">100%
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            100%
                                             مبلغ کلاس
                                         </th>
                                     </tr>
                                     <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">کمتر
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            کمتر
                                             از 3 ساعت
                                             قبل از شروع کلاس
                                         </th>
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">80%
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            80%
                                             مبلغ کلاس
                                         </th>
                                     </tr>
                                     <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">کمتر
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            کمتر
                                             از 6 ساعت
                                             تا 3 ساعت قبل از شروع کلاس
                                         </th>
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">60%
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            60%
                                             مبلغ کلاس
                                         </th>
                                     </tr>
                                     <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">کمتر
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            کمتر
                                             از 12 ساعت
                                             تا 6 ساعت قبل از شروع کلاس
                                         </th>
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">40%
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            40%
                                             مبلغ کلاس
                                         </th>
                                     </tr>
                                     <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">کمتر
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            کمتر
                                             از 24 ساعت
                                             تا 12 ساعت قبل از شروع کلاس
                                         </th>
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">20%
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            20%
                                             مبلغ کلاس
                                         </th>
                                     </tr>
                                     <tr className="[&>th]:border [&>th]:border-natural_gray-400 [&>th]:py-4 [&>th]:text-center bg-natural_gray-50">
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">بیش
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            بیش
                                             از 24 ساعت
                                             قبل از شروع کلاس
                                         </th>
-                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">بدون
+                                        <th className="text-natural_gray-950 font-semibold text-[10px] sm:text-base">
+                                            بدون
                                             جریمه
                                         </th>
                                     </tr>
