@@ -1,6 +1,7 @@
 import React from 'react';
 import Growth from "@icons/growth.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 const AgeGroup = () => {
     return (
@@ -13,30 +14,30 @@ const AgeGroup = () => {
                         بگیرند.</p>
                 </div>
                 <div className="flex items-center justify-between w-full gap-4 md:gap-6 lg:gap-14">
-                    <div
-                        className="flex flex-col items-center justify-center gap-8 md:gap-12 lg:gap-20 w-full h-full flex-grow">
+                    <Link href={`/group-class?age_group=1`}
+                          className="flex flex-col items-center justify-center gap-8 md:gap-12 lg:gap-20 w-full h-full flex-grow">
                         <div className="w-full h-full">
                             <Image unoptimized src="/images/group-childrens2.jpg" alt="" width={100} height={100}
                                    className="w-full h-full"/>
                         </div>
                         <p className="text-base md:text-xl">کودکان</p>
-                    </div>
-                    <div
+                    </Link>
+                    <Link href={`/group-class?age_group=2`}
                         className="flex flex-col items-center justify-center gap-8 md:gap-12 lg:gap-20 flex-grow w-full h-full">
                         <div className="w-full h-full">
                             <Image unoptimized src="/images/young-girl2.jpg" alt="" width={100} height={100}
                                    className="w-full h-full"/>
                         </div>
                         <p className="text-base md:text-xl">نوجوانان</p>
-                    </div>
-                    <div
+                    </Link>
+                    <Link href={`/group-class?age_group=3`}
                         className="flex flex-col items-center justify-center gap-8 md:gap-12 lg:gap-20 flex-grow w-full h-full">
                         <div className="w-full h-full">
                             <Image unoptimized src="/images/Adults2.jpg" alt="" width={100} height={100}
                                    className="w-full h-full"/>
                         </div>
                         <p className="text-base md:text-xl">بزرگسالان</p>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </>

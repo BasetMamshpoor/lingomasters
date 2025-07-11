@@ -9,7 +9,7 @@ import Library from "@icons/books.svg";
 import Contact from "@icons/vector.svg";
 
 const links = [
-    {link: '/', icon: <Home/>, text: 'صفحه‌اصلی', underMenu: false},
+    {link: '/', icon: <Home/>, text: 'آموزشگاه', underMenu: false},
     {link: 'https://store.lingomasters.ir', icon: <Store/>, text: 'فروشگاه', underMenu: false},
     {
         link: '',

@@ -17,7 +17,7 @@ function Professor({currentPage, setCurrentPage}) {
                             ?
                             <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full">{data.map(r =>
                                 <ClassItem data={r} key={r.id}/>)}</div>
-                            : <p className='w-full'>استادی پیدا نشد لطفا فیلتر ها را تغییر دهید</p>}
+                            : <p className='w-full'>کلاسی پیدا نشد لطفا فیلتر ها را تغییر دهید</p>}
                         <div className="centerOfParent">
                             <PaginationApp total={pagination.total} per_page={pagination.per_page}
                                            currentPage={currentPage} onChange={(e) => setCurrentPage(e)}/>
