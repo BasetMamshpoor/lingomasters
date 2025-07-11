@@ -178,18 +178,14 @@ const Login = () => {
                                 </div>
                             </div>
                             <div className="w-full flex items-center gap-2 mt-20">
-                                <div className="w-full overflow-hidden">
-                                    <Link href="/auth/register"
-                                          className="border border-secondary-400 text-secondary-400 w-full inline-block sm:text-base text-sm text-center px-3 py-2 rounded effect-1">
-                                        ثبت نام
-                                    </Link>
-                                </div>
-                                <div className="w-full">
-                                    <button disabled={isLoading}
-                                            className="disabled:bg-natural_gray-400 text-white bg-primary-700 w-full px-3 py-2 sm:text-base text-sm rounded effect-2">
-                                        ورود
-                                    </button>
-                                </div>
+                                <Link href="/auth/register"
+                                      className="border border-secondary-400 text-secondary-400 w-full inline-block sm:text-base text-sm text-center px-3 py-2 rounded effect-1">
+                                    ثبت نام
+                                </Link>
+                                <button disabled={isLoading}
+                                        className="disabled:bg-natural_gray-400 text-white bg-primary-700 w-full px-3 py-2 sm:text-base text-sm rounded effect-2">
+                                    ورود
+                                </button>
                             </div>
                         </form>
                     </div>

@@ -1,4 +1,4 @@
-import {addToast, Input} from "@heroui/react";
+import {addToast, Checkbox, Input} from "@heroui/react";
 import React, {useState, useEffect} from "react";
 import Link from "next/link";
 import Otp from "@/components/auth/OTP";
@@ -14,6 +14,7 @@ const Register = () => {
     const [step, setStep] = useState(1)
     const [data, setData] = useState({})
     const [isVisible, setIsVisible] = useState(false);
+    const [rules, setRules] = useState(false)
     const [isVisible2, setIsVisible2] = useState(false);
 
     const handleChange = (event) => {
@@ -201,6 +202,23 @@ const Register = () => {
                                             onChange={handleChange}
                                             classNames={{label: "sm:text-sm text-xs", input: "sm:text-sm text-xs"}}
                                         />
+                                        <div className="col-span-2 flex items-center gap-2">
+                                            <Checkbox
+                                                color='success'
+                                                style={{
+                                                    "--heroui-success": "196 94% 25%",
+                                                }}
+                                                classNames={{icon: 'text-white', label: 'sm:text-base text-sm'}}
+                                                isSelected={rules}
+                                                onValueChange={setRules}
+                                            />
+                                            تمامی
+                                            <Link href={"/rules"} target="_blank"
+                                                  className="sm:text-base text-sm text-primary-400">
+                                                &nbsp;قوانین و مقررات&nbsp;
+                                            </Link>
+                                            را می پذیرم.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -210,8 +228,8 @@ const Register = () => {
                                     بازگشت
                                 </Link>
 
-                                <button
-                                    className="disabled:bg-natural_gray-400 text-white bg-primary-700 w-full px-3 py-2 sm:text-base text-sm rounded effect-2">
+                                <button disabled={!rules}
+                                        className="disabled:bg-natural_gray-400 text-white bg-primary-700 w-full px-3 py-2 sm:text-base text-sm rounded effect-2">
                                     ثبت نام
                                 </button>
                             </div>
