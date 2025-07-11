@@ -4,10 +4,10 @@ import View from '@icons/eye-right.svg'
 import formatNumber from "@/helpers/formatNumber";
 import Image from "next/image";
 import Alert from "@icons/info-circle.svg";
-import RuleOfCancle from "@/components/RuleOfCancle";
 import Like from "@/components/Like";
 import React from "react";
 import Rate from "@/components/Rate";
+import RuleOfCancleGroup from "@/components/RuleOfCancleGroup";
 
 const Hero = ({product = {}}) => {
     const {
@@ -82,7 +82,7 @@ const Hero = ({product = {}}) => {
                                         <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس زبان آموز</span>
                                     </div>
                                 </PopoverTrigger>
-                                <PopoverContent><RuleOfCancle/></PopoverContent>
+                                <PopoverContent><RuleOfCancleGroup/></PopoverContent>
                             </Popover>
                         </div>
                         <div className="w-full absolute -bottom-5 left-0 flex gap-4 items-center px-10">

@@ -20,13 +20,19 @@ import {useRouter} from "next/router";
 import useGetRequest from "@/hooks/useGetRequest";
 import getPersianDateRange from "@/utils/getPersianDateRange";
 import BookItem from "@/components/Books/BookItem";
-import {Button} from "@heroui/react";
+import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure} from "@heroui/react";
 import Message from "@icons/message-alt.svg";
+import ShowRules from "@/features/profile/classes/ShowRules";
+import ThreeDots from "@icons/threedots.svg";
+import GroupClassCancellation from "@/features/profile/classes/GroupClassCancellation";
 
 const ClassDetails = () => {
     const router = useRouter();
+    const disclosure = useDisclosure();
+    const modal = useDisclosure();
     const {id} = router.query
     const [data] = useGetRequest(true, `/student/group/show/${id}`)
+    const isProgrss = data ? [0, 1].includes(data.status) : false
     return (
         <>
             {data && <div className="flex flex-col gap-8">
@@ -58,7 +64,46 @@ const ClassDetails = () => {
                     </div>
                 </div>
 
-                <div className="border rounded-xl border-natural_gray-200 w-full py-8 px-4 flex flex-col gap-5">
+                <div
+                    className="relative border rounded-xl border-natural_gray-200 w-full py-8 px-4 flex flex-col gap-5">
+                    <GroupClassCancellation api="/group-class" id={id} disclosure={disclosure} is_near={data.is_near}/>
+                    <ShowRules group disclosure={modal}/>
+                    {isProgrss && <Dropdown
+                        dir={'rtl'}
+                        classNames={{
+                            trigger: 'absolute left-4 top-4 cursor-pointer',
+                        }}
+                        placement='right-start'
+                    >
+                        <DropdownTrigger>
+                            <div className="centerOfParent">
+                                <ThreeDots className='fill-secondary-500'/>
+                            </div>
+                        </DropdownTrigger>
+                        <DropdownMenu
+                            onAction={(key) => {
+                                if (key === "cancel") {
+                                    disclosure.onOpen();
+                                }
+                                if (key === "show") {
+                                    modal.onOpen();
+                                }
+                            }}
+                            aria-label="Static Actions">
+                            <DropdownItem
+                                classNames={{title: 'font-semibold flex items-center gap-1 sm:text-sm text-xs'}}
+                                key="cancel"
+                                className="text-danger"
+                                color="danger">
+                                لغو کلاس
+                            </DropdownItem>
+                            <DropdownItem
+                                classNames={{title: 'font-semibold flex items-center gap-1 sm:text-sm text-xs'}}
+                                key="show">
+                                مشاهده قوانین لغو کلاس
+                            </DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>}
                     <div className="grid grid-cols-3 items-center">
                         <div className="flex items-center">
                             <div className="centerOfParent ml-2">

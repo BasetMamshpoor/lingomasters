@@ -8,12 +8,12 @@ import Clock from "@icons/clock.svg";
 import Share from '@icons/share.svg'
 import Offer from '@icons/division.svg'
 import Alert from "@icons/info-circle.svg";
-import RuleOfCancle from "@/components/RuleOfCancle";
 import Like from "@/components/Like";
 import Rate from "@/components/Rate";
 import View from "@icons/eye-right.svg";
 import formatNumber from "@/helpers/formatNumber";
 import Timer from "@/components/Timer";
+import RuleOfCancleGroup from "@/components/RuleOfCancleGroup";
 
 function Banner({data = {}, setReload}) {
     return (
@@ -186,7 +186,7 @@ function Banner({data = {}, setReload}) {
                             <span className='text-rose-700 text-xs'>مشاهده قوانین لغو کلاس توسط زبان آموز</span>
                         </div>
                     </PopoverTrigger>
-                    <PopoverContent className="w-screen max-w-full"><RuleOfCancle/></PopoverContent>
+                    <PopoverContent className="w-screen max-w-full"><RuleOfCancleGroup/></PopoverContent>
                 </Popover>
             </div>
         </>
