@@ -5,11 +5,11 @@ import {addToast, BreadcrumbItem, Breadcrumbs} from "@heroui/react";
 
 import Right from '@icons/chevron-right.svg'
 import Clock from "@icons/clock.svg";
-import Share from '@icons/share.svg'
 import Offer from '@icons/division.svg'
 import Like from "@/components/Like";
 import Rate from "@/components/Rate";
 import Timer from "@/components/Timer";
+import Share from "@/components/Share";
 
 function Banner({data = {}, setReload}) {
     return (
@@ -77,14 +77,7 @@ function Banner({data = {}, setReload}) {
                     <div className="lg:hidden flex items-center lg:justify-end justify-between">
                         <div className="flex items-center gap-6">
                             <Like isLike={data.is_like} id={data.id} url='/group_reserve'/>
-                            <div className="centerOfParent cursor-pointer" onClick={() => {
-                                navigator.clipboard.writeText(location.href)
-                                addToast({
-                                    title: 'کپی شد',
-                                    description: 'لینک با موفقیت کپی شد',
-                                    color: 'success',
-                                })
-                            }}><Share/></div>
+                            <Share title={data.title}/>
                         </div>
                     </div>
                     <div className="gap-10 flex flex-col items-center">

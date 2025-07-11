@@ -1,5 +1,4 @@
 import {Breadcrumbs, BreadcrumbItem, addToast, PopoverTrigger, PopoverContent, Popover} from "@heroui/react";
-import Share from '@icons/share.svg'
 import View from '@icons/eye-right.svg'
 import formatNumber from "@/helpers/formatNumber";
 import Image from "next/image";
@@ -8,6 +7,7 @@ import Like from "@/components/Like";
 import React from "react";
 import Rate from "@/components/Rate";
 import RuleOfCancleGroup from "@/components/RuleOfCancleGroup";
+import Share from "@/components/Share";
 
 const Hero = ({product = {}}) => {
     const {
@@ -43,14 +43,7 @@ const Hero = ({product = {}}) => {
                                     <BreadcrumbItem href="/group-class">کلاس های گروهی</BreadcrumbItem>
                                     <BreadcrumbItem>{title}</BreadcrumbItem>
                                 </Breadcrumbs>
-                                <div className="centerOfParent cursor-pointer" onClick={() => {
-                                    navigator.clipboard.writeText(location.href)
-                                    addToast({
-                                        title: 'کپی شد',
-                                        description: 'لینک با موفقیت کپی شد',
-                                        color: 'success',
-                                    })
-                                }}><Share/></div>
+                                <Share title={title}/>
                             </div>
                             <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center gap-3">

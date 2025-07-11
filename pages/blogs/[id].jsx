@@ -7,7 +7,6 @@ import Image from "next/image";
 import useGetRequest from "@/hooks/useGetRequest";
 import {useRouter} from "next/router";
 import {Chip, Spinner} from "@heroui/react";
-import Comments from "@/components/Comments";
 import Like from "@/components/Like";
 
 const Blog = () => {
